@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Foodgent</string>
     <string name="app_nameP1">Food</string>
     <string name="app_nameP2">gent</string>
@@ -34,7 +34,7 @@
     <string name="feedback_toShort">Feedback zu kurz.</string>
 
 
-    <string-array name="planets_array">
+    <string-array name="planets_array" tools:ignore="ExtraTranslation">
         <item>Hallo! Ich bin Kuehli \nIn diesem Tutorial zeig ich dir was ich so alles kann!</item>
         <item>1. Wenn du mir erzählst was sich in deinem Kühlschrank befindet, werde ich das für dich im Auge behalten  </item>
         <item>2. Zum Beispiel wenn ein Lebensmittel kurz vor dem Ablaufsdatum steht, werde ich dir das mitteilen.</item>

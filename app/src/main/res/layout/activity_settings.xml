@@ -61,7 +61,6 @@
         android:layout_height="0dp"
         android:fontFamily="casual"
         android:text="@string/app_nameP2"
-        android:textColor="@color/colorRed"
         android:textSize="30sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"

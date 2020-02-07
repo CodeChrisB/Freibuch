@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".UserInterface.MainActivity">
 
 
@@ -106,7 +105,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorPrimary"
+        android:background="#1C68EC"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:collapseIcon="@android:drawable/ic_menu_call"
@@ -124,28 +123,13 @@
         android:autoText="false"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="Food"
+        android:text="FoodGent"
         android:textColor="#FAFAFA"
         android:textSize="30sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toEndOf="@+id/textView_titleP1"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_titleP1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fontFamily="casual"
-        android:textColor="@color/colorRed"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -170,7 +154,6 @@
         android:background="@drawable/empty_drawable"
         android:gravity="center"
         android:text="+"
-        android:textColor="@color/colorBackground"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
