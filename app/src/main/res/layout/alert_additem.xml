@@ -151,7 +151,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline49" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button_barCodeScan"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:height="50dp"
@@ -169,8 +169,8 @@
         android:text="Lebensmittel Hinzufügen"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="@+id/button_barCodeScan"
+        app:layout_constraintStart_toEndOf="@+id/button_barCodeScan"
         app:layout_constraintTop_toTopOf="@+id/guideline40" />
 
     <TextView

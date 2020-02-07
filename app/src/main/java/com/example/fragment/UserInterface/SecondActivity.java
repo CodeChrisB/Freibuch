@@ -62,9 +62,7 @@ public class SecondActivity extends AppCompatActivity {
 
                 Resources res = getResources();
                 final String[] helpText = res.getStringArray(R.array.planets_array);
-
                 final ArrayList<String> list = new ArrayList<>();
-
                 for (String s : helpText) {
                     list.add(s);
                 }

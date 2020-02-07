@@ -57,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        mListView  = (ListView) findViewById(R.id.listView);
-
-
+        mListView = (ListView) findViewById(R.id.listView);
 
 
         //region FragmentChanger
@@ -70,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryAdd);
         fab.setVisibility(View.INVISIBLE);
 
-        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, topBarName, this,fab);
+        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, topBarName, this, fab);
         //endregion
-
 
 
         //region setup the adapter
@@ -157,36 +154,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //endregion
 
 
-
-      //endregion
-
-
-}
+    }
 
     private void getCorrectAddPage(int currentPage) {
         Intent intent = null;
         switch (currentPage) {
             case 0:
 
-                AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
-                View alertView = getLayoutInflater().inflate(R.layout.alert_additem, null);
-                final Calendar myCalendar = Calendar.getInstance();
 
-                Button button = findViewById(R.id.button5);
-                button.setOnClickListener(new OnClickListener() {
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
+                View helpView = getLayoutInflater().inflate(R.layout.dialog_help, null);
+
+                Button helpNext = helpView.findViewById(R.id.button_barCodeScan);
+                helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
                     }
                 });
 
-                altert.setView(alertView);
-                AlertDialog openAlert = altert.create();
-                openAlert.show();
+
+                helpDialog.setView(helpView);
+                AlertDialog help = helpDialog.create();
+                help.show();
 
                 //intent= new Intent(MainActivity.this,AddItem.class);
+
+
                 break;
 
             case 1:
@@ -226,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     private void getCorrectListView(int currentFragmentNumber) {
 
 
-        switch (currentFragmentNumber){
+        switch (currentFragmentNumber) {
             case 0:
                 setUpItemListView(mListView);
                 break;
@@ -241,12 +238,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setUpShopListView(ListView mListView){
+    private void setUpShopListView(ListView mListView) {
         ArrayList<ShoppingEntry> list = new ArrayList<>();
 
         //just for filling the list for now
         for (int i = 0; i < 50000; i++) {
-            list.add(new ShoppingEntry("My Note : "+ i));
+            list.add(new ShoppingEntry("My Note : " + i));
         }
 
 
@@ -254,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
     }
 
-    private void setUpCookingListView(ListView mListView){
+    private void setUpCookingListView(ListView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
 
         ArrayList<ShoppingEntry> list = new ArrayList<>();
@@ -264,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
     }
 
-    private void setUpItemListView(ListView mListView){
+    private void setUpItemListView(ListView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a Item or what ever
 
         ArrayList<ShoppingEntry> list = new ArrayList<>();
@@ -275,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private  void addToShopingList(){
+    private void addToShopingList() {
         AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
         View alertView = getLayoutInflater().inflate(R.layout.alert_addishopingentry, null);
 
@@ -285,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!editText.getText().equals("")){
+                if (!editText.getText().equals("")) {
 
                 }
             }
@@ -296,8 +293,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog openAlert = altert.create();
         openAlert.show();
     }
-
-
 
 
 }

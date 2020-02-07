@@ -21,6 +21,7 @@
         <activity android:name=".UserInterface.AddItem"></activity>
         <activity android:name=".UserInterface.AddCooking"></activity>
         <activity android:name=".UserInterface.AddShop"></activity>
+        <activity android:name=".Logic.ScanCodeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
