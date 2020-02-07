@@ -22,6 +22,7 @@ import com.example.fragment.Entity.ShoppingEntry;
 import com.example.fragment.Entity.ShopListAdapter;
 import com.example.fragment.Logic.FragmentChanger;
 import com.example.fragment.Logic.NonSwipeableViewPager;
+import com.example.fragment.Logic.ScanCodeActivity;
 import com.example.fragment.R;
 import com.example.fragment.Logic.SectionStatePagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -173,6 +174,13 @@ public class MainActivity extends AppCompatActivity {
                 View alertView = getLayoutInflater().inflate(R.layout.alert_additem, null);
                 final Calendar myCalendar = Calendar.getInstance();
 
+                Button button = findViewById(R.id.button5);
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
+                    }
+                });
 
                 altert.setView(alertView);
                 AlertDialog openAlert = altert.create();
