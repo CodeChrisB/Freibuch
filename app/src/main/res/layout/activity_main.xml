@@ -124,7 +124,7 @@
         android:autoText="false"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="FoodGent"
+        android:text="Food"
         android:textColor="#FAFAFA"
         android:textSize="30sp"
         android:textStyle="bold"
