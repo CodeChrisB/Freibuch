@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -29,6 +30,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import me.dm7.barcodescanner.core.BarcodeScannerView;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -164,15 +168,18 @@ public class MainActivity extends AppCompatActivity {
         switch (currentPage) {
             case 0:
 
-
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
-                View helpView = getLayoutInflater().inflate(R.layout.dialog_help, null);
+                View helpView = getLayoutInflater().inflate(R.layout.alert_additem, null);
 
                 Button helpNext = helpView.findViewById(R.id.button_barCodeScan);
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
+                    public void onClick(View helpView) {
+                        BarcodeResultHandler br = new BarcodeResultHandler();
+                        ZXingScannerView scannerView = new ZXingScannerView(MainActivity.this);
+                        scannerView.startCamera();
+                        scannerView.setResultHandler();
+                        helpDialog.setView(helpView);
                     }
                 });
 
