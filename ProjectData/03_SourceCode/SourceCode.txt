@@ -1,2 +1,0 @@
-Source Code is at:
-https://github.com/CodeChrisB/Freibuch/tree/master/app/src

@@ -1,5 +1,49 @@
 <resources>
-    <string name="app_name">FreibuchSMS</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_dreuckMich">Drück Mich</string>
+    <string name="app_name">Foodgent</string>
+    <string name="app_nameP1">Food</string>
+    <string name="app_nameP2">gent</string>
+    <string name="topBar_name">Food</string>
+    <string name="fragment1_name">Lebensmittel</string>
+    <string name="fragment2_name">Rezepte</string>
+    <string name="fragment3_name">Einkaufsliste</string>
+    <string name="itemListCode">item.txt</string>
+    <string name="cookinglistCode">cooking.txt</string>
+    <string name="shoppingList">shopping.txt</string>
+    <string name="settingsFile">settings.txt</string>
+    <string name="by">By</string>
+    <string name="heller_modus">Heller Modus</string>
+    <string name="made">Made</string>
+    <string name="dunkler_modus">Dunkler Modus</string>
+    <string name="alles_loeschen">ALLES LÖSCHEN</string>
+    <string name="alle_listen_leeren">Alle Listen leeren</string>
+    <string name="feedback">Feedback</string>
+    <string name="codechrisb">CodeChrisB</string>
+    <string name="feedback_text">Melde bitte alle Fehler die du findest.</string>
+    <string name="grosser_Text">Großer Text</string>
+    <string name="placeholderText">Placeholder</string>
+    <string name="storedSettingsFileName">settings.txt</string>
+
+    <string name="setting_lightMode">lightMode</string>
+    <string name="setting_darkMode">darkMode</string>
+    <string name="setting_smallText">smallText</string>
+    <string name="setting_bigText">bigText</string>
+
+
+    <string name="chrisGithub">https://github.com/codechrisb</string>
+    <string name="robertGithub">https://github.com/robertFreiseisen</string>
+    <string name="feedback_toShort">Feedback zu kurz.</string>
+
+
+    <string-array name="planets_array">
+        <item>Hallo! Ich bin Kuehli \nIn diesem Tutorial zeig ich dir was ich so alles kann!</item>
+        <item>1. Wenn du mir erzählst was sich in deinem Kühlschrank befindet, werde ich das für dich im Auge behalten  </item>
+        <item>2. Zum Beispiel wenn ein Lebensmittel kurz vor dem Ablaufsdatum steht, werde ich dir das mitteilen.</item>
+        <item>3. Du kannst mir auch Kochrezepte bei bringen, oder mir sagen was du beim nächsten Einkauf kaufen willst. </item>
+        <item>4. Du kannst Lebensmittel auch per Bar-Code einscannen, beim ersten mal sagst du mir um was es sich handelt. </item>
+        <item>5. Beim nächsten mal scannst du den Code und ich kenne das Lebensmittel wieder!</item>
+        <item>6. Ich vergesse nie etwas! Absofort bin ich dein persönlicher Assistent </item>
+        <item>Mit freundlichen grüßen Kuehli, dein bester Assistent! </item>
+    </string-array>
+
+
 </resources>
