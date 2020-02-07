@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1056273774655",
+    "firebase_url": "https://foodgent.firebaseio.com",
+    "project_id": "foodgent",
+    "storage_bucket": "foodgent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056273774655:android:be5969db0b4f956a31e08a",
+        "android_client_info": {
+          "package_name": "com.example.fragment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056273774655-e9a0nli26hf893itehtloegiuk7maa31.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fragment",
+            "certificate_hash": "4f6ca910c028edd00d3a401311816df002076a52"
+          }
+        },
+        {
+          "client_id": "1056273774655-3lprak8uan7k9t8n7me1er8vgvf48gmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2BJEGr3c7e23keFct2Kc0L71e-h4OHq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056273774655-3lprak8uan7k9t8n7me1er8vgvf48gmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

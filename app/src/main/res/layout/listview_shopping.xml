@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <CheckBox android:gravity="center"
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/checkBox_shopEntry"
+        android:layout_weight="90"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+
+        <TextView
+            android:id="@+id/textView_feedbackName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="left"
+            android:gravity="center|left"
+            android:text="TextView1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
