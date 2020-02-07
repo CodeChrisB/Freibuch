@@ -28,5 +28,40 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private String data;
-    private ZXingScan
+    private ZXingScannerView scannerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        scannerView = new ZXingScannerView(this);
+        setContentView(scannerView);
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        TextView textView12 = findViewById(R.id.textView12);
+        textView12.setText(result.getText());
+        onBackPressed();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return data;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        scannerView.stopCamera();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        scannerView.setResultHandler(this);
+        scannerView.startCamera();
+    }
 }
