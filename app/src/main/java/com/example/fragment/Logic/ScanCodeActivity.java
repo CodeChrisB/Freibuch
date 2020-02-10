@@ -5,11 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fragment.R;
 import com.example.fragment.UserInterface.MainActivity;
@@ -33,12 +35,14 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
     private Intent returnIntent  = new Intent();
     private String data;
     private ZXingScannerView scannerView;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
+        context = this;
     }
 
     @Override
@@ -46,6 +50,9 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         data=result.getText();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         onResumeFragments();
+        String s = result.getText();
+
+        Toast.makeText(context,"Barcode is : " + s, Toast.LENGTH_LONG).show();
         finish();
 
     }
