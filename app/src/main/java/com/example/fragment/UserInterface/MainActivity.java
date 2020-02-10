@@ -190,8 +190,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View helpView) {
                         Intent i =new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
-                        EditText editText = helpView.findViewById(R.id.editText_itemName);
-                        editText.setText(barcodeData);
+
+
                     }
                 });
 

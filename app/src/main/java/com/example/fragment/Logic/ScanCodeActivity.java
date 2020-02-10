@@ -46,6 +46,8 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         data=result.getText();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         onResumeFragments();
+        finish();
+
     }
 
     @NonNull
