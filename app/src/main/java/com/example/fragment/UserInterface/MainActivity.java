@@ -190,10 +190,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View helpView) {
                         Intent i =new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
-
-
                     }
                 });
+
 
 
             helpDialog.setView(helpView);
