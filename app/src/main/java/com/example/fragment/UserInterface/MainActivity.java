@@ -170,10 +170,9 @@ public class MainActivity extends AppCompatActivity {
                 barcodeData=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
+
             }
         }
-
     }
 
     private void getCorrectAddPage(int currentPage) {
