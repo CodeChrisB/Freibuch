@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_Topbar" />
 
     <EditText
-        android:id="@+id/editText_feedback"
+        android:id="@+id/editText_itemName"
         android:layout_width="273dp"
         android:layout_height="56dp"
         android:layout_marginEnd="64dp"
@@ -199,7 +199,7 @@
         android:text="Kein Plan wie wir das machen...."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_feedback" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_itemName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
