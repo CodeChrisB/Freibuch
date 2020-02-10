@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -115,7 +114,7 @@ public class SecondActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         //here we have to send the username with the feedback to firebase
 
-                        TextView eUserFeedback = helpView.findViewById(R.id.editText_feedback);
+                        TextView eUserFeedback = helpView.findViewById(R.id.editText_itemName);
                         TextView eUsername = helpView.findViewById(R.id.textView_feedbackName);
                         String username = eUsername.getText().toString();
                         String feedback = eUserFeedback.getText().toString();

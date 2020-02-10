@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
     <EditText
-        android:id="@+id/editText_feedback"
+        android:id="@+id/editText_itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,6 +68,6 @@
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_feedback" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_itemName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

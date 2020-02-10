@@ -1,8 +1,11 @@
 package com.example.fragment.Logic;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -27,6 +30,7 @@ import java.util.Scanner;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+    private Intent returnIntent  = new Intent();
     private String data;
     private ZXingScannerView scannerView;
 
@@ -39,9 +43,9 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
-        TextView textView12 = findViewById(R.id.textView12);
-        textView12.setText(result.getText());
-        onBackPressed();
+        data=result.getText();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        onResumeFragments();
     }
 
     @NonNull
@@ -56,6 +60,19 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         scannerView.stopCamera();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent returnIntent = new Intent();
+
+        if(data != null){
+            returnIntent.putExtra("result",data);
+            setResult(Activity.RESULT_OK,returnIntent);
+            onBackPressed();
+        } else{
+            setResult(Activity.RESULT_CANCELED, returnIntent);
+        }
+    }
 
     @Override
     protected void onResume() {

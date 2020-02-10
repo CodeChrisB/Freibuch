@@ -1,10 +1,12 @@
 package com.example.fragment.UserInterface;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -30,6 +32,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int LAUNCH_SECOND_ACTIVITY = 1;
+    private String barcodeData;
     private static final String TAG = "MainActivity";
     private static MainActivity instance;
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this,ScanCodeActivity.class);
                 startActivity(intent);
             }
         });
@@ -157,6 +161,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                barcodeData=data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+
+    }
+
     private void getCorrectAddPage(int currentPage) {
         Intent intent = null;
         switch (currentPage) {
@@ -169,7 +188,10 @@ public class MainActivity extends AppCompatActivity {
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
-                        startActivity(new Intent(getApplicationContext(), ScanCodeActivity.class));
+                        Intent i =new Intent(getApplicationContext(), ScanCodeActivity.class);
+                        startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
+                        EditText editText = helpView.findViewById(R.id.editText_itemName);
+                        editText.setText(barcodeData);
                     }
                 });
 
