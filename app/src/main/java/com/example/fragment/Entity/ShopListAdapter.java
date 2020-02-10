@@ -17,9 +17,7 @@ import com.example.fragment.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by User on 3/14/2017.
- */
+
 
 public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
 
@@ -37,12 +35,6 @@ public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
         CheckBox checkBox;
     }
 
-    /**
-     * Default constructor for the ShopListAdapter
-     * @param context
-     * @param resource
-     * @param objects
-     */
     public ShopListAdapter(Context context, int resource, ArrayList<ShoppingEntry> objects) {
         super(context, resource, objects);
         mContext = context;
@@ -57,7 +49,7 @@ public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //get the persons information
+        //get the shop list information
         String name = getItem(position).getName();
 
 
@@ -86,6 +78,8 @@ public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
             holder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
+
+
 
 
         Animation animation = AnimationUtils.loadAnimation(mContext,

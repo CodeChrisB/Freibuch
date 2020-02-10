@@ -1,8 +1,6 @@
 package com.example.fragment.Entity;
 
-/**
- * Created by User on 3/14/2017.
- */
+
 
 public class ShoppingEntry {
     private String name;

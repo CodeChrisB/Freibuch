@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-                helpDialog.setView(helpView);
+            helpDialog.setView(helpView);
                 AlertDialog help = helpDialog.create();
                 help.show();
 
@@ -267,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
         ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
         mListView.setAdapter(adapter);
     }
-
 
     private void addToShopingList() {
         AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
