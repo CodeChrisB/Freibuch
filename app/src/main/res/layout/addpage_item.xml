@@ -231,7 +231,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline40" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textView_barcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
@@ -392,11 +392,11 @@
         android:id="@+id/view_addWithBarCode"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_barcode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+        app:layout_constraintTop_toTopOf="@+id/textView_barcode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

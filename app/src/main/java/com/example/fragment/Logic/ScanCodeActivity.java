@@ -37,26 +37,24 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
     private ZXingScannerView scannerView;
     Context context;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
         context = this;
+
     }
 
 
 
     @Override
     public void handleResult(Result result) {
-        data=result.getText();
-        Intent i = new Intent();
-        i.putExtra("result",data);
-        setResult(getResources().getInteger(R.integer.barCodeResult),i);
 
-        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        onResumeFragments();
         String s = result.getText();
+       int requestCode = getResources().getInteger(R.integer.barCodeRequestCode);
+        MainActivity.getInstance().setValues(requestCode, (Object)s);
         Toast.makeText(context,"Barcode is : " + s, Toast.LENGTH_LONG).show();
         finish();
     }

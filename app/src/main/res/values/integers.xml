@@ -9,5 +9,7 @@
 
 
 
+    <integer name="barCodeRequestCode">1000</integer>
+
 
 </resources>

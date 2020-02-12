@@ -162,18 +162,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline40" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="Lebensmittel Hinzufügen"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button_barCodeScan"
-        app:layout_constraintStart_toEndOf="@+id/button_barCodeScan"
-        app:layout_constraintTop_toTopOf="@+id/guideline40" />
-
-    <TextView
         android:id="@+id/textView17"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -335,6 +323,16 @@
         app:layout_constraintStart_toStartOf="@+id/guideline42"
         app:layout_constraintTop_toTopOf="@+id/guideline43"
         app:srcCompat="@drawable/kuehlifood" />
+
+    <TextView
+        android:id="@+id/textView_barcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment1_name"
+        app:layout_constraintBottom_toTopOf="@+id/guideline33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline42"
+        app:layout_constraintStart_toStartOf="@+id/guideline46"
+        app:layout_constraintTop_toTopOf="@+id/guideline40" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

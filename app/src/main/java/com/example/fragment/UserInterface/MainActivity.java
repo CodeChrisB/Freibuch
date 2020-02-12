@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.fragment.Entity.ShoppingEntry;
 import com.example.fragment.Entity.ShopListAdapter;
+import com.example.fragment.Logic.ActivityValues;
 import com.example.fragment.Logic.FragmentChanger;
 import com.example.fragment.Logic.NonSwipeableViewPager;
 import com.example.fragment.Logic.ScanCodeActivity;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private FragmentChanger fragmentChanger;
     private ListView mListView;
+
+
+    private static ActivityValues values;
 
     public static MainActivity getInstance() {
         return instance;
@@ -183,14 +187,16 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
                 View helpView = getLayoutInflater().inflate(R.layout.alert_additem, null);
 
+                final TextView barcodeShower =  helpView.findViewById(R.id.textView_barcode);
+
                 Button helpNext = helpView.findViewById(R.id.button_barCodeScan);
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
                         Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
-                        startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
-                        EditText edi = findViewById(R.id.editText_itemName);
-                        edi.setText(barcodeData);
+                        startActivity(i);
+                       // String s = "Barcode: " + values.getBarcode();
+                        //barcodeShower.setText(s);
                     }
                 });
 
@@ -313,5 +319,14 @@ public class MainActivity extends AppCompatActivity {
         openAlert.show();
     }
 
+    static public void setValues(int requestCode,Object data){
+        switch (requestCode){
+            case 0:
+                String s = (String)data;
+                values.setBarcode(s);
+                break;
+        }
+
+    }
 
 }
