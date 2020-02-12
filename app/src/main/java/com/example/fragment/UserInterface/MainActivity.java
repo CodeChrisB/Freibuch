@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -196,10 +197,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View helpView) {
                         Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivity(i);
-                        // String s = "Barcode: " + values.getBarcode();
-                        //barcodeShower.setText(s);
+
+                        ActivityValues.getInstance().getBarcode();
+
                     }
                 });
+
 
                 // d
 
