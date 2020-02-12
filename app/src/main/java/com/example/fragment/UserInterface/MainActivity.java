@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                // d
 
 
             helpDialog.setView(helpView);
