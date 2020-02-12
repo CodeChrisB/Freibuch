@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == LAUNCH_SECOND_ACTIVITY) {
-            if(resultCode == Activity.RESULT_OK){
+            if(resultCode == getResources().getInteger(R.integer.barCodeResult)){
                 barcodeData=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -187,8 +187,10 @@ public class MainActivity extends AppCompatActivity {
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
-                        Intent i =new Intent(getApplicationContext(), ScanCodeActivity.class);
+                        Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
+                        EditText edi = findViewById(R.id.editText_itemName);
+                        edi.setText(barcodeData);
                     }
                 });
 
