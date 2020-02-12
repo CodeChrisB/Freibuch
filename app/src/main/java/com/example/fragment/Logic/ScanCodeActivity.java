@@ -53,7 +53,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
     public void handleResult(Result result) {
 
         String s = result.getText();
-       int requestCode = getResources().getInteger(R.integer.barCodeRequestCode);
+        int requestCode =1000;
         MainActivity.getInstance().setValues(requestCode, (Object)s);
         Toast.makeText(context,"Barcode is : " + s, Toast.LENGTH_LONG).show();
         finish();

@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private int LAUNCH_SECOND_ACTIVITY = 1;
     private String barcodeData;
     private static final String TAG = "MainActivity";
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ScanCodeActivity.class);
+                Intent intent = new Intent(MainActivity.this, ScanCodeActivity.class);
                 startActivity(intent);
             }
         });
@@ -170,8 +171,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == LAUNCH_SECOND_ACTIVITY) {
-            if(resultCode == getResources().getInteger(R.integer.barCodeResult)){
-                barcodeData=data.getStringExtra("result");
+            if (resultCode == getResources().getInteger(R.integer.barCodeResult)) {
+                barcodeData = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
 
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
                 View helpView = getLayoutInflater().inflate(R.layout.alert_additem, null);
 
-                final TextView barcodeShower =  helpView.findViewById(R.id.textView_barcode);
+                final TextView barcodeShower = helpView.findViewById(R.id.textView_barcode);
 
                 Button helpNext = helpView.findViewById(R.id.button_barCodeScan);
                 helpNext.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View helpView) {
                         Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivity(i);
-                       // String s = "Barcode: " + values.getBarcode();
+                        // String s = "Barcode: " + values.getBarcode();
                         //barcodeShower.setText(s);
                     }
                 });
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 // d
 
 
-            helpDialog.setView(helpView);
+                helpDialog.setView(helpView);
                 AlertDialog help = helpDialog.create();
                 help.show();
 
@@ -319,14 +320,17 @@ public class MainActivity extends AppCompatActivity {
         openAlert.show();
     }
 
-    static public void setValues(int requestCode,Object data){
-        switch (requestCode){
-            case 0:
-                String s = (String)data;
-                values.setBarcode(s);
-                break;
-        }
+    static public void setValues(int requestCode, Object data) {
+
+
+      if(requestCode== getInstance().getResources().getInteger(R.integer.barCodeRequestCode)) {
+          String s = (String) data;
+          values.setBarcode(s);
+      }
+
 
     }
+
+
 
 }
