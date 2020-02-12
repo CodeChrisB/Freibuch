@@ -196,10 +196,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View helpView) {
                         Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
-                        startActivity(i);
-
-                        ActivityValues.getInstance().getBarcode();
-
+                        startActivityForResult(i, 0);
+                        String s = ActivityValues.getInstance().getBarcode();
                     }
                 });
 
@@ -323,13 +321,12 @@ public class MainActivity extends AppCompatActivity {
         openAlert.show();
     }
 
-    static public void setValues(int requestCode, Object data) {
+    static public void setBarcode() {
 
+        View helpView = getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
 
-      if(requestCode== getInstance().getResources().getInteger(R.integer.barCodeRequestCode)) {
-          String s = (String) data;
-          values.setBarcode(s);
-      }
+        TextView t = helpView.findViewById(R.id.textView_barcode);
+        t.setText(ActivityValues.getInstance().getBarcode());
 
 
     }

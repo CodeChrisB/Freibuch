@@ -56,6 +56,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         int requestCode =1000;
         ActivityValues.getInstance().setBarcode(s);
         Toast.makeText(context,"Barcode is : " + s, Toast.LENGTH_LONG).show();
+        MainActivity.getInstance().setBarcode();
         finish();
     }
 
