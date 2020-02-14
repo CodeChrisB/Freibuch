@@ -45,7 +45,7 @@ public class SecondActivity extends AppCompatActivity {
         Log.d(TAG, "OnCreate: Started");
         context = this;
 
-        TextView textView = findViewById(R.id.textView_titleSettings);
+        final TextView textView = findViewById(R.id.textView_titleSettings);
         textView.bringToFront();
 
         //region Help Button

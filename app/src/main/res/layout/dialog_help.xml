@@ -27,8 +27,11 @@
         android:id="@+id/button_addShopEntry"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="@drawable/fragment_active_button"
+        android:background="@color/fragmentButtonColor"
+        android:fontFamily="casual"
         android:text="Weiter"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +39,7 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:background="@color/fragmentButtonColor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,12 +56,14 @@
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="411dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:autoText="false"
+        android:fontFamily="casual"
         android:foregroundGravity="center_vertical|center_horizontal"
         android:gravity="center"
         android:text="Hilfe - Tutorial"
+        android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="@+id/view3"
