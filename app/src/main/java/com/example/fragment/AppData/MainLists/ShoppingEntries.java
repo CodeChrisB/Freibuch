@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class ShoppingEntries implements ArrayAble<ShoppingEntry>, Serializable {
 
 
+
+
     @Override
     public ArrayList<ShoppingEntry> getArray() {
         return null;

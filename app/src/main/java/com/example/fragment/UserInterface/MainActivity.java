@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.Entity.ShopListAdapter;
 import com.example.fragment.Logic.ActivityValues;
@@ -269,11 +270,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpShopListView(ListView mListView) {
-        ArrayList<ShoppingEntries> list = new ArrayList<>();
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
 
         //just for filling the list for now
         for (int i = 0; i < 50000; i++) {
-            list.add(new ShoppingEntries("My Note : " + i));
+            list.add(new ShoppingEntry("My Note : " + i));
         }
 
 
@@ -284,8 +285,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpCookingListView(ListView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
 
-        ArrayList<ShoppingEntries> list = new ArrayList<>();
-
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
 
         ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
         mListView.setAdapter(adapter);
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpItemListView(ListView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
 
-        ArrayList<ShoppingEntries> list = new ArrayList<>();
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
 
 
         ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
