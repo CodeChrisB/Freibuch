@@ -13,7 +13,7 @@ import com.example.fragment.R;
 
 public class AddItem extends AppCompatActivity {
 
-    private static final String TAG = "Add Item";
+    private static final String TAG = "Add Items";
 
 
     //removes the slide animation, when opening this activity

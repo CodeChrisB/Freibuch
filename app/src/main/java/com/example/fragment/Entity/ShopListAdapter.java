@@ -13,13 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
 
 
 
-public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
+public class ShopListAdapter extends ArrayAdapter<ShoppingEntries> {
 
     private static final String TAG = "ShopListAdapter";
 
@@ -35,14 +36,14 @@ public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
         CheckBox checkBox;
     }
 
-    public ShopListAdapter(Context context, int resource, ArrayList<ShoppingEntry> objects) {
+    public ShopListAdapter(Context context, int resource, ArrayList<ShoppingEntries> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
     }
 
     @Override
-    public void add(@Nullable ShoppingEntry object) {
+    public void add(@Nullable ShoppingEntries object) {
         super.add(object);
     }
 
@@ -54,7 +55,7 @@ public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
 
 
         //Create the shopEntry object with the information
-        ShoppingEntry shopEntry = new ShoppingEntry(name);
+        ShoppingEntries shopEntry = new ShoppingEntries(name);
 
         //create the view result for showing the animation
         final View result;

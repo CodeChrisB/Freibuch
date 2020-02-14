@@ -7,7 +7,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fragment.Entity.ShoppingEntry;
+import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.Entity.ShopListAdapter;
 import com.example.fragment.Logic.ActivityValues;
 import com.example.fragment.Logic.FragmentChanger;
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //endregion
 
-        //region ShoppingEntry Button
+        //region ShoppingEntries Button
 
         fab.setOnClickListener(new OnClickListener() {
             @Override
@@ -270,11 +269,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpShopListView(ListView mListView) {
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        ArrayList<ShoppingEntries> list = new ArrayList<>();
 
         //just for filling the list for now
         for (int i = 0; i < 50000; i++) {
-            list.add(new ShoppingEntry("My Note : " + i));
+            list.add(new ShoppingEntries("My Note : " + i));
         }
 
 
@@ -285,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpCookingListView(ListView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
 
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        ArrayList<ShoppingEntries> list = new ArrayList<>();
 
 
         ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
@@ -293,9 +292,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpItemListView(ListView mListView) {
-        // TODO: 05/02/2020  change the ShopingEntry to a Item or what ever
+        // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
 
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        ArrayList<ShoppingEntries> list = new ArrayList<>();
 
 
         ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);

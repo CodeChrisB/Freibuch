@@ -1,12 +1,13 @@
 package com.example.fragment.Entity;
 
-import java.lang.reflect.Array;
+import com.example.fragment.AppData.MainLists.Barcodes;
+
 import java.util.ArrayList;
 
 public class BarcodeList {
-    ArrayList<Barcode> barcodes;
+    ArrayList<Barcodes> barcodes;
 
-    public BarcodeList(ArrayList<Barcode> barcodes) {
+    public BarcodeList(ArrayList<Barcodes> barcodes) {
         this.barcodes = barcodes;
     }
 }

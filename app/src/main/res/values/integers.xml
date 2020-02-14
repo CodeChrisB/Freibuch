@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <integer name="listItemCode">0</integer>
-    <integer name="listCookingCode">1</integer>
-    <integer name="listShoppingCode">2</integer>
-
+    <!-->SaveCodes<!-->
+    <integer name="ItemCode">0</integer>
+    <integer name="CookingCode">1</integer>
+    <integer name="ShoppingCode">2</integer>
+    <integer name="BarcodeCode">3</integer>
+    <integer name="SettingsCode">4</integer>
+    <integer name="listShoppingCode">5</integer>
+    <!-->SaveCodes<!-->
     <integer name="barCodeResult">91</integer>
-
-
-
     <integer name="barCodeRequestCode">1000</integer>
 
 
