@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private int LAUNCH_SECOND_ACTIVITY = 1;
     private String barcodeData;
     private static final String TAG = "MainActivity";
+    private static View alertItemView;
     private static MainActivity instance;
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
     private ViewPager mViewPager;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScanCodeActivity.class);
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         if (requestCode == LAUNCH_SECOND_ACTIVITY) {
             if (resultCode == getResources().getInteger(R.integer.barCodeResult)) {
                 barcodeData = data.getStringExtra("result");
@@ -187,17 +189,18 @@ public class MainActivity extends AppCompatActivity {
             case 0:
 
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
-                View helpView = getLayoutInflater().inflate(R.layout.alert_additem, null);
+                alertItemView = getLayoutInflater().inflate(R.layout.alert_additem, null);
 
-                final TextView barcodeShower = helpView.findViewById(R.id.textView_barcode);
+                final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
 
-                Button helpNext = helpView.findViewById(R.id.button_barCodeScan);
+                Button helpNext = alertItemView.findViewById(R.id.button_barCodeScan);
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
                         Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
                         startActivityForResult(i, 0);
                         String s = ActivityValues.getInstance().getBarcode();
+                        setBarcode();
                     }
                 });
 
@@ -205,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 // d
 
 
-                helpDialog.setView(helpView);
+                helpDialog.setView(alertItemView);
                 AlertDialog help = helpDialog.create();
                 help.show();
 
@@ -322,15 +325,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static public void setBarcode() {
-
-        View helpView = getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
-
-        TextView t = helpView.findViewById(R.id.textView_barcode);
+        TextView t = alertItemView.findViewById(R.id.textView_barcode);
         t.setText(ActivityValues.getInstance().getBarcode());
 
-
     }
-
-
-
 }
