@@ -111,4 +111,17 @@ public class AppData implements Serializable {
     public ArrayList<ShoppingEntry> getShoppingEntries(){
         return shoppingEntries.getArray();
     }
+
+
+    public void addBarcode(Barcode barcode){
+        barcodes.addTo(barcode);
+    }
+
+    public void addRecipe(Recipe recipe){
+        recipes.addTo(recipe);
+    }
+
+    public void addShoppingEntry(ShoppingEntry shoppingEntry){
+        shoppingEntries.addTo(shoppingEntry);
+    }
 }

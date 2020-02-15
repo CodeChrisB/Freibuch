@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class Barcode implements Serializable {
 
-    Barcode barcode;
+    String barcode;
     Item item;
 
-    public Barcode(Barcode barcode, Item item) {
+    public Barcode(String barcode, Item item) {
         this.barcode = barcode;
         this.item = item;
     }
 
-    public Barcode getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(Barcode barcode) {
+    public void setBarcode(String  barcode) {
         this.barcode = barcode;
     }
 
