@@ -23,4 +23,14 @@ public class Items implements SaveArrayAble<Item>, Serializable {
     public void addTo(Item object) {
         items.add(object);
     }
+
+    @Override
+    public void removeObject(Item object) {
+        items.remove(object);
+    }
+
+    @Override
+    public void removeAll() {
+        items = new ArrayList<Item>();
+    }
 }

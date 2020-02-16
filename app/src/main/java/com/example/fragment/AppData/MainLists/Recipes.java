@@ -1,5 +1,6 @@
 package com.example.fragment.AppData.MainLists;
 
+import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.Logic.SaveArrayAble;
 import com.example.fragment.AppData.Entities.Recipe;
 
@@ -21,5 +22,17 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
     @Override
     public void addTo(Recipe object) {
         recipes.add(object);
+    }
+
+
+
+    @Override
+    public void removeObject(Recipe object) {
+        recipes.remove(object);
+    }
+
+    @Override
+    public void removeAll() {
+        recipes = new ArrayList<Recipe>();
     }
 }

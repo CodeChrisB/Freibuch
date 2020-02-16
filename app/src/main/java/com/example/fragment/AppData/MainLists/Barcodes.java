@@ -22,6 +22,20 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
 
     @Override
     public void addTo(Barcode object) {
-    barcodes.add(object);
+
+        barcodes.add(object);
     }
+
+    @Override
+    public void removeObject(Barcode object) {
+        barcodes.remove(object);
+    }
+
+
+    @Override
+    public  void removeAll(){
+        barcodes = new ArrayList<Barcode>();
+    }
+
+
 }

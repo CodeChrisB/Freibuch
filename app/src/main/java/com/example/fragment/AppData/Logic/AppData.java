@@ -93,6 +93,7 @@ public class AppData implements Serializable {
         Save();
     }
 
+
     //region get Object
     public ArrayList<Barcode> getBarcodes(){
         return barcodes.getArray();
@@ -103,7 +104,7 @@ public class AppData implements Serializable {
     public ArrayList<ShoppingEntry> getShoppingEntries(){
         return shoppingEntries.getArray();
     }
-    public  ArrayList<Item> items(){return items.getArray();}
+    public  ArrayList<Item> getItems(){return items.getArray();}
     //endregion
 
     //region add Object
@@ -121,4 +122,49 @@ public class AppData implements Serializable {
         items.addTo(item);
     }
     //endregion
+
+    //region remove object
+    public void removeBarcode(Barcode barcode){
+        barcodes.removeObject(barcode);
+    }
+    public void removeRecipe(Recipe recipe){
+        recipes.removeObject(recipe);
+    }
+    public void removeShoppingEntry(ShoppingEntry shoppingEntry){
+        shoppingEntries.removeObject(shoppingEntry);
+    }
+    public void removeItem(Item item){
+        items.removeObject(item);
+    }
+    //endregion
+
+    //region RemoveAll
+    public void removeAllBarCodes(){
+        barcodes.removeAll();
+    }
+    public void removeAllRecipes(){
+        recipes.removeAll();
+    }
+    public void removeAllItems(){
+        items.removeAll();
+    }
+    public void removeAllShoppingEntries(){
+        shoppingEntries.removeAll();
+    }
+    //endregion
+
+    //region Barcode Functions
+    public Item searchForItem(String barcode){
+        ArrayList<Barcode>  list = barcodes.getArray();
+
+        for(Barcode code : list){
+            if(code.getBarcode().equals(barcode)){
+                return code.getItem();
+            }
+        }
+        return null;
+    }
+
+    ///endregion
+
 }

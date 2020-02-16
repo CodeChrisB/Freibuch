@@ -22,4 +22,14 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     public void addTo(ShoppingEntry object) {
         shoppingEntries.add(object);
     }
+
+    @Override
+    public void removeObject(ShoppingEntry object) {
+        shoppingEntries.remove(object);
+    }
+
+    @Override
+    public void removeAll() {
+        shoppingEntries = new ArrayList<ShoppingEntry>();
+    }
 }
