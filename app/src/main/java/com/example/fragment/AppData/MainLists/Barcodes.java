@@ -5,27 +5,14 @@ import com.example.fragment.AppData.Logic.SaveArrayAble;
 import com.example.fragment.AppData.Entities.Barcode;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
 
+    ArrayList<Barcode> barcodes = new ArrayList<>();
 
-    ArrayList<Barcode> barcodes;
-
-    public Barcodes(ArrayList<Barcode> barcodes) {
-        this.barcodes = barcodes;
-    }
-
-    public Item getItemFromBarcode(String barcode){
-        for(Barcode b : barcodes){
-            if(b.getBarcode().equals(barcode))
-                return b.getItem();
-        }
-        return null;
-    }
-
-    public void AddBarCode(Barcode barcode){
-        barcodes.add(barcode);
+    public Barcodes(){
     }
 
     @Override
@@ -35,8 +22,6 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
 
     @Override
     public void addTo(Barcode object) {
-        barcodes.add(object);
+    barcodes.add(object);
     }
-
-
 }

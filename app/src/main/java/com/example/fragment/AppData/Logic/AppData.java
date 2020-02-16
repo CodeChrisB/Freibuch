@@ -1,6 +1,7 @@
 package com.example.fragment.AppData.Logic;
 
 import com.example.fragment.AppData.Entities.Barcode;
+import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.Recipe;
 import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.MainLists.Barcodes;
@@ -18,28 +19,23 @@ import java.util.ArrayList;
 
 public class AppData implements Serializable {
 
-    private Barcodes barcodes;
-    private Recipes recipes;
-    private Items items;
-    private Settings settings;
-    private ShoppingEntries shoppingEntries;
+    private static Barcodes barcodes = new Barcodes();
+    private static Recipes recipes = new Recipes();
+    private static Items items = new Items();
+    private static Settings settings = new Settings();
+    private static ShoppingEntries shoppingEntries =new ShoppingEntries();
 
     //region static Class
 
-    private static AppData instance = null;
-    public  static AppData getInstance(){
-        if(instance==null) {
-            instance = new AppData();
-        }
-        return instance;
-    }
 
     //endregion
 
 
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
-    public  AppData(){ }
+    public  AppData(){
+    }
+
 
 
     //private Constructor for the save mechanism
@@ -88,7 +84,7 @@ public class AppData implements Serializable {
     //Create a new empty AppData Object and save it,
     //to "delete" all memories.
     public void DeleteAppData(){
-        barcodes = new Barcodes(new ArrayList<Barcode>());
+        barcodes = new Barcodes();
         recipes = new Recipes();
         items = new Items();
         settings = new Settings();
@@ -97,31 +93,32 @@ public class AppData implements Serializable {
         Save();
     }
 
-    //get the barcode List
-   public ArrayList<Barcode> getBarcodes(){
+    //region get Object
+    public ArrayList<Barcode> getBarcodes(){
         return barcodes.getArray();
    }
-
-    //get the Recipe List
     public ArrayList<Recipe> getRecipes(){
         return recipes.getArray();
     }
-
-    //get the ShoppingEntry List
     public ArrayList<ShoppingEntry> getShoppingEntries(){
         return shoppingEntries.getArray();
     }
+    public  ArrayList<Item> items(){return items.getArray();}
+    //endregion
 
-
+    //region add Object
     public void addBarcode(Barcode barcode){
         barcodes.addTo(barcode);
-    }
 
+    }
     public void addRecipe(Recipe recipe){
         recipes.addTo(recipe);
     }
-
     public void addShoppingEntry(ShoppingEntry shoppingEntry){
         shoppingEntries.addTo(shoppingEntry);
     }
+    public void addItem(Item item){
+        items.addTo(item);
+    }
+    //endregion
 }

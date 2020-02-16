@@ -7,7 +7,6 @@ public class ActivityValues {
     private static ActivityValues instance = null;
 
     private ActivityValues(){
-
     }
 
     public  static ActivityValues getInstance(){

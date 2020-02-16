@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 public class Recipes implements SaveArrayAble<Recipe>, Serializable {
 
-    ArrayList<Recipe> recipes;
+    ArrayList<Recipe> recipes = new ArrayList<>();
+
+    public Recipes(){
+    }
+
     @Override
     public ArrayList<Recipe> getArray() {
-        return null;
+        return recipes;
     }
 
     @Override

@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializable {
 
-     ArrayList<ShoppingEntry> shoppingEntries;
+    ArrayList<ShoppingEntry> shoppingEntries = new ArrayList<>();
+
+    public ShoppingEntries(){
+    }
+
     @Override
     public ArrayList<ShoppingEntry> getArray() {
-        return null;
+        return shoppingEntries;
     }
 
     @Override

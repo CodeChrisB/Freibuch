@@ -1,5 +1,6 @@
 package com.example.fragment.AppData.MainLists;
 
+import com.example.fragment.AppData.Entities.Recipe;
 import com.example.fragment.AppData.Logic.SaveArrayAble;
 import com.example.fragment.AppData.Entities.Item;
 
@@ -8,11 +9,14 @@ import java.util.ArrayList;
 
 public class Items implements SaveArrayAble<Item>, Serializable {
 
-    ArrayList<Item> items;
+    ArrayList<Item> items = new ArrayList<>();
+
+    public Items(){
+    }
 
     @Override
     public ArrayList<Item> getArray() {
-        return null;
+        return items;
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -19,7 +20,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fragment.AppData.Entities.Barcode;
 import com.example.fragment.AppData.Entities.ShoppingEntry;
+import com.example.fragment.AppData.Logic.AppData;
+import com.example.fragment.AppData.MainLists.Barcodes;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.Entity.ShopListAdapter;
 import com.example.fragment.Logic.ActivityValues;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private FragmentChanger fragmentChanger;
     private ListView mListView;
+    private AppData appData;
 
 
     private static ActivityValues values;
@@ -168,20 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-
-        if (requestCode == LAUNCH_SECOND_ACTIVITY) {
-            if (resultCode == getResources().getInteger(R.integer.barCodeResult)) {
-                barcodeData = data.getStringExtra("result");
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-
-            }
-        }
-    }
 
     private void getCorrectAddPage(int currentPage) {
         Intent intent = null;
