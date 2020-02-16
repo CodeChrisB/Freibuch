@@ -20,10 +20,6 @@ import static org.junit.Assert.*;
  */
 public class PresistenceTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
-    @Test
     public void barcode_addTest(){
         AppData appData = new AppData();
         LocalDate date = LocalDate.now(); // Create a date object
