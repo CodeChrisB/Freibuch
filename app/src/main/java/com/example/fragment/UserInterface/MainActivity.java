@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mListView = (ListView) findViewById(R.id.listView);
 
+        //with AppData.getInstance now every class in this whole
+        //project can use AppData and use all of its funtions.
+        appData = AppData.getInstance();
 
         //region FragmentChanger
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);

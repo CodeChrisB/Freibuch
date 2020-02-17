@@ -31,8 +31,8 @@ public class PresistenceTest {
         Item item2 = new Item("Item 2","This is the Second Item", date,-1);
         Item item3 = new Item("Item 3","This is the Third Item", date,-1);
 
-        Barcode barcode1 = new Barcode("12345",item1);
-        Barcode barcode2 = new Barcode("12345",item2);
+        Barcode barcode1 = new Barcode("123",item1);
+        Barcode barcode2 = new Barcode("1234",item2);
         Barcode barcode3 = new Barcode("12345",item3);
 
 
@@ -131,6 +131,43 @@ public class PresistenceTest {
 
         if(shortedList.size()==allCodes.size()-1 && barcodeIsRemoved)
             assert(true);
+
+    }
+
+    @Test public void barcode_update()
+    {
+        AppData appData = new AppData();
+        LocalDate date = LocalDate.now(); // Create a date object
+
+        appData.DeleteAppData();
+
+
+        Item item1 = new Item("Item 1","This is the First Item", date,-1);
+        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
+        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
+
+        Item item1Update = new Item("Update","This is the Updated Item", date,-1);
+
+        Barcode barcode1 = new Barcode("123456789",item1);
+        Barcode barcode2 = new Barcode("43214532",item2);
+        Barcode barcode3 = new Barcode("43144542",item3);
+        Barcode barcode4 = new Barcode("123456789",item1Update);
+
+
+        appData.addBarcode(barcode1);
+        appData.addBarcode(barcode2);
+        appData.addBarcode(barcode3);
+        appData.addBarcode(barcode4);
+
+        if(!(appData.getBarcodes().size()==3))
+            assert(false);//wrong length
+
+        for(Barcode code: appData.getBarcodes()){
+            if(code.getItem().getName().equals("Item 1"))
+                assert(false);
+        }
+
+        assert(true);
 
     }
 

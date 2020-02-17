@@ -23,7 +23,19 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
     @Override
     public void addTo(Barcode object) {
 
-        barcodes.add(object);
+        if(isNewBarCode(object.getBarcode())){
+            //just add barcode its a new one!
+            barcodes.add(object);
+        }else {
+            //we have to delete the old barcode and add the new one.
+            for (Barcode code : barcodes) {
+                if (code.getBarcode().equals(object.getBarcode())) {
+                    barcodes.remove(code);
+                    barcodes.add(object);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -37,5 +49,13 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
         barcodes = new ArrayList<Barcode>();
     }
 
+
+    private Boolean isNewBarCode(String barcode) {
+        for(Barcode code : barcodes){
+            if(code.getBarcode().equals(barcode))
+                return false;
+        }
+        return true;
+    }
 
 }

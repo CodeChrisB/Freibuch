@@ -17,6 +17,10 @@ public class Item implements Serializable {
         this.amount = amount;
     }
 
+    public Item(){
+        //just for debugging and testing purpose.
+    }
+
     public String getName() {
         return name;
     }

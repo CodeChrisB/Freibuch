@@ -1,5 +1,7 @@
 package com.example.fragment.AppData.Logic;
 
+import android.content.Context;
+
 import com.example.fragment.AppData.Entities.Barcode;
 import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.Recipe;
@@ -23,19 +25,24 @@ public class AppData implements Serializable {
     private static Recipes recipes = new Recipes();
     private static Items items = new Items();
     private static Settings settings = new Settings();
-    private static ShoppingEntries shoppingEntries =new ShoppingEntries();
+    private static ShoppingEntries shoppingEntries = new ShoppingEntries();
+    private static AppData instance = null;
 
     //region static Class
-
+    public static AppData getInstance() {
+        if (instance == null)
+            instance = new AppData();
+        return instance;
+    }
 
     //endregion
 
 
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
-    public  AppData(){
+    public AppData() {
+        Init();
     }
-
 
 
     //private Constructor for the save mechanism
@@ -48,42 +55,26 @@ public class AppData implements Serializable {
     }
 
 
-
     //get the saved data from memory
-    public void Init(){
-        //Load all Lists, Settings and Barcodes from Memory
-        //Retrieve the Data from the current Session
-        ObjectInputStream input;
-        try {
-            input = new ObjectInputStream(new FileInputStream("test.txt"));
-            AppData receivedData = (AppData) input.readObject();
-            barcodes = receivedData.barcodes;
-            recipes = receivedData.recipes;
-            items = receivedData.items;
-            settings = receivedData.settings;
-            shoppingEntries = receivedData.shoppingEntries;
-        } catch (Exception e) { }
+    public void Init() {
+        //Load all the AppData object
+
 
 
     }
 
-    public void Save(){
+    public void Save() {
         //Save all Lists, Settings and Barcodes from Memory
-        AppData saveData = new AppData(barcodes,recipes,items,settings,shoppingEntries);
+        AppData saveData = new AppData(barcodes, recipes, items, settings, shoppingEntries);
         //Save the current State to a file
-        try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("test.txt"));
-            output.writeObject(saveData);
-            output.close();
-        } catch (IOException ex) { }
+
 
     }
-
 
 
     //Create a new empty AppData Object and save it,
     //to "delete" all memories.
-    public void DeleteAppData(){
+    public void DeleteAppData() {
         barcodes = new Barcodes();
         recipes = new Recipes();
         items = new Items();
@@ -95,70 +86,84 @@ public class AppData implements Serializable {
 
 
     //region get Object
-    public ArrayList<Barcode> getBarcodes(){
+    public ArrayList<Barcode> getBarcodes() {
         return barcodes.getArray();
-   }
-    public ArrayList<Recipe> getRecipes(){
+    }
+
+    public ArrayList<Recipe> getRecipes() {
         return recipes.getArray();
     }
-    public ArrayList<ShoppingEntry> getShoppingEntries(){
+
+    public ArrayList<ShoppingEntry> getShoppingEntries() {
         return shoppingEntries.getArray();
     }
-    public  ArrayList<Item> getItems(){return items.getArray();}
+
+    public ArrayList<Item> getItems() {
+        return items.getArray();
+    }
     //endregion
 
     //region add Object
-    public void addBarcode(Barcode barcode){
+    public void addBarcode(Barcode barcode) {
         barcodes.addTo(barcode);
 
     }
-    public void addRecipe(Recipe recipe){
+
+    public void addRecipe(Recipe recipe) {
         recipes.addTo(recipe);
     }
-    public void addShoppingEntry(ShoppingEntry shoppingEntry){
+
+    public void addShoppingEntry(ShoppingEntry shoppingEntry) {
         shoppingEntries.addTo(shoppingEntry);
     }
-    public void addItem(Item item){
+
+    public void addItem(Item item) {
         items.addTo(item);
     }
     //endregion
 
     //region remove object
-    public void removeBarcode(Barcode barcode){
+    public void removeBarcode(Barcode barcode) {
         barcodes.removeObject(barcode);
     }
-    public void removeRecipe(Recipe recipe){
+
+    public void removeRecipe(Recipe recipe) {
         recipes.removeObject(recipe);
     }
-    public void removeShoppingEntry(ShoppingEntry shoppingEntry){
+
+    public void removeShoppingEntry(ShoppingEntry shoppingEntry) {
         shoppingEntries.removeObject(shoppingEntry);
     }
-    public void removeItem(Item item){
+
+    public void removeItem(Item item) {
         items.removeObject(item);
     }
     //endregion
 
     //region RemoveAll
-    public void removeAllBarCodes(){
+    public void removeAllBarCodes() {
         barcodes.removeAll();
     }
-    public void removeAllRecipes(){
+
+    public void removeAllRecipes() {
         recipes.removeAll();
     }
-    public void removeAllItems(){
+
+    public void removeAllItems() {
         items.removeAll();
     }
-    public void removeAllShoppingEntries(){
+
+    public void removeAllShoppingEntries() {
         shoppingEntries.removeAll();
     }
     //endregion
 
     //region Barcode Functions
-    public Item searchForItem(String barcode){
-        ArrayList<Barcode>  list = barcodes.getArray();
+    public Item searchForItem(String barcode) {
+        ArrayList<Barcode> list = barcodes.getArray();
 
-        for(Barcode code : list){
-            if(code.getBarcode().equals(barcode)){
+        for (Barcode code : list) {
+            if (code.getBarcode().equals(barcode)) {
                 return code.getItem();
             }
         }
