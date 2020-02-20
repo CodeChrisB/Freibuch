@@ -9,6 +9,7 @@ import com.example.fragment.AppData.MainLists.Items;
 import com.example.fragment.AppData.MainLists.Recipes;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -55,6 +56,7 @@ public class AppData implements Serializable {
             }
         }
 
+        saveAppData();
         Init();
 
 
@@ -74,20 +76,7 @@ public class AppData implements Serializable {
     //get the saved data from memory
     public void Init() {
         //Load all the AppData object
-        try {
-            FileInputStream fileIn = new FileInputStream(pathName);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            AppData app = (AppData) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-            return;
-        } catch (ClassNotFoundException c) {
-            System.out.println("AppData not Found");
-            c.printStackTrace();
-            return;
-        }
+        // deserialize the object
 
 
     }
@@ -95,22 +84,41 @@ public class AppData implements Serializable {
     public void saveAppData() {
         //Save all Lists, Settings and Barcodes from Memory
         AppData saveData = new AppData(barcodes, recipes, items, settings, shoppingEntries);
+        shoppingEntries.addTo(new ShoppingEntry("hello"));
         //Save the current State to a file
 
+        AppData myClass = null;
         try {
-            FileOutputStream fileOut =
-                    new FileOutputStream("appdata.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(saveData);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
+            FileOutputStream fileStream = new FileOutputStream("appdata.txt");
+            ObjectOutputStream os = new ObjectOutputStream(fileStream);
+            os.writeObject(os);
+            os.close();
+        } catch (Exception ex) {
         }
+
+        AppData myClass2 = null;
+        try {
+            FileInputStream fileInStream = new FileInputStream("appdata.txt");
+            ObjectInputStream ois = new ObjectInputStream(fileInStream);
+            myClass2 = (AppData) ois.readObject();
+            ois.close();
+        } catch (Exception ex) {
+        }
+        int size = myClass2.getShoppingEntries().size();
 
     }
 
-
+    private String AppDataObjectToString(AppData saveData) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ObjectOutputStream os = null;
+        try {
+            os = new ObjectOutputStream(out);
+            os.writeObject(saveData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new String(out.toByteArray());
+    }
     //Create a new empty AppData Object and save it,
     //to "delete" all memories.
     public void DeleteAppData() {
