@@ -13,19 +13,22 @@ import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.UserInterface.MainActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
 
-    private static Barcodes barcodes = new Barcodes();
-    private static Recipes recipes = new Recipes();
-    private static Items items = new Items();
-    private static Settings settings = new Settings();
-    private static ShoppingEntries shoppingEntries = new ShoppingEntries();
+    protected static Barcodes barcodes = new Barcodes();
+    protected static Recipes recipes = new Recipes();
+    protected static Items items = new Items();
+    protected static Settings settings = new Settings();
+    protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
     private static AppData instance = null;
 
 
@@ -46,7 +49,19 @@ public class AppData implements Serializable {
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
     public AppData() {
-        Init();
+        File yourFile = new File("appdata.txt");
+        try {
+            yourFile.createNewFile(); // if file already exists will do nothing
+        } catch (IOException e) {
+            // TODO: 21/02/2020
+            //create an exclusive constructor only for the resaon to create an empty appdata object
+
+
+        }
+    }
+
+
+    private void Init() {
     }
 
 
@@ -61,13 +76,27 @@ public class AppData implements Serializable {
 
 
     //get the saved data from memory
-    public void Init() {
+    public AppData loadData() {
 
         //Load all the AppData object
         // deserialize the object
-
+        Object appData = null;
+        try {
+            FileInputStream fos = MainActivity.getInstance().getContext().openFileInput("appdata.txt");
+            ObjectInputStream ois = new ObjectInputStream(fos);
+            // write object to file
+            appData = ois.readObject();
+            System.out.println("Done");
+            // closing resources
+            ois.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (AppData) appData;
 
     }
+
 
     public void saveAppData() {
         //Save all Lists, Settings and Barcodes from Memory
