@@ -1,16 +1,10 @@
 package com.example.fragment.UserInterface;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -20,18 +14,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fragment.AppData.Entities.Barcode;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.Logic.AppData;
-import com.example.fragment.AppData.MainLists.Barcodes;
-import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.Entity.ShopListAdapter;
 import com.example.fragment.Logic.ActivityValues;
 import com.example.fragment.Logic.FragmentChanger;
 import com.example.fragment.Logic.NonSwipeableViewPager;
 import com.example.fragment.Logic.ScanCodeActivity;
-import com.example.fragment.R;
 import com.example.fragment.Logic.SectionStatePagerAdapter;
+import com.example.fragment.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -57,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
 
+    public Context getContext() {
+        return this;
+    }
+
     //removes the slide animation, when opening this activity
     @Override
     protected void onStart() {
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        mListView = (ListView) findViewById(R.id.listView);
+        mListView = findViewById(R.id.listView);
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.
