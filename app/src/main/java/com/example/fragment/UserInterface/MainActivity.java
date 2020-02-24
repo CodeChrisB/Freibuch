@@ -304,20 +304,16 @@ public class MainActivity extends AppCompatActivity {
                         //Constructor
                         //public Item(String name, String description, LocalDate dateTime, int amount)
 
-                        int amount = Integer.parseInt(itemAmount.getText().toString());
-
-
                         //check if the requierd fields are filled
-                        if (!(amount == 0)) {
+                        if (!(itemAmount.getText().toString().equals("") && itemName.getText().toString().equals(""))) {
 
-                            Item item = new Item(name, "NA", null, amount);
 
                             if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
                                 //User scanned a barcode now handle it
                                 String barcode = ActivityValues.getInstance().getBarcode();
-                                appData.addBarcode(new Barcode(barcode, item));
+                                appData.addBarcode(new Barcode(barcode, new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString()))));
                             }
-                            appData.addItem(item);
+                            appData.addItem(new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString())));
                             finish();
                         } else {
                             Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
