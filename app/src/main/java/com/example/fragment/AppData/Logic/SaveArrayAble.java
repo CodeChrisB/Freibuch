@@ -7,4 +7,8 @@ public interface SaveArrayAble<T> {
     void addTo(T object);
     void removeObject( T object);
     void removeAll();
+
+    ArrayList<T> getObject();
+
+    void setObject(ArrayList<T> objectList);
 }

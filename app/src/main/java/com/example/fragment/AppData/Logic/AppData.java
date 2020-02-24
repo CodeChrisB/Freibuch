@@ -1,7 +1,5 @@
 package com.example.fragment.AppData.Logic;
 
-import android.content.Context;
-
 import com.example.fragment.AppData.Entities.Barcode;
 import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.Recipe;
@@ -15,7 +13,6 @@ import com.example.fragment.UserInterface.MainActivity;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -49,15 +46,6 @@ public class AppData implements Serializable {
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
     public AppData() {
-        File yourFile = new File("appdata.txt");
-        try {
-            yourFile.createNewFile(); // if file already exists will do nothing
-        } catch (IOException e) {
-            // TODO: 21/02/2020
-            //create an exclusive constructor only for the resaon to create an empty appdata object
-
-
-        }
     }
 
 
@@ -78,14 +66,28 @@ public class AppData implements Serializable {
     //get the saved data from memory
     public AppData loadData() {
 
+        File yourFile = new File("appdata.txt");
+        try {
+            yourFile.createNewFile(); // if file already exists will do nothing
+        } catch (IOException e) {
+        }
+
         //Load all the AppData object
         // deserialize the object
-        Object appData = null;
+        AppData appData = null;
         try {
             FileInputStream fos = MainActivity.getInstance().getContext().openFileInput("appdata.txt");
             ObjectInputStream ois = new ObjectInputStream(fos);
             // write object to file
-            appData = ois.readObject();
+            appData = (AppData) ois.readObject();
+
+            //region change values on current appdata
+            barcodes.setObject(appData.getBarcodes());
+            recipes.setObject(appData.getRecipes());
+            items.setObject(appData.getItems());
+            shoppingEntries.setObject(appData.getShoppingEntries());
+            //endregion
+
             System.out.println("Done");
             // closing resources
             ois.close();
@@ -93,7 +95,7 @@ public class AppData implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (AppData) appData;
+        return appData;
 
     }
 
@@ -101,21 +103,7 @@ public class AppData implements Serializable {
     public void saveAppData() {
         //Save all Lists, Settings and Barcodes from Memory
         AppData saveData = new AppData(barcodes, recipes, items, settings, shoppingEntries);
-        shoppingEntries.addTo(new ShoppingEntry("hello"));
-        //Save the current State to a file
 
-        try {
-            FileOutputStream fos = MainActivity.getInstance().getContext().openFileOutput("appdata.txt", Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            // write object to file
-            oos.writeObject(saveData);
-            System.out.println("Done");
-            // closing resources
-            oos.close();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -232,5 +220,6 @@ public class AppData implements Serializable {
     }
 
     ///endregion
+
 
 }

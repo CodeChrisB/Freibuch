@@ -8,7 +8,7 @@
     tools:context=".UserInterface.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/button_additem"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="28dp"

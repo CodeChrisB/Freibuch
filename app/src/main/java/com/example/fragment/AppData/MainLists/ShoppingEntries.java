@@ -1,7 +1,7 @@
 package com.example.fragment.AppData.MainLists;
 
-import com.example.fragment.AppData.Logic.SaveArrayAble;
 import com.example.fragment.AppData.Entities.ShoppingEntry;
+import com.example.fragment.AppData.Logic.SaveArrayAble;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,5 +31,15 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     @Override
     public void removeAll() {
         shoppingEntries = new ArrayList<ShoppingEntry>();
+    }
+
+    @Override
+    public ArrayList<ShoppingEntry> getObject() {
+        return shoppingEntries;
+    }
+
+    @Override
+    public void setObject(ArrayList<ShoppingEntry> objectList) {
+        shoppingEntries = objectList;
     }
 }

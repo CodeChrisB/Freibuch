@@ -8,7 +8,7 @@
     tools:context=".UserInterface.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/button_additem"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
@@ -125,7 +125,7 @@
         app:layout_constraintVertical_bias="0.54" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editText_itemAmount"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"

@@ -18,6 +18,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.fragment.AppData.Entities.Barcode;
+import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.Logic.AppData;
 import com.example.fragment.Entity.ShopListAdapter;
@@ -63,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    static public void setBarcode() {
+        TextView t = alertItemView.findViewById(R.id.textView_barcode);
+        t.setText(("Barcode " + ActivityValues.getInstance().getBarcode()));
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         //project can use AppData and use all of its funtions.
         appData = AppData.getInstance();
         appData.loadData();
+
+
+        ArrayList<ShoppingEntry> list = appData.getShoppingEntries();
 
         //region FragmentChanger
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);
@@ -176,62 +186,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-    private void getCorrectAddPage(int currentPage) {
-        Intent intent = null;
-        switch (currentPage) {
-            case 0:
-
-                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
-                alertItemView = getLayoutInflater().inflate(R.layout.alert_additem, null);
-
-                final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
-
-                Button helpNext = alertItemView.findViewById(R.id.button_barCodeScan);
-                helpNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View helpView) {
-                        Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
-                        startActivityForResult(i, 0);
-                        String s = ActivityValues.getInstance().getBarcode();
-                        setBarcode();
-                    }
-                });
-
-
-                // d
-
-
-                helpDialog.setView(alertItemView);
-                AlertDialog help = helpDialog.create();
-                help.show();
-
-                //intent= new Intent(MainActivity.this,AddItem.class);
-
-
-                break;
-
-            case 1:
-                AlertDialog.Builder altert1 = new AlertDialog.Builder(MainActivity.this);
-                View alertView1 = getLayoutInflater().inflate(R.layout.addpage_cooking, null);
-
-
-                altert1.setView(alertView1);
-                AlertDialog openAlert1 = altert1.create();
-                openAlert1.show();
-
-                break;
-
-            case 2:
-                intent = new Intent(MainActivity.this, AddShop.class);
-                startActivity(intent);
-                break;
-        }
-
-        //startActivity(intent);
-    }
-
     private void setUpPager(ViewPager viewPager) {
         SectionStatePagerAdapter adapter = new SectionStatePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Fragment1(), "1");
@@ -318,9 +272,87 @@ public class MainActivity extends AppCompatActivity {
         openAlert.show();
     }
 
-    static public void setBarcode() {
-        TextView t = alertItemView.findViewById(R.id.textView_barcode);
-        t.setText(ActivityValues.getInstance().getBarcode());
+    private void getCorrectAddPage(int currentPage) {
+        Intent intent = null;
+        switch (currentPage) {
+            case 0:
+                //additem
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
+                alertItemView = getLayoutInflater().inflate(R.layout.alert_additem, null);
 
+                final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
+
+                Button helpNext = alertItemView.findViewById(R.id.button_barCodeScan);
+                helpNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View helpView) {
+                        Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
+                        startActivityForResult(i, 0);
+                        setBarcode();
+                    }
+                });
+
+                Button addItem = alertItemView.findViewById(R.id.button_additem);
+                final EditText itemName = alertItemView.findViewById(R.id.editText_itemName);
+                final EditText itemAmount = alertItemView.findViewById(R.id.editText_itemAmount);
+
+
+                final String name = itemName.getText().toString() + "";
+                addItem.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Constructor
+                        //public Item(String name, String description, LocalDate dateTime, int amount)
+
+                        int amount = Integer.parseInt(itemAmount.getText().toString());
+
+
+                        //check if the requierd fields are filled
+                        if (!(amount == 0)) {
+
+                            Item item = new Item(name, "NA", null, amount);
+
+                            if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
+                                //User scanned a barcode now handle it
+                                String barcode = ActivityValues.getInstance().getBarcode();
+                                appData.addBarcode(new Barcode(barcode, item));
+                            }
+                            appData.addItem(item);
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+
+
+                helpDialog.setView(alertItemView);
+                AlertDialog help = helpDialog.create();
+                help.show();
+
+                //intent= new Intent(MainActivity.this,AddItem.class);
+
+
+                break;
+
+            case 1:
+                AlertDialog.Builder altert1 = new AlertDialog.Builder(MainActivity.this);
+                View alertView1 = getLayoutInflater().inflate(R.layout.addpage_cooking, null);
+
+
+                altert1.setView(alertView1);
+                AlertDialog openAlert1 = altert1.create();
+                openAlert1.show();
+
+                break;
+
+            case 2:
+                intent = new Intent(MainActivity.this, AddShop.class);
+                startActivity(intent);
+                break;
+        }
+
+        //startActivity(intent);
     }
 }

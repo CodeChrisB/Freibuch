@@ -1,11 +1,9 @@
 package com.example.fragment.AppData.MainLists;
 
-import com.example.fragment.AppData.Entities.Item;
-import com.example.fragment.AppData.Logic.SaveArrayAble;
 import com.example.fragment.AppData.Entities.Barcode;
+import com.example.fragment.AppData.Logic.SaveArrayAble;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
@@ -47,6 +45,16 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
     @Override
     public  void removeAll(){
         barcodes = new ArrayList<Barcode>();
+    }
+
+    @Override
+    public ArrayList<Barcode> getObject() {
+        return barcodes;
+    }
+
+    @Override
+    public void setObject(ArrayList<Barcode> objectList) {
+        barcodes = objectList;
     }
 
 
