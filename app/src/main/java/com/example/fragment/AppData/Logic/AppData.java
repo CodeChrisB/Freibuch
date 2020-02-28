@@ -1,7 +1,5 @@
 package com.example.fragment.AppData.Logic;
 
-import android.content.Context;
-
 import com.example.fragment.AppData.Entities.Barcode;
 import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.Recipe;
@@ -11,14 +9,11 @@ import com.example.fragment.AppData.MainLists.Items;
 import com.example.fragment.AppData.MainLists.Recipes;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.example.fragment.UserInterface.MainActivity;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,10 +26,10 @@ public class AppData implements Serializable {
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
     private static AppData instance = null;
-
+    private static Gson gson = new Gson();
+    private InternalStorage internalStorage = new InternalStorage();
 
     private String pathName = "appdata.txt";
-
 
 
     //region static Class
@@ -75,81 +70,12 @@ public class AppData implements Serializable {
 
     //get the saved data from memory
     public AppData loadData() {
-
-        Context c = MainActivity.getInstance().getContext();
-        String filepath = c.getFilesDir().getPath() + "/appdata.txt";
-
-        FileInputStream fileIn = null;
-        try {
-            fileIn = new FileInputStream(filepath);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        ObjectInputStream objectIn = null;
-        try {
-            objectIn = new ObjectInputStream(fileIn);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        AppData appdata = null;
-        try {
-            appdata = (AppData) objectIn.readObject();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("The Object has been read from the file");
-        try {
-            objectIn.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<ShoppingEntry> list = appdata.getShoppingEntries();
-        return appdata;
-
+        return internalStorage.loadData();
     }
 
-
-    public void saveAppData() {
-        //Save all Lists, Settings and Barcodes from Memory
-        AppData saveData = new AppData(barcodes, recipes, items, settings, shoppingEntries);
-
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream("appdata.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        ObjectOutputStream oos = null;
-        try {
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(saveData);
-            oos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        /*Context c = MainActivity.getInstance().getContext();
-        String filePath = c.getFilesDir().getPath().toString() + "/appdata.txt";
-        File file = new File(filePath);
-
-
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))){
-            oos.writeObject(saveData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+    public boolean saveAppData() {
+        return internalStorage.saveData(this);
     }
-
-
-
 
 
     private String AppDataObjectToString(AppData saveData) {
@@ -163,6 +89,7 @@ public class AppData implements Serializable {
         }
         return new String(out.toByteArray());
     }
+
     //Create a new empty AppData Object and save it,
     //to "delete" all memories.
     public void DeleteAppData() {

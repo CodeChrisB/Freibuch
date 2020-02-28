@@ -10,10 +10,8 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.listView);
 
 
         Gson gson = new Gson();
@@ -100,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.
         appData = AppData.getInstance();
         appData.loadData();
         appData.saveAppData();
+
 
 
         //region FragmentChanger
@@ -117,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setVisibility(View.INVISIBLE);
 
         fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, topBarName, this, fab);
+        mRecyclerView = findViewById(R.id.listView);
         //endregion
 
 
@@ -246,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 50000; i++) {
             list.add(new ShoppingEntry("My Note : " + i));
         }
+
         mListView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         ShopListAdapter adapter = new ShopListAdapter(list);
