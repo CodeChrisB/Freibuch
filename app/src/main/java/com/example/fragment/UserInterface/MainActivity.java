@@ -30,7 +30,10 @@ import com.example.fragment.Logic.ScanCodeActivity;
 import com.example.fragment.Logic.SectionStatePagerAdapter;
 import com.example.fragment.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,13 +82,26 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mListView = findViewById(R.id.listView);
 
+        Gson gson = new Gson();
+        // 1. Java object to JSON file
+        try {
+            gson.toJson(appData, new FileWriter("appdata.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 2. Java object to JSON string
+        String jsonInString = gson.toJson(appData);
+
+
+
+
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.
         appData = AppData.getInstance();
         appData.loadData();
+        appData.saveAppData();
 
-
-        ArrayList<ShoppingEntry> list = appData.getShoppingEntries();
 
         //region FragmentChanger
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);

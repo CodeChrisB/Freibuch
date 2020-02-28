@@ -1,5 +1,7 @@
 package com.example.fragment.AppData.Logic;
 
+import android.content.Context;
+
 import com.example.fragment.AppData.Entities.Barcode;
 import com.example.fragment.AppData.Entities.Item;
 import com.example.fragment.AppData.Entities.Recipe;
@@ -13,6 +15,8 @@ import com.example.fragment.UserInterface.MainActivity;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -46,6 +50,12 @@ public class AppData implements Serializable {
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
     public AppData() {
+        File file = new File(MainActivity.getInstance().getContext().getFilesDir(), "appdata.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -66,36 +76,40 @@ public class AppData implements Serializable {
     //get the saved data from memory
     public AppData loadData() {
 
-        File yourFile = new File("appdata.txt");
+        Context c = MainActivity.getInstance().getContext();
+        String filepath = c.getFilesDir().getPath() + "/appdata.txt";
+
+        FileInputStream fileIn = null;
         try {
-            yourFile.createNewFile(); // if file already exists will do nothing
-        } catch (IOException e) {
-        }
-
-        //Load all the AppData object
-        // deserialize the object
-        AppData appData = null;
-        try {
-            FileInputStream fos = MainActivity.getInstance().getContext().openFileInput("appdata.txt");
-            ObjectInputStream ois = new ObjectInputStream(fos);
-            // write object to file
-            appData = (AppData) ois.readObject();
-
-            //region change values on current appdata
-            barcodes.setObject(appData.getBarcodes());
-            recipes.setObject(appData.getRecipes());
-            items.setObject(appData.getItems());
-            shoppingEntries.setObject(appData.getShoppingEntries());
-            //endregion
-
-            System.out.println("Done");
-            // closing resources
-            ois.close();
-            fos.close();
-        } catch (Exception e) {
+            fileIn = new FileInputStream(filepath);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return appData;
+        ObjectInputStream objectIn = null;
+        try {
+            objectIn = new ObjectInputStream(fileIn);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AppData appdata = null;
+        try {
+            appdata = (AppData) objectIn.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("The Object has been read from the file");
+        try {
+            objectIn.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<ShoppingEntry> list = appdata.getShoppingEntries();
+        return appdata;
 
     }
 
@@ -104,6 +118,34 @@ public class AppData implements Serializable {
         //Save all Lists, Settings and Barcodes from Memory
         AppData saveData = new AppData(barcodes, recipes, items, settings, shoppingEntries);
 
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("appdata.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(saveData);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        /*Context c = MainActivity.getInstance().getContext();
+        String filePath = c.getFilesDir().getPath().toString() + "/appdata.txt";
+        File file = new File(filePath);
+
+
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))){
+            oos.writeObject(saveData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
 
