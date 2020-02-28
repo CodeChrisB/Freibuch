@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.AppData.Entities.ShoppingEntry;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
@@ -21,77 +22,39 @@ import java.util.ArrayList;
 
 
 
-public class ShopListAdapter extends ArrayAdapter<ShoppingEntry> {
-
-    private static final String TAG = "ShopListAdapter";
-
-    private Context mContext;
-    private int mResource;
-    private int lastPosition = -1;
-
-    /**
-     * Holds variables in a View
-     */
-    private static class ViewHolder {
-        TextView name;
-        CheckBox checkBox;
-    }
-
-    public ShopListAdapter(Context context, int resource, ArrayList<ShoppingEntry> objects) {
-        super(context, resource, objects);
-        mContext = context;
-        mResource = resource;
-    }
-
-
-    public void add(ShoppingEntry object) {
-
-    }
+public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopListViewHolder> {
+    private ArrayList<ShoppingEntry> shoppingEntries;
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        //get the shop list information
-        String name = getItem(position).getName();
+    public ShopListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopp_item, parent, false);
+        ShopListViewHolder evh = new ShopListViewHolder(v);
+        return evh;
+    }
 
+    public ShopListAdapter(ArrayList<ShoppingEntry> shoppingEntries) {
+        this.shoppingEntries = shoppingEntries;
+    }
 
-        //Create the shopEntry object with the information
-        ShoppingEntry shopEntry = new ShoppingEntry(name);
+    @Override
+    public void onBindViewHolder(@NonNull ShopListViewHolder holder, int position) {
+        ShoppingEntry currentItem = shoppingEntries.get(position);
+        holder.mText.setText(currentItem.getName());
+    }
 
-        //create the view result for showing the animation
-        final View result;
+    @Override
+    public int getItemCount() {
+        return shoppingEntries.size();
+    }
 
-        //ViewHolder object
-        ViewHolder holder;
+    public static class ShopListViewHolder extends RecyclerView.ViewHolder{
+        public TextView mText;
 
-
-        if(convertView == null){
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(mResource, parent, false);
-            holder= new ViewHolder();
-            holder.name = (TextView) convertView.findViewById(R.id.textView_feedbackName);
-            holder.checkBox = convertView.findViewById(R.id.checkBox_shopEntry);
-
-            result = convertView;
-
-            convertView.setTag(holder);
+        public ShopListViewHolder(View itemView) {
+            super(itemView);
+            mText = itemView.findViewById(R.id.textView_ItemName);
         }
-        else{
-            holder = (ViewHolder) convertView.getTag();
-            result = convertView;
-        }
-
-
-
-
-        Animation animation = AnimationUtils.loadAnimation(mContext,
-                (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-        result.startAnimation(animation);
-        lastPosition = position;
-
-        holder.name.setText(shopEntry.getName());
-
-        return convertView;
     }
 }
 

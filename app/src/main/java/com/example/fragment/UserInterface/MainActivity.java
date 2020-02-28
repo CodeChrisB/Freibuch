@@ -14,8 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fragment.AppData.Entities.Barcode;
@@ -47,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
     private ViewPager mViewPager;
     private FragmentChanger fragmentChanger;
-    private ListView mListView;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
     private AppData appData;
 
 
@@ -80,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        mListView = findViewById(R.id.listView);
+        mRecyclerView = findViewById(R.id.recyclerView);
+
 
         Gson gson = new Gson();
         // 1. Java object to JSON file
@@ -221,48 +226,54 @@ public class MainActivity extends AppCompatActivity {
 
         switch (currentFragmentNumber) {
             case 0:
-                setUpItemListView(mListView);
+                setUpItemListView(mRecyclerView);
                 break;
 
             case 1:
-                setUpCookingListView(mListView);
+                setUpCookingListView(mRecyclerView);
                 break;
 
             case 2:
-                setUpShopListView(mListView);
+                setUpShopListView(mRecyclerView);
                 break;
         }
     }
 
-    private void setUpShopListView(ListView mListView) {
+    private void setUpShopListView(RecyclerView mListView) {
         ArrayList<ShoppingEntry> list = new ArrayList<>();
 
         //just for filling the list for now
         for (int i = 0; i < 50000; i++) {
             list.add(new ShoppingEntry("My Note : " + i));
         }
-
-
-        ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
     }
 
-    private void setUpCookingListView(ListView mListView) {
+    private void setUpCookingListView(RecyclerView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
 
         ArrayList<ShoppingEntry> list = new ArrayList<>();
 
-        ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
     }
 
-    private void setUpItemListView(ListView mListView) {
+    private void setUpItemListView(RecyclerView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
 
         ArrayList<ShoppingEntry> list = new ArrayList<>();
 
-
-        ShopListAdapter adapter = new ShopListAdapter(this, R.layout.listview_shopping, list);
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
     }
 
