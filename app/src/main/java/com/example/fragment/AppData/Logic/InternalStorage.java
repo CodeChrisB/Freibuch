@@ -29,7 +29,7 @@ public class InternalStorage {
     }
 
     public String loadData(String key) {
-        return sharedPreferences.getString(key, "defValue");
+        return sharedPreferences.getString(key, "");
     }
 
 

@@ -6,10 +6,17 @@
     <integer name="ShoppingCode">2</integer>
     <integer name="BarcodeCode">3</integer>
     <integer name="SettingsCode">4</integer>
-    <integer name="listShoppingCode">5</integer>
     <!-->SaveCodes<!-->
     <integer name="barCodeResult">91</integer>
     <integer name="barCodeRequestCode">1000</integer>
 
+
+    <integer-array name="listCodes">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
 
 </resources>

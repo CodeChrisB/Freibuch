@@ -45,5 +45,13 @@
         <item>Mit freundlichen grüßen Kuehli, dein bester Assistent! </item>
     </string-array>
 
+    <string-array name="saveListNames" tools:ignore="ExtraTranslation">
+        <item>item</item>
+        <item>cooking</item>
+        <item>shopping</item>
+        <item>barcode</item>
+        <item>setting</item>
+    </string-array>
+
 
 </resources>

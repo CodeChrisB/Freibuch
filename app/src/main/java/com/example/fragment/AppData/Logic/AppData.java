@@ -10,9 +10,6 @@ import com.example.fragment.AppData.MainLists.Recipes;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
 import com.google.gson.Gson;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -50,10 +47,8 @@ public class AppData implements Serializable {
         shoppingEntries = new ShoppingEntries();
     }
 
-
     private void Init() {
     }
-
 
     //private Constructor for the save mechanism
     private AppData(Barcodes barcodes, Recipes recipes, Items items, Settings settings, ShoppingEntries shoppingEntries) {
@@ -64,43 +59,83 @@ public class AppData implements Serializable {
         AppData.shoppingEntries = shoppingEntries;
     }
 
+    //region Presistence (Save/Load/Delete)
 
-    //get the saved data from memory
     public void loadData() {
 
-        recipes = gson.fromJson(internalStorage.loadData("recipes"), Recipes.class);
-        items = gson.fromJson(internalStorage.loadData("items"), Items.class);
-        barcodes = gson.fromJson(internalStorage.loadData("barcode"), Barcodes.class);
-        shoppingEntries = gson.fromJson(internalStorage.loadData("shopping"), ShoppingEntries.class);
+        String recipe = internalStorage.loadData("recipes");
+        String item = internalStorage.loadData("items");
+        String barcode = internalStorage.loadData("barcode");
+        String shopping = internalStorage.loadData("shopping");
+
+        if (!recipe.equals("")) {
+            recipes = gson.fromJson(recipe, Recipes.class);
+        }
+
+        if (!item.equals("")) {
+            items = gson.fromJson(recipe, Items.class);
+        }
+
+        if (!barcode.equals("")) {
+            barcodes = gson.fromJson(barcode, Barcodes.class);
+        }
+
+        if (!shopping.equals("")) {
+            shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
+        }
     }
+
 
     public boolean saveAppData() {
 
         // TODO: 01/03/2020 add settings
-
-        internalStorage.saveData("recipes", gson.toJson(recipes));
-        internalStorage.saveData("items", gson.toJson(items));
-        internalStorage.saveData("barcode", gson.toJson(barcodes));
-        internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
-
-        return false;
-    }
-
-
-    private String AppDataObjectToString(AppData saveData) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os = null;
         try {
-            os = new ObjectOutputStream(out);
-            os.writeObject(saveData);
-        } catch (IOException e) {
-            e.printStackTrace();
+            internalStorage.saveData("recipes", gson.toJson(recipes));
+            internalStorage.saveData("items", gson.toJson(items));
+            internalStorage.saveData("barcode", gson.toJson(barcodes));
+            internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
+        } catch (Exception ex) {
+            return false;
         }
-        return new String(out.toByteArray());
+        return true;
     }
 
-    //Create a new empty AppData Object and save it,
-    //to "delete" all memories.
+    public boolean saveRecipe() {
+        try {
+            internalStorage.saveData("recipes", gson.toJson(recipes));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveItems() {
+        try {
+            internalStorage.saveData("items", gson.toJson(items));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveBarcode() {
+        try {
+            internalStorage.saveData("barcode", gson.toJson(barcodes));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveShopEntries() {
+        try {
+            internalStorage.saveData("recipes", gson.toJson(shoppingEntries));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
     public void DeleteAppData() {
         barcodes = new Barcodes();
         recipes = new Recipes();
@@ -111,6 +146,7 @@ public class AppData implements Serializable {
         saveAppData();
     }
 
+    //endregion
 
     //region get Object
     public ArrayList<Barcode> getBarcodes() {
