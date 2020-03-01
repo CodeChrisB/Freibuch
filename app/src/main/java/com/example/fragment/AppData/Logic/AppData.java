@@ -8,11 +8,9 @@ import com.example.fragment.AppData.MainLists.Barcodes;
 import com.example.fragment.AppData.MainLists.Items;
 import com.example.fragment.AppData.MainLists.Recipes;
 import com.example.fragment.AppData.MainLists.ShoppingEntries;
-import com.example.fragment.UserInterface.MainActivity;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -45,12 +43,11 @@ public class AppData implements Serializable {
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
     public AppData() {
-        File file = new File(MainActivity.getInstance().getContext().getFilesDir(), "appdata.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        barcodes = new Barcodes();
+        recipes = new Recipes();
+        items = new Items();
+        settings = new Settings();
+        shoppingEntries = new ShoppingEntries();
     }
 
 
@@ -69,12 +66,24 @@ public class AppData implements Serializable {
 
 
     //get the saved data from memory
-    public AppData loadData() {
-        return internalStorage.loadData();
+    public void loadData() {
+
+        recipes = gson.fromJson(internalStorage.loadData("recipes"), Recipes.class);
+        items = gson.fromJson(internalStorage.loadData("items"), Items.class);
+        barcodes = gson.fromJson(internalStorage.loadData("barcode"), Barcodes.class);
+        shoppingEntries = gson.fromJson(internalStorage.loadData("shopping"), ShoppingEntries.class);
     }
 
     public boolean saveAppData() {
-        return internalStorage.saveData(this);
+
+        // TODO: 01/03/2020 add settings
+
+        internalStorage.saveData("recipes", gson.toJson(recipes));
+        internalStorage.saveData("items", gson.toJson(items));
+        internalStorage.saveData("barcode", gson.toJson(barcodes));
+        internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
+
+        return false;
     }
 
 

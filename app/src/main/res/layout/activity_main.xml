@@ -7,11 +7,6 @@
     tools:context=".UserInterface.MainActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_shopingEntryAdd"
         android:layout_width="0dp"
@@ -27,18 +22,16 @@
         app:layout_constraintTop_toTopOf="@+id/guideline56"
         tools:visibility="visible" />
 
-    <ListView
-        android:id="@+id/listView1"
+    <view
+        android:id="@+id/listView"
+        class="androidx.appcompat.app.AlertController$RecycleListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_Topbar">
-
-    </ListView>
-
+        app:layout_constraintTop_toBottomOf="@+id/view_Topbar" />
 
     <View
         android:id="@+id/view_Topbar"
