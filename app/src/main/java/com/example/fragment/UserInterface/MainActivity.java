@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
         AppData.getInstance().addShoppingEntry(new ShoppingEntry("hallo"));
         AppData.getInstance().saveAppData();
 
-        AppData.getInstance().saveSpecific(2);
-
 
         //region FragmentChanger
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setVisibility(View.INVISIBLE);
 
         fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, topBarName, this, fab);
-        mRecyclerView = findViewById(R.id.listView);
+        //mRecyclerView = findViewById(R.id.listView);
         //endregion
 
 

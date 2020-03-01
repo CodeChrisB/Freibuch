@@ -36,6 +36,7 @@ public class AppData implements Serializable {
 
     //endregion
 
+    //region Constructors
 
     //the public Constructor is empty all data
     // will be loaded after creation of the object.
@@ -47,9 +48,6 @@ public class AppData implements Serializable {
         shoppingEntries = new ShoppingEntries();
     }
 
-    private void Init() {
-    }
-
     //private Constructor for the save mechanism
     private AppData(Barcodes barcodes, Recipes recipes, Items items, Settings settings, ShoppingEntries shoppingEntries) {
         AppData.barcodes = barcodes;
@@ -57,6 +55,11 @@ public class AppData implements Serializable {
         AppData.items = items;
         AppData.settings = settings;
         AppData.shoppingEntries = shoppingEntries;
+    }
+
+    //endregion
+
+    private void Init() {
     }
 
     //region Presistence (Save/Load/Delete)
