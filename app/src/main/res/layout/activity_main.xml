@@ -23,8 +23,8 @@
         tools:visibility="visible" />
 
     <view
-        android:id="@+id/listView"
         class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:autoSizeTextType="uniform"

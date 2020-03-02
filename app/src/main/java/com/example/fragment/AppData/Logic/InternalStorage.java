@@ -16,11 +16,9 @@ public class InternalStorage {
 
     public InternalStorage() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.getInstance().getContext());
-
     }
 
     public boolean saveData(String key, String json) {
-
         editor = sharedPreferences.edit();
         editor.putString(key, json);
         editor.commit();
