@@ -73,98 +73,6 @@ public class MainActivity extends AppCompatActivity {
         t.setText(("Barcode " + ActivityValues.getInstance().getBarcode()));
     }
 
-    private void setUpPager(ViewPager viewPager) {
-        SectionStatePagerAdapter adapter = new SectionStatePagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Fragment1(), "1");
-        adapter.addFragment(new Fragment2(), "2");
-        adapter.addFragment(new Fragment3(), "3");
-        viewPager.setAdapter(adapter);
-    }
-
-    public void setViewPager(int fragmentNumber) {
-        fragmentChanger.change(fragmentNumber, mViewPager);
-        getCorrectListView(fragmentNumber);
-    }
-
-    private void getCorrectListView(int currentFragmentNumber) {
-
-
-        switch (currentFragmentNumber) {
-            case 0:
-                setUpItemListView(mRecyclerView);
-                break;
-
-            case 1:
-                setUpCookingListView(mRecyclerView);
-                break;
-
-            case 2:
-                setUpShopListView(mRecyclerView);
-                break;
-        }
-    }
-
-    private void setUpShopListView(RecyclerView mListView) {
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
-
-        //just for filling the list for now
-        for (int i = 0; i < 50000; i++) {
-            list.add(new ShoppingEntry("My Note : " + i));
-        }
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        ShopListAdapter adapter = new ShopListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
-
-    private void setUpCookingListView(RecyclerView mListView) {
-        // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
-
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        ShopListAdapter adapter = new ShopListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
-
-    private void setUpItemListView(RecyclerView mListView) {
-        // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
-
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        ShopListAdapter adapter = new ShopListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
-
-    private void addToShopingList() {
-        AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
-        View alertView = getLayoutInflater().inflate(R.layout.alert_addishopingentry, null);
-
-        Button button = alertView.findViewById(R.id.button_addShopEntry);
-        final EditText editText = alertView.findViewById(R.id.editText_shopEntry);
-
-        button.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!editText.getText().equals("")) {
-
-                }
-            }
-        });
-
-
-        altert.setView(alertView);
-        AlertDialog openAlert = altert.create();
-        openAlert.show();
-    }
-
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        mRecyclerView = findViewById(R.id.listView);
+        //mRecyclerView = findViewById(R.id.listView);
 
 
         //with AppData.getInstance now every class in this whole
@@ -279,6 +187,97 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
 
+    }
+
+    private void setUpPager(ViewPager viewPager) {
+        SectionStatePagerAdapter adapter = new SectionStatePagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new Fragment1(), "1");
+        adapter.addFragment(new Fragment2(), "2");
+        adapter.addFragment(new Fragment3(), "3");
+        viewPager.setAdapter(adapter);
+    }
+
+    public void setViewPager(int fragmentNumber) {
+        fragmentChanger.change(fragmentNumber, mViewPager);
+        getCorrectListView(fragmentNumber);
+    }
+
+    private void getCorrectListView(int currentFragmentNumber) {
+
+
+        switch (currentFragmentNumber) {
+            case 0:
+                setUpItemListView(mRecyclerView);
+                break;
+
+            case 1:
+                setUpCookingListView(mRecyclerView);
+                break;
+
+            case 2:
+                setUpShopListView(mRecyclerView);
+                break;
+        }
+    }
+
+    private void setUpShopListView(RecyclerView mListView) {
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
+
+        //just for filling the list for now
+        for (int i = 0; i < 50000; i++) {
+            list.add(new ShoppingEntry("My Note : " + i));
+        }
+
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
+        mListView.setAdapter(adapter);
+    }
+
+    private void setUpCookingListView(RecyclerView mListView) {
+        // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
+
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
+
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
+        mListView.setAdapter(adapter);
+    }
+
+    private void setUpItemListView(RecyclerView mListView) {
+        // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
+
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
+
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        ShopListAdapter adapter = new ShopListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
+        mListView.setAdapter(adapter);
+    }
+
+    private void addToShopingList() {
+        AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
+        View alertView = getLayoutInflater().inflate(R.layout.alert_addishopingentry, null);
+
+        Button button = alertView.findViewById(R.id.button_addShopEntry);
+        final EditText editText = alertView.findViewById(R.id.editText_shopEntry);
+
+        button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editText.getText().equals("")) {
+
+                }
+            }
+        });
+
+        altert.setView(alertView);
+        AlertDialog openAlert = altert.create();
+        openAlert.show();
     }
 
     private void getCorrectAddPage(int currentPage) {

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.R;
 import com.firebase.client.Firebase;
 
@@ -157,6 +158,21 @@ public class SecondActivity extends AppCompatActivity {
 
         //if one field does not get a value use the standard value 0
         activateSettings();
+        //endregion
+
+
+        //region Delete All Data
+
+        Button deleteButton = findViewById(R.id.button_deleteAll);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppData.getInstance().DeleteAppData();
+                AppData.getInstance().saveAppData();
+                Toast.makeText(MainActivity.getInstance().getContext(), "Die gesammten Daten wurden gelöscht!", Toast.LENGTH_LONG).show();
+            }
+        });
+
         //endregion
 
 
