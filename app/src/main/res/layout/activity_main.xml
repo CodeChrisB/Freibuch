@@ -22,8 +22,8 @@
         app:layout_constraintTop_toTopOf="@+id/guideline56"
         tools:visibility="visible" />
 
-    <view
-        class="androidx.appcompat.app.AlertController$RecycleListView"
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
