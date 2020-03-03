@@ -3,6 +3,7 @@ package com.example.foodgent.AppData.Logic;
 import com.example.foodgent.AppData.Entities.Barcode;
 import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.Recipe;
+import com.example.foodgent.AppData.Entities.Settings;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.MainLists.Barcodes;
 import com.example.foodgent.AppData.MainLists.Items;
@@ -15,25 +16,26 @@ import java.util.ArrayList;
 
 public class AppData implements Serializable {
 
+    //region Saved Values
     protected static Barcodes barcodes = new Barcodes();
     protected static Recipes recipes = new Recipes();
     protected static Items items = new Items();
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
-    private static AppData instance = null;
+    //endregion
+
+    //region Gson & InternalStorage Init
     private static Gson gson = new Gson();
     private InternalStorage internalStorage = new InternalStorage();
-
-    private String pathName = "appdata.txt";
-
+    //endregion
 
     //region static Class
+    private static AppData instance = null;
     public static AppData getInstance() {
         if (instance == null)
             instance = new AppData();
         return instance;
     }
-
     //endregion
 
     //region Constructors
@@ -59,18 +61,18 @@ public class AppData implements Serializable {
 
     //endregion
 
-    private void Init() {
-    }
-
     //region Presistence (Save/Load/Delete)
 
     public void loadData() {
 
+        //region Load all JSON Strings from SharedStorage
         String recipe = internalStorage.loadData("recipes");
         String item = internalStorage.loadData("items");
         String barcode = internalStorage.loadData("barcode");
         String shopping = internalStorage.loadData("shopping");
+        //endregion
 
+        //region check if the JSON Strings are not empty and fill Values
         if (!recipe.equals("")) {
             recipes = gson.fromJson(recipe, Recipes.class);
         }
@@ -86,12 +88,13 @@ public class AppData implements Serializable {
         if (!shopping.equals("")) {
             shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
         }
+        //endregion
     }
-
 
     public boolean saveAppData() {
 
         // TODO: 01/03/2020 add settings
+        //region Save all Values
         try {
             internalStorage.saveData("recipes", gson.toJson(recipes));
             internalStorage.saveData("items", gson.toJson(items));
@@ -101,6 +104,7 @@ public class AppData implements Serializable {
             return false;
         }
         return true;
+        //endregion
     }
 
     public boolean saveRecipe() {
@@ -237,6 +241,5 @@ public class AppData implements Serializable {
     }
 
     ///endregion
-
 
 }

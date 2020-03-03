@@ -1,4 +1,4 @@
-package com.example.foodgent.AppData.Logic;
+package com.example.foodgent.AppData.Entities;
 
 import java.io.Serializable;
 
