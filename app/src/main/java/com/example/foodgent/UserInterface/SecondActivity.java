@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.R;
 import com.firebase.client.Firebase;
 
@@ -71,7 +70,7 @@ public class SecondActivity extends AppCompatActivity {
                 final TextView helpTextView = helpView.findViewById(R.id.textView_helpText);
                 helpTextView.setText(list.get(0));
 
-                Button helpNext = helpView.findViewById(R.id.button_addShopEntry);
+                Button helpNext = helpView.findViewById(R.id.button_deleteNext);
 
 
                 helpNext.setOnClickListener(new View.OnClickListener() {
@@ -163,15 +162,63 @@ public class SecondActivity extends AppCompatActivity {
 
         //region Delete All Data
 
-        Button deleteButton = findViewById(R.id.button_deleteAll);
+        final Button deleteButton = findViewById(R.id.button_deleteAll);
         deleteButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                AppData.getInstance().DeleteAppData();
-                AppData.getInstance().saveAppData();
-                Toast.makeText(MainActivity.getInstance().getContext(), "Die gesammten Daten wurden gelöscht!", Toast.LENGTH_LONG).show();
+
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
+                final View deleteView = getLayoutInflater().inflate(R.layout.dialog_delete_allll, null);
+
+
+                Resources res = getResources();
+                final String[] helpText = res.getStringArray(R.array.deleteText);
+                final ArrayList<String> list = new ArrayList<>();
+                for (String s : helpText) {
+                    list.add(s);
+                }
+
+                final TextView helpTextView = deleteView.findViewById(R.id.textView_helpText);
+                helpTextView.setText(list.get(0));
+
+                final Button helpNext = deleteView.findViewById(R.id.button_deleteNext);
+
+
+                helpNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (list.size() > 1) {
+                            list.remove(0);
+                            helpTextView.setText(list.get(0));
+
+                            if (list.size() == 1) {
+                                helpNext.setText("Ja");
+                                helpNext.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                            }
+                        } else {
+                            finish();
+                        }
+                    }
+                });
+
+
+                final Button buttonStop = deleteView.findViewById(R.id.button_deleteStop);
+                buttonStop.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+
+                helpDialog.setView(deleteView);
+                AlertDialog help = helpDialog.create();
+                help.show();
+
             }
         });
+
 
         //endregion
 

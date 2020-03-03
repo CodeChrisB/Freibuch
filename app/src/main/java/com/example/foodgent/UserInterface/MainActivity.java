@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
         View alertView = getLayoutInflater().inflate(R.layout.alert_addishopingentry, null);
 
-        Button button = alertView.findViewById(R.id.button_addShopEntry);
+        Button button = alertView.findViewById(R.id.button_deleteNext);
         final EditText editText = alertView.findViewById(R.id.editText_shopEntry);
 
         button.setOnClickListener(new OnClickListener() {

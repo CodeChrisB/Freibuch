@@ -45,6 +45,16 @@
         <item>Mit freundlichen grüßen Kuehli, dein bester Assistent! </item>
     </string-array>
 
+
+    <string-array name="deleteText" tools:ignore="ExtraTranslation">
+        <item>Willst du wirklich all deine Daten Löschen?</item>
+        <item>All deine Lebensmittel gehen verloren!</item>
+        <item>All deine Rezepte werden verschwinden!</item>
+        <item>Deine Einkaufsliste geht verloren! </item>
+        <item>BIST DU DIR SICHER?</item>
+
+    </string-array>
+
     <string-array name="saveListNames" tools:ignore="ExtraTranslation">
         <item>item</item>
         <item>cooking</item>
