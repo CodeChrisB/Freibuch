@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-        //mRecyclerView = findViewById(R.id.listView);
+        mRecyclerView = findViewById(R.id.listView);
 
 
         //with AppData.getInstance now every class in this whole
@@ -221,15 +221,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpShopListView(RecyclerView mListView) {
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
 
-        //just for filling the list for now
-        for (int i = 0; i < 50000; i++) {
-            list.add(new ShoppingEntry("My Note : " + i));
-        }
+        ArrayList<ShoppingEntry> list = AppData.getInstance().getShoppingEntries();
 
-        mListView.setHasFixedSize(true);
+        /*for (int i =0; i <= 500;i++){
+            list.add(new ShoppingEntry(String.format("%d", i)));
+        }*/
+
         mLayoutManager = new LinearLayoutManager(getContext());
+        mListView.setHasFixedSize(true);
         ShopListAdapter adapter = new ShopListAdapter(list);
         mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpCookingListView(RecyclerView mListView) {
         // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
-
         ArrayList<ShoppingEntry> list = new ArrayList<>();
 
         mListView.setHasFixedSize(true);
