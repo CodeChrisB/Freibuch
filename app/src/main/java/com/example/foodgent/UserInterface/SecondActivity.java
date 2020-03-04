@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.R;
 import com.firebase.client.Firebase;
 
@@ -47,6 +49,11 @@ public class SecondActivity extends AppCompatActivity {
 
         final TextView textView = findViewById(R.id.textView_titleSettings);
         textView.bringToFront();
+
+        //region Hide Notificationbar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //endregion
 
         //region Help Button
 
@@ -197,6 +204,8 @@ public class SecondActivity extends AppCompatActivity {
                                 helpNext.setBackgroundColor(getResources().getColor(R.color.colorRed));
                             }
                         } else {
+                            AppData.getInstance().DeleteAppData();
+                            AppData.getInstance().saveAppData();
                             finish();
                         }
                     }

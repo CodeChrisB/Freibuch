@@ -23,4 +23,5 @@ public class ShoppingEntry implements Serializable {
         return "";
     }
 
+
 }

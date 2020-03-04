@@ -371,8 +371,12 @@ public class MainActivity extends AppCompatActivity {
             case 2:
 
                 //no Dialog just show the Add TextView on the down right hand corner
-
-
+                //we are going to have a share button here
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, AppData.getInstance().getFormattedShoppingList());
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
                 break;
         }
 
@@ -383,6 +387,7 @@ public class MainActivity extends AppCompatActivity {
     private void setAddPageDifference(int page) {
         EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
+
         if (page == 2) {
             fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);

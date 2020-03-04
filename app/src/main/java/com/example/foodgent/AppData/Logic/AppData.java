@@ -241,4 +241,8 @@ public class AppData implements Serializable {
     }
 
     ///endregion
+
+    public String getFormattedShoppingList() {
+        return shoppingEntries.toFormatedList();
+    }
 }
