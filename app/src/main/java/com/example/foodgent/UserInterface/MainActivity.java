@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
         ShopListAdapter adapter = new ShopListAdapter(list);
         mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
+
     }
 
     private void setUpCookingListView(RecyclerView mListView) {
@@ -339,14 +340,22 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
+
             case 1:
                 intent = new Intent(this, AddCooking.class);
                 startActivity(intent);
                 break;
 
             case 2:
-                intent = new Intent(MainActivity.this, AddShop.class);
-                startActivity(intent);
+
+                final AlertDialog.Builder shopBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertItemView = getLayoutInflater().inflate(R.layout.alert_addshopping_entry, null);
+
+
+                shopBuilder.setView(alertItemView);
+                AlertDialog shopHelp = shopBuilder.create();
+                shopHelp.show();
+
                 break;
         }
 
