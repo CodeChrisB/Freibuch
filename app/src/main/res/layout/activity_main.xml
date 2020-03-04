@@ -24,7 +24,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_shopingEntryAdd2"
+        android:id="@+id/button_shopingEntryDelete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/actionModeSplitBackground"

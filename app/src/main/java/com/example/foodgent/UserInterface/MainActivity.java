@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -187,7 +188,18 @@ public class MainActivity extends AppCompatActivity {
                 setUpShopListView(mRecyclerView);
                 et.setText("");
 
+                //closes the Keyboard after usage
+                et.onEditorAction(EditorInfo.IME_ACTION_DONE);
+            }
+        });
 
+        FloatingActionButton deleteShopEntries = findViewById(R.id.button_shopingEntryDelete);
+        deleteShopEntries.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppData.getInstance().removeAllShoppingEntries();
+                AppData.getInstance().saveAppData();
+                setUpShopListView(mRecyclerView);
             }
         });
 
@@ -367,12 +379,16 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
+    @SuppressLint("RestrictedApi")
     private void setAddPageDifference(int page) {
         EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
+        FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
         if (page == 2) {
+            fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);
         } else {
             shoppingAdd.setVisibility(View.INVISIBLE);
+            fab.setVisibility(View.INVISIBLE);
         }
     }
 }

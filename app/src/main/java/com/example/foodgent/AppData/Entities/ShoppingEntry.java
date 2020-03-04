@@ -18,8 +18,9 @@ public class ShoppingEntry implements Serializable {
     public String toString() {
         //make the first letter uppcase and the rest lower case
         //example input is : breaD ==> first letter b is going to be B and  reaD will all be lowercase
-        String output = entry.substring(0, 1).toUpperCase() + entry.substring(1);
-        return output;
+        if (entry.length() >= 1)
+            return entry.substring(0, 1).toUpperCase() + entry.substring(1);
+        return "";
     }
 
 }
