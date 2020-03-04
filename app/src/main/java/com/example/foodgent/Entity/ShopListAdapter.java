@@ -33,7 +33,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
     @Override
     public void onBindViewHolder(@NonNull ShopListViewHolder holder, int position) {
         ShoppingEntry currentItem = shoppingEntries.get(position);
-        holder.mText.setText(currentItem.getName());
+        holder.mText.setText(currentItem.toString());
     }
 
     @Override

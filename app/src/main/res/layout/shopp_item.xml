@@ -10,18 +10,27 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp">
 
-        <CheckBox android:gravity="center"
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+        <CheckBox
             android:id="@+id/checkBox_shopEntry"
-            android:layout_weight="90"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="90"
+            android:gravity="center"
+            android:text="" />
 
         <TextView
             android:id="@+id/textView_ItemName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/checkBox_shopEntry"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="left"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/checkBox_shopEntry"
             android:fontFamily="casual"
             android:gravity="center|left"
             android:text="TextView1" />

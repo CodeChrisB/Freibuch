@@ -111,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
         setUpPager(mViewPager);
         //endregion
 
-        //region Set window fullscreen and remove title bar, and force landscape orientation
+        //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //endregion
@@ -179,7 +180,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToShopingList();
+                EditText et = findViewById(R.id.editText_shoppingAdd);
+                ShoppingEntry se = new ShoppingEntry(et.getText().toString());
+                AppData.getInstance().addShoppingEntry(se);
+                AppData.getInstance().saveAppData();
+                setUpShopListView(mRecyclerView);
+                et.setText("");
+
+
             }
         });
 
@@ -200,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
     public void setViewPager(int fragmentNumber) {
         fragmentChanger.change(fragmentNumber, mViewPager);
         getCorrectListView(fragmentNumber);
+        setAddPageDifference(fragmentNumber);
     }
 
     private void getCorrectListView(int currentFragmentNumber) {
@@ -282,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getCorrectAddPage(int currentPage) {
         Intent intent = null;
+
         switch (currentPage) {
             case 0:
                 //additem
@@ -348,17 +358,21 @@ public class MainActivity extends AppCompatActivity {
 
             case 2:
 
-                final AlertDialog.Builder shopBuilder = new AlertDialog.Builder(MainActivity.this);
-                alertItemView = getLayoutInflater().inflate(R.layout.alert_addshopping_entry, null);
+                //no Dialog just show the Add TextView on the down right hand corner
 
-
-                shopBuilder.setView(alertItemView);
-                AlertDialog shopHelp = shopBuilder.create();
-                shopHelp.show();
 
                 break;
         }
 
         //startActivity(intent);
+    }
+
+    private void setAddPageDifference(int page) {
+        EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
+        if (page == 2) {
+            shoppingAdd.setVisibility(View.VISIBLE);
+        } else {
+            shoppingAdd.setVisibility(View.INVISIBLE);
+        }
     }
 }
