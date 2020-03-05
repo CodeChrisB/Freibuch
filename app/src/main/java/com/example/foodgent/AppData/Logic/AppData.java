@@ -22,6 +22,7 @@ public class AppData implements Serializable {
     protected static Items items = new Items();
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
+    private String premium;
     //endregion
 
     //region Gson & InternalStorage Init
@@ -70,6 +71,9 @@ public class AppData implements Serializable {
         String item = internalStorage.loadData("items");
         String barcode = internalStorage.loadData("barcode");
         String shopping = internalStorage.loadData("shopping");
+        premium = internalStorage.loadData("premium");
+
+
         //endregion
 
         //region check if the JSON Strings are not empty and fill Values
@@ -100,6 +104,9 @@ public class AppData implements Serializable {
             internalStorage.saveData("items", gson.toJson(items));
             internalStorage.saveData("barcode", gson.toJson(barcodes));
             internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
+            String isPremiumActive = "no";
+
+            internalStorage.saveData("premium", premium);
         } catch (Exception ex) {
             return false;
         }
@@ -244,5 +251,18 @@ public class AppData implements Serializable {
 
     public String getFormattedShoppingList() {
         return shoppingEntries.toFormatedList();
+    }
+
+    public boolean isPremium() {
+        return !premium.equals("no");
+    }
+
+    public void setPremium(boolean set) {
+        if (set) {
+            premium = "yes";
+        } else {
+            premium = "no";
+        }
+
     }
 }

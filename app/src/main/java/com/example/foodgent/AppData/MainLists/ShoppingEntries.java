@@ -11,6 +11,7 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
 
     ArrayList<ShoppingEntry> shoppingEntries = new ArrayList<>();
 
+
     public ShoppingEntries(){
     }
 
@@ -22,7 +23,8 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     @Override
     public boolean addTo(ShoppingEntry object) {
 
-        if (shoppingEntries.size() <= 10) {
+        //add  if less than 10 items or premium is active
+        if (shoppingEntries.size() <= 10 || AppData.getInstance().isPremium()) {
             shoppingEntries.add(object);
             return true;
         }
@@ -49,6 +51,7 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     public void setObject(ArrayList<ShoppingEntry> objectList) {
         shoppingEntries = objectList;
     }
+
 
     public String toFormatedList() {
         //Create Header

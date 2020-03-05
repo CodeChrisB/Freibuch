@@ -8,8 +8,6 @@ public interface SaveArrayAble<T> {
     boolean addTo(T object);
     void removeObject( T object);
     void removeAll();
-
     ArrayList<T> getObject();
-
     void setObject(ArrayList<T> objectList);
 }

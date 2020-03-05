@@ -45,4 +45,6 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
     public void setObject(ArrayList<Recipe> objectList) {
         recipes = objectList;
     }
+
+
 }

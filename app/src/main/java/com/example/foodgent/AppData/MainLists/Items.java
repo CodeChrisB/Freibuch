@@ -43,4 +43,5 @@ public class Items implements SaveArrayAble<Item>, Serializable {
     public void setObject(ArrayList<Item> objectList) {
         items = objectList;
     }
+
 }

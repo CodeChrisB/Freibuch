@@ -225,12 +225,12 @@
         app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/button_premiumActivator"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/placeholderText"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline23"
+        android:text="Premium"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline57"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -398,6 +398,13 @@
         app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.68" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -460,9 +467,9 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Lösche alle Listen "
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline23"
+        android:text="Premium"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline57"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="@+id/guideline22"

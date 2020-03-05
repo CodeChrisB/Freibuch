@@ -231,6 +231,24 @@ public class SecondActivity extends AppCompatActivity {
 
         //endregion
 
+        //region Premium
+
+        Button premiumActivator = findViewById(R.id.button_premiumActivator);
+        premiumActivator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppData.getInstance().setPremium(!AppData.getInstance().isPremium());
+                AppData.getInstance().saveAppData();
+                if (AppData.getInstance().isPremium()) {
+                    Toast.makeText(MainActivity.getInstance().getContext(), "Premium aktiviert", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.getInstance().getContext(), "Premium deaktiviert", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        //endregion
+
 
         Button navButton = findViewById(R.id.button_navSecond);
         navButton.bringToFront();
