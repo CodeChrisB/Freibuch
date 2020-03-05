@@ -66,9 +66,13 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
                 View helpView = getLayoutInflater().inflate(R.layout.dialog_help, null);
 
+
+                helpDialog.setView(helpView);
+                final AlertDialog help = helpDialog.create();
 
                 Resources res = getResources();
                 final String[] helpText = res.getStringArray(R.array.planets_array);
@@ -90,14 +94,12 @@ public class SecondActivity extends AppCompatActivity {
                             list.remove(0);
                             helpTextView.setText(list.get(0));
                         } else {
-                            finish();
+                            help.cancel();
                         }
                     }
                 });
 
 
-                helpDialog.setView(helpView);
-                AlertDialog help = helpDialog.create();
                 help.show();
 
             }
@@ -117,6 +119,9 @@ public class SecondActivity extends AppCompatActivity {
                 AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
                 final View helpView = getLayoutInflater().inflate(R.layout.dialog_feedback, null);
 
+                helpDialog.setView(helpView);
+                final AlertDialog help = helpDialog.create();
+
 
                 Button sendFeedback = helpView.findViewById(R.id.button_sendFeedback);
 
@@ -135,9 +140,7 @@ public class SecondActivity extends AppCompatActivity {
                          // TODO: 07/02/2020 FIREBASE STUFF
 
 
-
-
-                            finish();
+                         help.cancel();
                      }else{
                          Toast.makeText(context,"Bitte den Feedbackbogen ausfüllen!",Toast.LENGTH_LONG).show();
                      }
@@ -146,8 +149,6 @@ public class SecondActivity extends AppCompatActivity {
                 });
 
 
-                helpDialog.setView(helpView);
-                AlertDialog help = helpDialog.create();
                 help.show();
             }
 
@@ -181,6 +182,9 @@ public class SecondActivity extends AppCompatActivity {
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
                 final View deleteView = getLayoutInflater().inflate(R.layout.dialog_delete_allll, null);
 
+                helpDialog.setView(deleteView);
+                final AlertDialog help = helpDialog.create();
+
 
                 Resources res = getResources();
                 final String[] helpText = res.getStringArray(R.array.deleteText);
@@ -209,7 +213,7 @@ public class SecondActivity extends AppCompatActivity {
                         } else {
                             AppData.getInstance().DeleteAppData();
                             AppData.getInstance().saveAppData();
-                            finish();
+                            help.cancel();
                         }
                     }
                 });
@@ -219,13 +223,10 @@ public class SecondActivity extends AppCompatActivity {
                 buttonStop.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish();
+                        help.cancel();
                     }
                 });
 
-
-                helpDialog.setView(deleteView);
-                AlertDialog help = helpDialog.create();
                 help.show();
 
             }
@@ -258,9 +259,12 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
+
+        //change the look of items that are effected by premium by activity load
         if (AppData.getInstance().isPremium()) {
             premiumActivator.setBackgroundColor(getResources().getColor(R.color.premiumActiveBg));
             premiumActivator.setTypeface(Typeface.DEFAULT_BOLD);
+            premiumInfo.setText(getString(R.string.premium_boughtInfo));
         }
 
 

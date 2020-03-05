@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodgent.AppData.Entities.Barcode;
+import com.example.foodgent.AppData.Entities.BarcodeItem;
 import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.Logic.AppData;
@@ -33,6 +36,7 @@ import com.example.foodgent.Logic.SectionStatePagerAdapter;
 import com.example.foodgent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -71,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
     static public void setBarcode() {
         TextView t = alertItemView.findViewById(R.id.textView_barcode);
         t.setText(("Barcode " + ActivityValues.getInstance().getBarcode()));
+
+        String item = ActivityValues.getInstance().getBarcode();
+        BarcodeItem bi = AppData.getInstance().searchForItem(item);
+
+        if (bi != null) {
+            EditText name = alertItemView.findViewById(R.id.editText_itemName);
+            name.setText(bi.getName());
+            EditText desc = alertItemView.findViewById(R.id.editText_addItemDescription);
+            desc.setText(bi.getDescription());
+        }
     }
 
     @SuppressLint("RestrictedApi")
@@ -309,6 +323,8 @@ public class MainActivity extends AppCompatActivity {
                 //additem
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.this);
                 alertItemView = getLayoutInflater().inflate(R.layout.alert_additem, null);
+                helpDialog.setView(alertItemView);
+                final AlertDialog help = helpDialog.create();
 
                 final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
 
@@ -325,39 +341,58 @@ public class MainActivity extends AppCompatActivity {
                 Button addItem = alertItemView.findViewById(R.id.button_additem);
                 final EditText itemName = alertItemView.findViewById(R.id.editText_itemName);
                 final EditText itemAmount = alertItemView.findViewById(R.id.editText_itemAmount);
-
+                final EditText itemDescription = alertItemView.findViewById(R.id.editText_addItemDescription);
 
                 final String name = itemName.getText().toString() + "";
                 addItem.setOnClickListener(new OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
 
                         //check if the requierd fields are filled
-                        if (!(itemAmount.getText().toString().equals("") && itemName.getText().toString().equals(""))) {
+                        if (!itemName.getText().toString().equals("")) {
 
-
+                            //Barcode
                             if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
-                                //User scanned a barcode now handle it
-                                String barcode = ActivityValues.getInstance().getBarcode();
-                                AppData.getInstance().addBarcode(new Barcode(barcode, new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString()))));
+                                //check if it is a new barcode
+                                BarcodeItem insertItem = AppData.getInstance().searchForItem(ActivityValues.getInstance().getBarcode());
+                                if (insertItem == null) {
+                                    //NEW BARCODE
+                                    String barcode = ActivityValues.getInstance().getBarcode();
+                                    BarcodeItem barcodeItem = new BarcodeItem(itemName.getText().toString(), itemDescription.getText().toString());
+                                    AppData.getInstance().addBarcode(new Barcode(barcode, barcodeItem));
+                                    AppData.getInstance().saveBarcode();
+                                } else {
+                                    //Barcode is already known
+                                    itemName.setText(insertItem.getName());
+                                    itemDescription.setText(insertItem.getDescription());
+                                }
                             }
-                            AppData.getInstance().addItem(new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString())));
-                            finish();
+
+                            String temp = itemAmount.getText().toString();
+                            if (temp.equals(""))
+                                temp = "1";
+
+                            int amount = Integer.parseInt(temp);
+                            String name = itemName.getText().toString();
+                            String desc = itemDescription.getText().toString();
+                            AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount));
+                            AppData.getInstance().saveItems();
+
+                            //delete ActivtyValues when closing the Dialog
+                            ActivityValues.getInstance().setBarcode("");
+                            help.cancel();
+
                         } else {
                             Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
                         }
 
+                        //endregion
                     }
                 });
 
-
-                helpDialog.setView(alertItemView);
-                AlertDialog help = helpDialog.create();
                 help.show();
-
                 //intent= new Intent(MainActivity.this,AddItem.class);
-
-
                 break;
 
 
@@ -367,7 +402,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-
                 //no Dialog just show the Add TextView on the down right hand corner
                 //we are going to have a share button here
                 Intent shareIntent = new Intent();

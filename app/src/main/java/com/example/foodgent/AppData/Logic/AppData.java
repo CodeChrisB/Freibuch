@@ -1,6 +1,7 @@
 package com.example.foodgent.AppData.Logic;
 
 import com.example.foodgent.AppData.Entities.Barcode;
+import com.example.foodgent.AppData.Entities.BarcodeItem;
 import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.Recipe;
 import com.example.foodgent.AppData.Entities.Settings;
@@ -236,7 +237,7 @@ public class AppData implements Serializable {
     //endregion
 
     //region Barcode Functions
-    public Item searchForItem(String barcode) {
+    public BarcodeItem searchForItem(String barcode) {
         ArrayList<Barcode> list = barcodes.getArray();
 
         for (Barcode code : list) {

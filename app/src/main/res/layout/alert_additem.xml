@@ -57,7 +57,7 @@
         android:layout_height="0dp"
         android:ems="10"
         android:hint="Haltbar bis"
-        android:inputType="date"
+        android:inputType="datetime"
         app:layout_constraintBottom_toTopOf="@+id/guideline36"
         app:layout_constraintEnd_toStartOf="@+id/guideline42"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,22 +69,28 @@
         android:id="@+id/editText_itemName"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoText="true"
         android:ems="10"
+        android:fitsSystemWindows="false"
         android:inputType="textPersonName"
-        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textIsSelectable="false"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintEnd_toStartOf="@+id/guideline42"
         app:layout_constraintStart_toStartOf="@+id/guideline46"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintTop_toTopOf="@+id/guideline34" />
 
     <EditText
         android:id="@+id/editText_itemAmount"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoText="false"
+        android:elegantTextHeight="false"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
+        android:focusableInTouchMode="true"
+        android:inputType="number"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toStartOf="@+id/guideline42"
         app:layout_constraintHorizontal_bias="1.0"
@@ -93,7 +99,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editText_addItemDescription"
         android:layout_width="262dp"
         android:layout_height="45dp"
         android:ems="10"
@@ -102,59 +108,10 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <TextView
-        android:id="@+id/textView_needed1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#00E20B0B"
-        android:backgroundTint="#00D31C1C"
-        android:text="*"
-        android:textColor="@color/colorRed"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView_needed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#00E20B0B"
-        android:backgroundTint="#00D31C1C"
-        android:text="*"
-        android:textColor="@color/colorRed"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintStart_toEndOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/textView_needed2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#00E20B0B"
-        android:backgroundTint="#00D31C1C"
-        android:text="*"
-        android:textColor="@color/colorRed"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Felder mit diesem Zeichen müssen ausgefüllt sein!"
-        app:layout_constraintBottom_toTopOf="@+id/guideline50"
-        app:layout_constraintEnd_toStartOf="@+id/guideline42"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline49" />
-
     <Button
         android:id="@+id/button_barCodeScan"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="38dp"
+        android:layout_height="34dp"
         android:height="50dp"
         android:background="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
@@ -229,21 +186,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.27" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline54"
@@ -257,56 +214,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.54" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47" />
+        app:layout_constraintGuide_percent="0.54" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.34" />
+        app:layout_constraintGuide_percent="0.38" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.54" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline44"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.66" />
+        app:layout_constraintGuide_percent="0.81" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.71" />
+        app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.86" />
+        app:layout_constraintGuide_percent="0.94" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline50"

@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Barcode implements Serializable {
 
     String barcode;
-    Item item;
+    BarcodeItem item;
 
-    public Barcode(String barcode, Item item) {
+    public Barcode(String barcode, BarcodeItem item) {
         this.barcode = barcode;
         this.item = item;
     }
@@ -20,11 +20,11 @@ public class Barcode implements Serializable {
         this.barcode = barcode;
     }
 
-    public Item getItem() {
+    public BarcodeItem getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(BarcodeItem item) {
         this.item = item;
     }
 }

@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Anmerkung"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/editText_addItemDescription"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.54" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editText_addItemDescription"
         android:layout_width="262dp"
         android:layout_height="45dp"
         android:layout_marginBottom="72dp"
@@ -188,8 +188,8 @@
         android:text="Hinzufügen"
         android:textSize="20sp"
         android:textStyle="normal|bold"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toStartOf="@+id/editText_addItemDescription"
+        app:layout_constraintTop_toBottomOf="@+id/editText_addItemDescription" />
 
     <Button
         android:id="@+id/button6"
