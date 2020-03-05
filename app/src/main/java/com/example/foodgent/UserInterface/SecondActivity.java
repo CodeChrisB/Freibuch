@@ -245,12 +245,12 @@ public class SecondActivity extends AppCompatActivity {
                 AppData.getInstance().setPremium(!AppData.getInstance().isPremium());
                 AppData.getInstance().saveAppData();
                 if (AppData.getInstance().isPremium()) {
-                    Toast.makeText(MainActivity.getInstance().getContext(), "Premium aktiviert", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(MainActivity.getInstance().getContext(), "Premium aktiviert", Toast.LENGTH_LONG).show();
                     premiumActivator.setBackgroundColor(getResources().getColor(R.color.premiumActiveBg));
                     premiumActivator.setTypeface(Typeface.DEFAULT_BOLD);
                     premiumInfo.setText(getString(R.string.premium_boughtInfo));
                 } else {
-                    Toast.makeText(MainActivity.getInstance().getContext(), "Premium deaktiviert", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.getInstance().getContext(), "Premium deaktiviert", Toast.LENGTH_LONG).show();
                     premiumActivator.setBackgroundColor(getResources().getColor(R.color.lightGrey));
                     premiumActivator.setTypeface(Typeface.DEFAULT);
                     premiumInfo.setText(getString(R.string.premium_info));
@@ -355,8 +355,9 @@ public class SecondActivity extends AppCompatActivity {
         int count = 0;
         for (String s : helpText) {
             sb.append(s);
-            if (count == 0 && AppData.getInstance().isPremium())
-                sb.append(" (Premium Version)");
+            if (count == 0 && AppData.getInstance().isPremium()) {
+                sb.append("(Premium Version)");
+            }
             sb.append(System.getProperty("line.separator"));
             count++;
         }

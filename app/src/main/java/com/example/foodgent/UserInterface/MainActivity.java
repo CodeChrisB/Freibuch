@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private int LAUNCH_SECOND_ACTIVITY = 1;
     private String barcodeData;
     private static final String TAG = "MainActivity";
-    private static View alertItemView;
-    private static MainActivity instance;
+    private View alertItemView;
+    private MainActivity instance;
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
     private ViewPager mViewPager;
     private FragmentChanger fragmentChanger;
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editText.getText().equals("")) {
+                if (!editText.getText().toString().equals("")) {
 
                 }
             }
@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getCorrectAddPage(int currentPage) {
-        Intent intent = null;
+        Intent intent;
 
         switch (currentPage) {
             case 0:
@@ -336,7 +336,6 @@ public class MainActivity extends AppCompatActivity {
                         //Paywall Barcodescanner is only for paid Useres
                         if (!AppData.getInstance().isPremium()) {
                             Toast.makeText(getContext(), "Du hast gerade ein Premium feature gefunden,gehe in die Einstellungen um Foodgent Premium zu kaufen", Toast.LENGTH_LONG).show();
-                            return;
                         } else {
                             Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
                             startActivityForResult(i, 0);
@@ -374,29 +373,32 @@ public class MainActivity extends AppCompatActivity {
                                     itemName.setText(insertItem.getName());
                                     itemDescription.setText(insertItem.getDescription());
                                 }
+
+
+                                String temp = itemAmount.getText().toString();
+                                if (temp.equals(""))
+                                    temp = "1";
+
+                                int amount = Integer.parseInt(temp);
+                                String name = itemName.getText().toString();
+                                String desc = itemDescription.getText().toString();
+                                AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount));
+                                AppData.getInstance().saveItems();
+
+                                //delete ActivtyValues when closing the Dialog
+                                ActivityValues.getInstance().setBarcode("");
+                                help.cancel();
+
+                            } else {
+                                Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
                             }
 
-                            String temp = itemAmount.getText().toString();
-                            if (temp.equals(""))
-                                temp = "1";
-
-                            int amount = Integer.parseInt(temp);
-                            String name = itemName.getText().toString();
-                            String desc = itemDescription.getText().toString();
-                            AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount));
-                            AppData.getInstance().saveItems();
-
-                            //delete ActivtyValues when closing the Dialog
-                            ActivityValues.getInstance().setBarcode("");
-                            help.cancel();
-
-                        } else {
-                            Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
+                            //endregion
                         }
-
-                        //endregion
                     }
+                    /**/
                 });
+
 
                 help.show();
                 //intent= new Intent(MainActivity.this,AddItem.class);
@@ -411,11 +413,13 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 //no Dialog just show the Add TextView on the down right hand corner
                 //we are going to have a share button here
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, AppData.getInstance().getFormattedShoppingList());
-                shareIntent.setType("text/plain");
-                startActivity(shareIntent);
+                if (AppData.getInstance().getShoppingEntries().size() > 0) {
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, AppData.getInstance().getFormattedShoppingList());
+                    shareIntent.setType("text/plain");
+                    startActivity(shareIntent);
+                }
                 break;
         }
 
@@ -426,13 +430,20 @@ public class MainActivity extends AppCompatActivity {
     private void setAddPageDifference(int page) {
         EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
+        Button addButton = findViewById(R.id.button_add);
         if (page == 2) {
             fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);
 
+            addButton.setBackgroundResource(R.drawable.share_icon);
+            addButton.setHeight((addButton.getHeight()) / 2);
+            addButton.setWidth(addButton.getHeight());
+
         } else {
+            addButton.setBackgroundResource(android.R.drawable.ic_input_add);
             shoppingAdd.setVisibility(View.INVISIBLE);
             fab.setVisibility(View.INVISIBLE);
+
         }
     }
 }
