@@ -16,7 +16,6 @@
         android:src="@drawable/mr_media_play_light"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline57"
         app:layout_constraintEnd_toStartOf="@+id/guideline51"
         app:layout_constraintStart_toStartOf="@+id/guideline55"
         app:layout_constraintTop_toTopOf="@+id/guideline56"
@@ -296,13 +295,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.82" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline57"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9822161" />
 
     <EditText
         android:id="@+id/editText_shoppingAdd"

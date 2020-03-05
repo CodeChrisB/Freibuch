@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +38,7 @@ public class Fragment3 extends Fragment {
         btnNavSecondActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Going 2nd Activity", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"Going 2nd Activity", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), SecondActivity.class);
                 startActivity(intent);
             }

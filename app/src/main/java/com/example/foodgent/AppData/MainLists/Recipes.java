@@ -19,8 +19,9 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
     }
 
     @Override
-    public void addTo(Recipe object) {
+    public boolean addTo(Recipe object) {
         recipes.add(object);
+        return true;
     }
 
 

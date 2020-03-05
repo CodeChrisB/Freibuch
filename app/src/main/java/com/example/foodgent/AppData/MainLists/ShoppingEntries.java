@@ -20,8 +20,14 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     }
 
     @Override
-    public void addTo(ShoppingEntry object) {
-        shoppingEntries.add(object);
+    public boolean addTo(ShoppingEntry object) {
+
+        if (shoppingEntries.size() <= 10) {
+            shoppingEntries.add(object);
+            return true;
+        }
+        return false;
+
     }
 
     @Override

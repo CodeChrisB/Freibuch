@@ -19,8 +19,9 @@ public class Items implements SaveArrayAble<Item>, Serializable {
     }
 
     @Override
-    public void addTo(Item object) {
+    public boolean addTo(Item object) {
         items.add(object);
+        return true;
     }
 
     @Override

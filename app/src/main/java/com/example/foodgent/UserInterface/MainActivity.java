@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private AppData appData;
 
 
     private static ActivityValues values;
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         AppData.getInstance().saveAppData();
 
 
-        //region FragmentChanger
+        //region FragmentChange
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);
         Button btnNavFrag2 = findViewById(R.id.btnNavFrag2);
         Button btnNavFrag3 = findViewById(R.id.btnNavFrag3);
@@ -150,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
         btnNavFrag1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Going to Fragment 1", Toast.LENGTH_LONG).show();
                 //navigate to method called
                 ((MainActivity.this)).setViewPager(0);
             }
@@ -159,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         btnNavFrag2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Going to Fragment 2", Toast.LENGTH_LONG).show();
                 //navigate to method called
                 ((MainActivity.this)).setViewPager(1);
             }
@@ -168,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         btnNavFrag3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Going to Fragment 3", Toast.LENGTH_LONG).show();
                 //navigate to method called
                 ((MainActivity.this)).setViewPager(2);
             }
@@ -182,11 +178,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText et = findViewById(R.id.editText_shoppingAdd);
-                ShoppingEntry se = new ShoppingEntry(et.getText().toString());
-                AppData.getInstance().addShoppingEntry(se);
-                AppData.getInstance().saveAppData();
-                setUpShopListView(mRecyclerView);
-                et.setText("");
+                if (et.getText().length() > 0) {
+                    ShoppingEntry se = new ShoppingEntry(et.getText().toString());
+
+                    if (AppData.getInstance().addShoppingEntry(se)) {
+                        //can the item be added? or are there to many items?
+                        AppData.getInstance().saveAppData();
+                        setUpShopListView(mRecyclerView);
+
+                    } else {
+                        //not enough space
+                        Toast.makeText(getContext(), "Ohh nein die Liste ist voll, hole dir FoodGent Premium um unbegrenzt Einträge zu machen", Toast.LENGTH_LONG).show();
+                    }
+                    et.setText("");
+                }
 
                 //closes the Keyboard after usage
                 et.onEditorAction(EditorInfo.IME_ACTION_DONE);
@@ -205,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //endregion
-
 
     }
 
@@ -244,10 +248,6 @@ public class MainActivity extends AppCompatActivity {
     private void setUpShopListView(RecyclerView mListView) {
 
         ArrayList<ShoppingEntry> list = AppData.getInstance().getShoppingEntries();
-
-        /*for (int i =0; i <= 500;i++){
-            list.add(new ShoppingEntry(String.format("%d", i)));
-        }*/
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mListView.setHasFixedSize(true);
@@ -331,8 +331,6 @@ public class MainActivity extends AppCompatActivity {
                 addItem.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Constructor
-                        //public Item(String name, String description, LocalDate dateTime, int amount)
 
                         //check if the requierd fields are filled
                         if (!(itemAmount.getText().toString().equals("") && itemName.getText().toString().equals(""))) {
@@ -341,9 +339,9 @@ public class MainActivity extends AppCompatActivity {
                             if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
                                 //User scanned a barcode now handle it
                                 String barcode = ActivityValues.getInstance().getBarcode();
-                                appData.addBarcode(new Barcode(barcode, new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString()))));
+                                AppData.getInstance().addBarcode(new Barcode(barcode, new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString()))));
                             }
-                            appData.addItem(new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString())));
+                            AppData.getInstance().addItem(new Item(itemAmount.getText().toString() + "", "NA", null, Integer.parseInt(itemAmount.getText().toString())));
                             finish();
                         } else {
                             Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
@@ -387,10 +385,10 @@ public class MainActivity extends AppCompatActivity {
     private void setAddPageDifference(int page) {
         EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
-
         if (page == 2) {
             fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);
+
         } else {
             shoppingAdd.setVisibility(View.INVISIBLE);
             fab.setVisibility(View.INVISIBLE);

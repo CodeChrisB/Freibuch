@@ -174,21 +174,21 @@ public class AppData implements Serializable {
     //endregion
 
     //region add Object
-    public void addBarcode(Barcode barcode) {
-        barcodes.addTo(barcode);
+    public boolean addBarcode(Barcode barcode) {
+        return barcodes.addTo(barcode);
 
     }
 
-    public void addRecipe(Recipe recipe) {
-        recipes.addTo(recipe);
+    public boolean addRecipe(Recipe recipe) {
+        return recipes.addTo(recipe);
     }
 
-    public void addShoppingEntry(ShoppingEntry shoppingEntry) {
-        shoppingEntries.addTo(shoppingEntry);
+    public boolean addShoppingEntry(ShoppingEntry shoppingEntry) {
+        return shoppingEntries.addTo(shoppingEntry);
     }
 
-    public void addItem(Item item) {
-        items.addTo(item);
+    public boolean addItem(Item item) {
+        return items.addTo(item);
     }
     //endregion
 
