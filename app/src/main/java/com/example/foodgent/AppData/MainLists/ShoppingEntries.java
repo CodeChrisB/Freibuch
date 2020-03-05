@@ -56,8 +56,11 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     public String toFormatedList() {
         //Create Header
         StringBuilder sb = new StringBuilder();
-        sb.append("Meine Einkaufsliste: ");
+        sb.append("\uD83D\uDED2 Meine Einkaufsliste: ");
         sb.append(System.getProperty("line.separator"));
+        sb.append("====================");
+        sb.append(System.getProperty("line.separator"));
+
 
         //call toString Method for every Entry in the List
         for (ShoppingEntry item : AppData.getInstance().getShoppingEntries()) {

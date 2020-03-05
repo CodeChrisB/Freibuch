@@ -58,7 +58,6 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
         barcodes = objectList;
     }
 
-
     private Boolean isNewBarCode(String barcode) {
         for(Barcode code : barcodes){
             if(code.getBarcode().equals(barcode))

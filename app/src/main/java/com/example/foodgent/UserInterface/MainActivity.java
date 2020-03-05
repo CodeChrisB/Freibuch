@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private int LAUNCH_SECOND_ACTIVITY = 1;
     private String barcodeData;
     private static final String TAG = "MainActivity";
-    private View alertItemView;
-    private MainActivity instance;
+    private static View alertItemView;
+    private static MainActivity instance;
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
     private ViewPager mViewPager;
     private FragmentChanger fragmentChanger;
@@ -328,8 +328,9 @@ public class MainActivity extends AppCompatActivity {
 
                 final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
 
-                Button helpNext = alertItemView.findViewById(R.id.button_barCodeScan);
-                helpNext.setOnClickListener(new View.OnClickListener() {
+                Button barCodeScannerButton = alertItemView.findViewById(R.id.button_barCodeScan);
+                barCodeScannerButton.bringToFront();
+                barCodeScannerButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
 
@@ -435,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
             fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);
 
-            addButton.setBackgroundResource(R.drawable.share_icon);
+            addButton.setBackgroundResource(android.R.drawable.ic_menu_share);
             addButton.setHeight((addButton.getHeight()) / 2);
             addButton.setWidth(addButton.getHeight());
 
