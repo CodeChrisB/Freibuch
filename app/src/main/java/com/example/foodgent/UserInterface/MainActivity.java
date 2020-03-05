@@ -332,9 +332,15 @@ public class MainActivity extends AppCompatActivity {
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View helpView) {
-                        Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
-                        startActivityForResult(i, 0);
-                        setBarcode();
+
+                        //Paywall Barcodescanner is only for paid Useres
+                        if (!AppData.getInstance().isPremium()) {
+                            Toast.makeText(getContext(), "Du hast gerade ein Premium feature gefunden,gehe in die Einstellungen um Foodgent Premium zu kaufen", Toast.LENGTH_LONG).show();
+                            return;
+                        } else {
+                            Intent i = new Intent(getApplicationContext(), ScanCodeActivity.class);
+                            startActivityForResult(i, 0);
+                        }
                     }
                 });
 
@@ -348,6 +354,7 @@ public class MainActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
+
 
                         //check if the requierd fields are filled
                         if (!itemName.getText().toString().equals("")) {
