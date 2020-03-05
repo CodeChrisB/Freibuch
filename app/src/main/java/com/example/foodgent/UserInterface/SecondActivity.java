@@ -3,6 +3,7 @@ package com.example.foodgent.UserInterface;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,8 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         Log.d(TAG, "OnCreate: Started");
         context = this;
+
+        updateVersionInfo();
 
         final TextView textView = findViewById(R.id.textView_titleSettings);
         textView.bringToFront();
@@ -233,7 +236,8 @@ public class SecondActivity extends AppCompatActivity {
 
         //region Premium
 
-        Button premiumActivator = findViewById(R.id.button_premiumActivator);
+        final Button premiumActivator = findViewById(R.id.button_premiumActivator);
+        final TextView premiumInfo = findViewById(R.id.textView_premiumInfo);
         premiumActivator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,11 +245,31 @@ public class SecondActivity extends AppCompatActivity {
                 AppData.getInstance().saveAppData();
                 if (AppData.getInstance().isPremium()) {
                     Toast.makeText(MainActivity.getInstance().getContext(), "Premium aktiviert", Toast.LENGTH_LONG).show();
+                    premiumActivator.setBackgroundColor(getResources().getColor(R.color.premiumActiveBg));
+                    premiumActivator.setTypeface(Typeface.DEFAULT_BOLD);
+                    premiumInfo.setText(getString(R.string.premium_boughtInfo));
                 } else {
                     Toast.makeText(MainActivity.getInstance().getContext(), "Premium deaktiviert", Toast.LENGTH_LONG).show();
+                    premiumActivator.setBackgroundColor(getResources().getColor(R.color.lightGrey));
+                    premiumActivator.setTypeface(Typeface.DEFAULT);
+                    premiumInfo.setText(getString(R.string.premium_info));
                 }
+                updateVersionInfo();
             }
         });
+
+        if (AppData.getInstance().isPremium()) {
+            premiumActivator.setBackgroundColor(getResources().getColor(R.color.premiumActiveBg));
+            premiumActivator.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+
+
+
+        //endregion
+
+
+        //region Versioninfo
+
 
         //endregion
 
@@ -318,6 +342,22 @@ public class SecondActivity extends AppCompatActivity {
     private void openLink(String link) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         startActivity(browserIntent);
+    }
+
+    private void updateVersionInfo() {
+        Resources res = getResources();
+        final String[] helpText = res.getStringArray(R.array.versionInfo);
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (String s : helpText) {
+            sb.append(s);
+            if (count == 0 && AppData.getInstance().isPremium())
+                sb.append(" (Premium Version)");
+            sb.append(System.getProperty("line.separator"));
+            count++;
+        }
+        TextView versionInfo = findViewById(R.id.textView_versionInfo);
+        versionInfo.setText(sb.toString());
     }
 
 

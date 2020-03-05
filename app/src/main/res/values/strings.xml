@@ -33,6 +33,9 @@
     <string name="robertGithub">https://github.com/robertFreiseisen</string>
     <string name="feedback_toShort">Feedback zu kurz.</string>
 
+    <string name="premium_info">Hole dir alle features für gerade einmal 1.99€.</string>
+    <string name="premium_boughtInfo">Kuehli ist stolz auf dich!</string>
+
 
     <string-array name="planets_array" tools:ignore="ExtraTranslation">
         <item>Hallo! Ich bin Kuehli \nIn diesem Tutorial zeig ich dir was ich so alles kann!</item>
@@ -52,7 +55,12 @@
         <item>All deine Rezepte werden verschwinden!</item>
         <item>Deine Einkaufsliste geht verloren! </item>
         <item>BIST DU DIR SICHER?</item>
+    </string-array>
 
+    <string-array name="versionInfo" tools:ignore="ExtraTranslation">
+        <item>Foodgent ©</item>
+        <item>v0.1.2</item>
+        <item>Last Update : 05/03/2020</item>
     </string-array>
 
     <string-array name="saveListNames" tools:ignore="ExtraTranslation">
