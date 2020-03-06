@@ -370,18 +370,25 @@ public class MainActivity extends AppCompatActivity {
                                 int amount = Integer.parseInt(temp);
                                 String name = itemName.getText().toString();
                                 String desc = itemDescription.getText().toString();
-                                AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount));
-                                AppData.getInstance().saveItems();
+
+
+                                //region robert
+                                if (AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount))) {
+                                    //can the item be added? or are there to many items?
+                                    AppData.getInstance().saveAppData();
+                                    setUpItemListView(mRecyclerView);
+                                }
+                                //endregion
 
                                 //delete ActivtyValues when closing the Dialog
                                 ActivityValues.getInstance().setBarcode("");
                                 help.cancel();
 
-                            } else {
-                                Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
                             }
 
                             //endregion
+                        } else {
+                            Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
                         }
                     }
                     /**/

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.example.foodgent.UserInterface.MainActivity">
 
 
@@ -13,12 +14,15 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/ic_input_add"
         android:clickable="true"
+        android:foregroundTint="@color/colorBackground"
         android:src="@drawable/mr_media_play_light"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/guideline71"
         app:layout_constraintEnd_toStartOf="@+id/guideline51"
         app:layout_constraintStart_toStartOf="@+id/guideline55"
         app:layout_constraintTop_toTopOf="@+id/guideline56"
+        app:rippleColor="#00531010"
         tools:visibility="visible" />
 
 
@@ -42,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline65"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +191,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.99" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -208,7 +212,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -237,6 +241,13 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -295,6 +306,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.82" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline71"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
     <EditText
         android:id="@+id/editText_shoppingAdd"
         android:layout_width="0dp"
@@ -305,7 +323,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/button_shopingEntryAdd"
         app:layout_constraintEnd_toStartOf="@+id/button_shopingEntryAdd"
-        app:layout_constraintStart_toStartOf="@+id/guideline19"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_shopingEntryAdd" />
 
 
