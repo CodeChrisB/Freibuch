@@ -434,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updatelistS() {
+    public void updateLists() {
         setUpShopListView(mRecyclerView);
         setUpCookingListView(mRecyclerView);
         setUpItemListView(mRecyclerView);
