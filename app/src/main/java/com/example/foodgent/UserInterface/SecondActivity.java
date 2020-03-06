@@ -213,6 +213,7 @@ public class SecondActivity extends AppCompatActivity {
                         } else {
                             AppData.getInstance().DeleteAppData();
                             AppData.getInstance().saveAppData();
+                            MainActivity.getInstance().updateShopList();
                             help.cancel();
                         }
                     }

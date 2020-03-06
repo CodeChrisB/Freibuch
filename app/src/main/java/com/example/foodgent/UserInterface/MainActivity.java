@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
 
+
     private static ActivityValues values;
 
     public static MainActivity getInstance() {
@@ -225,6 +226,10 @@ public class MainActivity extends AppCompatActivity {
 
         //endregion
 
+        //region updateListView
+        getCorrectListView(fragmentChanger.getCurrentPage());
+        //endregion
+
     }
 
     private void setUpPager(ViewPager viewPager) {
@@ -239,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentChanger.change(fragmentNumber, mViewPager);
         getCorrectListView(fragmentNumber);
         setAddPageDifference(fragmentNumber);
+        getCorrectListView(fragmentNumber);
     }
 
     private void getCorrectListView(int currentFragmentNumber) {
@@ -258,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
     private void setUpShopListView(RecyclerView mListView) {
 
@@ -292,27 +299,6 @@ public class MainActivity extends AppCompatActivity {
         ShopListAdapter adapter = new ShopListAdapter(list);
         mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
-    }
-
-    private void addToShopingList() {
-        AlertDialog.Builder altert = new AlertDialog.Builder(MainActivity.this);
-        View alertView = getLayoutInflater().inflate(R.layout.alert_addishopingentry, null);
-
-        Button button = alertView.findViewById(R.id.button_deleteNext);
-        final EditText editText = alertView.findViewById(R.id.editText_shopEntry);
-
-        button.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!editText.getText().toString().equals("")) {
-
-                }
-            }
-        });
-
-        altert.setView(alertView);
-        AlertDialog openAlert = altert.create();
-        openAlert.show();
     }
 
     private void getCorrectAddPage(int currentPage) {
@@ -446,5 +432,11 @@ public class MainActivity extends AppCompatActivity {
             fab.setVisibility(View.INVISIBLE);
 
         }
+    }
+
+    public void updatelistS() {
+        setUpShopListView(mRecyclerView);
+        setUpCookingListView(mRecyclerView);
+        setUpItemListView(mRecyclerView);
     }
 }
