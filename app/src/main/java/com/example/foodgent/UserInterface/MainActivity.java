@@ -25,8 +25,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.foodgent.AppData.Entities.Barcode;
 import com.example.foodgent.AppData.Entities.BarcodeItem;
 import com.example.foodgent.AppData.Entities.Item;
+import com.example.foodgent.AppData.Entities.Recipe;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.Entity.ItemListAdapter;
+import com.example.foodgent.Entity.RecipeListAdapter;
 import com.example.foodgent.Entity.ShopListAdapter;
 import com.example.foodgent.Logic.ActivityValues;
 import com.example.foodgent.Logic.FragmentChanger;
@@ -279,24 +282,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpCookingListView(RecyclerView mListView) {
-        // TODO: 05/02/2020  change the ShopingEntry to a CookingEntry, recipe or what ever
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        ArrayList<Recipe> list = AppData.getInstance().getRecipes();
 
         mListView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
-        ShopListAdapter adapter = new ShopListAdapter(list);
+        RecipeListAdapter adapter = new RecipeListAdapter(list);
         mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
     }
 
     private void setUpItemListView(RecyclerView mListView) {
-        // TODO: 05/02/2020  change the ShopingEntry to a Items or what ever
 
-        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        ArrayList<Item> list = AppData.getInstance().getItems();
 
         mListView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
-        ShopListAdapter adapter = new ShopListAdapter(list);
+        ItemListAdapter adapter = new ItemListAdapter(list);
         mListView.setLayoutManager(mLayoutManager);
         mListView.setAdapter(adapter);
     }

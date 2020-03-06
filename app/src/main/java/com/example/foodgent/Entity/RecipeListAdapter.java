@@ -9,29 +9,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Item;
-import com.example.foodgent.AppData.Entities.ShoppingEntry;
+import com.example.foodgent.AppData.Entities.Recipe;
 import com.example.foodgent.R;
 
 import java.util.ArrayList;
 
-public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder> {
-    private ArrayList<Item> items;
+public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.RecipeListViewHolder>{
+    private ArrayList<Recipe> items;
 
     @NonNull
     @Override
-    public ItemListAdapter.ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecipeListAdapter.RecipeListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopp_item, parent, false);
-        ItemListAdapter.ItemListViewHolder evh = new ItemListAdapter.ItemListViewHolder(v);
+        RecipeListAdapter.RecipeListViewHolder evh = new RecipeListAdapter.RecipeListViewHolder(v);
         return evh;
     }
 
-    public ItemListAdapter(ArrayList<Item> list) {
+    public RecipeListAdapter(ArrayList<Recipe> list) {
         this.items = list;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
-        Item currentItem = items.get(position);
+    public void onBindViewHolder(@NonNull RecipeListAdapter.RecipeListViewHolder holder, int position) {
+        Recipe currentItem = items.get(position);
         holder.mText.setText(currentItem.toString());
     }
 
@@ -40,10 +40,10 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         return items.size();
     }
 
-    public static class ItemListViewHolder extends RecyclerView.ViewHolder{
+    public static class RecipeListViewHolder extends RecyclerView.ViewHolder{
         public TextView mText;
 
-        public ItemListViewHolder(View itemView) {
+        public RecipeListViewHolder(View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.textView_ItemName);
         }
