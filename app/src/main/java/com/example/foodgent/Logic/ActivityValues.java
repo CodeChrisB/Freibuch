@@ -14,7 +14,7 @@ public class ActivityValues {
         return instance;
     }
 
-   private String barcode;
+    private String barcode = "";
 
     public String getBarcode() {
         return barcode;

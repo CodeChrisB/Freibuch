@@ -1,6 +1,7 @@
 package com.example.foodgent.AppData.MainLists;
 
 import com.example.foodgent.AppData.Entities.Item;
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.AppData.Logic.SaveArrayAble;
 
 import java.io.Serializable;
@@ -20,6 +21,9 @@ public class Items implements SaveArrayAble<Item>, Serializable {
 
     @Override
     public boolean addTo(Item object) {
+        if (items.size() > 20 && !(AppData.getInstance().isPremium()))
+            return false;
+
         items.add(object);
         return true;
     }

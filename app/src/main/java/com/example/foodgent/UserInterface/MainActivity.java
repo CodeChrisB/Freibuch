@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,7 +37,6 @@ import com.example.foodgent.Logic.SectionStatePagerAdapter;
 import com.example.foodgent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -313,7 +310,12 @@ public class MainActivity extends AppCompatActivity {
                 helpDialog.setView(alertItemView);
                 final AlertDialog help = helpDialog.create();
 
-                final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
+                final TextView itemName = alertItemView.findViewById(R.id.editText_itemName);
+                final TextView itemAmount = alertItemView.findViewById(R.id.editText_itemAmount);
+                final TextView itemDesc = alertItemView.findViewById(R.id.editText_addItemDescription);
+                final TextView barcode = alertItemView.findViewById(R.id.textView_barcode);
+
+
 
                 Button barCodeScannerButton = alertItemView.findViewById(R.id.button_barCodeScan);
                 barCodeScannerButton.bringToFront();
@@ -331,67 +333,54 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                Button addItem = alertItemView.findViewById(R.id.button_additem);
-                final EditText itemName = alertItemView.findViewById(R.id.editText_itemName);
-                final EditText itemAmount = alertItemView.findViewById(R.id.editText_itemAmount);
-                final EditText itemDescription = alertItemView.findViewById(R.id.editText_addItemDescription);
 
-                final String name = itemName.getText().toString() + "";
+                Button addItem = alertItemView.findViewById(R.id.button_additem);
+                final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
+
                 addItem.setOnClickListener(new OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
 
-
-                        //check if the requierd fields are filled
-                        if (!itemName.getText().toString().equals("")) {
-
-                            //Barcode
-                            if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
-                                //check if it is a new barcode
-                                BarcodeItem insertItem = AppData.getInstance().searchForItem(ActivityValues.getInstance().getBarcode());
-                                if (insertItem == null) {
-                                    //NEW BARCODE
-                                    String barcode = ActivityValues.getInstance().getBarcode();
-                                    BarcodeItem barcodeItem = new BarcodeItem(itemName.getText().toString(), itemDescription.getText().toString());
-                                    AppData.getInstance().addBarcode(new Barcode(barcode, barcodeItem));
-                                    AppData.getInstance().saveBarcode();
-                                } else {
-                                    //Barcode is already known
-                                    itemName.setText(insertItem.getName());
-                                    itemDescription.setText(insertItem.getDescription());
-                                }
-
-
-                                String temp = itemAmount.getText().toString();
-                                if (temp.equals(""))
-                                    temp = "1";
-
-                                int amount = Integer.parseInt(temp);
-                                String name = itemName.getText().toString();
-                                String desc = itemDescription.getText().toString();
-
-
-                                //region robert
-                                if (AppData.getInstance().addItem(new Item(name, desc, LocalDate.now(), amount))) {
-                                    //can the item be added? or are there to many items?
-                                    AppData.getInstance().saveAppData();
-                                    setUpItemListView(mRecyclerView);
-                                }
-                                //endregion
-
-                                //delete ActivtyValues when closing the Dialog
-                                ActivityValues.getInstance().setBarcode("");
-                                help.cancel();
-
+                        //Barcode
+                        if (!(barcodeShower.getText().toString().equals("Lebensmittel"))) {
+                            //check if it is a new barcode
+                            BarcodeItem insertItem = AppData.getInstance().searchForItem(ActivityValues.getInstance().getBarcode());
+                            if (insertItem == null) {
+                                //NEW BARCODE
+                                String barcode = ActivityValues.getInstance().getBarcode();
+                                BarcodeItem barcodeItem = new BarcodeItem(itemName.getText().toString(), itemDesc.getText().toString());
+                                AppData.getInstance().addBarcode(new Barcode(barcode, barcodeItem));
+                                AppData.getInstance().saveBarcode();
+                            } else {
+                                //Barcode is already known
+                                itemName.setText(insertItem.getName());
+                                itemDesc.setText(insertItem.getDescription());
                             }
+                        }
 
-                            //endregion
+
+                        if (!(itemName.getText().toString().equals(""))) {
+                            //if the item has a name in the textfield
+                            int amount = 1;
+
+                            if (!(itemAmount.getText().toString().equals("")))
+                                amount = Integer.parseInt((itemAmount.getText().toString()));
+                            Item item = new Item(itemName.getText().toString(), itemDesc.getText().toString(), null, amount);
+                            AppData.getInstance().addItem(item);
+                            AppData.getInstance().saveItems();
+                            setUpItemListView(mRecyclerView);
+
+
+                            //remove barcode from Activity values before dialog close
+                            ActivityValues.getInstance().setBarcode("");
+                            help.dismiss();
+
+
                         } else {
-                            Toast.makeText(MainActivity.this, "Bitte fülle alle Felder mit rotem Stern aus", Toast.LENGTH_LONG).show();
+                            //no name was given for the item
+                            Toast.makeText(getContext(), "Error- Item Name", Toast.LENGTH_LONG).show();
                         }
                     }
-                    /**/
                 });
 
 
@@ -417,6 +406,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+
 
         //startActivity(intent);
     }
@@ -447,4 +437,5 @@ public class MainActivity extends AppCompatActivity {
         setUpCookingListView(mRecyclerView);
         setUpItemListView(mRecyclerView);
     }
+
 }

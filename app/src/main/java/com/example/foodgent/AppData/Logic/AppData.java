@@ -78,21 +78,11 @@ public class AppData implements Serializable {
         //endregion
 
         //region check if the JSON Strings are not empty and fill Values
-        if (!recipe.equals("")) {
             recipes = gson.fromJson(recipe, Recipes.class);
-        }
-
-        if (!item.equals("")) {
-            items = gson.fromJson(recipe, Items.class);
-        }
-
-        if (!barcode.equals("")) {
+        items = gson.fromJson(item, Items.class);
             barcodes = gson.fromJson(barcode, Barcodes.class);
-        }
-
-        if (!shopping.equals("")) {
             shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
-        }
+
         //endregion
     }
 
@@ -246,6 +236,19 @@ public class AppData implements Serializable {
             }
         }
         return null;
+    }
+
+    public boolean removeBarcode(String barcode) {
+        ArrayList<Barcode> list = barcodes.getArray();
+
+        for (Barcode code : list) {
+            if (code.getBarcode().equals(barcode)) {
+                list.remove(code);
+                saveBarcode();
+                return true;
+            }
+        }
+        return false;
     }
 
     ///endregion
