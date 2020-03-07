@@ -142,7 +142,7 @@ public class AppData implements Serializable {
     }
 
     public void DeleteAppData() {
-        barcodes = new Barcodes();
+        //barcodes = new Barcodes();
         recipes = new Recipes();
         items = new Items();
         settings = new Settings();

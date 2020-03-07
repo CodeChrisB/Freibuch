@@ -10,7 +10,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_shopingEntryAdd"
-        android:layout_width="0dp"
+        android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:background="@android:drawable/ic_input_add"
         android:clickable="true"
@@ -18,27 +18,26 @@
         android:src="@drawable/mr_media_play_light"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline56"
+        app:layout_constraintBottom_toTopOf="@+id/guideline71"
         app:layout_constraintEnd_toStartOf="@+id/guideline51"
         app:layout_constraintStart_toStartOf="@+id/guideline55"
-        app:layout_constraintTop_toTopOf="@+id/guideline65"
+        app:layout_constraintTop_toTopOf="@+id/guideline56"
         app:rippleColor="#00531010"
         tools:visibility="visible" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_shopingEntryDelete"
-        android:layout_width="0dp"
+        android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:background="?attr/actionModeSplitBackground"
         android:clickable="true"
         android:src="@drawable/trashcan"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline56"
         app:layout_constraintEnd_toStartOf="@+id/guideline51"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline55"
-        app:layout_constraintTop_toTopOf="@+id/guideline_listViewBottom"
+        app:layout_constraintTop_toTopOf="@+id/guideline65"
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -48,10 +47,10 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline_listViewBottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_Topbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view_Topbar"
@@ -328,10 +327,10 @@
         android:hint="Neuer Eintrag"
         android:maxLength="25"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/button_shopingEntryAdd"
+        app:layout_constraintBottom_toTopOf="@+id/guideline71"
         app:layout_constraintEnd_toStartOf="@+id/button_shopingEntryAdd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_shopingEntryAdd" />
+        app:layout_constraintStart_toStartOf="@+id/guideline19"
+        app:layout_constraintTop_toTopOf="@+id/guideline56" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
