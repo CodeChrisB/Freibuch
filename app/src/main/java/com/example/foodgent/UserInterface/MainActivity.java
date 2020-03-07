@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -413,9 +415,16 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     private void setAddPageDifference(int page) {
+        Guideline listViewEnd = findViewById(R.id.guideline_listViewBottom);
+
+        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) listViewEnd.getLayoutParams();
+
+
+
         EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
         Button addButton = findViewById(R.id.button_add);
+
         if (page == 2) {
             fab.setVisibility(View.VISIBLE);
             shoppingAdd.setVisibility(View.VISIBLE);
@@ -423,13 +432,16 @@ public class MainActivity extends AppCompatActivity {
             addButton.setBackgroundResource(android.R.drawable.ic_menu_share);
             addButton.setHeight((addButton.getHeight()) / 2);
             addButton.setWidth(addButton.getHeight());
+            lp.guidePercent = 0.82f;
 
         } else {
             addButton.setBackgroundResource(android.R.drawable.ic_input_add);
             shoppingAdd.setVisibility(View.INVISIBLE);
             fab.setVisibility(View.INVISIBLE);
-
+            lp.guidePercent = 1f;
         }
+
+        listViewEnd.setLayoutParams(lp);
     }
 
     public void updateLists() {

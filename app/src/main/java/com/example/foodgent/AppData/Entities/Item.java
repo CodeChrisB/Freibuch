@@ -47,4 +47,9 @@ public class Item implements Serializable {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + description;
+    }
 }
