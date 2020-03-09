@@ -50,6 +50,6 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return name + " " + description;
+        return name + " " + description + " Amount: " + amount;
     }
 }

@@ -36,7 +36,7 @@ import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
 import com.example.foodgent.Logic.ScanCodeActivity;
 import com.example.foodgent.Logic.SectionStatePagerAdapter;
-import com.example.foodgent.R;
+import com.example.fragment.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

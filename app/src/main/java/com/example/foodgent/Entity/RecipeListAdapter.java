@@ -8,9 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.Recipe;
-import com.example.foodgent.R;
+import com.example.fragment.R;
 
 import java.util.ArrayList;
 

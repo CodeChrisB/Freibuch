@@ -20,7 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgent.AppData.Logic.AppData;
-import com.example.foodgent.R;
+import com.example.fragment.R;
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;

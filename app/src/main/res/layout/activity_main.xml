@@ -15,7 +15,6 @@
         android:background="@android:drawable/ic_input_add"
         android:clickable="true"
         android:foregroundTint="@color/colorBackground"
-        android:src="@drawable/mr_media_play_light"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline71"

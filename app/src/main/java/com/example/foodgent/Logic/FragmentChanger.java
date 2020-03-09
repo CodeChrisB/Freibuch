@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodgent.R;
 import com.example.foodgent.UserInterface.MainActivity;
+import com.example.fragment.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FragmentChanger<mainActivity> {

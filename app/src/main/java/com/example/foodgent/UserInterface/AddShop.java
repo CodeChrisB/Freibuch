@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodgent.R;
+import com.example.fragment.R;
 
 public class AddShop extends AppCompatActivity {
 
