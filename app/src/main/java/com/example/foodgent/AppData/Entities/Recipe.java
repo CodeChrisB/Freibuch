@@ -1,11 +1,13 @@
 package com.example.foodgent.AppData.Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
     String name,description;
     boolean isSeleted = false;
+    ArrayList<RecipeItem> recipeList;
 
     public String getName() {
         return name;
@@ -31,8 +33,11 @@ public class Recipe implements Serializable {
         isSeleted = seleted;
     }
 
-    public Recipe(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public ArrayList<RecipeItem> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(ArrayList<RecipeItem> recipeList) {
+        this.recipeList = recipeList;
     }
 }
