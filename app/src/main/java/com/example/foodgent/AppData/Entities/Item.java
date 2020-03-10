@@ -8,6 +8,7 @@ public class Item implements Serializable {
     String name,description;
     LocalDate dateTime;
     int amount;
+    boolean isSelected = false;
 
     public Item(String name, String description, LocalDate dateTime, int amount) {
         this.name = name;
@@ -51,5 +52,13 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return name + " " + description + " Amount: " + amount;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
