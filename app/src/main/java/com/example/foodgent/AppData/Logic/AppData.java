@@ -78,11 +78,29 @@ public class AppData implements Serializable {
         //endregion
 
         //region check if the JSON Strings are not empty and fill Values
+        if (!recipe.equals("null")) {
             recipes = gson.fromJson(recipe, Recipes.class);
-        items = gson.fromJson(item, Items.class);
-            barcodes = gson.fromJson(barcode, Barcodes.class);
-            shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
+        } else {
+            recipes = new Recipes();
+        }
 
+        if (!items.equals("null")) {
+            items = gson.fromJson(item, Items.class);
+        } else {
+            items = new Items();
+        }
+
+        if (!barcodes.equals("null")) {
+            barcodes = gson.fromJson(barcode, Barcodes.class);
+        } else {
+            barcodes = new Barcodes();
+        }
+
+        if (!shoppingEntries.equals("null")) {
+            shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
+        } else {
+            shoppingEntries = new ShoppingEntries();
+        }
         //endregion
     }
 
@@ -155,18 +173,38 @@ public class AppData implements Serializable {
 
     //region get Object
     public ArrayList<Barcode> getBarcodes() {
+        try {
+            return barcodes.getArray();
+        } catch (Exception ex) {
+            barcodes = new Barcodes();
+        }
         return barcodes.getArray();
     }
 
     public ArrayList<Recipe> getRecipes() {
+        try {
+            return recipes.getArray();
+        } catch (Exception ex) {
+            recipes = new Recipes();
+        }
         return recipes.getArray();
     }
 
     public ArrayList<ShoppingEntry> getShoppingEntries() {
+        try {
+            return shoppingEntries.getArray();
+        } catch (Exception ex) {
+            shoppingEntries = new ShoppingEntries();
+        }
         return shoppingEntries.getArray();
     }
 
     public ArrayList<Item> getItems() {
+        try {
+            return items.getArray();
+        } catch (Exception ex) {
+            items = new Items();
+        }
         return items.getArray();
     }
     //endregion
