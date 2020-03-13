@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
@@ -449,5 +450,6 @@ public class MainActivity extends AppCompatActivity {
         setUpCookingListView(mRecyclerView);
         setUpItemListView(mRecyclerView);
     }
+
 
 }

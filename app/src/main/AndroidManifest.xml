@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fragment"
     android:versionCode="1"
     android:versionName="0.5">
@@ -30,32 +31,47 @@
         android:icon="@drawable/kuehli"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity
-            android:name="com.example.foodgent.UserInterface.MainActivity"
-            android:windowSoftInputMode="adjustResize">
-
+        <activity android:name="com.example.foodgent.UserInterface.MainActivity">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.foodgent.UserInterface.SplashScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
 
-        <activity android:name="com.example.foodgent.UserInterface.SecondActivity" />
 
-        <activity android:name="com.example.foodgent.UserInterface.AddItem" />
+        <activity
+            android:name="com.example.foodgent.UserInterface.SecondActivity"
+            tools:ignore="InnerclassSeparator" />
 
-        <activity android:name="com.example.foodgent.UserInterface.AddCooking" />
+        <activity
+            android:name="com.example.foodgent.UserInterface.AddItem"
+            tools:ignore="InnerclassSeparator" />
 
-        <activity android:name="com.example.foodgent.UserInterface.AddShop" />
+        <activity
+            android:name="com.example.foodgent.UserInterface.AddCooking"
+            tools:ignore="InnerclassSeparator" />
 
-        <activity android:name="com.example.foodgent.Logic.ScanCodeActivity" />
+        <activity
+            android:name="com.example.foodgent.UserInterface.AddShop"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name="com.example.foodgent.Logic.ScanCodeActivity"
+            tools:ignore="InnerclassSeparator" />
 
         <meta-data
             android:name="preloaded_fonts"

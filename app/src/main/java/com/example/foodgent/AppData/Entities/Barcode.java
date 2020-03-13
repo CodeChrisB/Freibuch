@@ -36,5 +36,4 @@ public class Barcode implements Serializable {
     public void setSeleted(boolean seleted) {
         isSeleted = seleted;
     }
-
 }
