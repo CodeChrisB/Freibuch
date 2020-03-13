@@ -115,9 +115,14 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.button_shopingEntryAdd);
         fab.setVisibility(View.INVISIBLE);
 
-        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, topBarName, this, fab);
+
+        //(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, MainActivity activity) {
+        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, instance);
         //mRecyclerView = findViewById(R.id.listView);
         //endregion
+
+        //setup the standard list view
+        Fragment1.setUpItemListView();
 
 
         //region setup the adapter
@@ -245,9 +250,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViewPager(int fragmentNumber) {
         fragmentChanger.change(fragmentNumber, mViewPager);
-        getCorrectListView(fragmentNumber);
-        setAddPageDifference(fragmentNumber);
-        getCorrectListView(fragmentNumber);
     }
 
     private void getCorrectListView(int currentFragmentNumber) {
@@ -371,8 +373,7 @@ public class MainActivity extends AppCompatActivity {
                             Item item = new Item(itemName.getText().toString(), itemDesc.getText().toString(), null, amount);
                             AppData.getInstance().addItem(item);
                             AppData.getInstance().saveItems();
-                            setUpItemListView(mRecyclerView);
-
+                            Fragment1.setUpItemListView();
 
                             //remove barcode from Activity values before dialog close
                             ActivityValues.getInstance().setBarcode("");

@@ -1,35 +1,32 @@
 package com.example.foodgent.Logic;
 
 import android.annotation.SuppressLint;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.foodgent.UserInterface.Fragment1;
+import com.example.foodgent.UserInterface.Fragment2;
+import com.example.foodgent.UserInterface.Fragment3;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class FragmentChanger<mainActivity> {
+public class FragmentChanger<mainActivity> extends AppCompatActivity {
 
     private Button btnNavFrag1;
     private Button btnNavFrag2;
     private Button btnNavFrag3;
-    private TextView topbarName;
     private MainActivity mainActivity;
-    FloatingActionButton fab;
     private int currentPage;
 
-
-
-    public FragmentChanger(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, TextView topbarName, MainActivity activity,FloatingActionButton fab) {
+    public FragmentChanger(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, MainActivity activity) {
         this.btnNavFrag1 = btnNavFrag1;
         this.btnNavFrag2 = btnNavFrag2;
         this.btnNavFrag3 = btnNavFrag3;
-        this.topbarName = topbarName;
-        this.mainActivity= mainActivity;
-        this.fab = fab;
+        this.mainActivity = activity;
         currentPage=0;
     }
 
@@ -37,37 +34,67 @@ public class FragmentChanger<mainActivity> {
 
     @SuppressLint("RestrictedApi")
     public void change(int number, ViewPager viewPager){
-        switch (number){
+
+        final FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+        Fragment1 frag0 = new Fragment1();
+        Fragment2 frag1 = new Fragment2();
+        Fragment3 frag2 = new Fragment3();
+
+
+        switch (number) {
             case 0:
+                if (currentPage != 0) {
+                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_active_button);
+                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
+                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
 
-                btnNavFrag1.setBackgroundResource(R.drawable.fragment_active_button);
-                btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
-                btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
-                fab.setVisibility(View.INVISIBLE);
+                    // Replace whatever is in the fragment_container view with this fragment,
+                    // and add the transaction to the back stack if needed
+                    transaction.remove(frag1)
+                            .remove(frag2)
+                            .replace(R.id.fragment, new Fragment());
 
-                topbarName.setText(R.string.fragment1_name);
-            break;
+
+                }
+                break;
 
             case 1:
-                btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
-                btnNavFrag2.setBackgroundResource(R.drawable.fragment_active_button);
-                btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
-                topbarName.setText(R.string.fragment2_name);
+                if (currentPage != 1) {
+                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
+                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_active_button);
+                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
 
-                fab.setVisibility(View.INVISIBLE);
+                    // Replace whatever is in the fragment_container view with this fragment,
+                    // and add the transaction to the back stack if needed
+                    transaction.remove(frag0)
+                            .remove(frag2)
+                            .replace(R.id.fragment, new Fragment2());
+
+                }
                 break;
             case 2:
-                btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
-                btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
-                btnNavFrag3.setBackgroundResource(R.drawable.fragment_active_button);
-                topbarName.setText(R.string.fragment3_name);
 
-                fab.setVisibility(View.VISIBLE);
+                if (currentPage != 2) {
+                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
+                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
+                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_active_button);
+
+
+                    // Replace whatever is in the fragment_container view with this fragment,
+                    // and add the transaction to the back stack if needed
+                    transaction.replace(R.id.fragment, new Fragment3());
+
+                }
+
                 break;
 
-                default:
-                    return;
         }
+
+        transaction.addToBackStack(null);
+        if (!this.isFinishing()) {
+            transaction.commit();
+        }
+
         currentPage=number;
         //set the new Page
         viewPager.setCurrentItem(number);

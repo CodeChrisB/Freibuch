@@ -23,6 +23,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 finish();
             }
-        }, 1000);
+            //set the Splashscreen length in milliseconds
+        }, 0);
     }
 }
