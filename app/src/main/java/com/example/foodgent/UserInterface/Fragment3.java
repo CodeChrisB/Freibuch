@@ -3,11 +3,15 @@ package com.example.foodgent.UserInterface;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +34,7 @@ public class Fragment3 extends Fragment {
     private static RecyclerView.LayoutManager mLayoutManager;
     private static RecyclerView mListView;
     private static Context context;
+    private EditText shoppingEntry;
 
     static public void setUpShoppingList() {
 
@@ -66,20 +71,47 @@ public class Fragment3 extends Fragment {
         context = getContext();
         setUpShoppingList();
 
-        final EditText shoppingEntry = view.findViewById(R.id.editText_addShopEntry);
+        shoppingEntry = view.findViewById(R.id.editText_addShopEntry);
         final Button addEntry = view.findViewById(R.id.button_addShoppingEntry);
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String entry = shoppingEntry.getText().toString();
-                AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
-                setUpShoppingList();
+                add();
+            }
+        });
+
+        shoppingEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    //do what you want on the press of 'done'
+                    addEntry.performClick();
+                }
+                return false;
             }
         });
 
 
         return view;
 
+    }
+
+
+    private void add() {
+        String entry = shoppingEntry.getText().toString();
+        if (entry.length() > 0) {
+            AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
+            setUpShoppingList();
+            shoppingEntry.setText("");
+            closeKeyboard();
+        }
+    }
+
+    private void closeKeyboard() {
+        View view = MainActivity.getInstance().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) MainActivity.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 

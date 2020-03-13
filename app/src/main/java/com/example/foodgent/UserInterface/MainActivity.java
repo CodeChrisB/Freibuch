@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,21 +15,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Guideline;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodgent.AppData.Entities.Barcode;
 import com.example.foodgent.AppData.Entities.BarcodeItem;
 import com.example.foodgent.AppData.Entities.Item;
-import com.example.foodgent.AppData.Entities.Recipe;
-import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.Logic.AppData;
-import com.example.foodgent.Entity.ItemListAdapter;
-import com.example.foodgent.Entity.RecipeListAdapter;
-import com.example.foodgent.Entity.ShopListAdapter;
 import com.example.foodgent.Logic.ActivityValues;
 import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
@@ -38,8 +29,6 @@ import com.example.foodgent.Logic.ScanCodeActivity;
 import com.example.foodgent.Logic.SectionStatePagerAdapter;
 import com.example.fragment.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -193,50 +182,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //endregion
 
-        //region ShoppingEntries Button
-
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText et = findViewById(R.id.editText_shoppingAdd);
-                if (et.getText().length() > 0) {
-                    ShoppingEntry se = new ShoppingEntry(et.getText().toString());
-
-                    if (AppData.getInstance().addShoppingEntry(se)) {
-                        //can the item be added? or are there to many items?
-                        AppData.getInstance().saveAppData();
-                        setUpShopListView(mRecyclerView);
-
-                    } else {
-                        //not enough space
-                        Toast.makeText(getContext(), "Ohh nein die Liste ist voll, hole dir FoodGent Premium um unbegrenzt Einträge zu machen", Toast.LENGTH_LONG).show();
-                    }
-                    et.setText("");
-                }
-
-                //closes the Keyboard after usage
-                et.onEditorAction(EditorInfo.IME_ACTION_DONE);
-            }
-        });
-
-        FloatingActionButton deleteShopEntries = findViewById(R.id.button_shopingEntryDelete);
-        deleteShopEntries.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppData.getInstance().removeAllShoppingEntries();
-                AppData.getInstance().saveAppData();
-                setUpShopListView(mRecyclerView);
-            }
-        });
-
-
-        //endregion
-
-        //region updateListView
-        getCorrectListView(fragmentChanger.getCurrentPage());
-        //endregion
 
     }
 
@@ -252,57 +198,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentChanger.change(fragmentNumber, mViewPager);
     }
 
-    private void getCorrectListView(int currentFragmentNumber) {
-
-
-        switch (currentFragmentNumber) {
-            case 0:
-                setUpItemListView(mRecyclerView);
-                break;
-
-            case 1:
-                setUpCookingListView(mRecyclerView);
-                break;
-
-            case 2:
-                setUpShopListView(mRecyclerView);
-                break;
-        }
-    }
-
-
-    private void setUpShopListView(RecyclerView mListView) {
-
-        ArrayList<ShoppingEntry> list = AppData.getInstance().getShoppingEntries();
-
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mListView.setHasFixedSize(true);
-        ShopListAdapter adapter = new ShopListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-
-    }
-
-    private void setUpCookingListView(RecyclerView mListView) {
-        ArrayList<Recipe> list = AppData.getInstance().getRecipes();
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        RecipeListAdapter adapter = new RecipeListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
-
-    private void setUpItemListView(RecyclerView mListView) {
-
-        ArrayList<Item> list = AppData.getInstance().getItems();
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        ItemListAdapter adapter = new ItemListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
 
     private void getCorrectAddPage(int currentPage) {
         Intent intent;
@@ -410,47 +305,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-
-
-        //startActivity(intent);
     }
-
-    @SuppressLint("RestrictedApi")
-    private void setAddPageDifference(int page) {
-        Guideline listViewEnd = findViewById(R.id.guideline_listViewBottom);
-
-        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) listViewEnd.getLayoutParams();
-
-
-
-        EditText shoppingAdd = findViewById(R.id.editText_shoppingAdd);
-        FloatingActionButton fab = findViewById(R.id.button_shopingEntryDelete);
-        Button addButton = findViewById(R.id.button_add);
-
-        if (page == 2) {
-            fab.setVisibility(View.VISIBLE);
-            shoppingAdd.setVisibility(View.VISIBLE);
-
-            addButton.setBackgroundResource(android.R.drawable.ic_menu_share);
-            addButton.setHeight((addButton.getHeight()) / 2);
-            addButton.setWidth(addButton.getHeight());
-            lp.guidePercent = 0.82f;
-
-        } else {
-            addButton.setBackgroundResource(android.R.drawable.ic_input_add);
-            shoppingAdd.setVisibility(View.INVISIBLE);
-            fab.setVisibility(View.INVISIBLE);
-            lp.guidePercent = 1f;
-        }
-
-        listViewEnd.setLayoutParams(lp);
-    }
-
-    public void updateLists() {
-        setUpShopListView(mRecyclerView);
-        setUpCookingListView(mRecyclerView);
-        setUpItemListView(mRecyclerView);
-    }
-
 
 }

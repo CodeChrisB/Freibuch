@@ -30,6 +30,7 @@ public class Fragment1 extends Fragment {
     private static RecyclerView.LayoutManager mLayoutManager;
     private static RecyclerView mListView;
     private static Context context;
+    private boolean appStart = true;
 
     static public void setUpItemListView() {
         Fragment2.setNull();
@@ -64,7 +65,7 @@ public class Fragment1 extends Fragment {
 
 
             Log.d(TAG, "onCreateView: started");
-        if (context == null) {
+        if (appStart) {
             context = getContext();
         } else {
             mListView = view.findViewById(R.id.listView_items);
@@ -72,7 +73,7 @@ public class Fragment1 extends Fragment {
         }
 
 
-
+        appStart = false;
             return view;
 
     }

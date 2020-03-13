@@ -213,7 +213,9 @@ public class SecondActivity extends AppCompatActivity {
                         } else {
                             AppData.getInstance().DeleteAppData();
                             AppData.getInstance().saveAppData();
-                            MainActivity.getInstance().updateLists();
+                            Fragment1.setNull();
+                            Fragment2.setNull();
+                            Fragment3.setNull();
                             help.cancel();
                         }
                     }

@@ -14,9 +14,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline51"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNavFrag2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_shopingEntryAdd"
@@ -48,19 +48,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline55"
         app:layout_constraintTop_toTopOf="@+id/guideline65"
         tools:visibility="visible" />
-
-    <View
-        android:id="@+id/view_Topbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:background="@drawable/round_corner"
-        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toStartOf="@+id/guideline51"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="1.0" />
 
 
     <Button
@@ -146,20 +133,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_topBarName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:text="@string/fragment1_name"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toStartOf="@+id/guideline51"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/button_add"
@@ -338,9 +311,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_listViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_Topbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

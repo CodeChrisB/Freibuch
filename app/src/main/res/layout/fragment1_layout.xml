@@ -7,13 +7,63 @@
     android:orientation="vertical">
 
 
+    <View
+        android:id="@+id/view_Topbar2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@drawable/round_corner"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_topBarName2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toTopOf="@+id/textView_topBarName2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_topBarName2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/fragment1_name"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintStart_toStartOf="@+id/view_Topbar2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view_Topbar2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
