@@ -19,7 +19,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     @NonNull
     @Override
     public ItemListAdapter.ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopp_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item, parent, false);
         ItemListAdapter.ItemListViewHolder evh = new ItemListAdapter.ItemListViewHolder(v);
         return evh;
     }
@@ -32,6 +32,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
         Item currentItem = items.get(position);
         holder.mText.setText(currentItem.toString());
+        holder.mDesc.setText(currentItem.getDescription());
     }
 
     @Override
@@ -41,10 +42,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
 
     public static class ItemListViewHolder extends RecyclerView.ViewHolder{
         public TextView mText;
-
+        public TextView mDesc;
         public ItemListViewHolder(View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.textView_ItemName);
+            mDesc = itemView.findViewById(R.id.textView_ItemDesc);
         }
     }
 }

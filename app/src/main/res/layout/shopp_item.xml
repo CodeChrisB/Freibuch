@@ -20,8 +20,8 @@
 
         <TextView
             android:id="@+id/textView_ItemName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignBottom="@+id/checkBox_shopEntry"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -34,7 +34,6 @@
             android:fontFamily="casual"
             android:gravity="center|left"
             android:text="TextView1" />
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
