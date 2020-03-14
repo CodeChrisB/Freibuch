@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -71,6 +72,17 @@ public class Fragment1 extends Fragment {
             mListView = view.findViewById(R.id.listView_items);
             setUpItemListView();
         }
+
+
+        //region Prevent Fragment Close
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
 
 
         appStart = false;

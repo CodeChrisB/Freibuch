@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -91,6 +92,17 @@ public class Fragment3 extends Fragment {
         });
 
 
+        //region Prevent Fragment Close
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
+
+
         return view;
 
     }
@@ -115,4 +127,8 @@ public class Fragment3 extends Fragment {
     }
 
 
+    @Override
+    public void onAttachFragment(@NonNull Fragment childFragment) {
+
+    }
 }

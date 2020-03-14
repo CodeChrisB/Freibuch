@@ -14,7 +14,7 @@ import com.example.foodgent.UserInterface.Fragment3;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
-public class FragmentChanger<mainActivity> extends AppCompatActivity {
+public class FragmentChanger extends AppCompatActivity {
 
     private Button btnNavFrag1;
     private Button btnNavFrag2;
@@ -54,8 +54,6 @@ public class FragmentChanger<mainActivity> extends AppCompatActivity {
                     transaction.remove(frag1)
                             .remove(frag2)
                             .replace(R.id.fragment, new Fragment());
-
-
                 }
                 break;
 
@@ -71,7 +69,6 @@ public class FragmentChanger<mainActivity> extends AppCompatActivity {
                     transaction.remove(frag0)
                             .remove(frag2)
                             .replace(R.id.fragment, new Fragment2());
-
                 }
                 break;
             case 2:
