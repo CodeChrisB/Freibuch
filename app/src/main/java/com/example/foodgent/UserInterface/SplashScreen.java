@@ -17,6 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splashscreen);
 
         ConstraintLayout background = findViewById(R.id.constraintLayout_splashbackground);
+
         setRandomColorBackground(background);
 
         new Handler().postDelayed(new Runnable() {
@@ -31,7 +32,6 @@ public class SplashScreen extends AppCompatActivity {
             //set the Splashscreen length in milliseconds
         }, 1000);
     }
-
 
     private Color setRandomColorBackground(ConstraintLayout background) {
 

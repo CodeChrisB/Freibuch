@@ -1,14 +1,18 @@
 package com.example.foodgent.Logic;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.foodgent.UserInterface.MainActivity;
 import com.google.zxing.Result;
@@ -24,10 +28,19 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-        context = this;
+        askPremission();
+
+        if (ActivityCompat.checkSelfPermission(ScanCodeActivity.this,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            context = this;
+        } else {
+            //if the user dont want to use the camera just go back.
+            finish();
+        }
 
     }
 
@@ -75,5 +88,13 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
         scannerView.setResultHandler(this);
         scannerView.startCamera();
+    }
+
+    private void askPremission() {
+        int camera = 1;
+        if (ContextCompat.checkSelfPermission(ScanCodeActivity.this,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, camera);
+        }
     }
 }

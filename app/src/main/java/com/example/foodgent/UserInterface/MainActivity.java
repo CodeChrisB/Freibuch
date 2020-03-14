@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
 
@@ -306,5 +308,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
 }

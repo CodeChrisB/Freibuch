@@ -48,6 +48,7 @@ public class SecondActivity extends AppCompatActivity {
         Log.d(TAG, "OnCreate: Started");
         context = this;
 
+
         updateVersionInfo();
 
         final TextView textView = findViewById(R.id.textView_titleSettings);
