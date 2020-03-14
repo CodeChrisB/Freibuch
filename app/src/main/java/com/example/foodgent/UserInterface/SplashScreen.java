@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,6 +22,9 @@ public class SplashScreen extends AppCompatActivity {
         ConstraintLayout background = findViewById(R.id.constraintLayout_splashbackground);
 
         setRandomColorBackground(background);
+        ImageView logo = findViewById(R.id.imageView_splashlLogo);
+        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        logo.startAnimation(rotate);
 
         new Handler().postDelayed(new Runnable() {
 

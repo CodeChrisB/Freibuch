@@ -8,30 +8,33 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
+        android:id="@+id/imageView_splashlLogo"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash_logo" />
+        app:srcCompat="@drawable/splashlogo_calm" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autoText="false"
+
         android:fontFamily="casual"
+        android:foregroundGravity="fill_horizontal"
         android:gravity="center"
-        android:text="FoodGent"
+        android:text="@string/app_name"
         android:textColor="@color/colorBackground"
         android:textSize="65sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guideline60"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/guideline72" />
+        app:layout_constraintStart_toStartOf="@+id/imageView_splashlLogo"
+        app:layout_constraintTop_toTopOf="@+id/guideline73" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline72"
@@ -39,5 +42,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="-1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
