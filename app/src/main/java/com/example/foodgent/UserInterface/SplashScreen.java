@@ -27,10 +27,11 @@ public class SplashScreen extends AppCompatActivity {
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i);
 
+
                 finish();
             }
             //set the Splashscreen length in milliseconds
-        }, 1000);
+        }, 750);
     }
 
     private Color setRandomColorBackground(ConstraintLayout background) {
