@@ -18,37 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_shopingEntryAdd"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/ic_input_add"
-        android:clickable="true"
-        android:foregroundTint="@color/colorBackground"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline71"
-        app:layout_constraintEnd_toStartOf="@+id/guideline51"
-        app:layout_constraintStart_toStartOf="@+id/guideline55"
-        app:layout_constraintTop_toTopOf="@+id/guideline56"
-        app:rippleColor="#00531010"
-        tools:visibility="visible" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_shopingEntryDelete"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/actionModeSplitBackground"
-        android:clickable="true"
-        android:src="@drawable/trashcan"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/guideline51"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline55"
-        app:layout_constraintTop_toTopOf="@+id/guideline65"
-        tools:visibility="visible" />
-
 
     <Button
         android:id="@+id/btnNavFrag1"
@@ -177,13 +146,6 @@
         app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline55"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -262,32 +224,11 @@
         app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline56"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.89" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_listViewBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline71"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.98" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline65"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.82" />
 
     <EditText
         android:id="@+id/editText_shoppingAdd"
@@ -297,10 +238,8 @@
         android:hint="Neuer Eintrag"
         android:maxLength="25"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline71"
-        app:layout_constraintEnd_toStartOf="@+id/button_shopingEntryAdd"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
-        app:layout_constraintTop_toTopOf="@+id/guideline56" />
+        tools:layout_editor_absoluteY="699dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"

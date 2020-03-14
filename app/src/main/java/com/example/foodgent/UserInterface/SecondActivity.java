@@ -85,7 +85,7 @@ public class SecondActivity extends AppCompatActivity {
                 final TextView helpTextView = helpView.findViewById(R.id.textView_helpText);
                 helpTextView.setText(list.get(0));
 
-                Button helpNext = helpView.findViewById(R.id.button_deleteNext);
+                final Button helpNext = helpView.findViewById(R.id.button_deleteNext);
 
 
                 helpNext.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@ import com.example.foodgent.AppData.MainLists.Barcodes;
 import com.example.foodgent.AppData.MainLists.Items;
 import com.example.foodgent.AppData.MainLists.Recipes;
 import com.example.foodgent.AppData.MainLists.ShoppingEntries;
+import com.example.foodgent.UserInterface.MainActivity;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
@@ -34,8 +35,9 @@ public class AppData implements Serializable {
     //region static Class
     private static AppData instance = null;
     public static AppData getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new AppData();
+        }
         return instance;
     }
     //endregion
@@ -306,5 +308,8 @@ public class AppData implements Serializable {
             premium = "no";
         }
 
+    }
+
+    public void isPremiumOnStart(MainActivity main) {
     }
 }

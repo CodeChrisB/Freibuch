@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"><![CDATA[
 
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100">
+
+    ]]>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +16,6 @@
         android:orientation="horizontal"
         android:weightSum="100">
 
-        <CheckBox
-            android:id="@+id/checkBox_item"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="16.6"
-            android:gravity="center"
-            android:text="TextView1"
-            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_item_ItemName"
@@ -29,6 +23,15 @@
             android:layout_height="60dp"
             android:layout_weight="50"
             android:gravity="center"
+            android:textAlignment="center" />
+
+        <CheckBox
+            android:id="@+id/checkBox_item"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="16.6"
+            android:gravity="center|left"
+            android:text="TextView1"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -49,6 +52,7 @@
                 android:layout_below="@+id/textView2"
                 android:gravity="center"
                 android:text="TextView3" />
+
         </LinearLayout>
 
     </LinearLayout>

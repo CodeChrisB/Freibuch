@@ -19,9 +19,10 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
+
         ConstraintLayout background = findViewById(R.id.constraintLayout_splashbackground);
 
-        setRandomColorBackground(background);
+        //setRandomColorBackground(background);
         ImageView logo = findViewById(R.id.imageView_splashlLogo);
         Animation rotate = AnimationUtils.loadAnimation(this, R.anim.bounce);
         logo.startAnimation(rotate);
