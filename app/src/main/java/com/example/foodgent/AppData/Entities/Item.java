@@ -67,6 +67,9 @@ public class Item implements Serializable {
     @SuppressLint("DefaultLocale")
     public String getDateString() {
 
-        return String.format("%tY-%<tm-%<td %<tH:%<tM:%<tS", dateTime);
+        if (dateTime != null)
+            return String.format("%tY-%<tm-%<td", dateTime);
+
+        return "----";
     }
 }

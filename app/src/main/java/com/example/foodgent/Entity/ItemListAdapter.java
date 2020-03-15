@@ -33,8 +33,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         Item currentItem = items.get(position);
         holder.mText.setText(currentItem.getName());
         holder.mAmount.setText(currentItem.toString());
-        if (currentItem.getDateTime() != null)
-            holder.date.setText(currentItem.getDateString());
+        holder.date.setText(currentItem.getDateString());
+
     }
 
     @Override
