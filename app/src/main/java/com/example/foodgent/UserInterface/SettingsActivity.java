@@ -20,12 +20,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.UserInterface.Fragment.ItemActivity;
+import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
+import com.example.foodgent.UserInterface.Fragment.ShopActivity;
 import com.example.fragment.R;
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
 
-public class SecondActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     private   Firebase Ref;
     private static final String TAG = "Second";
     String[] settings = new String[3];
@@ -68,7 +71,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SettingsActivity.this);
                 View helpView = getLayoutInflater().inflate(R.layout.dialog_help, null);
 
 
@@ -117,7 +120,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
+                AlertDialog.Builder helpDialog = new AlertDialog.Builder(SettingsActivity.this);
                 final View helpView = getLayoutInflater().inflate(R.layout.dialog_feedback, null);
 
                 helpDialog.setView(helpView);
@@ -180,7 +183,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SecondActivity.this);
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SettingsActivity.this);
                 final View deleteView = getLayoutInflater().inflate(R.layout.dialog_delete_allll, null);
 
                 helpDialog.setView(deleteView);
@@ -214,9 +217,9 @@ public class SecondActivity extends AppCompatActivity {
                         } else {
                             AppData.getInstance().DeleteAppData();
                             AppData.getInstance().saveAppData();
-                            Fragment1.setNull();
-                            Fragment2.setNull();
-                            Fragment3.setNull();
+                            ItemActivity.setNull();
+                            RecipeActivity.setNull();
+                            ShopActivity.setNull();
                             help.cancel();
                         }
                     }
@@ -287,7 +290,7 @@ public class SecondActivity extends AppCompatActivity {
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SecondActivity.super.onBackPressed();
+                SettingsActivity.super.onBackPressed();
             }
         });
 

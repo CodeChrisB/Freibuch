@@ -1,16 +1,18 @@
 package com.example.foodgent.AppData.Entities;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Item implements Serializable {
 
-    String name,description;
-    LocalDate dateTime;
-    int amount;
-    boolean isSelected = false;
+    private String name, description;
+    private Date dateTime;
+    private int amount;
+    private boolean isSelected = false;
 
-    public Item(String name, String description, LocalDate dateTime, int amount) {
+    public Item(String name, String description, Date dateTime, int amount) {
         this.name = name;
         this.description = description;
         this.dateTime = dateTime;
@@ -33,11 +35,11 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDate dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -60,5 +62,11 @@ public class Item implements Serializable {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public String getDateString() {
+
+        return String.format("%tY-%<tm-%<td %<tH:%<tM:%<tS", dateTime);
     }
 }

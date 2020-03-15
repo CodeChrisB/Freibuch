@@ -33,6 +33,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         Item currentItem = items.get(position);
         holder.mText.setText(currentItem.getName());
         holder.mAmount.setText(currentItem.toString());
+        if (currentItem.getDateTime() != null)
+            holder.date.setText(currentItem.getDateString());
     }
 
     @Override
@@ -43,10 +45,12 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     public static class ItemListViewHolder extends RecyclerView.ViewHolder{
         public TextView mText;
         public TextView mAmount;
+        public TextView date;
         public ItemListViewHolder(View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.checkBox_item);
             mAmount = itemView.findViewById(R.id.textView_Amount);
+            date = itemView.findViewById(R.id.textView_item);
         }
     }
 }

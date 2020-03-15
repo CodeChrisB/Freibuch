@@ -1,4 +1,4 @@
-package com.example.foodgent.UserInterface;
+package com.example.foodgent.UserInterface.Fragment;
 
 
 import android.content.Context;
@@ -25,7 +25,7 @@ import com.example.fragment.R;
 import java.util.ArrayList;
 
 
-public class Fragment2 extends Fragment {
+public class RecipeActivity extends Fragment {
 
     private static final String TAG = "Fragment1";
 
@@ -35,8 +35,8 @@ public class Fragment2 extends Fragment {
     private static Context context;
 
     static public void setUpRecipeList() {
-        Fragment1.setNull();
-        Fragment3.setNull();
+        ItemActivity.setNull();
+        ShopActivity.setNull();
         ArrayList<Recipe> list = AppData.getInstance().getRecipes();
 
         mListView.setHasFixedSize(true);
@@ -46,7 +46,7 @@ public class Fragment2 extends Fragment {
         mListView.setAdapter(adapter);
     }
 
-    static void setNull() {
+    public static void setNull() {
         if (context != null) {
             ArrayList<Item> list = new ArrayList<>();
 

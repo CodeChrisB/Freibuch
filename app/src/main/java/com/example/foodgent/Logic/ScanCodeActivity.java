@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.foodgent.UserInterface.Fragment1;
+import com.example.foodgent.UserInterface.Fragment.ItemActivity;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.google.zxing.Result;
 
@@ -54,7 +54,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         ActivityValues.getInstance().setBarcode(s);
         Toast.makeText(context,"Barcodes is : " + s, Toast.LENGTH_LONG).show();
         MainActivity.setBarcode();
-        Fragment1.setAddItemAlertDialog();
+        ItemActivity.setAddItemAlertDialog();
         finish();
 
     }

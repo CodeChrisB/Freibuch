@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodgent.UserInterface.Fragment1;
-import com.example.foodgent.UserInterface.Fragment2;
-import com.example.foodgent.UserInterface.Fragment3;
+import com.example.foodgent.UserInterface.Fragment.ItemActivity;
+import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
+import com.example.foodgent.UserInterface.Fragment.ShopActivity;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
@@ -36,9 +36,9 @@ public class FragmentChanger extends AppCompatActivity {
     public void change(int number, ViewPager viewPager){
 
         final FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
-        Fragment1 frag0 = new Fragment1();
-        Fragment2 frag1 = new Fragment2();
-        Fragment3 frag2 = new Fragment3();
+        ItemActivity frag0 = new ItemActivity();
+        RecipeActivity frag1 = new RecipeActivity();
+        ShopActivity frag2 = new ShopActivity();
 
 
         switch (number) {
@@ -47,7 +47,7 @@ public class FragmentChanger extends AppCompatActivity {
                     btnNavFrag1.setBackgroundResource(R.drawable.fragment_active_button);
                     btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
                     btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
-                    Fragment1.setUpItemListView();
+                    ItemActivity.setUpItemListView();
 
                     // Replace whatever is in the fragment_container view with this fragment,
                     // and add the transaction to the back stack if needed
@@ -62,13 +62,13 @@ public class FragmentChanger extends AppCompatActivity {
                     btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
                     btnNavFrag2.setBackgroundResource(R.drawable.fragment_active_button);
                     btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
-                    Fragment1.setUpItemListView();
+                    ItemActivity.setUpItemListView();
 
                     // Replace whatever is in the fragment_container view with this fragment,
                     // and add the transaction to the back stack if needed
                     transaction.remove(frag0)
                             .remove(frag2)
-                            .replace(R.id.fragment, new Fragment2());
+                            .replace(R.id.fragment, new RecipeActivity());
                 }
                 break;
             case 2:
@@ -77,12 +77,12 @@ public class FragmentChanger extends AppCompatActivity {
                     btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
                     btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
                     btnNavFrag3.setBackgroundResource(R.drawable.fragment_active_button);
-                    Fragment1.setUpItemListView();
+                    ItemActivity.setUpItemListView();
 
 
                     // Replace whatever is in the fragment_container view with this fragment,
                     // and add the transaction to the back stack if needed
-                    transaction.replace(R.id.fragment, new Fragment3());
+                    transaction.replace(R.id.fragment, new ShopActivity());
 
                 }
 

@@ -1,10 +1,20 @@
 package com.example.foodgent.AppData.Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
     String name,description;
+    ArrayList<Item> listOfItems;
+
+    public Recipe(String name, String description, ArrayList<Item> listOfItems) {
+        this.name = name;
+        this.description = description;
+        this.listOfItems = listOfItems;
+        this.isSeleted = isSeleted;
+    }
+
     boolean isSeleted = false;
 
     public String getName() {
@@ -31,8 +41,5 @@ public class Recipe implements Serializable {
         isSeleted = seleted;
     }
 
-    public Recipe(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+
 }

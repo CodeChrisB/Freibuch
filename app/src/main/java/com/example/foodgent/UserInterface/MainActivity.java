@@ -1,6 +1,8 @@
 package com.example.foodgent.UserInterface;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -19,7 +21,10 @@ import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
 import com.example.foodgent.Logic.SectionStatePagerAdapter;
+import com.example.foodgent.UserInterface.AddLogic.AddCooking;
+import com.example.foodgent.UserInterface.Fragment.ItemActivity;
 import com.example.fragment.R;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,22 +35,47 @@ public class MainActivity extends AppCompatActivity {
     private FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
 
+    static public void setBarcode() {
+
+        AlertDialog item = ItemActivity.getAddItemAlertDialog();
+        item.show();
+    }
+
     //removes the slide animation, when opening this activity
     @Override
     protected void onStart() {
         overridePendingTransition(0, 0);
         super.onStart();
+
     }
 
+
+    public void setViewPager(int fragmentNumber) {
+        fragmentChanger.change(fragmentNumber, mViewPager);
+    }
 
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
         setContentView(R.layout.activity_main);
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
+
+
+        Notification notification = new Notification.Builder(this)
+                .setCategory(Notification.CATEGORY_MESSAGE)
+                .setContentTitle("")
+                .setContentText("")
+                .setSmallIcon(R.drawable.splashlogo_calm)
+                .setAutoCancel(true)
+                .setVisibility(Notification.VISIBILITY_PUBLIC).build();
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notification);
+
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
@@ -63,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
         //mRecyclerView = findViewById(R.id.listView);
         //endregion
 
+
         //setup the standard list view
-        Fragment1.setUpItemListView();
+        ItemActivity.setUpItemListView();
 
         //region setup the adapter
         mSectionStatePagerAdapter = new SectionStatePagerAdapter(getSupportFragmentManager());
@@ -82,12 +113,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
         //endregion
-
 
 
         //region Image addButton
@@ -127,20 +157,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-    }
-
-
-
-    public void setViewPager(int fragmentNumber) {
-        fragmentChanger.change(fragmentNumber, mViewPager);
-    }
-
-
-    static public void setBarcode() {
-
-        AlertDialog item = Fragment1.getAddItemAlertDialog();
-        item.show();
     }
 
     public static MainActivity getInstance() {
@@ -153,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         switch (currentPage) {
             case 0:
                 //additem
-                AlertDialog item = Fragment1.getAddItemAlertDialog();
+                AlertDialog item = ItemActivity.getAddItemAlertDialog();
                 item.show();
                 break;
 
@@ -162,14 +178,12 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, AddCooking.class);
                 startActivity(intent);
                 break;
-
         }
     }
 
     public Context getContext() {
         return this;
     }
-
 
 
 }

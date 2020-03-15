@@ -12,11 +12,11 @@ import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopListViewHolder> {
-    private ArrayList<ShoppingEntry> shoppingEntries;
+    private List<ShoppingEntry> shoppingEntries;
 
     @NonNull
     @Override

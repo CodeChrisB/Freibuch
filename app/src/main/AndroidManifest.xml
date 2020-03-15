@@ -42,19 +42,19 @@
 
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SecondActivity"
+            android:name="com.example.foodgent.UserInterface.SettingsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AddItem"
+            android:name="com.example.foodgent.UserInterface.AddLogic.AddItem"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AddCooking"
+            android:name="com.example.foodgent.UserInterface.AddLogic.AddCooking"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AddShop"
+            android:name="com.example.foodgent.UserInterface.AddLogic.AddShop"
             tools:ignore="InnerclassSeparator" />
 
         <activity

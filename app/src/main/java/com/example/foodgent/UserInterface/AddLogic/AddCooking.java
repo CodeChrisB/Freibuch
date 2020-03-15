@@ -1,4 +1,4 @@
-package com.example.foodgent.UserInterface;
+package com.example.foodgent.UserInterface.AddLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
 
@@ -34,7 +35,7 @@ public class AddCooking extends AppCompatActivity {
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddCooking.this,MainActivity.class);
+                Intent intent = new Intent(AddCooking.this, MainActivity.class);
                 startActivity(intent);
             }
         });

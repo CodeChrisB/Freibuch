@@ -1,6 +1,7 @@
-package com.example.foodgent.UserInterface;
+package com.example.foodgent.UserInterface.Fragment;
 
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,12 +30,16 @@ import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.Entity.ItemListAdapter;
 import com.example.foodgent.Logic.ActivityValues;
 import com.example.foodgent.Logic.ScanCodeActivity;
+import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
-public class Fragment1 extends Fragment {
+public class ItemActivity extends Fragment {
 
     private static final String TAG = "Fragment1";
 
@@ -41,10 +48,12 @@ public class Fragment1 extends Fragment {
     private static RecyclerView mListView;
     private static Context context;
     private boolean appStart = true;
+    private static View alertItemView;
+    private EditText dateText;
 
     static public void setUpItemListView() {
-        Fragment2.setNull();
-        Fragment3.setNull();
+        RecipeActivity.setNull();
+        ShopActivity.setNull();
 
         mListView = MainActivity.getInstance().findViewById(R.id.listView_items);
         ArrayList<Item> list = AppData.getInstance().getItems();
@@ -56,7 +65,7 @@ public class Fragment1 extends Fragment {
         mListView.setAdapter(adapter);
     }
 
-    static void setNull() {
+    public static void setNull() {
         if (context != null) {
             ArrayList<Item> list = new ArrayList<>();
 
@@ -111,7 +120,7 @@ public class Fragment1 extends Fragment {
     public static AlertDialog getAddItemAlertDialog() {
 
         final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
-        View alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
+        alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
         helpDialog.setView(alertItemView);
         final AlertDialog help = helpDialog.create();
 
@@ -120,18 +129,42 @@ public class Fragment1 extends Fragment {
         final TextView itemDesc = alertItemView.findViewById(R.id.editText_addItemDescription);
         final TextView barcode = alertItemView.findViewById(R.id.textView_barcode);
 
+
+        //set barcode if one was scanned.
         if (ActivityValues.getInstance().getBarcode().length() > 0) {
 
             String sb = ActivityValues.getInstance().getBarcode();
             BarcodeItem bi = AppData.getInstance().searchForItem(sb);
-
             barcode.setText(ActivityValues.getInstance().getBarcode());
-
             itemName.setText(bi.getName());
-
             itemDesc.setText(bi.getDescription());
         }
 
+        final Calendar myCalendar = Calendar.getInstance();
+
+        final EditText dateTimePick = alertItemView.findViewById(R.id.editText_datepick);
+
+        dateTimePick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentDate = Calendar.getInstance();
+
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mYear = mcurrentDate.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.getInstance(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month = month + 1;
+                        String date = dayOfMonth + ":" + month + ":" + year;
+                        dateTimePick.setText(date);
+
+                    }
+                }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+
+            }
+        });
         Button barCodeScannerButton = alertItemView.findViewById(R.id.button_barCodeScan);
         barCodeScannerButton.bringToFront();
         barCodeScannerButton.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +184,7 @@ public class Fragment1 extends Fragment {
 
         Button addItem = alertItemView.findViewById(R.id.button_additem);
         final TextView barcodeShower = alertItemView.findViewById(R.id.textView_barcode);
+
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,10 +214,23 @@ public class Fragment1 extends Fragment {
 
                     if (!(itemAmount.getText().toString().equals("")))
                         amount = Integer.parseInt((itemAmount.getText().toString()));
-                    Item item = new Item(itemName.getText().toString(), itemDesc.getText().toString(), null, amount);
+
+
+                    Date date = null;
+
+                    SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy");
+                    try {
+                        date = format.parse(dateTimePick.getText().toString());
+                        System.out.println(date);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Item item = new Item(itemName.getText().toString(), itemDesc.getText().toString(), date, amount);
                     AppData.getInstance().addItem(item);
                     AppData.getInstance().saveItems();
-                    Fragment1.setUpItemListView();
+                    ItemActivity.setUpItemListView();
 
                     //remove barcode from Activity values before dialog close
                     ActivityValues.getInstance().setBarcode("");
@@ -203,4 +250,7 @@ public class Fragment1 extends Fragment {
         //intent= new Intent(MainActivity.this,AddItem.class);
     }
 
+
 }
+
+

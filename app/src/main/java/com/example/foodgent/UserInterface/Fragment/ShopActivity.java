@@ -1,4 +1,4 @@
-package com.example.foodgent.UserInterface;
+package com.example.foodgent.UserInterface.Fragment;
 
 
 import android.content.Context;
@@ -25,12 +25,13 @@ import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.Entity.ItemListAdapter;
 import com.example.foodgent.Entity.ShopListAdapter;
+import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
 
 
-public class Fragment3 extends Fragment {
+public class ShopActivity extends Fragment {
 
     private static RecyclerView.LayoutManager mLayoutManager;
     private static RecyclerView mListView;
@@ -39,8 +40,8 @@ public class Fragment3 extends Fragment {
 
     static public void setUpShoppingList() {
 
-        Fragment1.setNull();
-        Fragment2.setNull();
+        ItemActivity.setNull();
+        RecipeActivity.setNull();
         ArrayList<ShoppingEntry> list = AppData.getInstance().getShoppingEntries();
 
         mListView.setHasFixedSize(true);
@@ -50,7 +51,7 @@ public class Fragment3 extends Fragment {
         mListView.setAdapter(adapter);
     }
 
-    static void setNull() {
+    public static void setNull() {
         if (context != null) {
             ArrayList<Item> list = new ArrayList<>();
 
