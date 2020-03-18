@@ -19,7 +19,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     @NonNull
     @Override
     public ItemListAdapter.ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_itemconstraint, parent, false);
         ItemListAdapter.ItemListViewHolder evh = new ItemListAdapter.ItemListViewHolder(v);
         return evh;
     }

@@ -73,10 +73,36 @@ public class Item implements Serializable {
 
         // TODO: 18/03/2020 make the format better
 
+
+        //get the day of the date
         if (dateTime != null) {
             String currentDay = getCurrentDay();
-            return currentDay;
+
+            int remainingDays = getDifferenceDays(dateTime, new Date());
+
+            //expired item
+            if (remainingDays < 0) {
+
+                return "Abgelaufen!";
+            } else if (remainingDays < 7) {
+
+                //läuft diese woche ab
+                return "Diesen " + currentDay + ".";
+            } else if (remainingDays < 14) {
+
+                //läuft nächse woche ab
+                return "Läuft nächsten " + currentDay + " ab.";
+
+            } else {
+
+                //läuft in N Wochen ab
+                int weeks = remainingDays % 7;
+                return "Läuft in " + weeks + " Wochen ab.";
+            }
         }
+
+        //get the days till trash date (Ablaufsdatum)
+
 
        /* if (dateTime != null)
             return String.format("%tY-%<tm-%<td", dateTime);
@@ -104,6 +130,15 @@ public class Item implements Serializable {
         Resources res = MainActivity.getInstance().getResources();
         String[] weekDays = res.getStringArray(R.array.weekDays);
         return weekDays[day];
+    }
+
+
+    public int getDifferenceDays(Date d1, Date d2) {
+        int daysdiff = 0;
+        long diff = d1.getTime() - d2.getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000) + 1;
+        daysdiff = (int) diffDays;
+        return daysdiff;
     }
 
 
