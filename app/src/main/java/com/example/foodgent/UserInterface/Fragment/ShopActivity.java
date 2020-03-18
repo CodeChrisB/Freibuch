@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -112,6 +113,13 @@ public class ShopActivity extends Fragment {
 
     private void add() {
         String entry = shoppingEntry.getText().toString();
+
+        if (entry.length() > 50) {
+            Toast.makeText(MainActivity.getInstance().getContext(), "Proudktbezeichnung zu lang.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         if (entry.length() > 0) {
             AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
             AppData.getInstance().saveShopEntries();

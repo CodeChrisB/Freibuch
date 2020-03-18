@@ -1,6 +1,10 @@
 package com.example.foodgent.AppData.Entities;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
+
+import com.example.foodgent.UserInterface.MainActivity;
+import com.example.fragment.R;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -67,9 +71,40 @@ public class Item implements Serializable {
     @SuppressLint("DefaultLocale")
     public String getDateString() {
 
-        if (dateTime != null)
+        // TODO: 18/03/2020 make the format better
+
+        if (dateTime != null) {
+            String currentDay = getCurrentDay();
+            return currentDay;
+        }
+
+       /* if (dateTime != null)
             return String.format("%tY-%<tm-%<td", dateTime);
 
+        return "----";*/
         return "----";
     }
+
+    private String getCurrentDay() {
+        @SuppressLint("DefaultLocale") String[] dates = String.format("%td/%<tm/%<tY", dateTime).split("/");
+        int d = Integer.parseInt(dates[0]);
+        int m = Integer.parseInt(dates[1]);
+        int y = Integer.parseInt(dates[2]);
+
+        if (m < 3) {
+            m += 12;
+            y -= 1;
+        }
+
+        int k = y % 100;
+        int j = y / 100;
+
+        int day = ((d + (((m + 1) * 26) / 10) + k + (k / 4) + (j / 4)) + (5 * j)) % 7;
+
+        Resources res = MainActivity.getInstance().getResources();
+        String[] weekDays = res.getStringArray(R.array.weekDays);
+        return weekDays[day];
+    }
+
+
 }

@@ -71,5 +71,15 @@
         <item>setting</item>
     </string-array>
 
+    <string-array name="weekDays">
+        <item>Samstag</item>
+        <item>Sonntag</item>
+        <item>Montag</item>
+        <item>Dienstag</item>
+        <item>Mittwoch</item>
+        <item>Donnerstag</item>
+        <item>Freitag</item>
+    </string-array>
+
 
 </resources>

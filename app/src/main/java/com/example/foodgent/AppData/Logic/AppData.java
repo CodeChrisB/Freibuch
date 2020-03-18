@@ -10,7 +10,6 @@ import com.example.foodgent.AppData.MainLists.Barcodes;
 import com.example.foodgent.AppData.MainLists.Items;
 import com.example.foodgent.AppData.MainLists.Recipes;
 import com.example.foodgent.AppData.MainLists.ShoppingEntries;
-import com.example.foodgent.UserInterface.MainActivity;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
@@ -310,6 +309,5 @@ public class AppData implements Serializable {
 
     }
 
-    public void isPremiumOnStart(MainActivity main) {
-    }
+
 }
