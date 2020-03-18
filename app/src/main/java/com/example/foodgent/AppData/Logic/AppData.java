@@ -154,7 +154,7 @@ public class AppData implements Serializable {
 
     public boolean saveShopEntries() {
         try {
-            internalStorage.saveData("recipes", gson.toJson(shoppingEntries));
+            internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
         } catch (Exception ex) {
             return false;
         }

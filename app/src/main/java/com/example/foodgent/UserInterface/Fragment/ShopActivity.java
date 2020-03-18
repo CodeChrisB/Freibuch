@@ -87,6 +87,7 @@ public class ShopActivity extends Fragment {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     //do what you want on the press of 'done'
                     addEntry.performClick();
+                    AppData.getInstance().saveShopEntries();
                 }
                 return false;
             }
@@ -113,6 +114,7 @@ public class ShopActivity extends Fragment {
         String entry = shoppingEntry.getText().toString();
         if (entry.length() > 0) {
             AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
+            AppData.getInstance().saveShopEntries();
             setUpShoppingList();
             shoppingEntry.setText("");
             closeKeyboard();
