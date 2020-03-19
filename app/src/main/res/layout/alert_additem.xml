@@ -318,14 +318,5 @@
         app:layout_constraintTop_toTopOf="@+id/guideline69"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/button_datePickItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/guideline36"
-        app:layout_constraintEnd_toStartOf="@+id/guideline67"
-        app:layout_constraintStart_toEndOf="@+id/editText_datepick" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

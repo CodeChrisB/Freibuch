@@ -78,36 +78,40 @@ public class Item implements Serializable {
         if (dateTime != null) {
             String currentDay = getCurrentDay();
 
+            String message = "";
+
             int remainingDays = getDifferenceDays(dateTime, new Date());
 
             //expired item
             if (remainingDays < 0) {
 
-                return "Abgelaufen!";
+                //ist schon abgelaufen.
+                message = "Abgelaufen!";
+
             } else if (remainingDays < 7) {
 
                 //läuft diese woche ab
-                return "Diesen " + currentDay + ".";
+                message = "Diesen " + currentDay + ".";
+
             } else if (remainingDays < 14) {
 
                 //läuft nächse woche ab
-                return "Läuft nächsten " + currentDay + " ab.";
+                message = "Läuft nächsten " + currentDay + " ab.";
+
 
             } else {
 
                 //läuft in N Wochen ab
-                int weeks = remainingDays % 7;
-                return "Läuft in " + weeks + " Wochen ab.";
+                int weeks = remainingDays / 7;
+                message = "Läuft in " + weeks + " Wochen ab.";
+
             }
+
+            return message;
         }
 
         //get the days till trash date (Ablaufsdatum)
 
-
-       /* if (dateTime != null)
-            return String.format("%tY-%<tm-%<td", dateTime);
-
-        return "----";*/
         return "----";
     }
 
