@@ -36,4 +36,13 @@ public class Barcode implements Serializable {
     public void setSeleted(boolean seleted) {
         isSeleted = seleted;
     }
+
+    @Override
+    public String toString() {
+        return "Barcode{" +
+                "barcode='" + barcode + '\'' +
+                ", item=" + item +
+                ", isSeleted=" + isSeleted +
+                '}';
+    }
 }

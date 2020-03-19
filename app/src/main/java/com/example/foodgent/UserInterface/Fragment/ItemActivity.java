@@ -50,6 +50,7 @@ public class ItemActivity extends Fragment {
     private boolean appStart = true;
     private static View alertItemView;
     private EditText dateText;
+    private static boolean addNewBarcode = false;
 
     static public void setUpItemListView() {
         RecipeActivity.setNull();
@@ -118,7 +119,7 @@ public class ItemActivity extends Fragment {
 
 
     public static AlertDialog getAddItemAlertDialog() {
-
+        addNewBarcode = false;
         final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
         alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
         helpDialog.setView(alertItemView);
@@ -134,10 +135,16 @@ public class ItemActivity extends Fragment {
         if (ActivityValues.getInstance().getBarcode().length() > 0) {
 
             String sb = ActivityValues.getInstance().getBarcode();
+            barcode.setText(sb);
             BarcodeItem bi = AppData.getInstance().searchForItem(sb);
-            barcode.setText(ActivityValues.getInstance().getBarcode());
-            itemName.setText(bi.getName());
-            itemDesc.setText(bi.getDescription());
+            if (bi != null) {
+                barcode.setText(ActivityValues.getInstance().getBarcode());
+                itemName.setText(bi.getName());
+                itemDesc.setText(bi.getDescription());
+            } else {
+                //new Barcode
+                addNewBarcode = true;
+            }
         }
 
         final Calendar myCalendar = Calendar.getInstance();
@@ -165,6 +172,8 @@ public class ItemActivity extends Fragment {
 
             }
         });
+
+
         Button barCodeScannerButton = alertItemView.findViewById(R.id.button_barCodeScan);
         barCodeScannerButton.bringToFront();
         barCodeScannerButton.setOnClickListener(new View.OnClickListener() {
