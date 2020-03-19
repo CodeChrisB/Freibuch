@@ -99,6 +99,9 @@ public class Item implements Serializable {
                 message = "Läuft nächsten " + currentDay + " ab.";
 
 
+            } else if (remainingDays > 365) {
+
+                message = "Läuf in mehr als 1 Jahr ab.";
             } else {
 
                 //läuft in N Wochen ab
