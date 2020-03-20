@@ -7,6 +7,15 @@ public class Recipe implements Serializable {
 
     String name,description;
     ArrayList<Item> listOfItems;
+    boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public Recipe(String name, String description, ArrayList<Item> listOfItems) {
         this.name = name;

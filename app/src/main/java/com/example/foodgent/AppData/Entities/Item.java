@@ -14,7 +14,7 @@ public class Item implements Serializable {
     private String name, description;
     private Date dateTime;
     private int amount;
-    private boolean isSelected = false;
+    private boolean isSelected;
 
     public Item(String name, String description, Date dateTime, int amount) {
         this.name = name;

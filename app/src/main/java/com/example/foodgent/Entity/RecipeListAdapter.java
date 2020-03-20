@@ -3,12 +3,15 @@ package com.example.foodgent.Entity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Recipe;
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -30,8 +33,17 @@ public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.R
 
     @Override
     public void onBindViewHolder(@NonNull RecipeListAdapter.RecipeListViewHolder holder, int position) {
-        Recipe currentItem = items.get(position);
+        final Recipe currentItem = items.get(position);
         holder.mText.setText(currentItem.toString());
+        holder.mcheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                currentItem.setSelected(isChecked);
+                AppData.getInstance().saveRecipe();
+            }
+
+        });
+        holder.mcheckBox.setChecked(currentItem.isSelected());
     }
 
     @Override
@@ -41,10 +53,12 @@ public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.R
 
     public static class RecipeListViewHolder extends RecyclerView.ViewHolder{
         public TextView mText;
+        public CheckBox mcheckBox;
 
         public RecipeListViewHolder(View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.textView_ItemName);
+            // TODO: 20.03.2020 mcheckBox.findViewById(R.id.checkBox_Recipe)
         }
     }
 }

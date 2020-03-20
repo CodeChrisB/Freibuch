@@ -3,12 +3,15 @@ package com.example.foodgent.Entity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Item;
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -30,10 +33,19 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
 
     @Override
     public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
-        Item currentItem = items.get(position);
+        final Item currentItem = items.get(position);
         holder.mText.setText(currentItem.getName());
         holder.mAmount.setText(currentItem.toString());
         holder.date.setText(currentItem.getDateString());
+        holder.mcheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                currentItem.setSelected(isChecked);
+                AppData.getInstance().saveItems();
+            }
+
+        });
+        holder.mcheckBox.setChecked(currentItem.isSelected());
 
     }
 
@@ -46,11 +58,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         public TextView mText;
         public TextView mAmount;
         public TextView date;
+        public CheckBox mcheckBox;
         public ItemListViewHolder(View itemView) {
             super(itemView);
             mText = itemView.findViewById(R.id.checkBox_item);
             mAmount = itemView.findViewById(R.id.textView_Amount);
             date = itemView.findViewById(R.id.textView_item);
+            mcheckBox = itemView.findViewById(R.id.checkBox_item);
         }
     }
 }

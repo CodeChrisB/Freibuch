@@ -5,6 +5,15 @@ import java.io.Serializable;
 public class ShoppingEntry implements Serializable {
 
     String entry;
+    boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public ShoppingEntry(String entry) {
         this.entry = entry;
