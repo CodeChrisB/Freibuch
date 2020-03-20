@@ -88,6 +88,13 @@
         app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline83"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline77"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,6 +115,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.22" />
+
     <EditText
         android:id="@+id/editText_addShopEntry"
         android:layout_width="0dp"
@@ -116,9 +137,10 @@
         android:imeOptions="actionSend"
         android:inputType="text"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline77"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="@+id/view_addForeground"
+        app:layout_constraintStart_toStartOf="@+id/guideline82"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
 
     <View
         android:id="@+id/view_addBackground"
@@ -149,18 +171,57 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline80"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline78"
-        app:layout_constraintTop_toTopOf="@+id/guideline79" />
+        app:layout_constraintTop_toTopOf="@+id/guideline79"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <View
         android:id="@+id/imageButton_showAddShopEntry"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/add_background"
         app:layout_constraintBottom_toTopOf="@+id/guideline76"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline77"
         app:layout_constraintTop_toTopOf="@+id/guideline75"
-        app:srcCompat="@drawable/add_preview" />
+        app:srcCompat="@drawable/add_background" />
+
+    <View
+        android:id="@+id/view_addPreviewForeground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline83"
+        app:layout_constraintTop_toTopOf="@+id/guideline79"
+        app:srcCompat="@drawable/add_foreground" />
+
+    <View
+        android:id="@+id/view_closeAdd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:drawable/btn_dialog"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline82"
+        app:layout_constraintStart_toStartOf="@+id/guideline81"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
+
+    <TextView
+        android:id="@+id/textView_addButtonPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="+"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline59"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

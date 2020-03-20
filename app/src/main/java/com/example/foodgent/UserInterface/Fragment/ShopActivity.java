@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +39,7 @@ public class ShopActivity extends Fragment {
     private EditText shoppingEntry;
     private View addBackground;
     private View addForeground;
+    private View closeAdd;
 
     static public void setUpShoppingList() {
 
@@ -74,11 +74,24 @@ public class ShopActivity extends Fragment {
         addBackground = view.findViewById(R.id.view_addBackground);
         addForeground = view.findViewById(R.id.view_addForeground);
         mListView = view.findViewById(R.id.listView_shopping);
+        closeAdd = view.findViewById(R.id.view_closeAdd);
+
+        closeAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeAdd();
+            }
+        });
+
+
+
+
+
         context = getContext();
         setUpShoppingList();
 
         shoppingEntry = view.findViewById(R.id.editText_addShopEntry);
-        final ImageView addEntry = view.findViewById(R.id.imageButton_showAddShopEntry);
+        final View addEntry = view.findViewById(R.id.imageButton_showAddShopEntry);
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,9 +102,7 @@ public class ShopActivity extends Fragment {
         shoppingEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    //do what you want on the press of 'done'
-                    addEntry.performClick();
-                    AppData.getInstance().saveShopEntries();
+                    add();
                 }
                 return false;
             }
@@ -109,7 +120,7 @@ public class ShopActivity extends Fragment {
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
 
 
-        ImageView showAdd = view.findViewById(R.id.imageButton_showAddShopEntry);
+        View showAdd = view.findViewById(R.id.imageButton_showAddShopEntry);
         showAdd.bringToFront();
         showAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +128,12 @@ public class ShopActivity extends Fragment {
                 showAddFields();
             }
         });
+
+        View addForeground = view.findViewById(R.id.view_addPreviewForeground);
+        addForeground.bringToFront();
+
+        TextView plus = view.findViewById(R.id.textView_addButtonPlus);
+        plus.bringToFront();
 
 
         return view;
@@ -129,8 +146,25 @@ public class ShopActivity extends Fragment {
 
         addForeground.setVisibility(View.VISIBLE);
         addForeground.bringToFront();
+
+        closeAdd.setVisibility(View.VISIBLE);
+        closeAdd.bringToFront();
+        closeAdd.setMinimumHeight(closeAdd.getWidth());
+
+        shoppingEntry.setVisibility(View.VISIBLE);
+        shoppingEntry.bringToFront();
+
+
     }
 
+
+    private void closeAdd() {
+        addBackground.setVisibility(View.INVISIBLE);
+        addForeground.setVisibility(View.INVISIBLE);
+        closeAdd.setVisibility(View.INVISIBLE);
+        shoppingEntry.setVisibility(View.INVISIBLE);
+        closeKeyboard();
+    }
 
     private void add() {
         String entry = shoppingEntry.getText().toString();
