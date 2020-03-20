@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
 
@@ -198,15 +199,19 @@
         app:layout_constraintTop_toTopOf="@+id/guideline79"
         app:srcCompat="@drawable/add_foreground" />
 
-    <View
+    <TextView
         android:id="@+id/view_closeAdd"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:drawable/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="+"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline80"
         app:layout_constraintEnd_toStartOf="@+id/guideline82"
-        app:layout_constraintStart_toStartOf="@+id/guideline81"
+        app:layout_constraintStart_toStartOf="@+id/guideline78"
         app:layout_constraintTop_toTopOf="@+id/guideline79" />
 
     <TextView

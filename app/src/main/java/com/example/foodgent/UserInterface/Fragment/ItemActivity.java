@@ -19,6 +19,8 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -92,6 +94,7 @@ public class ItemActivity extends Fragment {
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
 
 
+        notificationcall("Test Notification", "This is a Test");
             Log.d(TAG, "onCreateView: started");
         if (appStart) {
             context = getContext();
@@ -257,6 +260,20 @@ public class ItemActivity extends Fragment {
 
         return help;
         //intent= new Intent(MainActivity.this,AddItem.class);
+    }
+
+    public void notificationcall(String title, String content) {
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "1");
+        builder.setSmallIcon(R.drawable.splashlogo_calm);
+        builder.setContentTitle(title);
+        builder.setContentText(content);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
+        notificationManagerCompat.notify(1, builder.build());
+
+
     }
 
 

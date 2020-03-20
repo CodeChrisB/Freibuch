@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ public class ShopActivity extends Fragment {
     private EditText shoppingEntry;
     private View addBackground;
     private View addForeground;
-    private View closeAdd;
+    private TextView closeAdd;
 
     static public void setUpShoppingList() {
 
@@ -75,6 +76,7 @@ public class ShopActivity extends Fragment {
         addForeground = view.findViewById(R.id.view_addForeground);
         mListView = view.findViewById(R.id.listView_shopping);
         closeAdd = view.findViewById(R.id.view_closeAdd);
+        closeAdd.setText("➡");
 
         closeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +85,7 @@ public class ShopActivity extends Fragment {
             }
         });
 
-
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
         context = getContext();
@@ -131,9 +132,22 @@ public class ShopActivity extends Fragment {
 
         View addForeground = view.findViewById(R.id.view_addPreviewForeground);
         addForeground.bringToFront();
+        addForeground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddFields();
+            }
+        });
 
         TextView plus = view.findViewById(R.id.textView_addButtonPlus);
         plus.bringToFront();
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddFields();
+            }
+        });
+
 
 
         return view;
@@ -159,11 +173,13 @@ public class ShopActivity extends Fragment {
 
 
     private void closeAdd() {
+        closeKeyboard();
         addBackground.setVisibility(View.INVISIBLE);
         addForeground.setVisibility(View.INVISIBLE);
         closeAdd.setVisibility(View.INVISIBLE);
+        shoppingEntry.setText("");
         shoppingEntry.setVisibility(View.INVISIBLE);
-        closeKeyboard();
+
     }
 
     private void add() {
@@ -195,6 +211,7 @@ public class ShopActivity extends Fragment {
 
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {
-
+        //normaler weise steht hier der code um das fragment zu schließen
+        //jedoch wollen wir das nicht
     }
 }

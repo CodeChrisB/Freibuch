@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
 
+        notificationcall("h", "hhhhh");
 
         Notification notification = new Notification.Builder(this)
                 .setCategory(Notification.CATEGORY_MESSAGE)
@@ -178,6 +181,14 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, AddCooking.class);
                 startActivity(intent);
                 break;
+
+            case 2:
+                String s = AppData.getInstance().getFormattedShoppingList();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, s);
+                startActivity(Intent.createChooser(sharingIntent, "Einkaufsliste teilen..."));
+                break;
         }
     }
 
@@ -185,5 +196,18 @@ public class MainActivity extends AppCompatActivity {
         return this;
     }
 
+    public void notificationcall(String title, String content) {
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.splashlogo_calm)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.splashlogo_calm))
+                .setContentTitle(title)
+                .setContentText(content);
+
+
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notificationBuilder.build());
+    }
 
 }
