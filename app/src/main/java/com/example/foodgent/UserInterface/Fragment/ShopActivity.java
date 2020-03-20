@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +38,8 @@ public class ShopActivity extends Fragment {
     private static RecyclerView mListView;
     private static Context context;
     private EditText shoppingEntry;
+    private View addBackground;
+    private View addForeground;
 
     static public void setUpShoppingList() {
 
@@ -69,13 +71,14 @@ public class ShopActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3_layout, container, false);
 
-
+        addBackground = view.findViewById(R.id.view_addBackground);
+        addForeground = view.findViewById(R.id.view_addForeground);
         mListView = view.findViewById(R.id.listView_shopping);
         context = getContext();
         setUpShoppingList();
 
         shoppingEntry = view.findViewById(R.id.editText_addShopEntry);
-        final Button addEntry = view.findViewById(R.id.button_addShoppingEntry);
+        final ImageView addEntry = view.findViewById(R.id.imageButton_showAddShopEntry);
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,8 +109,26 @@ public class ShopActivity extends Fragment {
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
 
 
+        ImageView showAdd = view.findViewById(R.id.imageButton_showAddShopEntry);
+        showAdd.bringToFront();
+        showAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddFields();
+            }
+        });
+
+
         return view;
 
+    }
+
+    private void showAddFields() {
+        addBackground.setVisibility(View.VISIBLE);
+        addBackground.bringToFront();
+
+        addForeground.setVisibility(View.VISIBLE);
+        addForeground.bringToFront();
     }
 
 
