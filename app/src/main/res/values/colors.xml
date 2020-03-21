@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">#1C68EC</color>
+    <color name="lightThemePrimary">#1C68EC</color>
+    <color name="darkThemePrimary">#32174d</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBackground" tools:ignore="MissingDefaultResource">#FFFFFF</color>
@@ -8,4 +9,7 @@
     <color name="lightGrey">#E9E7E7</color>
     <color name="fragmentButtonColor">#ADD8E6</color>
     <color name="premiumActiveBg">#e2b007</color>
+    <color name="black">#000000</color>
+    <color name="lightSettingBackground">#EFF0F1</color>
+    <color name="darkSettingBackground">#323232</color>
 </resources>

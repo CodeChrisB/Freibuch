@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setting_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
 
     <View
-        android:id="@+id/view40"
+        android:id="@+id/setting_bigBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/round_corner"
         android:backgroundTint="@color/lightGrey"
         app:layout_constraintBottom_toTopOf="@+id/guideline140"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline141"
-        app:layout_constraintTop_toTopOf="@+id/guideline139" />
+        app:layout_constraintTop_toTopOf="@+id/guideline139"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
-        android:id="@+id/view41"
+        android:id="@+id/setting_smallBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/round_corner"
@@ -29,10 +32,10 @@
         app:layout_constraintTop_toTopOf="@+id/guideline144" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/setting_roundtopBarPart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/lightThemePrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:collapseIcon="@android:drawable/ic_menu_call"
@@ -51,7 +54,7 @@
         app:layout_constraintGuide_percent="0.08" />
 
     <TextView
-        android:id="@+id/textView_titleP3"
+        android:id="@+id/setting_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoText="false"
@@ -70,7 +73,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/setting_textHeaderSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Einstellungen"
@@ -80,7 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline91" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/setting_textHeaderPersonalize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Personalisierung"
@@ -91,7 +94,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline111" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/setting_textHeaderMore"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Weiteres"
@@ -102,7 +105,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline123" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/setting_textHeaderPremium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Premium"
@@ -229,7 +232,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline91"
@@ -521,7 +524,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline113" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/setting_textDarkMode"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -533,7 +536,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline137" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/setting_textDelete"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -545,7 +548,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline108" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/setting_textSize"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -557,7 +560,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline110" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/setting_textlanguage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -569,7 +572,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline113" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/setting_textFeedback"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -591,7 +594,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline107" />
 
     <TextView
-        android:id="@+id/textView32"
+        android:id="@+id/setting_textNotification"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -603,7 +606,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/setting_textHelp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -615,7 +618,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline119" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/setting_textDeveloper"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -627,7 +630,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline122" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/setting_textPremium3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -641,7 +644,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/setting_textPremium2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -655,7 +658,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/setting_textpremium1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
@@ -670,7 +673,7 @@
         android:id="@+id/setting_switchDarkMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:thumbTint="@color/colorPrimary"
+        android:thumbTint="@color/lightThemePrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline91"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
@@ -680,7 +683,7 @@
         android:id="@+id/setting_switch_changeTextSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:thumbTint="@color/colorPrimary"
+        android:thumbTint="@color/lightThemePrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline111"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
@@ -690,7 +693,7 @@
         android:id="@+id/setting_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:thumbTint="@color/colorPrimary"
+        android:thumbTint="@color/lightThemePrimary"
         app:layout_constraintBottom_toTopOf="@+id/guideline123"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
@@ -790,7 +793,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline145" />
 
     <View
-        android:id="@+id/setting_view_help3"
+        android:id="@+id/setting_view_help"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/next_page"
@@ -820,13 +823,13 @@
         app:layout_constraintTop_toTopOf="@+id/guideline108" />
 
     <View
-        android:id="@+id/view38"
+        android:id="@+id/setting_roundtopBarPart2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/half_round"
         app:layout_constraintBottom_toTopOf="@+id/guideline90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_roundtopBarPart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

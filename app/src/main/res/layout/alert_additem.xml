@@ -115,7 +115,7 @@
         android:layout_height="34dp"
         android:height="50dp"
         android:background="@android:drawable/ic_menu_camera"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/lightThemePrimary"
         android:duplicateParentState="false"
         android:editable="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline68"

@@ -71,40 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(SettingsActivity.this);
-                View helpView = getLayoutInflater().inflate(R.layout.dialog_help, null);
 
-
-                helpDialog.setView(helpView);
-                final AlertDialog help = helpDialog.create();
-
-                Resources res = getResources();
-                final String[] helpText = res.getStringArray(R.array.planets_array);
-                final ArrayList<String> list = new ArrayList<>();
-                for (String s : helpText) {
-                    list.add(s);
-                }
-
-                final TextView helpTextView = helpView.findViewById(R.id.textView_helpText);
-                helpTextView.setText(list.get(0));
-
-                final Button helpNext = helpView.findViewById(R.id.button_deleteNext);
-
-
-                helpNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (list.size() > 1) {
-                            list.remove(0);
-                            helpTextView.setText(list.get(0));
-                        } else {
-                            help.cancel();
-                        }
-                    }
-                });
-
-
-                help.show();
 
             }
         });

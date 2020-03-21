@@ -74,11 +74,19 @@ public class AppData implements Serializable {
         String barcode = internalStorage.loadData("barcode");
         String shopping = internalStorage.loadData("shopping");
         premium = internalStorage.loadData("premium");
+        String setting = internalStorage.loadData("settings");
 
 
         //endregion
 
         //region check if the JSON Strings are not empty and fill Values
+
+        if (!setting.equals("null")) {
+            settings = gson.fromJson(setting, Settings.class);
+        } else {
+            settings = new Settings();
+        }
+
         if (!recipe.equals("null")) {
             recipes = gson.fromJson(recipe, Recipes.class);
         } else {
@@ -114,9 +122,8 @@ public class AppData implements Serializable {
             internalStorage.saveData("items", gson.toJson(items));
             internalStorage.saveData("barcode", gson.toJson(barcodes));
             internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
-            String isPremiumActive = "no";
-
             internalStorage.saveData("premium", premium);
+            internalStorage.saveData("settings", gson.toJson(settings));
         } catch (Exception ex) {
             return false;
         }
@@ -154,6 +161,15 @@ public class AppData implements Serializable {
     public boolean saveShopEntries() {
         try {
             internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveSettings() {
+        try {
+            internalStorage.saveData("settings", gson.toJson(settings));
         } catch (Exception ex) {
             return false;
         }
@@ -312,6 +328,39 @@ public class AppData implements Serializable {
     public void removeSelectedShoppingEntries() {
         shoppingEntries.removeSelected();
     }
+
+    public void removeSelectedItems() {
+        items.removeSelected();
+    }
+
+    public void removeSelectedRecipes() {
+        recipes.removeSelected();
+    }
+
+    public void setNotification(boolean status) {
+        settings.setSendNotification(status);
+    }
+
+    public boolean isDarkMode() {
+        return settings.isUseDarkmode();
+    }
+
+    public void setDarkMode(boolean darkmode) {
+        settings.setUseDarkmode(darkmode);
+    }
+
+    public boolean isBigText() {
+        return settings.isUseBigText();
+    }
+
+    public void setBigText(boolean text) {
+        settings.setUseBigText(text);
+    }
+
+    public boolean isNotificationOn() {
+        return settings.isSendNotification();
+    }
+
 
 
 }
