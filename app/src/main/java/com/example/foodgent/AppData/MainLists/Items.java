@@ -48,4 +48,14 @@ public class Items implements SaveArrayAble<Item>, Serializable {
         items = objectList;
     }
 
+
+    public void removeSelected() {
+        //to remove all we create a new list with all unselected entries and overwrite the list with it
+        ArrayList<Item> list = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            if (!items.get(i).isSelected())
+                list.add(items.get(i));
+        }
+        items = list;
+    }
 }

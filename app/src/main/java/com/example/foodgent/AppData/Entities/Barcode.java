@@ -6,7 +6,7 @@ public class Barcode implements Serializable {
 
     String barcode;
     BarcodeItem item;
-    boolean isSeleted = false;
+    boolean isSelected = false;
 
     public Barcode(String barcode, BarcodeItem item) {
         this.barcode = barcode;
@@ -29,12 +29,12 @@ public class Barcode implements Serializable {
         this.item = item;
     }
 
-    public boolean isSeleted() {
-        return isSeleted;
+    public boolean isSelected() {
+        return isSelected;
     }
 
     public void setSeleted(boolean seleted) {
-        isSeleted = seleted;
+        isSelected = seleted;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Barcode implements Serializable {
         return "Barcode{" +
                 "barcode='" + barcode + '\'' +
                 ", item=" + item +
-                ", isSeleted=" + isSeleted +
+                ", isSeleted=" + isSelected +
                 '}';
     }
 }

@@ -168,6 +168,19 @@ public class ShopActivity extends Fragment {
         });
 
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    closeAdd();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         return view;
 
@@ -238,5 +251,9 @@ public class ShopActivity extends Fragment {
     public void onAttachFragment(@NonNull Fragment childFragment) {
         //normaler weise steht hier der code um das fragment zu schließen
         //jedoch wollen wir das nicht
+
+
     }
+
+
 }

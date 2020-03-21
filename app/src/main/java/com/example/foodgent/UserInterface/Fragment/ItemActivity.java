@@ -51,8 +51,6 @@ public class ItemActivity extends Fragment {
     private static Context context;
     private boolean appStart = true;
     private static View alertItemView;
-    private EditText dateText;
-    private static boolean addNewBarcode = false;
 
     static public void setUpItemListView() {
         RecipeActivity.setNull();
@@ -122,7 +120,6 @@ public class ItemActivity extends Fragment {
 
 
     public static AlertDialog getAddItemAlertDialog() {
-        addNewBarcode = false;
         final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
         alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_additem, null);
         helpDialog.setView(alertItemView);
@@ -146,7 +143,6 @@ public class ItemActivity extends Fragment {
                 itemDesc.setText(bi.getDescription());
             } else {
                 //new Barcode
-                addNewBarcode = true;
             }
         }
 

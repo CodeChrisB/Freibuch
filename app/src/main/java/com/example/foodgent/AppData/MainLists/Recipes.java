@@ -46,5 +46,13 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
         recipes = objectList;
     }
 
-
+    public void removeSelected() {
+        //to remove all we create a new list with all unselected entries and overwrite the list with it
+        ArrayList<Recipe> list = new ArrayList<>();
+        for (int i = 0; i < recipes.size(); i++) {
+            if (!recipes.get(i).isSelected())
+                list.add(recipes.get(i));
+        }
+        recipes = list;
+    }
 }

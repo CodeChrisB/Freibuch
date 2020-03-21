@@ -24,7 +24,7 @@
     <string name="storedSettingsFileName">settings.txt</string>
 
     <string name="setting_lightMode">lightMode</string>
-    <string name="setting_darkMode">darkMode</string>
+    <string name="setting_darkMode">Dark Mode</string>
     <string name="setting_smallText">smallText</string>
     <string name="setting_bigText">bigText</string>
 

@@ -66,4 +66,5 @@ public class Barcodes implements SaveArrayAble<Barcode>, Serializable {
         return true;
     }
 
+
 }

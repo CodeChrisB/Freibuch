@@ -139,8 +139,7 @@ public class Item implements Serializable {
         return weekDays[day];
     }
 
-
-    public int getDifferenceDays(Date d1, Date d2) {
+    private int getDifferenceDays(Date d1, Date d2) {
         int daysdiff = 0;
         long diff = d1.getTime() - d2.getTime();
         long diffDays = diff / (24 * 60 * 60 * 1000) + 1;

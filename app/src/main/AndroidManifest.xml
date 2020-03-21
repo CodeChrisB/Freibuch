@@ -58,6 +58,11 @@
             tools:ignore="InnerclassSeparator" />
 
         <activity
+            android:name="com.example.foodgent.UserInterface.SettingsActivityModern"
+            tools:ignore="InnerclassSeparator" />
+
+
+        <activity
             android:name="com.example.foodgent.Logic.ScanCodeActivity"
             tools:ignore="InnerclassSeparator" />
 
