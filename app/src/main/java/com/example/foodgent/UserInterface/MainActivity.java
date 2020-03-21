@@ -1,7 +1,6 @@
 package com.example.foodgent.UserInterface;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
+import com.example.foodgent.Logic.NotificationService;
 import com.example.foodgent.Logic.SectionStatePagerAdapter;
 import com.example.foodgent.UserInterface.AddLogic.AddCooking;
 import com.example.foodgent.UserInterface.Fragment.ItemActivity;
@@ -66,18 +66,12 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
 
-        notificationcall("h", "hhhhh");
+        NotificationService notificationService = new NotificationService(getContext());
 
-        Notification notification = new Notification.Builder(this)
-                .setCategory(Notification.CATEGORY_MESSAGE)
-                .setContentTitle("")
-                .setContentText("")
-                .setSmallIcon(R.drawable.splashlogo_calm)
-                .setAutoCancel(true)
-                .setVisibility(Notification.VISIBILITY_PUBLIC).build();
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        notificationService.notify("Foogent Title", "Hallo ich bin kuehli");
+        notificationService.notify("Foogent", "Hallo ich bin kuehli.");
+
+
 
 
         //with AppData.getInstance now every class in this whole

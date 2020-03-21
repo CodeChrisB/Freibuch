@@ -46,6 +46,144 @@
         app:layout_constraintTop_toBottomOf="@+id/view_Topbar2"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <EditText
+        android:id="@+id/editText_addShopEntry"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:hint="Neuer Eintrag"
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="@+id/view_addForeground"
+        app:layout_constraintStart_toStartOf="@+id/guideline82"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
+
+    <View
+        android:id="@+id/view_addBackground"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_background"
+
+        android:text="Button"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toTopOf="@+id/guideline75" />
+
+    <View
+        android:id="@+id/view_addForeground"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_foreground"
+
+        android:text="Button"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline78"
+        app:layout_constraintTop_toTopOf="@+id/guideline79"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/imageButton_showAddShopEntry"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_background"
+        app:layout_constraintBottom_toTopOf="@+id/guideline75"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline77"
+        app:layout_constraintTop_toTopOf="@+id/guideline84"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/add_background" />
+
+    <View
+        android:id="@+id/imageButton_showAddShopEntry2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_background"
+        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline77"
+        app:layout_constraintTop_toTopOf="@+id/guideline75"
+        app:srcCompat="@drawable/add_background" />
+
+    <View
+        android:id="@+id/view_addPreviewForeground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline83"
+        app:layout_constraintTop_toTopOf="@+id/guideline79"
+        app:srcCompat="@drawable/add_foreground" />
+
+    <View
+        android:id="@+id/view_deleteForeground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/add_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/guideline86"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline83"
+        app:layout_constraintTop_toTopOf="@+id/guideline85"
+        app:srcCompat="@drawable/add_foreground" />
+
+    <TextView
+        android:id="@+id/view_closeAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="+"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline82"
+        app:layout_constraintStart_toStartOf="@+id/guideline78"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
+
+    <TextView
+        android:id="@+id/textView_addButtonPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="+"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline59"
+        app:layout_constraintTop_toTopOf="@+id/guideline79" />
+
+
+    <TextView
+        android:id="@+id/textView_deleteButtonX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="x"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline86"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline59"
+        app:layout_constraintTop_toTopOf="@+id/guideline85" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline58"
         android:layout_width="wrap_content"
@@ -59,6 +197,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.89" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline86"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline79"
@@ -129,104 +288,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.22" />
-
-    <EditText
-        android:id="@+id/editText_addShopEntry"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:hint="Neuer Eintrag"
-        android:imeOptions="actionSend"
-        android:inputType="text"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
-        app:layout_constraintEnd_toEndOf="@+id/view_addForeground"
-        app:layout_constraintStart_toStartOf="@+id/guideline82"
-        app:layout_constraintTop_toTopOf="@+id/guideline79" />
-
-    <View
-        android:id="@+id/view_addBackground"
-
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/add_background"
-
-        android:text="Button"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline76"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toTopOf="@+id/guideline75" />
-
-    <View
-        android:id="@+id/view_addForeground"
-
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/add_foreground"
-
-        android:text="Button"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline78"
-        app:layout_constraintTop_toTopOf="@+id/guideline79"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/imageButton_showAddShopEntry"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/add_background"
-        app:layout_constraintBottom_toTopOf="@+id/guideline76"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline77"
-        app:layout_constraintTop_toTopOf="@+id/guideline75"
-        app:srcCompat="@drawable/add_background" />
-
-    <View
-        android:id="@+id/view_addPreviewForeground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/add_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline83"
-        app:layout_constraintTop_toTopOf="@+id/guideline79"
-        app:srcCompat="@drawable/add_foreground" />
-
-    <TextView
-        android:id="@+id/view_closeAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:fontFamily="casual"
-        android:text="+"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
-        app:layout_constraintEnd_toStartOf="@+id/guideline82"
-        app:layout_constraintStart_toStartOf="@+id/guideline78"
-        app:layout_constraintTop_toTopOf="@+id/guideline79" />
-
-    <TextView
-        android:id="@+id/textView_addButtonPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:fontFamily="casual"
-        android:text="+"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline59"
-        app:layout_constraintTop_toTopOf="@+id/guideline79" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

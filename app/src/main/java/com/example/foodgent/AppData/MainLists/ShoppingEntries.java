@@ -69,4 +69,14 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
         }
         return sb.toString();
     }
+
+    public void removeSelected() {
+        //to remove all we create a new list with all unselected entries and overwrite the list with it
+        ArrayList<ShoppingEntry> list = new ArrayList<>();
+        for (int i = 0; i < shoppingEntries.size(); i++) {
+            if (!shoppingEntries.get(i).isSelected())
+                list.add(shoppingEntries.get(i));
+        }
+        shoppingEntries = list;
+    }
 }

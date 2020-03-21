@@ -149,9 +149,34 @@ public class ShopActivity extends Fragment {
         });
 
 
+        View deleteForeground = view.findViewById(R.id.view_deleteForeground);
+        deleteForeground.bringToFront();
+        deleteForeground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeSelected();
+            }
+        });
+
+        TextView deleteText = view.findViewById(R.id.textView_deleteButtonX);
+        deleteText.bringToFront();
+        deleteText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeSelected();
+            }
+        });
+
+
 
         return view;
 
+    }
+
+    private void removeSelected() {
+        AppData.getInstance().removeSelectedShoppingEntries();
+        setUpShoppingList();
+        AppData.getInstance().saveShopEntries();
     }
 
     private void showAddFields() {

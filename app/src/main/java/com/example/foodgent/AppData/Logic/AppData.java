@@ -309,5 +309,9 @@ public class AppData implements Serializable {
 
     }
 
+    public void removeSelectedShoppingEntries() {
+        shoppingEntries.removeSelected();
+    }
+
 
 }
