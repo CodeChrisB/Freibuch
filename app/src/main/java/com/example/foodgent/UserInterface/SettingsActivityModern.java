@@ -76,6 +76,14 @@ public class SettingsActivityModern extends AppCompatActivity {
                 AppData.getInstance().setDarkMode(darkmode.isChecked());
                 AppData.getInstance().saveSettings();
                 activateSettings();
+                //Main
+                MainActivity.activateSettings();
+                //Item
+                ItemActivity.setUpItemListView();
+                ItemActivity.activateSettings();
+                //Shop
+                ShopActivity.activateSettings();
+                ShopActivity.setUpShoppingList();
             }
 
 
@@ -315,6 +323,7 @@ public class SettingsActivityModern extends AppCompatActivity {
 
     private void activateSettings() {
         ConstraintLayout layout = findViewById(R.id.setting_layout);
+        layout = findViewById(R.id.setting_layout);
         Toolbar toolbar = findViewById(R.id.setting_roundtopBarPart);
         View toolbarBottom = findViewById(R.id.setting_roundtopBarPart2);
         View bigBg = findViewById(R.id.setting_bigBackground);

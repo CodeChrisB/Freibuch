@@ -14,7 +14,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -43,17 +46,97 @@ public class MainActivity extends AppCompatActivity {
         item.show();
     }
 
-    //removes the slide animation, when opening this activity
-    @Override
-    protected void onStart() {
-        overridePendingTransition(0, 0);
-        super.onStart();
-
+    public static MainActivity getInstance() {
+        if (instance == null) {
+            instance = new MainActivity();
+        }
+        return instance;
     }
 
 
     public void setViewPager(int fragmentNumber) {
         fragmentChanger.change(fragmentNumber, mViewPager);
+    }
+
+    public static void activateSettings() {
+        ConstraintLayout layout = MainActivity.getInstance().findViewById(R.id.main_layout);
+        Toolbar bar = MainActivity.getInstance().findViewById(R.id.main_toolbar);
+        Button nav1 = MainActivity.getInstance().findViewById(R.id.btnNavFrag1);
+        Button nav2 = MainActivity.getInstance().findViewById(R.id.btnNavFrag2);
+        Button nav3 = MainActivity.getInstance().findViewById(R.id.btnNavFrag3);
+
+
+        Context c = MainActivity.getInstance().getContext();
+
+        if (AppData.getInstance().isDarkMode()) {
+            layout.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.black));
+            bar.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkThemePrimary));
+            nav1.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
+            nav2.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
+            nav3.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
+
+
+        } else {
+            layout.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.colorBackground));
+            bar.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightThemePrimary));
+            nav1.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
+            nav2.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
+            nav3.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
+        }
+
+    }
+
+    //removes the slide animation, when opening this activity
+    @Override
+    protected void onStart() {
+        overridePendingTransition(0, 0);
+
+        super.onStart();
+
+    }
+
+    private void getCorrectAddPage(int currentPage) {
+        Intent intent;
+
+        switch (currentPage) {
+            case 0:
+                //additem
+                AlertDialog item = ItemActivity.getAddItemAlertDialog();
+                item.show();
+                break;
+
+
+            case 1:
+                intent = new Intent(this, AddCooking.class);
+                startActivity(intent);
+                break;
+
+            case 2:
+                String s = AppData.getInstance().getFormattedShoppingList();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, s);
+                startActivity(Intent.createChooser(sharingIntent, "Einkaufsliste teilen..."));
+                break;
+        }
+    }
+
+    public Context getContext() {
+        return this;
+    }
+
+    public void notificationcall(String title, String content) {
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.splashlogo_calm)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.splashlogo_calm))
+                .setContentTitle(title)
+                .setContentText(content);
+
+
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notificationBuilder.build());
     }
 
     @SuppressLint("RestrictedApi")
@@ -66,6 +149,14 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
 
+        //with AppData.getInstance now every class in this whole
+        //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
+        AppData.getInstance().loadData();
+        AppData.getInstance().saveAppData();
+
+
+        activateSettings();
+
         NotificationService notificationService = new NotificationService(getContext());
 
         notificationService.notify("Foogent Title", "Hallo ich bin kuehli");
@@ -74,10 +165,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //with AppData.getInstance now every class in this whole
-        //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
-        AppData.getInstance().loadData();
-        AppData.getInstance().saveAppData();
 
         //region FragmentChange
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);
@@ -154,54 +241,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    public static MainActivity getInstance() {
-        return instance;
-    }
-
-    private void getCorrectAddPage(int currentPage) {
-        Intent intent;
-
-        switch (currentPage) {
-            case 0:
-                //additem
-                AlertDialog item = ItemActivity.getAddItemAlertDialog();
-                item.show();
-                break;
-
-
-            case 1:
-                intent = new Intent(this, AddCooking.class);
-                startActivity(intent);
-                break;
-
-            case 2:
-                String s = AppData.getInstance().getFormattedShoppingList();
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, s);
-                startActivity(Intent.createChooser(sharingIntent, "Einkaufsliste teilen..."));
-                break;
-        }
-    }
-
-    public Context getContext() {
-        return this;
-    }
-
-    public void notificationcall(String title, String content) {
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.splashlogo_calm)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.splashlogo_calm))
-                .setContentTitle(title)
-                .setContentText(content);
-
-
-        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notificationBuilder.build());
+        ItemActivity.activateSettings();
     }
 
 }

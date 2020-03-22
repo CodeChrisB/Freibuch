@@ -8,41 +8,36 @@
 
 
     <View
-        android:id="@+id/view_Topbar2"
+        android:id="@+id/fragItem_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragItem_listViewHeaderBg"
+        app:layout_constraintVertical_bias="0.0" />
 
-        android:background="@drawable/round_corner"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_topBarName2"
+    <View
+        android:id="@+id/fragItem_listViewBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/half_round"
+        app:layout_constraintBottom_toBottomOf="@+id/fragItem_listView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toTopOf="@+id/guideline58" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragItem_listView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline94"
         app:layout_constraintEnd_toStartOf="@+id/guideline59"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toTopOf="@+id/textView_topBarName2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView_topBarName2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:text="@string/fragment1_name"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toStartOf="@+id/guideline59"
-        app:layout_constraintStart_toStartOf="@+id/view_Topbar2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listView_items"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_Topbar2"
+        app:layout_constraintTop_toTopOf="@+id/guideline58"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -51,6 +46,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline92"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline59"
@@ -65,5 +74,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
+
+    <View
+        android:id="@+id/fragItem_listViewHeaderBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@drawable/top_round"
+        app:layout_constraintBottom_toTopOf="@+id/fragItem_listViewBg"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toTopOf="@+id/textView_topBarName2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_topBarName2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/fragment1_name"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fragItem_listViewBg"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/fragItem_listViewHeaderBg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

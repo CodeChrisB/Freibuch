@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
         app:layout_constraintVertical_bias="0.031" />
 
     <Button
@@ -41,7 +41,7 @@
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/lightThemePrimary"
@@ -62,8 +62,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.628"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        app:layout_constraintStart_toStartOf="@+id/main_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/main_toolbar" />
 
     <TextView
         android:id="@+id/textView_titleP2"
@@ -73,10 +73,10 @@
         android:text="Hinzu"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/main_toolbar"
         app:layout_constraintEnd_toStartOf="@+id/textView_titleP1"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/toolbar" />
+        app:layout_constraintStart_toStartOf="@+id/main_toolbar" />
 
     <TextView
         android:id="@+id/textView_topBarName"

@@ -1,5 +1,6 @@
 package com.example.foodgent.UserInterface;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,6 +40,20 @@ public class SplashScreen extends AppCompatActivity {
             }
             //set the Splashscreen length in milliseconds
         }, 750);
+    }
+
+
+    private static SplashScreen instance = null;
+
+    static Context getContext() {
+        return getContext();
+    }
+
+    public static SplashScreen getInstance() {
+        if (instance == null) {
+            instance = new SplashScreen();
+        }
+        return instance;
     }
 
     private Color setRandomColorBackground(ConstraintLayout background) {

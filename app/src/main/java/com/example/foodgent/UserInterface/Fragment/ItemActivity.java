@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,20 +52,8 @@ public class ItemActivity extends Fragment {
     private static Context context;
     private boolean appStart = true;
     private static View alertItemView;
-
-    static public void setUpItemListView() {
-        RecipeActivity.setNull();
-        ShopActivity.setNull();
-
-        mListView = MainActivity.getInstance().findViewById(R.id.listView_items);
-        ArrayList<Item> list = AppData.getInstance().getItems();
-
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(context);
-        ItemListAdapter adapter = new ItemListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
-    }
+    private static View view;
+    private static ItemActivity instance = null;
 
     public static void setNull() {
         if (context != null) {
@@ -86,36 +75,18 @@ public class ItemActivity extends Fragment {
         button.performClick();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment1_layout, container, false);
+    static public void setUpItemListView() {
+        RecipeActivity.setNull();
+        ShopActivity.setNull();
 
+        mListView = MainActivity.getInstance().findViewById(R.id.fragItem_listView);
+        ArrayList<Item> list = AppData.getInstance().getItems();
 
-        notificationcall("Test Notification", "This is a Test");
-            Log.d(TAG, "onCreateView: started");
-        if (appStart) {
-            context = getContext();
-        } else {
-            mListView = view.findViewById(R.id.listView_items);
-            setUpItemListView();
-        }
-
-
-        //region Prevent Fragment Close
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button event
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-        //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
-
-
-        appStart = false;
-            return view;
-
+        mListView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(context);
+        ItemListAdapter adapter = new ItemListAdapter(list);
+        mListView.setLayoutManager(mLayoutManager);
+        mListView.setAdapter(adapter);
     }
 
 
@@ -269,6 +240,71 @@ public class ItemActivity extends Fragment {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
         notificationManagerCompat.notify(1, builder.build());
 
+
+    }
+
+    public static void activateSettings() {
+
+        View listView = view.findViewById(R.id.fragItem_listViewBg);
+        View layout = view.findViewById(R.id.fragItem_layout);
+        View topbar = view.findViewById(R.id.fragItem_listViewHeaderBg);
+
+        if (AppData.getInstance().isDarkMode()) {
+            listView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
+            layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
+            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+
+        } else {
+
+            listView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
+            layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
+            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+        }
+
+    }
+
+    public static ItemActivity getInstance() {
+        if (instance == null)
+            instance = new ItemActivity();
+        return instance;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment1_layout, container, false);
+
+        ItemActivity.view = view;
+
+        try {
+            activateSettings();
+        } catch (Exception e) {
+
+        }
+        notificationcall("Test Notification", "This is a Test");
+        Log.d(TAG, "onCreateView: started");
+        if (appStart) {
+            context = getContext();
+        } else {
+
+            mListView = view.findViewById(R.id.fragItem_listView);
+            setUpItemListView();
+        }
+
+
+        //region Prevent Fragment Close
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
+
+
+        appStart = false;
+        return view;
 
     }
 

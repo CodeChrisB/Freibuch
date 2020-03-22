@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class ShopActivity extends Fragment {
     private View addBackground;
     private View addForeground;
     private TextView closeAdd;
+    static View view;
 
     static public void setUpShoppingList() {
 
@@ -67,11 +69,107 @@ public class ShopActivity extends Fragment {
         }
     }
 
+    private static ItemActivity instance = null;
+
+    private void removeSelected() {
+        AppData.getInstance().removeSelectedShoppingEntries();
+        setUpShoppingList();
+        AppData.getInstance().saveShopEntries();
+    }
+
+    private void showAddFields() {
+        addBackground.setVisibility(View.VISIBLE);
+        addBackground.bringToFront();
+
+        addForeground.setVisibility(View.VISIBLE);
+        addForeground.bringToFront();
+
+        closeAdd.setVisibility(View.VISIBLE);
+        closeAdd.bringToFront();
+        closeAdd.setMinimumHeight(closeAdd.getWidth());
+
+        shoppingEntry.setVisibility(View.VISIBLE);
+        shoppingEntry.bringToFront();
+
+
+    }
+
+
+    private void closeAdd() {
+        closeKeyboard();
+        addBackground.setVisibility(View.INVISIBLE);
+        addForeground.setVisibility(View.INVISIBLE);
+        closeAdd.setVisibility(View.INVISIBLE);
+        shoppingEntry.setText("");
+        shoppingEntry.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void add() {
+        String entry = shoppingEntry.getText().toString();
+
+        if (entry.length() > 50) {
+            Toast.makeText(MainActivity.getInstance().getContext(), "Proudktbezeichnung zu lang.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        if (entry.length() > 0) {
+            AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
+            AppData.getInstance().saveShopEntries();
+            setUpShoppingList();
+            shoppingEntry.setText("");
+            closeKeyboard();
+        }
+    }
+
+    private void closeKeyboard() {
+        View view = MainActivity.getInstance().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) MainActivity.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment childFragment) {
+        //normaler weise steht hier der code um das fragment zu schließen
+        //jedoch wollen wir das nicht
+
+
+    }
+
+    public static void activateSettings() {
+        View bg = view.findViewById(R.id.fragShop_bg);
+        //View layout = view.findViewById(R.id.fragItem_layout);
+        View topbar = view.findViewById(R.id.fragItem_listViewHeaderBg);
+
+        if (AppData.getInstance().isDarkMode()) {
+            bg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
+            // layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
+            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+
+        } else {
+
+            bg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
+            //  layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
+            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+        }
+
+    }
+
+    public static ItemActivity getInstance() {
+        if (instance == null)
+            instance = new ItemActivity();
+        return instance;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3_layout, container, false);
-
+        ShopActivity.view = view;
         addBackground = view.findViewById(R.id.view_addBackground);
         addForeground = view.findViewById(R.id.view_addForeground);
         mListView = view.findViewById(R.id.listView_shopping);
@@ -182,78 +280,10 @@ public class ShopActivity extends Fragment {
         });
 
 
+        activateSettings();
+
         return view;
 
     }
-
-    private void removeSelected() {
-        AppData.getInstance().removeSelectedShoppingEntries();
-        setUpShoppingList();
-        AppData.getInstance().saveShopEntries();
-    }
-
-    private void showAddFields() {
-        addBackground.setVisibility(View.VISIBLE);
-        addBackground.bringToFront();
-
-        addForeground.setVisibility(View.VISIBLE);
-        addForeground.bringToFront();
-
-        closeAdd.setVisibility(View.VISIBLE);
-        closeAdd.bringToFront();
-        closeAdd.setMinimumHeight(closeAdd.getWidth());
-
-        shoppingEntry.setVisibility(View.VISIBLE);
-        shoppingEntry.bringToFront();
-
-
-    }
-
-
-    private void closeAdd() {
-        closeKeyboard();
-        addBackground.setVisibility(View.INVISIBLE);
-        addForeground.setVisibility(View.INVISIBLE);
-        closeAdd.setVisibility(View.INVISIBLE);
-        shoppingEntry.setText("");
-        shoppingEntry.setVisibility(View.INVISIBLE);
-
-    }
-
-    private void add() {
-        String entry = shoppingEntry.getText().toString();
-
-        if (entry.length() > 50) {
-            Toast.makeText(MainActivity.getInstance().getContext(), "Proudktbezeichnung zu lang.", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-
-        if (entry.length() > 0) {
-            AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
-            AppData.getInstance().saveShopEntries();
-            setUpShoppingList();
-            shoppingEntry.setText("");
-            closeKeyboard();
-        }
-    }
-
-    private void closeKeyboard() {
-        View view = MainActivity.getInstance().getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) MainActivity.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-
-    @Override
-    public void onAttachFragment(@NonNull Fragment childFragment) {
-        //normaler weise steht hier der code um das fragment zu schließen
-        //jedoch wollen wir das nicht
-
-
-    }
-
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragShop_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
@@ -9,7 +10,17 @@
 
 
     <View
-        android:id="@+id/view_Topbar2"
+        android:id="@+id/fragShop_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fragItem_listViewHeaderBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
@@ -25,25 +36,37 @@
         android:id="@+id/textView_topBarName2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/top_round"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="@string/fragment1_name"
+        android:text="@string/fragment3_name"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toStartOf="@+id/guideline59"
-        app:layout_constraintStart_toStartOf="@+id/view_Topbar2"
+        app:layout_constraintStart_toStartOf="@+id/fragItem_listViewHeaderBg"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <View
+        android:id="@+id/fragShop_listViewBg2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/half_round"
+        app:layout_constraintBottom_toBottomOf="@+id/listView_shopping"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toBottomOf="@+id/fragItem_listViewHeaderBg" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView_shopping"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/lightThemePrimary"
+        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_Topbar2"
+        app:layout_constraintStart_toStartOf="@+id/guideline64"
+        app:layout_constraintTop_toBottomOf="@+id/fragItem_listViewHeaderBg"
         app:layout_constraintVertical_bias="1.0" />
 
 

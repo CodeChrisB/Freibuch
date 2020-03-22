@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listView_shopBg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100">
+    android:orientation="horizontal">
 
 
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/lightSettingBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBox_shopEntry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:orientation="vertical"
+    <CheckBox
+        android:id="@+id/checkBox_shopEntry"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10">
-
-        <CheckBox android:gravity="center"
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/checkBox_shopEntry"
-            android:layout_weight="90"/>
-
-        <TextView
-            android:id="@+id/textView_ItemName"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="left"
-            android:fontFamily="casual"
-            android:gravity="center|left"
-            android:text="TextView1" />
+        android:layout_height="60dp"
+        android:layout_weight="90"
+        android:checked="true"
+        android:gravity="center"
+        android:text="" />
 
 
-
-    </androidx.cardview.widget.CardView>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
