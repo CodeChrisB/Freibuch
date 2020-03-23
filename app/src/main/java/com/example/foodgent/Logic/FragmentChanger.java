@@ -21,15 +21,18 @@ public class FragmentChanger extends AppCompatActivity {
     private Button btnNavFrag3;
     private MainActivity mainActivity;
     private int currentPage;
+    public static FragmentChanger fragmentChanger;
+    private ViewPager mViewPager;
 
-    public FragmentChanger(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, MainActivity activity) {
+    public FragmentChanger(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, MainActivity activity, ViewPager mViewPager) {
         this.btnNavFrag1 = btnNavFrag1;
         this.btnNavFrag2 = btnNavFrag2;
         this.btnNavFrag3 = btnNavFrag3;
         this.mainActivity = activity;
         currentPage=0;
+        fragmentChanger = this;
+        this.mViewPager = mViewPager;
     }
-
 
 
     @SuppressLint("RestrictedApi")
@@ -43,7 +46,6 @@ public class FragmentChanger extends AppCompatActivity {
 
         switch (number) {
             case 0:
-                if (currentPage != 0) {
                     btnNavFrag1.setBackgroundResource(R.drawable.fragment_active_button);
                     btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
                     btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
@@ -54,7 +56,6 @@ public class FragmentChanger extends AppCompatActivity {
                     transaction.remove(frag1)
                             .remove(frag2)
                             .replace(R.id.fragment, new Fragment());
-                }
                 break;
 
             case 1:
@@ -91,9 +92,9 @@ public class FragmentChanger extends AppCompatActivity {
         }
 
         transaction.addToBackStack(null);
-        if (!this.isFinishing()) {
-            transaction.commit();
-        }
+
+        transaction.commit();
+
 
         currentPage=number;
         //set the new Page

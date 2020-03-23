@@ -1,11 +1,13 @@
 package com.example.foodgent.UserInterface;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.Entity.ItemListAdapter;
 import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
 import com.example.foodgent.Logic.NotificationService;
@@ -33,29 +36,17 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static boolean reload = false;
     private static MainActivity instance;
     private SectionStatePagerAdapter mSectionStatePagerAdapter;
-    private ViewPager mViewPager;
-    private FragmentChanger fragmentChanger;
+    private static ViewPager mViewPager;
+    private static FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
 
     static public void setBarcode() {
 
         AlertDialog item = ItemActivity.getAddItemAlertDialog();
         item.show();
-    }
-
-    public static MainActivity getInstance() {
-        if (instance == null) {
-            instance = new MainActivity();
-        }
-        return instance;
-    }
-
-
-    public void setViewPager(int fragmentNumber) {
-        fragmentChanger.change(fragmentNumber, mViewPager);
     }
 
     public static void activateSettings() {
@@ -84,6 +75,30 @@ public class MainActivity extends AppCompatActivity {
             nav3.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
         }
 
+
+        ItemListAdapter.activateSettings();
+        ItemActivity.activateSettings();
+
+    }
+
+    public static MainActivity getInstance() {
+        if (instance == null) {
+            instance = new MainActivity();
+        }
+        return instance;
+    }
+
+    public static void restartActivity(Activity activity) {
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate();
+        } else {
+            activity.finish();
+            activity.startActivity(activity.getIntent());
+        }
+    }
+
+    public ViewPager getViewPager() {
+        return mViewPager;
     }
 
     //removes the slide animation, when opening this activity
@@ -139,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(1, notificationBuilder.build());
     }
 
+    public static void setViewPager(int fragmentNumber) {
+        fragmentChanger.change(fragmentNumber, mViewPager);
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,13 +192,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //(Button btnNavFrag1, Button btnNavFrag2, Button btnNavFrag3, MainActivity activity) {
-        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, instance);
+        fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, instance, mViewPager);
         //mRecyclerView = findViewById(R.id.listView);
         //endregion
 
 
-        //setup the standard list view
-        ItemActivity.setUpItemListView();
 
         //region setup the adapter
         mSectionStatePagerAdapter = new SectionStatePagerAdapter(getSupportFragmentManager());
@@ -220,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                ((MainActivity.this)).setViewPager(0);
+                setViewPager(0);
             }
         });
 
@@ -228,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                ((MainActivity.this)).setViewPager(1);
+                setViewPager(1);
             }
         });
 
@@ -236,12 +253,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                ((MainActivity.this)).setViewPager(2);
+                setViewPager(2);
             }
         });
 
 
+        //setup the standard list view
+        ItemActivity.setUpItemListView();
         ItemActivity.activateSettings();
+
+
     }
 
 }

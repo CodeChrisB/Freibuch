@@ -2,6 +2,7 @@ package com.example.foodgent.UserInterface.Fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -50,11 +51,14 @@ public class ShopActivity extends Fragment {
         RecipeActivity.setNull();
         ArrayList<ShoppingEntry> list = AppData.getInstance().getShoppingEntries();
 
-        mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(context);
-        ShopListAdapter adapter = new ShopListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
+
+        if (mListView != null) {
+            mListView.setHasFixedSize(true);
+            mLayoutManager = new LinearLayoutManager(context);
+            ShopListAdapter adapter = new ShopListAdapter(list);
+            mListView.setLayoutManager(mLayoutManager);
+            mListView.setAdapter(adapter);
+        }
     }
 
     public static void setNull() {
@@ -141,20 +145,45 @@ public class ShopActivity extends Fragment {
     }
 
     public static void activateSettings() {
-        View bg = view.findViewById(R.id.fragShop_bg);
-        //View layout = view.findViewById(R.id.fragItem_layout);
-        View topbar = view.findViewById(R.id.fragItem_listViewHeaderBg);
+        setUpShoppingList();
 
-        if (AppData.getInstance().isDarkMode()) {
-            bg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
-            // layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
-            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+        try {
+            RecyclerView list = view.findViewById(R.id.listView_shopping);
+            View topbar = view.findViewById(R.id.textView_topBarName2);
+            View previewbg = view.findViewById(R.id.imageButton_showAddShopEntry2);
+            View deleteBg = view.findViewById(R.id.view_showAddShopEntry);
+            View background = view.findViewById(R.id.fragment3_bg);
+            View addBackground = view.findViewById(R.id.view_addBackground);
+            View addForeground = view.findViewById(R.id.view_addForeground);
+            TextView shopentry = view.findViewById(R.id.editText_addShopEntry);
+            TextView closeAdd = view.findViewById(R.id.view_closeAdd);
 
-        } else {
+            if (AppData.getInstance().isDarkMode()) {
+                list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
+                topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+                previewbg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+                deleteBg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+                background.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
+                addBackground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
+                addForeground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
+                shopentry.setTextColor(Color.WHITE);
+                shopentry.setHintTextColor(Color.WHITE);
+                closeAdd.setTextColor(Color.WHITE);
 
-            bg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
-            //  layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
-            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+
+            } else {
+                list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
+                topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
+                previewbg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+                deleteBg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+                background.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
+                addBackground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
+                addForeground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
+                shopentry.setTextColor(Color.BLACK);
+                shopentry.setHintTextColor(Color.BLACK);
+                closeAdd.setTextColor(Color.BLACK);
+            }
+        } catch (Exception e) {
         }
 
     }
@@ -176,6 +205,7 @@ public class ShopActivity extends Fragment {
         closeAdd = view.findViewById(R.id.view_closeAdd);
         closeAdd.setText("➡");
 
+
         closeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +220,7 @@ public class ShopActivity extends Fragment {
         setUpShoppingList();
 
         shoppingEntry = view.findViewById(R.id.editText_addShopEntry);
-        final View addEntry = view.findViewById(R.id.imageButton_showAddShopEntry);
+        final View addEntry = view.findViewById(R.id.view_showAddShopEntry);
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -219,7 +249,7 @@ public class ShopActivity extends Fragment {
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
 
 
-        View showAdd = view.findViewById(R.id.imageButton_showAddShopEntry);
+        View showAdd = view.findViewById(R.id.view_showAddShopEntry);
         showAdd.bringToFront();
         showAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,7 +310,11 @@ public class ShopActivity extends Fragment {
         });
 
 
-        activateSettings();
+        try {
+            activateSettings();
+        } catch (Exception e) {
+
+        }
 
         return view;
 

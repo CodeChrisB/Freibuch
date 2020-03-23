@@ -23,9 +23,6 @@ import java.util.ArrayList;
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder> {
     private ArrayList<Item> items;
     private static boolean darkMode = AppData.getInstance().isDarkMode();
-    private ViewGroup parent;
-    private int viewType;
-
 
     public static void activateSettings() {
         darkMode = AppData.getInstance().isDarkMode();
@@ -47,7 +44,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
 
     @Override
     public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
-
+        activateSettings();
         final Item currentItem = items.get(position);
         holder.mText.setText(currentItem.getName());
         holder.mAmount.setText(currentItem.toString());
@@ -99,6 +96,4 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             seperator = itemView.findViewById(R.id.itemList_seperator);
         }
     }
-
-
 }

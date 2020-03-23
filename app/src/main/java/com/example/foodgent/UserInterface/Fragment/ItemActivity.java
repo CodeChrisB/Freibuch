@@ -48,7 +48,7 @@ public class ItemActivity extends Fragment {
 
 
     private static RecyclerView.LayoutManager mLayoutManager;
-    private static RecyclerView mListView;
+    public static RecyclerView mRecyclerview;
     private static Context context;
     private boolean appStart = true;
     private static View alertItemView;
@@ -56,14 +56,15 @@ public class ItemActivity extends Fragment {
     private static ItemActivity instance = null;
 
     public static void setNull() {
+
         if (context != null) {
             ArrayList<Item> list = new ArrayList<>();
 
-            mListView.setHasFixedSize(true);
+            mRecyclerview.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(context);
             ItemListAdapter adapter = new ItemListAdapter(list);
-            mListView.setLayoutManager(mLayoutManager);
-            mListView.setAdapter(adapter);
+            mRecyclerview.setLayoutManager(mLayoutManager);
+            mRecyclerview.setAdapter(adapter);
         }
     }
 
@@ -79,15 +80,16 @@ public class ItemActivity extends Fragment {
         RecipeActivity.setNull();
         ShopActivity.setNull();
 
-        mListView = MainActivity.getInstance().findViewById(R.id.fragItem_listView);
+        mRecyclerview = view.findViewById(R.id.fragItem_listView);
         ArrayList<Item> list = AppData.getInstance().getItems();
 
-        mListView.setHasFixedSize(true);
+        mRecyclerview.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context);
         ItemListAdapter adapter = new ItemListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
-        mListView.setAdapter(adapter);
+        mRecyclerview.setLayoutManager(mLayoutManager);
+        mRecyclerview.setAdapter(adapter);
     }
+
 
 
     public static AlertDialog getAddItemAlertDialog() {
@@ -273,7 +275,7 @@ public class ItemActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
-
+        instance = this;
         ItemActivity.view = view;
 
         try {
@@ -287,7 +289,7 @@ public class ItemActivity extends Fragment {
             context = getContext();
         } else {
 
-            mListView = view.findViewById(R.id.fragItem_listView);
+            mRecyclerview = view.findViewById(R.id.fragItem_listView);
             setUpItemListView();
         }
 

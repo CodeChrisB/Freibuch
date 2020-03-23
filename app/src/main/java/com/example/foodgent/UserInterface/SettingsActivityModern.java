@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.TextViewHandler;
 import com.example.foodgent.UserInterface.Fragment.ItemActivity;
 import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
@@ -29,7 +31,6 @@ import java.util.ArrayList;
 
 
 public class SettingsActivityModern extends AppCompatActivity {
-
 
     public static Activity setting;
     Switch darkmode;
@@ -81,9 +82,12 @@ public class SettingsActivityModern extends AppCompatActivity {
                 //Item
                 ItemActivity.setUpItemListView();
                 ItemActivity.activateSettings();
+
                 //Shop
                 ShopActivity.activateSettings();
                 ShopActivity.setUpShoppingList();
+
+
             }
 
 
@@ -350,7 +354,36 @@ public class SettingsActivityModern extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
+            int currentPage = FragmentChanger.fragmentChanger.getCurrentPage();
+
+            switch (currentPage) {
+                case 0:
+                    ItemActivity.setNull();
+                    ItemActivity.setUpItemListView();
+                    break;
+                case 1:
+                    RecipeActivity.setNull();
+                    RecipeActivity.setUpRecipeList();
+                    break;
+                case 2:
+                    ShopActivity.setNull();
+                    ShopActivity.setUpShoppingList();
+                    break;
+
+            }
+
+
+            finish();
+
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 

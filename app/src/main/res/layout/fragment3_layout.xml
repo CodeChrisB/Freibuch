@@ -10,65 +10,41 @@
 
 
     <View
-        android:id="@+id/fragShop_bg"
+        android:id="@+id/fragment3_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/lightThemePrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/fragItem_listViewHeaderBg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:background="@drawable/round_corner"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_topBarName2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline59"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toTopOf="@+id/textView_topBarName2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/textView_topBarName2" />
 
     <TextView
         android:id="@+id/textView_topBarName2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@drawable/top_round"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="@string/fragment3_name"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toStartOf="@+id/guideline59"
-        app:layout_constraintStart_toStartOf="@+id/fragItem_listViewHeaderBg"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <View
-        android:id="@+id/fragShop_listViewBg2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/half_round"
-        app:layout_constraintBottom_toBottomOf="@+id/listView_shopping"
+        app:layout_constraintBottom_toTopOf="@+id/guideline58"
         app:layout_constraintEnd_toStartOf="@+id/guideline59"
         app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toBottomOf="@+id/fragItem_listViewHeaderBg" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView_shopping"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lightThemePrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        android:background="@drawable/half_round"
+        app:layout_constraintBottom_toTopOf="@+id/ShoplistviewBottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline59"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toBottomOf="@+id/fragItem_listViewHeaderBg"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView_topBarName2" />
 
     <EditText
         android:id="@+id/editText_addShopEntry"
@@ -94,7 +70,7 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        app:layout_constraintBottom_toTopOf="@+id/ShoplistviewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline64"
         app:layout_constraintTop_toTopOf="@+id/guideline75" />
@@ -118,7 +94,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
-        android:id="@+id/imageButton_showAddShopEntry"
+        android:id="@+id/view_showAddShopEntry"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/add_background"
@@ -135,7 +111,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/add_background"
-        app:layout_constraintBottom_toTopOf="@+id/guideline76"
+        app:layout_constraintBottom_toTopOf="@+id/ShoplistviewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline77"
         app:layout_constraintTop_toTopOf="@+id/guideline75"
@@ -257,7 +233,13 @@
         app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/ShoplistviewBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
