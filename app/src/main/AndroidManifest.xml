@@ -50,6 +50,19 @@
             tools:ignore="InnerclassSeparator" />
 
         <activity
+            android:name="com.example.foodgent.UserInterface.Premium.BuyPremiumActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name="com.example.foodgent.UserInterface.Premium.SpecialSettingsActivity"
+            tools:ignore="InnerclassSeparator" />
+
+
+        <activity
+            android:name="com.example.foodgent.UserInterface.Premium.BarcodeManage"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
             android:name="com.example.foodgent.UserInterface.AddLogic.AddCooking"
             tools:ignore="InnerclassSeparator" />
 

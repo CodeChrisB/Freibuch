@@ -46,7 +46,6 @@ public class NotificationService extends ContextWrapper {
         notificationChannel.enableLights(true);
         notificationChannel.canShowBadge();
         notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-        notificationChannel.setLightColor(MainActivity.getInstance().getResources().getColor(R.color.colorAccent));
         getNotificationManager().createNotificationChannel(notificationChannel);
     }
 

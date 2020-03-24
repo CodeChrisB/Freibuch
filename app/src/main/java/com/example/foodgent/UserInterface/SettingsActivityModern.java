@@ -1,9 +1,9 @@
 package com.example.foodgent.UserInterface;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,16 +15,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.foodgent.AppData.Logic.AppData;
 import com.example.foodgent.Logic.FragmentChanger;
-import com.example.foodgent.Logic.TextViewHandler;
 import com.example.foodgent.UserInterface.Fragment.ItemActivity;
 import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
 import com.example.foodgent.UserInterface.Fragment.ShopActivity;
+import com.example.foodgent.UserInterface.Premium.BarcodeManage;
+import com.example.foodgent.UserInterface.Premium.BuyPremiumActivity;
+import com.example.foodgent.UserInterface.Premium.SpecialSettingsActivity;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 public class SettingsActivityModern extends AppCompatActivity {
 
     public static Activity setting;
+    private static SettingsActivityModern instance;
     Switch darkmode;
     Switch textSize;
     Switch notification;
@@ -52,13 +53,71 @@ public class SettingsActivityModern extends AppCompatActivity {
         super.onStart();
     }
 
+    public static SettingsActivityModern getInstance() {
+        if (instance == null)
+            instance = new SettingsActivityModern();
+
+        return instance;
+    }
+
+    private void initAll() {
+        darkmode = findViewById(R.id.setting_switchDarkMode);
+        darkmode.setChecked(AppData.getInstance().isDarkMode());
+
+        textSize = findViewById(R.id.setting_switch_changeTextSize);
+        textSize.setChecked(AppData.getInstance().isBigText());
+
+        notification = findViewById(R.id.setting_notification);
+        notification.setChecked(AppData.getInstance().isNotificationOn());
+
+        deleteAll = findViewById(R.id.setting_viewDeleteData);
+        language = findViewById(R.id.setting_view_language);
+        feedback = findViewById(R.id.setting_view_feedback);
+        help = findViewById(R.id.setting_view_help);
+        developer = findViewById(R.id.setting_viewDeveloper);
+        premiumBuy = findViewById(R.id.setting_view_premium);
+        premiumManageBarcode = findViewById(R.id.setting_view_premium_barcodes);
+        premiumSpecial = findViewById(R.id.setting_view_premium_special);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            int currentPage = FragmentChanger.fragmentChanger.getCurrentPage();
+
+            switch (currentPage) {
+                case 0:
+                    ItemActivity.setNull();
+                    ItemActivity.setUpItemListView();
+                    break;
+                case 1:
+                    RecipeActivity.setNull();
+                    RecipeActivity.setUpRecipeList();
+                    break;
+                case 2:
+                    ShopActivity.setNull();
+                    ShopActivity.setUpShoppingList();
+                    break;
+
+            }
+
+
+            finish();
+
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modern_settings);
 
         SettingsActivityModern.setting = this;
-        activateSettings();
 
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
@@ -74,31 +133,37 @@ public class SettingsActivityModern extends AppCompatActivity {
         darkmode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (darkmode.isChecked()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    startActivity(new Intent(getApplicationContext(), SettingsActivityModern.class));
+                    AppData.getInstance().setDarkMode(darkmode.isChecked());
+                    AppData.getInstance().saveSettings();
+
+
+                    finish();
+                    return;
+                }
+
+
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                startActivity(new Intent(getApplicationContext(), SettingsActivityModern.class));
                 AppData.getInstance().setDarkMode(darkmode.isChecked());
                 AppData.getInstance().saveSettings();
-                activateSettings();
-                //Main
-                MainActivity.activateSettings();
-                //Item
-                ItemActivity.setUpItemListView();
-                ItemActivity.activateSettings();
-
-                //Shop
-                ShopActivity.activateSettings();
-                ShopActivity.setUpShoppingList();
 
 
+                finish();
             }
 
-
         });
+
 
         textSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppData.getInstance().setBigText(textSize.isChecked());
                 AppData.getInstance().saveSettings();
-                activateSettings();
+
             }
         });
 
@@ -107,7 +172,7 @@ public class SettingsActivityModern extends AppCompatActivity {
             public void onClick(View view) {
                 AppData.getInstance().setNotification(notification.isChecked());
                 AppData.getInstance().saveSettings();
-                activateSettings();
+
             }
         });
 
@@ -284,108 +349,32 @@ public class SettingsActivityModern extends AppCompatActivity {
         premiumBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SettingsActivityModern.this, BuyPremiumActivity.class);
+                startActivity(intent);
             }
         });
 
         premiumManageBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SettingsActivityModern.this, BarcodeManage.class);
+                startActivity(intent);
             }
         });
 
         premiumSpecial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SettingsActivityModern.this, SpecialSettingsActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    private void initAll() {
-        darkmode = findViewById(R.id.setting_switchDarkMode);
-        darkmode.setChecked(AppData.getInstance().isDarkMode());
-
-        textSize = findViewById(R.id.setting_switch_changeTextSize);
-        textSize.setChecked(AppData.getInstance().isBigText());
-
-        notification = findViewById(R.id.setting_notification);
-        notification.setChecked(AppData.getInstance().isNotificationOn());
-
-        deleteAll = findViewById(R.id.setting_viewDeleteData);
-        language = findViewById(R.id.setting_view_language);
-        feedback = findViewById(R.id.setting_view_feedback);
-        help = findViewById(R.id.setting_view_help);
-        developer = findViewById(R.id.setting_viewDeveloper);
-        premiumBuy = findViewById(R.id.setting_view_premium);
-        premiumManageBarcode = findViewById(R.id.setting_view_premium_barcodes);
-        premiumSpecial = findViewById(R.id.setting_view_premium_special);
-    }
-
-
-    private void activateSettings() {
-        ConstraintLayout layout = findViewById(R.id.setting_layout);
-        layout = findViewById(R.id.setting_layout);
-        Toolbar toolbar = findViewById(R.id.setting_roundtopBarPart);
-        View toolbarBottom = findViewById(R.id.setting_roundtopBarPart2);
-        View bigBg = findViewById(R.id.setting_bigBackground);
-        View smallBg = findViewById(R.id.setting_smallBackground);
-
-        if (AppData.getInstance().isDarkMode()) {
-            bigBg.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.darkSettingBackground));
-            smallBg.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.darkSettingBackground));
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.black));
-            toolbar.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.darkThemePrimary));
-            toolbarBottom.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.darkThemePrimary));
-            TextViewHandler.getInstance().setSettingsDarkmode(true);
-
-
-        } else {
-            bigBg.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.lightSettingBackground));
-            smallBg.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.lightSettingBackground));
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.colorBackground));
-            toolbar.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.lightThemePrimary));
-            toolbarBottom.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.lightThemePrimary));
-            int code = Color.BLACK;
-            TextViewHandler.getInstance().setSettingsDarkmode(false);
-        }
+    public void setColorScheme() {
 
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-            int currentPage = FragmentChanger.fragmentChanger.getCurrentPage();
-
-            switch (currentPage) {
-                case 0:
-                    ItemActivity.setNull();
-                    ItemActivity.setUpItemListView();
-                    break;
-                case 1:
-                    RecipeActivity.setNull();
-                    RecipeActivity.setUpRecipeList();
-                    break;
-                case 2:
-                    ShopActivity.setNull();
-                    ShopActivity.setUpShoppingList();
-                    break;
-
-            }
-
-
-            finish();
-
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-
 
 
 }

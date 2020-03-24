@@ -46,10 +46,8 @@ public class FragmentChanger extends AppCompatActivity {
 
         switch (number) {
             case 0:
-                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_active_button);
-                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
-                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
-                    ItemActivity.setUpItemListView();
+
+                ItemActivity.setUpItemListView();
 
                     // Replace whatever is in the fragment_container view with this fragment,
                     // and add the transaction to the back stack if needed
@@ -60,9 +58,6 @@ public class FragmentChanger extends AppCompatActivity {
 
             case 1:
                 if (currentPage != 1) {
-                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
-                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_active_button);
-                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_buttons);
                     ItemActivity.setUpItemListView();
 
                     // Replace whatever is in the fragment_container view with this fragment,
@@ -75,9 +70,6 @@ public class FragmentChanger extends AppCompatActivity {
             case 2:
 
                 if (currentPage != 2) {
-                    btnNavFrag1.setBackgroundResource(R.drawable.fragment_buttons);
-                    btnNavFrag2.setBackgroundResource(R.drawable.fragment_buttons);
-                    btnNavFrag3.setBackgroundResource(R.drawable.fragment_active_button);
                     ItemActivity.setUpItemListView();
 
 

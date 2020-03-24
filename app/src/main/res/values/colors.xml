@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="lightThemePrimary">#1C68EC</color>
-    <color name="darkThemePrimary">#32174d</color>
+    <color name="themeColor">#1C68EC</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorBackground" tools:ignore="MissingDefaultResource">#FFFFFF</color>
+    <color name="innerBackground" tools:ignore="MissingDefaultResource">#D3C3C3</color>
     <color name="colorRed">#FF0000</color>
     <color name="lightGrey">#FF0000</color>
     <color name="fragmentButtonColor">#ADD8E6</color>
     <color name="premiumActiveBg">#e2b007</color>
     <color name="black">#000000</color>
-    <color name="lightSettingBackground">#EFF0F1</color>
-    <color name="darkSettingBackground">#323232</color>
-
-    <color name="darkListView1">#d3d3d3</color>
-    <color name="darkListView2">#696969</color>
-
+    <color name="background">#EFF0F1</color>
+    <color name="textColor">#000000</color>
 </resources>

@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -245,25 +244,7 @@ public class ItemActivity extends Fragment {
 
     }
 
-    public static void activateSettings() {
 
-        View listView = view.findViewById(R.id.fragItem_listViewBg);
-        View layout = view.findViewById(R.id.fragItem_layout);
-        View topbar = view.findViewById(R.id.fragItem_listViewHeaderBg);
-
-        if (AppData.getInstance().isDarkMode()) {
-            listView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
-            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
-
-        } else {
-
-            listView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
-            topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
-        }
-
-    }
 
     public static ItemActivity getInstance() {
         if (instance == null)
@@ -279,7 +260,7 @@ public class ItemActivity extends Fragment {
         ItemActivity.view = view;
 
         try {
-            activateSettings();
+
         } catch (Exception e) {
 
         }

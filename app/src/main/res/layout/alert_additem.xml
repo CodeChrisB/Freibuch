@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
+    android:background="@color/background"
     tools:context="com.example.foodgent.UserInterface.MainActivity">
 
     <Button
@@ -115,7 +115,7 @@
         android:layout_height="34dp"
         android:height="50dp"
         android:background="@android:drawable/ic_menu_camera"
-        android:backgroundTint="@color/lightThemePrimary"
+        android:backgroundTint="@color/themeColor"
         android:duplicateParentState="false"
         android:editable="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline68"

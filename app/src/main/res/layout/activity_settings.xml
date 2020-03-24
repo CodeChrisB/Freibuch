@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/background"
     tools:context="com.example.foodgent.UserInterface.MainActivity">
 
     <TextView
@@ -76,7 +76,7 @@
         android:id="@+id/main_toolbar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lightThemePrimary"
+        android:background="@color/themeColor"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
@@ -166,7 +166,7 @@
         android:id="@+id/view"
         android:layout_width="371dp"
         android:layout_height="0dp"
-        android:background="@color/lightThemePrimary"
+        android:background="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline30" />
@@ -175,7 +175,7 @@
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lightThemePrimary"
+        android:background="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="1.0"
@@ -591,7 +591,7 @@
         android:fontFamily="casual"
         android:gravity="center"
         android:text="FoodGent"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/background"
         android:textSize="30sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"

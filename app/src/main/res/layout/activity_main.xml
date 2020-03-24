@@ -5,7 +5,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/background"
     tools:context="com.example.foodgent.UserInterface.MainActivity">
 
 
@@ -24,7 +24,7 @@
         android:id="@+id/btnNavFrag1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/fragment_active_button"
+        android:background="@color/themeColor"
         android:fontFamily="casual"
         android:includeFontPadding="false"
         android:text="@string/fragment1_name"
@@ -38,9 +38,10 @@
         android:id="@+id/btnNavFrag2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/fragment_buttons"
+        android:background="@color/themeColor"
         android:fontFamily="casual"
         android:text="@string/fragment2_name"
+        android:textColor="@color/textColor"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnNavFrag1"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
@@ -52,14 +53,17 @@
         android:id="@+id/btnNavFrag3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/fragment_buttons"
+        android:background="@color/themeColor"
         android:fontFamily="casual"
         android:text="@string/fragment3_name"
+        android:textColor="@color/textColor"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_navSecond"
@@ -76,7 +80,7 @@
         android:id="@+id/main_toolbar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lightThemePrimary"
+        android:background="@color/themeColor"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:collapseIcon="@android:drawable/ic_menu_call"
@@ -185,7 +189,7 @@
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/lightThemePrimary"
+        android:background="@color/themeColor"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 

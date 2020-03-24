@@ -2,7 +2,6 @@ package com.example.foodgent.UserInterface.Fragment;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -144,49 +142,7 @@ public class ShopActivity extends Fragment {
 
     }
 
-    public static void activateSettings() {
-        setUpShoppingList();
 
-        try {
-            RecyclerView list = view.findViewById(R.id.listView_shopping);
-            View topbar = view.findViewById(R.id.textView_topBarName2);
-            View previewbg = view.findViewById(R.id.imageButton_showAddShopEntry2);
-            View deleteBg = view.findViewById(R.id.view_showAddShopEntry);
-            View background = view.findViewById(R.id.fragment3_bg);
-            View addBackground = view.findViewById(R.id.view_addBackground);
-            View addForeground = view.findViewById(R.id.view_addForeground);
-            TextView shopentry = view.findViewById(R.id.editText_addShopEntry);
-            TextView closeAdd = view.findViewById(R.id.view_closeAdd);
-
-            if (AppData.getInstance().isDarkMode()) {
-                list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
-                topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
-                previewbg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
-                deleteBg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
-                background.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.black));
-                addBackground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkThemePrimary));
-                addForeground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.darkSettingBackground));
-                shopentry.setTextColor(Color.WHITE);
-                shopentry.setHintTextColor(Color.WHITE);
-                closeAdd.setTextColor(Color.WHITE);
-
-
-            } else {
-                list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
-                topbar.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
-                previewbg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
-                deleteBg.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
-                background.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorBackground));
-                addBackground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightThemePrimary));
-                addForeground.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.lightSettingBackground));
-                shopentry.setTextColor(Color.BLACK);
-                shopentry.setHintTextColor(Color.BLACK);
-                closeAdd.setTextColor(Color.BLACK);
-            }
-        } catch (Exception e) {
-        }
-
-    }
 
     public static ItemActivity getInstance() {
         if (instance == null)
@@ -310,11 +266,7 @@ public class ShopActivity extends Fragment {
         });
 
 
-        try {
-            activateSettings();
-        } catch (Exception e) {
 
-        }
 
         return view;
 

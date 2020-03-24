@@ -16,15 +16,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodgent.AppData.Logic.AppData;
-import com.example.foodgent.Entity.ItemListAdapter;
 import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
 import com.example.foodgent.Logic.NotificationService;
@@ -43,43 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private static FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
 
-    static public void setBarcode() {
-
-        AlertDialog item = ItemActivity.getAddItemAlertDialog();
-        item.show();
-    }
-
-    public static void activateSettings() {
-        ConstraintLayout layout = MainActivity.getInstance().findViewById(R.id.main_layout);
-        Toolbar bar = MainActivity.getInstance().findViewById(R.id.main_toolbar);
-        Button nav1 = MainActivity.getInstance().findViewById(R.id.btnNavFrag1);
-        Button nav2 = MainActivity.getInstance().findViewById(R.id.btnNavFrag2);
-        Button nav3 = MainActivity.getInstance().findViewById(R.id.btnNavFrag3);
 
 
-        Context c = MainActivity.getInstance().getContext();
-
-        if (AppData.getInstance().isDarkMode()) {
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.black));
-            bar.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkThemePrimary));
-            nav1.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
-            nav2.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
-            nav3.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.darkSettingBackground));
-
-
-        } else {
-            layout.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.colorBackground));
-            bar.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightThemePrimary));
-            nav1.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
-            nav2.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
-            nav3.setBackgroundTintList(ContextCompat.getColorStateList(c, R.color.lightSettingBackground));
-        }
-
-
-        ItemListAdapter.activateSettings();
-        ItemActivity.activateSettings();
-
-    }
 
     public static MainActivity getInstance() {
         if (instance == null) {
@@ -164,17 +125,18 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         AndroidThreeTen.init(this);
+        setTitle("FoodGent Premium");
         setContentView(R.layout.activity_main);
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
+
+        SettingsActivityModern.getInstance().setColorScheme();
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
         AppData.getInstance().loadData();
         AppData.getInstance().saveAppData();
 
-
-        activateSettings();
 
         NotificationService notificationService = new NotificationService(getContext());
 
@@ -260,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
 
         //setup the standard list view
         ItemActivity.setUpItemListView();
-        ItemActivity.activateSettings();
 
 
     }

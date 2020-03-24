@@ -82,4 +82,21 @@
     </string-array>
 
 
+    <string name="featureNr1">• Unbegrenzte Listen   </string>>
+    <string name="featureNr2">• Premium Kochrezepte  </string>
+    <string name="featureNr3">• Personalisierungen   </string>
+    <string name="featureNr4">• Barcodes Scannen     </string>
+    <string name="featureNr5">• Barcodes verwalten   </string>
+    <string name="featureNr6">• Premium Einstellungen</string>
+
+
+    <string-array name="premiumFeatureList">
+        <item></item>
+        <item>• Mehr als 100 Premium Kochrezepte</item>
+        <item>• Barcode Scannen</item>
+        <item>• Barcodes verwalten</item>
+        <item>• Weiter Personalisierungsmöglichkeiten</item>
+    </string-array>
+
+
 </resources>

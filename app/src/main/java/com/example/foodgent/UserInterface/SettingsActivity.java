@@ -24,12 +24,10 @@ import com.example.foodgent.UserInterface.Fragment.ItemActivity;
 import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
 import com.example.foodgent.UserInterface.Fragment.ShopActivity;
 import com.example.fragment.R;
-import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
-    private   Firebase Ref;
     private static final String TAG = "Second";
     String[] settings = new String[3];
     private Switch dark;
@@ -138,7 +136,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         //if one field does not get a value use the standard value 0
-        activateSettings();
         //endregion
 
 
@@ -312,9 +309,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void activateSettings() {
-
-    }
 
 
     private void openLink(String link) {
