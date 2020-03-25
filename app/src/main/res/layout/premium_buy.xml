@@ -4,14 +4,14 @@
     android:id="@+id/setting_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <View
         android:id="@+id/setting_bigBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/background"
+        android:background="@color/innerBackground"
         app:layout_constraintBottom_toTopOf="@+id/guideline143"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
         app:layout_constraintHorizontal_bias="0.0"
@@ -194,7 +194,11 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:text="Premium Vorteile"
+        android:textColor="@color/premiumActiveBg"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
         app:layout_constraintTop_toTopOf="@+id/guideline76" />

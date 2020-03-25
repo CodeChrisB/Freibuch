@@ -45,7 +45,6 @@ public class SettingsActivityModern extends AppCompatActivity {
     View premiumBuy;
     View premiumManageBarcode;
     View premiumSpecial;
-
     //removes the slide animation, when opening this activity
     @Override
     protected void onStart() {
@@ -60,9 +59,9 @@ public class SettingsActivityModern extends AppCompatActivity {
         return instance;
     }
 
+
     private void initAll() {
         darkmode = findViewById(R.id.setting_switchDarkMode);
-        darkmode.setChecked(AppData.getInstance().isDarkMode());
 
         textSize = findViewById(R.id.setting_switch_changeTextSize);
         textSize.setChecked(AppData.getInstance().isBigText());
@@ -117,16 +116,21 @@ public class SettingsActivityModern extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modern_settings);
 
+
         SettingsActivityModern.setting = this;
+        initAll();
+        try {
+            darkmode.setChecked(AppData.getInstance().isDarkMode());
+        } catch (Exception e) {
 
-
+        }
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //endregion
 
-        initAll();
+
 
 
         //region switches
@@ -134,27 +138,24 @@ public class SettingsActivityModern extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (darkmode.isChecked()) {
+                boolean mode = AppData.getInstance().isDarkMode();
+
+                //if the mode change button is pressed for the first time he will give the last value back not the curent value
+
+
+                //If dark go back else set darkmode
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    startActivity(new Intent(getApplicationContext(), SettingsActivityModern.class));
-                    AppData.getInstance().setDarkMode(darkmode.isChecked());
-                    AppData.getInstance().saveSettings();
-
-
-                    finish();
-                    return;
                 }
 
 
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                startActivity(new Intent(getApplicationContext(), SettingsActivityModern.class));
-                AppData.getInstance().setDarkMode(darkmode.isChecked());
+                AppData.getInstance().setDarkMode(!mode);
                 AppData.getInstance().saveSettings();
-
-
+                startActivity(new Intent(getApplicationContext(), SettingsActivityModern.class));
                 finish();
             }
-
         });
 
 
@@ -178,6 +179,7 @@ public class SettingsActivityModern extends AppCompatActivity {
 
         //endregion
 
+
         //region deleteAll
         deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,8 +200,6 @@ public class SettingsActivityModern extends AppCompatActivity {
                 }
 
                 final TextView helpTextView = deleteView.findViewById(R.id.textView_helpText);
-                helpTextView.setText(list.get(0));
-
                 final Button helpNext = deleteView.findViewById(R.id.button_deleteNext);
 
 

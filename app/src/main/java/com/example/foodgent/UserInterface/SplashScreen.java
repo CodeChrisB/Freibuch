@@ -2,7 +2,6 @@ package com.example.foodgent.UserInterface;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -10,7 +9,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.fragment.R;
 
@@ -20,8 +18,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-
-        ConstraintLayout background = findViewById(R.id.constraintLayout_splashbackground);
 
         //setRandomColorBackground(background);
         ImageView logo = findViewById(R.id.imageView_splashlLogo);
@@ -54,15 +50,6 @@ public class SplashScreen extends AppCompatActivity {
             instance = new SplashScreen();
         }
         return instance;
-    }
-
-    private Color setRandomColorBackground(ConstraintLayout background) {
-
-        int r = randomRGBValue();
-        int g = randomRGBValue();
-        int b = randomRGBValue();
-        background.setBackgroundColor(Color.rgb(r, g, b));
-        return null;
     }
 
     private int randomRGBValue() {

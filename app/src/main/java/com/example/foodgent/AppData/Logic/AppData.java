@@ -33,6 +33,7 @@ public class AppData implements Serializable {
 
     //region static Class
     private static AppData instance = null;
+
     public static AppData getInstance() {
         if (instance == null) {
             instance = new AppData();
@@ -77,41 +78,56 @@ public class AppData implements Serializable {
         String setting = internalStorage.loadData("settings");
 
 
-        //endregion
+        recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
+        items = (item != null) ? loadItem(item) : setItem();
+        barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
+        shoppingEntries = (shopping != null) ? loadShopping(shopping) : setShopping();
+        settings = (setting != null) ? loadSetting(setting) : setSetting();
 
-        //region check if the JSON Strings are not empty and fill Values
-
-        if (!setting.equals("null")) {
-            settings = gson.fromJson(setting, Settings.class);
-        } else {
-            settings = new Settings();
-        }
-
-        if (!recipe.equals("null")) {
-            recipes = gson.fromJson(recipe, Recipes.class);
-        } else {
-            recipes = new Recipes();
-        }
-
-        if (!items.equals("null")) {
-            items = gson.fromJson(item, Items.class);
-        } else {
-            items = new Items();
-        }
-
-        if (!barcodes.equals("null")) {
-            barcodes = gson.fromJson(barcode, Barcodes.class);
-        } else {
-            barcodes = new Barcodes();
-        }
-
-        if (!shoppingEntries.equals("null")) {
-            shoppingEntries = gson.fromJson(shopping, ShoppingEntries.class);
-        } else {
-            shoppingEntries = new ShoppingEntries();
-        }
         //endregion
     }
+
+    private Settings setSetting() {
+        return new Settings();
+    }
+
+    private Settings loadSetting(String setting) {
+        return (!setting.equals("null")) ? gson.fromJson(setting, Settings.class) : setSetting();
+    }
+
+
+    private ShoppingEntries setShopping() {
+        return new ShoppingEntries();
+    }
+
+    private Barcodes setBarcode() {
+        return new Barcodes();
+    }
+
+    private Items setItem() {
+        return new Items();
+    }
+
+    private Recipes setRecipe() {
+        return new Recipes();
+    }
+
+    private ShoppingEntries loadShopping(String shopping) {
+        return (!shopping.equals("null")) ? gson.fromJson(shopping, ShoppingEntries.class) : setShopping();
+    }
+
+    private Barcodes loadBarcode(String barcode) {
+        return (!barcode.equals("null")) ? gson.fromJson(barcode, Barcodes.class) : setBarcode();
+    }
+
+    private Items loadItem(String item) {
+        return (!item.equals("null")) ? gson.fromJson(item, Items.class) : setItem();
+    }
+
+    private Recipes loadRecipe(String recipe) {
+        return (!recipe.equals("null")) ? gson.fromJson(recipe, Recipes.class) : setRecipe();
+    }
+
 
     public boolean saveAppData() {
 
@@ -360,7 +376,6 @@ public class AppData implements Serializable {
     public boolean isNotificationOn() {
         return settings.isSendNotification();
     }
-
 
 
 }

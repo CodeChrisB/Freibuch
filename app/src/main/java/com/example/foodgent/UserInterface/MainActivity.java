@@ -16,6 +16,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         mRecyclerView = findViewById(R.id.listView);
 
+
         SettingsActivityModern.getInstance().setColorScheme();
 
         //with AppData.getInstance now every class in this whole
@@ -222,6 +224,13 @@ public class MainActivity extends AppCompatActivity {
 
         //setup the standard list view
         ItemActivity.setUpItemListView();
+
+
+        if (AppData.getInstance().isDarkMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
 
     }

@@ -12,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/round_corner"
+        android:backgroundTint="@color/innerBackground"
         app:layout_constraintBottom_toTopOf="@+id/guideline140"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
         app:layout_constraintHorizontal_bias="0.0"
@@ -24,6 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/round_corner"
+        android:backgroundTint="@color/innerBackground"
         app:layout_constraintBottom_toTopOf="@+id/guideline143"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline141"
@@ -43,6 +45,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Switch
+        android:id="@+id/setting_switchDarkMode"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:thumbTint="@color/innerBackground"
+        app:layout_constraintBottom_toTopOf="@+id/guideline91"
+        app:layout_constraintEnd_toStartOf="@+id/guideline125"
+        app:layout_constraintStart_toStartOf="@+id/guideline88"
+        app:layout_constraintTop_toTopOf="@+id/guideline137" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline134"
@@ -668,20 +680,10 @@
         app:layout_constraintTop_toTopOf="@+id/guideline145" />
 
     <Switch
-        android:id="@+id/setting_switchDarkMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:thumbTint="@color/themeColor"
-        app:layout_constraintBottom_toTopOf="@+id/guideline91"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        app:layout_constraintTop_toTopOf="@+id/guideline137" />
-
-    <Switch
         android:id="@+id/setting_switch_changeTextSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:thumbTint="@color/themeColor"
+        android:thumbTint="@color/innerBackground"
         app:layout_constraintBottom_toTopOf="@+id/guideline111"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
