@@ -115,13 +115,18 @@ public class ShopActivity extends Fragment {
             return;
         }
 
-
         if (entry.length() > 0) {
-            AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
-            AppData.getInstance().saveShopEntries();
-            setUpShoppingList();
-            shoppingEntry.setText("");
-            closeKeyboard();
+
+
+            boolean added = AppData.getInstance().addShoppingEntry(new ShoppingEntry(entry));
+            if (added) {
+                AppData.getInstance().saveShopEntries();
+                setUpShoppingList();
+                shoppingEntry.setText("");
+                closeKeyboard();
+            } else {
+                Toast.makeText(context, "Die Standard Liste ist voll, hol dir die FoodGent Premium", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

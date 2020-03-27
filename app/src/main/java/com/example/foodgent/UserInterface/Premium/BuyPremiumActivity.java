@@ -1,11 +1,14 @@
 package com.example.foodgent.UserInterface.Premium;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgent.AppData.Logic.AppData;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -21,17 +24,22 @@ public class BuyPremiumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.premium_buy);
 
-        TextView feature1 = findViewById(R.id.textView_feature1);
-        TextView feature2 = findViewById(R.id.textView_feature2);
-        TextView feature3 = findViewById(R.id.textView_feature3);
-        TextView feature4 = findViewById(R.id.textView_feature4);
-        TextView feature5 = findViewById(R.id.textView_feature5);
+        Button buyPremium = findViewById(R.id.button_buyPremium);
+        final TextView premiumInfo = findViewById(R.id.textView_premium_info);
 
-        list.add(feature1);
-        list.add(feature2);
-        list.add(feature3);
-        list.add(feature4);
-        list.add(feature5);
+        if (AppData.getInstance().isPremium())
+            premiumInfo.setText("Deine Premium Features :");
+
+        buyPremium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppData.getInstance().setPremium(!AppData.getInstance().isPremium());
+                AppData.getInstance().saveSettings();
+
+                String text = (AppData.getInstance().isPremium()) ? "Deine Premium Features :" : "Hol dir Premium";
+                premiumInfo.setText(text);
+            }
+        });
 
     }
 
