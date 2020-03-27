@@ -1,5 +1,6 @@
 package com.example.foodgent.Entity;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
         this.shoppingEntries = shoppingEntries;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final ShopListViewHolder holder, int position) {
         final ShoppingEntry currentItem = shoppingEntries.get(position);
@@ -45,11 +47,16 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 currentItem.setSelected(isChecked);
                 AppData.getInstance().saveShopEntries();
+                if(currentItem.isSelected()){
+                    holder.mText.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                } else{
+                    holder.mText.setPaintFlags(0);
+                }
             }
-
         });
 
         holder.mcheckBox.setChecked(currentItem.isSelected());
+
     }
 
     @Override

@@ -13,7 +13,7 @@
         android:id="@+id/textView_topBarName2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/top_round"
+        android:background="@drawable/round"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="@string/fragment3_name"

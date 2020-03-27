@@ -8,10 +8,12 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -26,6 +28,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     @Override
     public ItemListAdapter.ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_itemconstraint, parent, false);
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
+                View alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_item_page, null);
+                helpDialog.setView(alertItemView);
+                helpDialog.show();
+            }
+        });
 
         ItemListAdapter.ItemListViewHolder evh = new ItemListAdapter.ItemListViewHolder(v);
         return evh;
