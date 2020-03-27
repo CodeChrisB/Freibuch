@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_Topbar" />
 
     <EditText
-        android:id="@+id/editText_itemName"
+        android:id="@+id/itemDialog_name"
         android:layout_width="273dp"
         android:layout_height="56dp"
         android:layout_marginEnd="64dp"

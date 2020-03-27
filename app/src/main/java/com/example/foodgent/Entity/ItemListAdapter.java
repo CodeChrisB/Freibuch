@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Item;
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder> {
     private ArrayList<Item> items;
-    private static boolean darkMode = AppData.getInstance().isDarkMode();
 
 
 
@@ -34,6 +34,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             public void onClick(View v) {
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
                 View alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_item_page, null);
+
+                ConstraintLayout cl = alertItemView.findViewById(R.id.Constraint_itemListViewBg);
+
+                TextView name = alertItemView.findViewById(R.id.itemDialog_name);
+
                 helpDialog.setView(alertItemView);
                 helpDialog.show();
             }
