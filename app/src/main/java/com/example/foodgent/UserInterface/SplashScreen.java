@@ -2,8 +2,10 @@ package com.example.foodgent.UserInterface;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -18,10 +20,13 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //setRandomColorBackground(background);
         ImageView logo = findViewById(R.id.imageView_splashlLogo);
-        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.load_up_anim);
         logo.startAnimation(rotate);
 
         new Handler().postDelayed(new Runnable() {

@@ -119,11 +119,11 @@ public class SettingsActivityModern extends AppCompatActivity {
 
         SettingsActivityModern.setting = this;
         initAll();
-        try {
-            darkmode.setChecked(AppData.getInstance().isDarkMode());
-        } catch (Exception e) {
 
-        }
+            darkmode.setChecked(AppData.getInstance().isDarkMode());
+        notification.setChecked(AppData.getInstance().isNotificationOn());
+        textSize.setChecked(AppData.getInstance().isBigText());
+
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
