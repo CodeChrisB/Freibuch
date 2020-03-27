@@ -286,9 +286,38 @@ public class ItemActivity extends Fragment {
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
 
 
+        TextView icon = view.findViewById(R.id.textView_itemDeleteIcon);
+        View deleteBg = view.findViewById(R.id.view_ItemDeleteBg);
+        View deleteFg = view.findViewById(R.id.view_itemDeleteFg);
+
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeSelected();
+            }
+        });
+        deleteBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeSelected();
+            }
+        });
+
+        deleteFg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeSelected();
+            }
+        });
         appStart = false;
         return view;
 
+    }
+
+    private void removeSelected() {
+        AppData.getInstance().removeSelectedItems();
+        setUpItemListView();
+        AppData.getInstance().saveItems();
     }
 
 
