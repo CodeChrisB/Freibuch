@@ -377,5 +377,20 @@ public class AppData implements Serializable {
         return settings.isSendNotification();
     }
 
+    public String getShopHeader() {
+        return shoppingEntries.getHeader();
+    }
+
+    public void setShopHeader(String header) {
+        shoppingEntries.setHeader(header);
+    }
+
+    public String getRowMaker() {
+        return shoppingEntries.getRowMarker();
+    }
+
+    public void setRowMaker(String header) {
+        shoppingEntries.setRowMarker(header);
+    }
 
 }

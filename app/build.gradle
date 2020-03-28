@@ -19,6 +19,11 @@ android {
 
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res/layout/Main', 'src/main/res/layouts/main', 'src/main/res/main']
+        }
+    }
 }
 
 
@@ -41,10 +46,6 @@ dependencies {
 
     //to use LocalDate
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
-
-    //to make Notifications
-
-
 
 
 }

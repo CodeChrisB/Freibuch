@@ -40,8 +40,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             }
         });
 
-        ItemListAdapter.ItemListViewHolder evh = new ItemListAdapter.ItemListViewHolder(v);
-        return evh;
+        return new ItemListAdapter.ItemListViewHolder(v);
     }
 
     public ItemListAdapter(ArrayList<Item> list) {

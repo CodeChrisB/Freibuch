@@ -63,6 +63,10 @@
             tools:ignore="InnerclassSeparator" />
 
         <activity
+            android:name="com.example.foodgent.UserInterface.AboutDevsActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
             android:name="com.example.foodgent.UserInterface.AddLogic.AddCooking"
             tools:ignore="InnerclassSeparator" />
 
@@ -74,10 +78,14 @@
             android:name="com.example.foodgent.UserInterface.SettingsActivityModern"
             tools:ignore="InnerclassSeparator" />
 
+        <activity
+            android:name="com.example.foodgent.UserInterface.Premium.ChangeShopListApperance"
+            tools:ignore="InnerclassSeparator" />
 
         <activity
             android:name="com.example.foodgent.Logic.ScanCodeActivity"
             tools:ignore="InnerclassSeparator" />
+
 
         <meta-data
             android:name="preloaded_fonts"

@@ -10,9 +10,27 @@ import java.util.ArrayList;
 public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializable {
 
     ArrayList<ShoppingEntry> shoppingEntries = new ArrayList<>();
-
+    String rowMarker = "";
+    private String header = "";
 
     public ShoppingEntries(){
+
+    }
+
+    public String getHeader() {
+        return header.equals("") ? "\uD83D\uDED2 Meine Einkaufsliste: " : header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public String getRowMarker() {
+        return rowMarker.equals("") ? "-" : rowMarker;
+    }
+
+    public void setRowMarker(String rowMarker) {
+        this.rowMarker = rowMarker;
     }
 
     @Override
@@ -52,11 +70,16 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
         shoppingEntries = objectList;
     }
 
-
     public String toFormatedList() {
+
+        if (header.equals(""))
+            header = "\uD83D\uDED2 Meine Einkaufsliste: ";
+        if (rowMarker.equals(""))
+            rowMarker = "-";
+
         //Create Header
         StringBuilder sb = new StringBuilder();
-        sb.append("\uD83D\uDED2 Meine Einkaufsliste: ");
+        sb.append(getHeader());
         sb.append(System.getProperty("line.separator"));
         sb.append("====================");
         sb.append(System.getProperty("line.separator"));
@@ -64,7 +87,7 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
 
         //call toString Method for every Entry in the List
         for (ShoppingEntry item : AppData.getInstance().getShoppingEntries()) {
-            sb.append("-" + item.toString());
+            sb.append(rowMarker + item.toString());
             sb.append(System.getProperty("line.separator"));
         }
         return sb.toString();

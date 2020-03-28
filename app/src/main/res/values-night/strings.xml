@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">DarkMode</string>
     <string name="app_nameP1">Food</string>
     <string name="app_nameP2">gent</string>
@@ -21,7 +21,9 @@
     <string name="feedback_text">Melde bitte alle Fehler die du findest.</string>
     <string name="grosser_Text">Großer Text</string>
     <string name="placeholderText">Placeholder</string>
-    <string name="storedSettingsFileName">settings.txt</string>
+    <string name="storedSettingsFileName"></string>
+
+    <string name="codeChrisPart">CodeChrisB\nProject Leader\nDesign\nLogic\nPresistence</string>
 
     <string name="setting_lightMode">lightMode</string>
     <string name="setting_darkMode">Dark Mode</string>

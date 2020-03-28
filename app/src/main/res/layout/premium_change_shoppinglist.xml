@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline141"
         app:layout_constraintTop_toTopOf="@+id/guideline139"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/setting_roundtopBarPart"
@@ -62,22 +62,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kochen"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/guideline108"
-        app:layout_constraintStart_toStartOf="@+id/guideline87"
-        app:layout_constraintTop_toTopOf="@+id/guideline91" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline87"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline141"
         android:layout_width="wrap_content"
@@ -91,13 +75,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.17" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline136"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline107"
@@ -119,6 +96,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.72" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline125"
@@ -331,30 +315,6 @@
         app:layout_constraintGuide_percent="0.40" />
 
     <View
-        android:id="@+id/view17"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/round"
-        android:backgroundTint="@color/premiumActiveBg"
-        android:foreground="@drawable/moon"
-        app:layout_constraintBottom_toTopOf="@+id/guideline109"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline87"
-        app:layout_constraintTop_toTopOf="@+id/guideline108" />
-
-    <View
-        android:id="@+id/view18"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/round"
-        android:backgroundTint="@color/premiumActiveBg"
-        android:foreground="@drawable/big_text"
-        app:layout_constraintBottom_toTopOf="@+id/guideline111"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline87"
-        app:layout_constraintTop_toTopOf="@+id/guideline110" />
-
-    <View
         android:id="@+id/view19"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -362,7 +322,6 @@
         android:backgroundTint="@color/fragmentButtonColor"
         android:foreground="@drawable/feedback_letter"
         app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline87"
         tools:ignore="MissingConstraints" />
 
     <View
@@ -373,42 +332,7 @@
         android:backgroundTint="@color/premiumActiveBg"
         android:foreground="@drawable/moon"
         app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline87"
         app:layout_constraintTop_toTopOf="@+id/guideline148" />
-
-    <TextView
-        android:id="@+id/setting_textDelete"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center|left"
-        android:text="Premium Rezepte Hinzufügen"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline109"
-        app:layout_constraintEnd_toStartOf="@+id/guideline88"
-        app:layout_constraintStart_toStartOf="@+id/guideline107"
-        app:layout_constraintTop_toTopOf="@+id/guideline108" />
-
-    <TextView
-        android:id="@+id/setting_textSize"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center|left"
-        android:text="Einkaufslisten Personalisierung"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline111"
-        app:layout_constraintEnd_toStartOf="@+id/guideline88"
-        app:layout_constraintStart_toStartOf="@+id/guideline107"
-        app:layout_constraintTop_toTopOf="@+id/guideline110" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center|left"
-        android:text="Premium"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline88"
-        app:layout_constraintStart_toStartOf="@+id/guideline107" />
 
     <View
         android:id="@+id/view26"
@@ -454,26 +378,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline113" />
 
     <View
-        android:id="@+id/settingP_shoppingListCoustom"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/next_page"
-        app:layout_constraintBottom_toTopOf="@+id/guideline111"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        app:layout_constraintTop_toTopOf="@+id/guideline110" />
-
-    <View
-        android:id="@+id/settingP_addRecipe"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/next_page"
-        app:layout_constraintBottom_toTopOf="@+id/guideline109"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        app:layout_constraintTop_toTopOf="@+id/guideline108" />
-
-    <View
         android:id="@+id/setting_roundtopBarPart2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -482,5 +386,87 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setting_roundtopBarPart" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Einkaufslisten Kopf ändern"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline91"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline137" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Listensymbol"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline111"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline110" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/settingP_textView_changeShopHead"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="z.B Meine Einkaufsliste :"
+        app:layout_constraintBottom_toTopOf="@+id/guideline109"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline91" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/settingP_textView_changeListmarker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="z.B  -->"
+        app:layout_constraintBottom_toTopOf="@+id/guideline116"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline111" />
+
+    <Button
+        android:id="@+id/settingP_button_saveNewHeader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="X"
+        app:layout_constraintBottom_toBottomOf="@+id/settingP_textView_changeShopHead"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline76"
+        app:layout_constraintTop_toTopOf="@+id/settingP_textView_changeShopHead" />
+
+    <Button
+        android:id="@+id/settingP_button_saveMarker"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="X"
+        app:layout_constraintBottom_toBottomOf="@+id/settingP_textView_changeListmarker"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline76"
+        app:layout_constraintTop_toTopOf="@+id/settingP_textView_changeListmarker" />
+
+    <Button
+        android:id="@+id/settingP_button_saveNewHeader2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="X"
+        app:layout_constraintBottom_toBottomOf="@+id/settingP_textView_changeShopHead2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline76"
+        app:layout_constraintTop_toTopOf="@+id/settingP_textView_changeShopHead2" />
+
+    <TextView
+        android:id="@+id/settingP_previewShopList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/guideline122"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline115" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -342,7 +342,8 @@ public class SettingsActivityModern extends AppCompatActivity {
         developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SettingsActivityModern.this, AboutDevsActivity.class);
+                startActivity(intent);
             }
         });
 
