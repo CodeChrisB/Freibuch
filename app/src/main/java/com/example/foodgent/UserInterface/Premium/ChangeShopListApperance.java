@@ -82,7 +82,8 @@ public class ChangeShopListApperance extends AppCompatActivity {
 
         //call toString Method for every Entry in the List
         for (ShoppingEntry item : list) {
-            sb.append(rowMarker + item.toString());
+            String line = rowMarker + item.toString();
+            sb.append(line);
             sb.append(System.getProperty("line.separator"));
         }
         String listText = sb.toString();
