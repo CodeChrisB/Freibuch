@@ -56,35 +56,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline126"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline130"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.80" />
+        app:layout_constraintGuide_percent="0.89" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline127"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline131"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.89" />
+        app:layout_constraintGuide_percent="0.98" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline59"
@@ -153,7 +146,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline131"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline128"
-        app:layout_constraintTop_toTopOf="@+id/guideline130"
+        app:layout_constraintTop_toTopOf="@+id/guideline124"
         app:srcCompat="@drawable/add_foreground" />
 
     <View
@@ -164,7 +157,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline127"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline129"
-        app:layout_constraintTop_toTopOf="@+id/guideline124"
+        app:layout_constraintTop_toTopOf="@+id/guideline126"
         app:srcCompat="@drawable/add_foreground" />
 
     <TextView

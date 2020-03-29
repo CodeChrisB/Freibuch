@@ -358,16 +358,20 @@ public class SettingsActivityModern extends AppCompatActivity {
         premiumManageBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivityModern.this, BarcodeManage.class);
-                startActivity(intent);
+                if (AppData.getInstance().isPremium()) {
+                    Intent intent = new Intent(SettingsActivityModern.this, BarcodeManage.class);
+                    startActivity(intent);
+                }
             }
         });
 
         premiumSpecial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivityModern.this, SpecialSettingsActivity.class);
-                startActivity(intent);
+                if (AppData.getInstance().isPremium()) {
+                    Intent intent = new Intent(SettingsActivityModern.this, SpecialSettingsActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

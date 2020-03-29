@@ -12,9 +12,9 @@
         android:id="@+id/setting_bigBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/half_round"
         android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline140"
+        app:layout_constraintBottom_toTopOf="@+id/guideline150"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline141"
@@ -189,18 +189,11 @@
         app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline110"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.31" />
+        app:layout_constraintGuide_percent="0.29" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline113"
@@ -210,39 +203,25 @@
         app:layout_constraintGuide_percent="0.34" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline114"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline115"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.44" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline118"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.46" />
+        app:layout_constraintGuide_percent="0.52" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline123"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline119"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.54" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline120"
@@ -312,7 +291,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.36" />
 
     <View
         android:id="@+id/view19"
@@ -363,7 +342,6 @@
         android:id="@+id/view29"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline115"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toTopOf="@+id/guideline116" />
@@ -372,7 +350,6 @@
         android:id="@+id/view28"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline114"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toTopOf="@+id/guideline113" />
@@ -391,9 +368,11 @@
         android:id="@+id/textView23"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="bottom"
         android:text="Einkaufslisten Kopf ändern"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline91"
+        app:layout_constraintBottom_toTopOf="@+id/settingP_textView_changeShopHead"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
         app:layout_constraintTop_toTopOf="@+id/guideline137" />
@@ -402,18 +381,37 @@
         android:id="@+id/textView25"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="bottom"
         android:text="Listensymbol"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/settingP_textView_changeListmarker"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline116" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:text="Trennzeichen"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline111"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
-        app:layout_constraintTop_toTopOf="@+id/guideline110" />
+        app:layout_constraintTop_toTopOf="@+id/guideline109"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/settingP_textView_changeShopHead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="z.B Meine Einkaufsliste :"
+        android:textColor="@color/textColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline109"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
@@ -424,7 +422,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="z.B  -->"
-        app:layout_constraintBottom_toTopOf="@+id/guideline116"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toTopOf="@+id/guideline119"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline123" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/settingP_textView_changeSeperator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="z.B ~~~~~~~~~~"
+        android:textColor="@color/textColor"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
         app:layout_constraintTop_toTopOf="@+id/guideline111" />
@@ -450,23 +459,37 @@
         app:layout_constraintTop_toTopOf="@+id/settingP_textView_changeListmarker" />
 
     <Button
-        android:id="@+id/settingP_button_saveNewHeader2"
+        android:id="@+id/settingP_button_saveSeperator"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="X"
-        app:layout_constraintBottom_toBottomOf="@+id/settingP_textView_changeShopHead2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline113"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
         app:layout_constraintStart_toStartOf="@+id/guideline76"
-        app:layout_constraintTop_toTopOf="@+id/settingP_textView_changeShopHead2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline111" />
 
     <TextView
         android:id="@+id/settingP_previewShopList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/half_round"
+        android:backgroundTint="@color/innerBackground"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/guideline122"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@+id/setting_bigBackground"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
         app:layout_constraintStart_toStartOf="@+id/guideline102"
-        app:layout_constraintTop_toTopOf="@+id/guideline115" />
+        app:layout_constraintTop_toTopOf="@+id/guideline118" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:text="  Vorschau :"
+        app:layout_constraintBottom_toTopOf="@+id/guideline118"
+        app:layout_constraintEnd_toStartOf="@+id/guideline88"
+        app:layout_constraintStart_toStartOf="@+id/guideline102"
+        app:layout_constraintTop_toTopOf="@+id/guideline119" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

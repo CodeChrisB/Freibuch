@@ -47,5 +47,8 @@ dependencies {
     //to use LocalDate
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 
+    //to count emojis as single character
+    implementation 'com.vdurmont:emoji-java:4.0.0'
+
 
 }

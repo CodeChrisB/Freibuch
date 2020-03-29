@@ -389,8 +389,16 @@ public class AppData implements Serializable {
         return shoppingEntries.getRowMarker();
     }
 
-    public void setRowMaker(String header) {
-        shoppingEntries.setRowMarker(header);
+    public void setRowMaker(String marker) {
+        shoppingEntries.setRowMarker(marker);
+    }
+
+    public String getSeperator() {
+        return shoppingEntries.getSeperartor();
+    }
+
+    public void setSeperator(String seperator) {
+        shoppingEntries.setSeperartor(seperator);
     }
 
 }

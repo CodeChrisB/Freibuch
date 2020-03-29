@@ -27,7 +27,7 @@ public class AboutDevsActivity extends AppCompatActivity {
         //endregion
 
 
-        String codeChrisPart = "•Project Leader\nPlannung\nLayouts\n•App Design\n•App Logic\n•Presistence";
+        String codeChrisPart = "•Project Leader\n•Plannung\n•Layouts\n•App Design\n•App Logic\n•Presistence";
         TextView codeChrisText = findViewById(R.id.textView_codeChrisPart);
         String text = codeChrisPart.replace("\n", "&lt;br&gt;");
         codeChrisText.setText(Html.fromHtml(Html.fromHtml(text).toString()));

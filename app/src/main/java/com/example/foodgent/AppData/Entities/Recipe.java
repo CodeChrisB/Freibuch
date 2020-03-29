@@ -17,11 +17,13 @@ public class Recipe implements Serializable {
         this.selected = selected;
     }
 
+
     public Recipe(String name, String description, ArrayList<Item> listOfItems) {
         this.name = name;
         this.description = description;
         this.listOfItems = listOfItems;
         this.isSeleted = isSeleted;
+
     }
 
     boolean isSeleted = false;

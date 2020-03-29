@@ -12,14 +12,13 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.Recipe;
 import com.example.foodgent.AppData.Logic.AppData;
-import com.example.foodgent.Entity.ItemListAdapter;
-import com.example.foodgent.Entity.RecipeListAdapter;
+import com.example.foodgent.Entity.RecyclerViewAdapter;
 import com.example.fragment.R;
 
 import java.util.ArrayList;
@@ -40,19 +39,18 @@ public class RecipeActivity extends Fragment {
         ArrayList<Recipe> list = AppData.getInstance().getRecipes();
 
         mListView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(context);
-        RecipeListAdapter adapter = new RecipeListAdapter(list);
-        mListView.setLayoutManager(mLayoutManager);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(context, list);
+        mListView.setLayoutManager(new GridLayoutManager(context, 3));
         mListView.setAdapter(adapter);
     }
 
     public static void setNull() {
         if (context != null) {
-            ArrayList<Item> list = new ArrayList<>();
+            ArrayList<Recipe> list = new ArrayList<>();
 
             mListView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(context);
-            ItemListAdapter adapter = new ItemListAdapter(list);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(context, list);
             mListView.setLayoutManager(mLayoutManager);
             mListView.setAdapter(adapter);
         }

@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializable {
 
     ArrayList<ShoppingEntry> shoppingEntries = new ArrayList<>();
-    String rowMarker = "";
+    private String rowMarker = "";
     private String header = "";
+    private String seperartor = "";
 
     public ShoppingEntries(){
 
@@ -70,18 +71,28 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
         shoppingEntries = objectList;
     }
 
+    public String getSeperartor() {
+        return seperartor.equals("") ? "=========== " : seperartor;
+    }
+
+    public void setSeperartor(String seperartor) {
+        this.seperartor = seperartor;
+    }
+
     public String toFormatedList() {
 
         if (header.equals(""))
             header = "\uD83D\uDED2 Meine Einkaufsliste: ";
         if (rowMarker.equals(""))
             rowMarker = "-";
+        if (seperartor.equals(""))
+            seperartor = "==========";
 
         //Create Header
         StringBuilder sb = new StringBuilder();
         sb.append(getHeader());
         sb.append(System.getProperty("line.separator"));
-        sb.append("====================");
+        sb.append(seperartor);
         sb.append(System.getProperty("line.separator"));
 
 

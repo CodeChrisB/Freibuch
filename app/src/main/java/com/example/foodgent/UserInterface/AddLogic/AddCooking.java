@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgent.AppData.Entities.Recipe;
+import com.example.foodgent.AppData.Logic.AppData;
+import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
@@ -29,6 +33,21 @@ public class AddCooking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addpage_cooking);
         Log.d(TAG,"OnCreate: Started");
+
+
+        final TextView recipeName = findViewById(R.id.eT_recipeName);
+
+        Button addRecipe = findViewById(R.id.button_addRecipe);
+        addRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppData.getInstance().addRecipe(new Recipe(recipeName.getText().toString(), "Decs", null));
+                AppData.getInstance().saveRecipe();
+                RecipeActivity.setUpRecipeList();
+                finish();
+            }
+        });
+
 
         Button navButton = findViewById(R.id.button_navSecond);
         navButton.bringToFront();

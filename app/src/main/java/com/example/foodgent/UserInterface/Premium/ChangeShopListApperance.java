@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.Logic.AppData;
 import com.example.fragment.R;
+import com.vdurmont.emoji.EmojiParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +31,17 @@ public class ChangeShopListApperance extends AppCompatActivity {
         final TextView shopMarker = findViewById(R.id.settingP_textView_changeListmarker);
         shopMarker.setText(AppData.getInstance().getRowMaker());
 
+        final TextView shopseperator = findViewById(R.id.settingP_textView_changeSeperator);
+        shopseperator.setText(AppData.getInstance().getSeperator());
+
         setUpPreview();
 
-        Button saveNewHeader = findViewById(R.id.settingP_button_saveNewHeader);
+        final Button saveNewHeader = findViewById(R.id.settingP_button_saveNewHeader);
         saveNewHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (getStringLengthFromTextView(saveNewHeader) > 30)
+                    return;
                 AppData.getInstance().setShopHeader(shopHeader.getText().toString());
                 AppData.getInstance().saveShopEntries();
                 setUpPreview();
@@ -43,10 +49,12 @@ public class ChangeShopListApperance extends AppCompatActivity {
         });
 
 
-        Button saveRowMarker = findViewById(R.id.settingP_button_saveMarker);
+        final Button saveRowMarker = findViewById(R.id.settingP_button_saveMarker);
         saveRowMarker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (getStringLengthFromTextView(shopMarker) > 6)
+                    return;
                 AppData.getInstance().setRowMaker(shopMarker.getText().toString());
                 AppData.getInstance().saveShopEntries();
                 setUpPreview();
@@ -54,9 +62,40 @@ public class ChangeShopListApperance extends AppCompatActivity {
         });
 
 
+        final Button saveSeperator = findViewById(R.id.settingP_button_saveSeperator);
+        saveSeperator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getStringLengthFromTextView(shopseperator) > 20)
+                    return;
+                AppData.getInstance().setSeperator(shopseperator.getText().toString());
+                AppData.getInstance().saveShopEntries();
+                setUpPreview();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
         final TextView listPreview = findViewById(R.id.settingP_previewShopList);
 
 
+    }
+
+
+    private int getStringLengthFromTextView(TextView textView) {
+        String s = textView.getText().toString();
+        int emojiCount = EmojiParser.extractEmojis(s).size();
+        String noEmojiString = EmojiParser.removeAllEmojis(s);
+        int emojiAndStringCount = noEmojiString.length() + emojiCount;
+        return emojiAndStringCount;
     }
 
     public void setUpPreview() {
@@ -65,7 +104,7 @@ public class ChangeShopListApperance extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
         sb.append(AppData.getInstance().getShopHeader());
         sb.append(System.getProperty("line.separator"));
-        sb.append("====================");
+        sb.append(AppData.getInstance().getSeperator());
         sb.append(System.getProperty("line.separator"));
 
         String rowMarker = AppData.getInstance().getRowMaker();
@@ -78,6 +117,14 @@ public class ChangeShopListApperance extends AppCompatActivity {
         list.add(new ShoppingEntry("Kirschkuchen"));
         list.add(new ShoppingEntry("Karotten"));
         list.add(new ShoppingEntry("Limonade"));
+
+
+        list.add(new ShoppingEntry("Zitrone"));
+        list.add(new ShoppingEntry("Pfefferminz Tee"));
+        list.add(new ShoppingEntry("Küchenrolle"));
+        list.add(new ShoppingEntry("Ketchup"));
+        list.add(new ShoppingEntry("Butter"));
+        list.add(new ShoppingEntry("Antischocken"));
 
 
         //call toString Method for every Entry in the List
