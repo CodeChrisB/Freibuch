@@ -136,8 +136,23 @@ public class MainActivity extends AppCompatActivity {
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
+
+
         AppData.getInstance().loadData();
 
+        AppData.getInstance().getRecipeItems();
+
+
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
+        AppData.getInstance().addRecipeItem("Apfel");
 
         AppData.getInstance().saveAppData();
 

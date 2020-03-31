@@ -5,9 +5,54 @@ import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
-    String name,description;
+    String name, description, recipeType;
     ArrayList<Item> listOfItems;
     boolean selected;
+    boolean isFavourite;
+    int portions, time;
+
+    public Recipe(String name, String description, ArrayList<Item> listOfItems, int portions, int time, boolean isFavourite) {
+        this.name = name;
+        this.description = description;
+        this.listOfItems = listOfItems;
+        this.isSeleted = isSeleted;
+        this.portions = portions;
+        this.time = time;
+        this.isFavourite = isFavourite;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getPortions() {
+        if (portions > 0)
+            return portions;
+        return -1;
+    }
+
+    public void setPortions(int portions) {
+        this.portions = portions;
+    }
+
+    public String getRecipeType() {
+        if (recipeType != null)
+            return recipeType;
+        return "";
+    }
+
 
     public boolean isSelected() {
         return selected;
@@ -17,13 +62,8 @@ public class Recipe implements Serializable {
         this.selected = selected;
     }
 
-
-    public Recipe(String name, String description, ArrayList<Item> listOfItems) {
-        this.name = name;
-        this.description = description;
-        this.listOfItems = listOfItems;
-        this.isSeleted = isSeleted;
-
+    public void setRecipeType(String recipeType) {
+        this.recipeType = recipeType;
     }
 
     boolean isSeleted = false;

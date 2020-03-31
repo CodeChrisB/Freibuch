@@ -8,6 +8,7 @@ import com.example.foodgent.AppData.Entities.Settings;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.MainLists.Barcodes;
 import com.example.foodgent.AppData.MainLists.Items;
+import com.example.foodgent.AppData.MainLists.RecipeItems;
 import com.example.foodgent.AppData.MainLists.Recipes;
 import com.example.foodgent.AppData.MainLists.ShoppingEntries;
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ public class AppData implements Serializable {
     protected static Items items = new Items();
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
+    protected static RecipeItems recipeItems = new RecipeItems();
     private String premium;
     //endregion
 
@@ -76,6 +78,7 @@ public class AppData implements Serializable {
         String shopping = internalStorage.loadData("shopping");
         premium = internalStorage.loadData("premium");
         String setting = internalStorage.loadData("settings");
+        String recipeItem = internalStorage.loadData("recipeItems");
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
@@ -83,9 +86,19 @@ public class AppData implements Serializable {
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
         shoppingEntries = (shopping != null) ? loadShopping(shopping) : setShopping();
         settings = (setting != null) ? loadSetting(setting) : setSetting();
+        recipeItems = (recipeItem != null) ? loadRecipeItems(recipeItem) : setRecipeItem();
 
         //endregion
     }
+
+    private RecipeItems loadRecipeItems(String recipe) {
+        return (!recipe.equals("null")) ? gson.fromJson(recipe, RecipeItems.class) : setRecipeItem();
+    }
+
+    private RecipeItems setRecipeItem() {
+        return new RecipeItems();
+    }
+
 
     private Settings setSetting() {
         return new Settings();
@@ -140,6 +153,9 @@ public class AppData implements Serializable {
             internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
             internalStorage.saveData("premium", premium);
             internalStorage.saveData("settings", gson.toJson(settings));
+            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
+
+            saveRecipeItems();
         } catch (Exception ex) {
             return false;
         }
@@ -186,6 +202,15 @@ public class AppData implements Serializable {
     public boolean saveSettings() {
         try {
             internalStorage.saveData("settings", gson.toJson(settings));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveRecipeItems() {
+        try {
+            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
         } catch (Exception ex) {
             return false;
         }
@@ -240,6 +265,16 @@ public class AppData implements Serializable {
         }
         return items.getArray();
     }
+
+    public ArrayList<String> getRecipeItems() {
+        try {
+            return recipeItems.getArray();
+        } catch (Exception ex) {
+            items = new Items();
+        }
+        return recipeItems.getArray();
+    }
+
     //endregion
 
     //region add Object
@@ -259,6 +294,11 @@ public class AppData implements Serializable {
     public boolean addItem(Item item) {
         return items.addTo(item);
     }
+
+    public boolean addRecipeItem(String item) {
+        return recipeItems.addTo(item);
+    }
+
     //endregion
 
     //region remove object
@@ -324,9 +364,15 @@ public class AppData implements Serializable {
 
     ///endregion
 
+    //region share list
+
     public String getFormattedShoppingList() {
         return shoppingEntries.toFormatedList();
     }
+
+    //endregion
+
+    //region premium
 
     public boolean isPremium() {
         return !premium.equals("no");
@@ -341,6 +387,10 @@ public class AppData implements Serializable {
 
     }
 
+    //endregion
+
+
+    //region remove selected
     public void removeSelectedShoppingEntries() {
         shoppingEntries.removeSelected();
     }
@@ -353,9 +403,10 @@ public class AppData implements Serializable {
         recipes.removeSelected();
     }
 
-    public void setNotification(boolean status) {
-        settings.setSendNotification(status);
-    }
+    //endregion
+
+
+    //region darkmode
 
     public boolean isDarkMode() {
         return settings.isUseDarkmode();
@@ -365,6 +416,11 @@ public class AppData implements Serializable {
         settings.setUseDarkmode(darkmode);
     }
 
+    //endregion
+
+
+    //region text size
+
     public boolean isBigText() {
         return settings.isUseBigText();
     }
@@ -373,9 +429,18 @@ public class AppData implements Serializable {
         settings.setUseBigText(text);
     }
 
+    //endregion
+
+
     public boolean isNotificationOn() {
         return settings.isSendNotification();
     }
+
+    public void setNotification(boolean status) {
+        settings.setSendNotification(status);
+    }
+
+    //region shoppinglist coustomization
 
     public String getShopHeader() {
         return shoppingEntries.getHeader();
@@ -400,5 +465,7 @@ public class AppData implements Serializable {
     public void setSeperator(String seperator) {
         shoppingEntries.setSeperartor(seperator);
     }
+
+    //endregion
 
 }
