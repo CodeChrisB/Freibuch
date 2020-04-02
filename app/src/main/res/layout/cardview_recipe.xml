@@ -30,11 +30,12 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="10"
             android:gravity="center"
+            android:autoSizeMinTextSize="2sp"
+            android:autoSizeTextType="uniform"
             android:text="Rezept Name">
 
+
         </CheckBox>
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

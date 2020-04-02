@@ -24,8 +24,8 @@ public class AppData implements Serializable {
     protected static Items items = new Items();
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
-    protected static RecipeItems recipeItems = new RecipeItems();
     private String premium;
+    protected static RecipeItems recipeItems = new RecipeItems();
     //endregion
 
     //region Gson & InternalStorage Init
@@ -82,21 +82,21 @@ public class AppData implements Serializable {
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
+        recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
         shoppingEntries = (shopping != null) ? loadShopping(shopping) : setShopping();
         settings = (setting != null) ? loadSetting(setting) : setSetting();
-        recipeItems = (recipeItem != null) ? loadRecipeItems(recipeItem) : setRecipeItem();
 
         //endregion
     }
 
-    private RecipeItems loadRecipeItems(String recipe) {
-        return (!recipe.equals("null")) ? gson.fromJson(recipe, RecipeItems.class) : setRecipeItem();
+    private RecipeItems setRecipeItems() {
+        return new RecipeItems();
     }
 
-    private RecipeItems setRecipeItem() {
-        return new RecipeItems();
+    private RecipeItems loadRecipeItem(String recipe) {
+        return (!recipe.equals("null")) ? gson.fromJson(recipe, RecipeItems.class) : setRecipeItems();
     }
 
 
@@ -147,15 +147,14 @@ public class AppData implements Serializable {
         // TODO: 01/03/2020 add settings
         //region Save all Values
         try {
-            internalStorage.saveData("recipes", gson.toJson(recipes));
-            internalStorage.saveData("items", gson.toJson(items));
-            internalStorage.saveData("barcode", gson.toJson(barcodes));
-            internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
-            internalStorage.saveData("premium", premium);
-            internalStorage.saveData("settings", gson.toJson(settings));
-            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
-
+            saveRecipe();
+            saveShopEntries();
+            saveItems();
+            saveSettings();
+            saveSettings();
+            saveBarcode();
             saveRecipeItems();
+
         } catch (Exception ex) {
             return false;
         }
@@ -166,6 +165,15 @@ public class AppData implements Serializable {
     public boolean saveRecipe() {
         try {
             internalStorage.saveData("recipes", gson.toJson(recipes));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveRecipeItems() {
+        try {
+            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
         } catch (Exception ex) {
             return false;
         }
@@ -208,14 +216,7 @@ public class AppData implements Serializable {
         return true;
     }
 
-    public boolean saveRecipeItems() {
-        try {
-            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }
+
 
     public void DeleteAppData() {
         //barcodes = new Barcodes();
@@ -230,6 +231,11 @@ public class AppData implements Serializable {
     //endregion
 
     //region get Object
+
+    public ArrayList<String> getRecipeItems() {
+        return recipeItems.getRecipeItems();
+    }
+
     public ArrayList<Barcode> getBarcodes() {
         try {
             return barcodes.getArray();
@@ -266,18 +272,15 @@ public class AppData implements Serializable {
         return items.getArray();
     }
 
-    public ArrayList<String> getRecipeItems() {
-        try {
-            return recipeItems.getArray();
-        } catch (Exception ex) {
-            items = new Items();
-        }
-        return recipeItems.getArray();
-    }
 
     //endregion
 
     //region add Object
+
+    public boolean addRecipeItem(String item) {
+        return recipeItems.addTo(item);
+    }
+
     public boolean addBarcode(Barcode barcode) {
         return barcodes.addTo(barcode);
 
@@ -295,9 +298,6 @@ public class AppData implements Serializable {
         return items.addTo(item);
     }
 
-    public boolean addRecipeItem(String item) {
-        return recipeItems.addTo(item);
-    }
 
     //endregion
 
@@ -317,6 +317,7 @@ public class AppData implements Serializable {
     public void removeItem(Item item) {
         items.removeObject(item);
     }
+
     //endregion
 
     //region RemoveAll
@@ -335,6 +336,7 @@ public class AppData implements Serializable {
     public void removeAllShoppingEntries() {
         shoppingEntries.removeAll();
     }
+
     //endregion
 
     //region Barcode Functions

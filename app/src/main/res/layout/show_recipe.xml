@@ -14,12 +14,19 @@
         android:layout_height="0dp"
         android:background="@drawable/round_corner"
         android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline140"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline141"
-        app:layout_constraintTop_toTopOf="@+id/guideline139"
+        app:layout_constraintTop_toTopOf="@+id/guideline134"
         app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline134"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/setting_roundtopBarPart"
@@ -36,12 +43,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline134"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+    <View
+        android:id="@+id/view13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/half_round"
+        android:backgroundTint="@color/innerBackground2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline113"
+        app:layout_constraintEnd_toStartOf="@+id/guideline142"
+        app:layout_constraintStart_toStartOf="@+id/guideline141"
+        app:layout_constraintTop_toTopOf="@+id/setting_bigBackground" />
 
     <TextView
         android:id="@+id/textView_showRecipe_name"
@@ -67,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.06" />
+        app:layout_constraintGuide_percent="0.04" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline102"
@@ -89,6 +100,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.42" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline172"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.46" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline88"
@@ -402,11 +420,11 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline113"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline112"
+        app:layout_constraintStart_toStartOf="@+id/guideline172"
         app:layout_constraintTop_toTopOf="@+id/guideline137" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageView_showRecipe_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
@@ -417,5 +435,14 @@
         app:layout_constraintTop_toTopOf="@+id/guideline137"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/splash_logo" />
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/setting_bigBackground"
+        app:layout_constraintEnd_toStartOf="@+id/guideline142"
+        app:layout_constraintStart_toStartOf="@+id/setting_bigBackground"
+        app:layout_constraintTop_toTopOf="@+id/guideline115" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

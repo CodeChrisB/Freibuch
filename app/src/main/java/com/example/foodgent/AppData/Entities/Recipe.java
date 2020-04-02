@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Recipe implements Serializable {
 
     String name, description, recipeType;
-    ArrayList<Item> listOfItems;
+    ArrayList<RecipeItem> listOfItems;
     boolean selected;
     boolean isFavourite;
     int portions, time;
 
-    public Recipe(String name, String description, ArrayList<Item> listOfItems, int portions, int time, boolean isFavourite) {
+    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
         this.name = name;
         this.description = description;
         this.listOfItems = listOfItems;
@@ -92,5 +92,7 @@ public class Recipe implements Serializable {
         isSeleted = seleted;
     }
 
+
+    public String getFormatedRecipeList(Textview setRecipe)
 
 }

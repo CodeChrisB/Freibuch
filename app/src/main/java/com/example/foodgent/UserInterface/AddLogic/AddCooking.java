@@ -33,6 +33,7 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
     public static RecyclerView mRecyclerview;
     private static RecyclerView.LayoutManager mLayoutManager;
     private boolean isFav = false;
+    RecipeItemListAdapter reyclerAdapter;
 
 
     //removes the slide animation, when opening this activity
@@ -80,7 +81,7 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                                 new Recipe(
                                         recipeName.getText().toString(),
                                         "Decs",
-                                        null,
+                                        reyclerAdapter.getNeededRecipeItems(),
                                         Integer.parseInt(portions.getText().toString()),
                                         Integer.parseInt(time.getText().toString()),
                                         isFav
@@ -120,11 +121,12 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
 
     public void setUpListView() {
         mRecyclerview = findViewById(R.id.recyclerView_recipeItem);
+        // TODO: 01/04/2020 Add Cooking list 
         ArrayList<String> list = AppData.getInstance().getRecipeItems();
 
         mRecyclerview.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        RecipeItemListAdapter reyclerAdapter = new RecipeItemListAdapter(list);
+        reyclerAdapter = new RecipeItemListAdapter(list);
         mRecyclerview.setLayoutManager(mLayoutManager);
         mRecyclerview.setAdapter(reyclerAdapter);
     }

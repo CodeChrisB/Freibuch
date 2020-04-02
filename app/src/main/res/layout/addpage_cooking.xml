@@ -18,19 +18,21 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline166"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/view11"
+        app:layout_constraintTop_toTopOf="@+id/guideline173"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view11"
         android:layout_width="0dp"
-        android:layout_height="33dp"
+        android:layout_height="0dp"
         android:background="@drawable/top_round"
         android:backgroundTint="@color/themeColor"
+        app:layout_constraintBottom_toTopOf="@+id/guideline173"
         app:layout_constraintEnd_toStartOf="@+id/guideline166"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline33" />
+        app:layout_constraintTop_toTopOf="@+id/guideline33"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_navSecond"
@@ -136,7 +138,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.11" />
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline173"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline40"
@@ -150,21 +159,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.31" />
+        app:layout_constraintGuide_percent="0.36" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline167"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.39" />
+        app:layout_constraintGuide_percent="0.44" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline151"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23" />
+        app:layout_constraintGuide_percent="0.28" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline39"
@@ -231,9 +240,11 @@
         android:hint="Aufwand (Minuten)"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/guideline167"
-        app:layout_constraintEnd_toStartOf="@+id/guideline166"
-        app:layout_constraintStart_toStartOf="@+id/guideline168"
-        app:layout_constraintTop_toTopOf="@+id/guideline35" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline157"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline162"
+        app:layout_constraintTop_toTopOf="@+id/guideline35"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/eT_recipeName"
@@ -271,14 +282,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="casual"
-        android:gravity="center"
-        android:text="Rezept Hinzufügen"
+        android:gravity="center_vertical"
+        android:text="FoodGent"
         android:textColor="@color/textColor"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline40"
         app:layout_constraintEnd_toStartOf="@+id/guideline161"
-        app:layout_constraintStart_toEndOf="@+id/button_navSecond"
+        app:layout_constraintStart_toStartOf="@+id/guideline162"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -297,10 +308,27 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:drawable/btn_star_big_off"
-        app:layout_constraintBottom_toTopOf="@+id/guideline167"
-        app:layout_constraintEnd_toStartOf="@+id/guideline130"
+        app:layout_constraintBottom_toTopOf="@+id/guideline173"
+        app:layout_constraintEnd_toStartOf="@+id/guideline170"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline161"
+        app:layout_constraintTop_toTopOf="@+id/guideline33"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Rezept Hinzufügen"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/guideline173"
+        app:layout_constraintEnd_toStartOf="@+id/guideline161"
         app:layout_constraintStart_toStartOf="@+id/guideline162"
-        app:layout_constraintTop_toTopOf="@+id/guideline35" />
+        app:layout_constraintTop_toTopOf="@+id/guideline33" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

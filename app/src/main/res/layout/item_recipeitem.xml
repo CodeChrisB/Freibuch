@@ -8,18 +8,45 @@
     android:foreground="?attr/selectableItemBackground">
 
 
+    <View
+        android:id="@+id/view_recipeItemBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_recipeItemAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView_recipeItem"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="@drawable/fragment_active_button"
         android:gravity="center|left"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline65" />
+
+    <TextView
+        android:id="@+id/textView_recipeItemAmount"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center|right"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_recipeItem"
+        app:layout_constraintTop_toTopOf="@+id/guideline65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline176"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

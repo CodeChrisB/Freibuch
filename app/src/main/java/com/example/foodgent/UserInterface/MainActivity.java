@@ -140,19 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
         AppData.getInstance().loadData();
 
-        AppData.getInstance().getRecipeItems();
-
-
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
-        AppData.getInstance().addRecipeItem("Apfel");
 
         AppData.getInstance().saveAppData();
 
@@ -161,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
         notificationService.notify("Foogent Title", "Hallo ich bin kuehli");
         notificationService.notify("Foogent", "Hallo ich bin kuehli.");
-
 
 
 

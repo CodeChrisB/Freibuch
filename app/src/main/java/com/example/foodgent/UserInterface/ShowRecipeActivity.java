@@ -44,19 +44,37 @@ public class ShowRecipeActivity extends AppCompatActivity {
     }
 
     private void setInfo(Recipe recipe) {
+        //init the needed fields
         String recipeType = recipe.getRecipeType();
         String name = recipe.getName();
         int portions = recipe.getPortions();
         int timeMinutes = recipe.getTime();
         boolean isFav = recipe.isFavourite();
-        String fav = "Favourite : ";
-        fav += isFav ? "True" : "False";
+        String fav = "Lieblingsrezept : ";
+        fav += isFav ? "Ja" : "Nein";
 
-        String text = "•Recipe Type " + recipeType + "\n•Name " + name + "\n•Portionen" + portions + "\n•Zeit " + timeMinutes + "\n•" + fav;
+
+        //add to string if the information is available
+        String text = "";
+        if (!recipeType.equals(""))
+            text += "•Recipe Type " + recipeType;
+
+        if (!name.equals(""))
+            text += "\n•Name " + name;
+
+        if (portions > 0)
+            text += "\n•Portionen" + portions;
+
+        if (timeMinutes > 0)
+            text += "\n•Zeit " + timeMinutes;
+
+
+        text += "\n•" + fav;
+
+
+        //set the information we got from the fields into the TextView
         text = text.replace("\n", "&lt;br&gt;");
         TextView informationText = findViewById(R.id.textView_showRecipe_information);
         informationText.setText(Html.fromHtml(Html.fromHtml(text).toString()));
-
-
     }
 }
