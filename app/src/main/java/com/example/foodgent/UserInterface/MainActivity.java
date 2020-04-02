@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
+
+
         AppData.getInstance().loadData();
 
 
@@ -146,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
         notificationService.notify("Foogent Title", "Hallo ich bin kuehli");
         notificationService.notify("Foogent", "Hallo ich bin kuehli.");
-
 
 
 

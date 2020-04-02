@@ -13,8 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Recipe;
-import com.example.foodgent.UserInterface.AddLogic.AddCooking;
+import com.example.foodgent.UserInterface.ShowRecipeActivity;
 import com.example.fragment.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -55,7 +56,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, AddCooking.class);
+                Intent intent = new Intent(mContext, ShowRecipeActivity.class);
+                Gson gson = new Gson();
+
+                String json = gson.toJson(mData.get(position));
+                intent.putExtra("recipe", json);
 
                 // passing data to the book activity
 //                intent.putExtra("Title", mData.get(position).getTitle());

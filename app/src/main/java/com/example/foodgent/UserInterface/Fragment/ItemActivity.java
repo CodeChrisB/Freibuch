@@ -208,8 +208,12 @@ public class ItemActivity extends Fragment {
 
 
                     Item item = new Item(itemName.getText().toString(), itemDesc.getText().toString(), date, amount);
-                    AppData.getInstance().addItem(item);
-                    AppData.getInstance().saveItems();
+                    AppData app = AppData.getInstance();
+                    app.addItem(item);
+                    app.saveItems();
+                    app.addRecipeItem(item.getName());
+                    app.saveRecipeItems();
+                    app.loadData();
                     ItemActivity.setUpItemListView();
 
                     //remove barcode from Activity values before dialog close

@@ -8,6 +8,7 @@ import com.example.foodgent.AppData.Entities.Settings;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.MainLists.Barcodes;
 import com.example.foodgent.AppData.MainLists.Items;
+import com.example.foodgent.AppData.MainLists.RecipeItems;
 import com.example.foodgent.AppData.MainLists.Recipes;
 import com.example.foodgent.AppData.MainLists.ShoppingEntries;
 import com.google.gson.Gson;
@@ -24,6 +25,7 @@ public class AppData implements Serializable {
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
     private String premium;
+    protected static RecipeItems recipeItems = new RecipeItems();
     //endregion
 
     //region Gson & InternalStorage Init
@@ -76,9 +78,11 @@ public class AppData implements Serializable {
         String shopping = internalStorage.loadData("shopping");
         premium = internalStorage.loadData("premium");
         String setting = internalStorage.loadData("settings");
+        String recipeItem = internalStorage.loadData("recipeItems");
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
+        recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
         shoppingEntries = (shopping != null) ? loadShopping(shopping) : setShopping();
@@ -86,6 +90,15 @@ public class AppData implements Serializable {
 
         //endregion
     }
+
+    private RecipeItems setRecipeItems() {
+        return new RecipeItems();
+    }
+
+    private RecipeItems loadRecipeItem(String recipe) {
+        return (!recipe.equals("null")) ? gson.fromJson(recipe, RecipeItems.class) : setRecipeItems();
+    }
+
 
     private Settings setSetting() {
         return new Settings();
@@ -134,12 +147,14 @@ public class AppData implements Serializable {
         // TODO: 01/03/2020 add settings
         //region Save all Values
         try {
-            internalStorage.saveData("recipes", gson.toJson(recipes));
-            internalStorage.saveData("items", gson.toJson(items));
-            internalStorage.saveData("barcode", gson.toJson(barcodes));
-            internalStorage.saveData("shopping", gson.toJson(shoppingEntries));
-            internalStorage.saveData("premium", premium);
-            internalStorage.saveData("settings", gson.toJson(settings));
+            saveRecipe();
+            saveShopEntries();
+            saveItems();
+            saveSettings();
+            saveSettings();
+            saveBarcode();
+            saveRecipeItems();
+
         } catch (Exception ex) {
             return false;
         }
@@ -150,6 +165,15 @@ public class AppData implements Serializable {
     public boolean saveRecipe() {
         try {
             internalStorage.saveData("recipes", gson.toJson(recipes));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean saveRecipeItems() {
+        try {
+            internalStorage.saveData("recipeItems", gson.toJson(recipeItems));
         } catch (Exception ex) {
             return false;
         }
@@ -192,6 +216,8 @@ public class AppData implements Serializable {
         return true;
     }
 
+
+
     public void DeleteAppData() {
         //barcodes = new Barcodes();
         recipes = new Recipes();
@@ -205,6 +231,11 @@ public class AppData implements Serializable {
     //endregion
 
     //region get Object
+
+    public ArrayList<String> getRecipeItems() {
+        return recipeItems.getRecipeItems();
+    }
+
     public ArrayList<Barcode> getBarcodes() {
         try {
             return barcodes.getArray();
@@ -240,9 +271,16 @@ public class AppData implements Serializable {
         }
         return items.getArray();
     }
+
+
     //endregion
 
     //region add Object
+
+    public boolean addRecipeItem(String item) {
+        return recipeItems.addTo(item);
+    }
+
     public boolean addBarcode(Barcode barcode) {
         return barcodes.addTo(barcode);
 
@@ -259,6 +297,8 @@ public class AppData implements Serializable {
     public boolean addItem(Item item) {
         return items.addTo(item);
     }
+
+
     //endregion
 
     //region remove object
@@ -277,6 +317,7 @@ public class AppData implements Serializable {
     public void removeItem(Item item) {
         items.removeObject(item);
     }
+
     //endregion
 
     //region RemoveAll
@@ -295,6 +336,7 @@ public class AppData implements Serializable {
     public void removeAllShoppingEntries() {
         shoppingEntries.removeAll();
     }
+
     //endregion
 
     //region Barcode Functions
@@ -324,9 +366,15 @@ public class AppData implements Serializable {
 
     ///endregion
 
+    //region share list
+
     public String getFormattedShoppingList() {
         return shoppingEntries.toFormatedList();
     }
+
+    //endregion
+
+    //region premium
 
     public boolean isPremium() {
         return !premium.equals("no");
@@ -341,6 +389,10 @@ public class AppData implements Serializable {
 
     }
 
+    //endregion
+
+
+    //region remove selected
     public void removeSelectedShoppingEntries() {
         shoppingEntries.removeSelected();
     }
@@ -353,9 +405,10 @@ public class AppData implements Serializable {
         recipes.removeSelected();
     }
 
-    public void setNotification(boolean status) {
-        settings.setSendNotification(status);
-    }
+    //endregion
+
+
+    //region darkmode
 
     public boolean isDarkMode() {
         return settings.isUseDarkmode();
@@ -365,6 +418,11 @@ public class AppData implements Serializable {
         settings.setUseDarkmode(darkmode);
     }
 
+    //endregion
+
+
+    //region text size
+
     public boolean isBigText() {
         return settings.isUseBigText();
     }
@@ -373,9 +431,18 @@ public class AppData implements Serializable {
         settings.setUseBigText(text);
     }
 
+    //endregion
+
+
     public boolean isNotificationOn() {
         return settings.isSendNotification();
     }
+
+    public void setNotification(boolean status) {
+        settings.setSendNotification(status);
+    }
+
+    //region shoppinglist coustomization
 
     public String getShopHeader() {
         return shoppingEntries.getHeader();
@@ -400,5 +467,7 @@ public class AppData implements Serializable {
     public void setSeperator(String seperator) {
         shoppingEntries.setSeperartor(seperator);
     }
+
+    //endregion
 
 }

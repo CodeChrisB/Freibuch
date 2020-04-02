@@ -5,10 +5,54 @@ import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
-    String name;
-    ArrayList<Item> listOfItems;
-    ArrayList<String> steps;
+    String name, description, recipeType;
+    ArrayList<RecipeItem> listOfItems;
     boolean selected;
+    boolean isFavourite;
+    int portions, time;
+
+    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
+        this.name = name;
+        this.description = description;
+        this.listOfItems = listOfItems;
+        this.isSeleted = isSeleted;
+        this.portions = portions;
+        this.time = time;
+        this.isFavourite = isFavourite;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getPortions() {
+        if (portions > 0)
+            return portions;
+        return -1;
+    }
+
+    public void setPortions(int portions) {
+        this.portions = portions;
+    }
+
+    public String getRecipeType() {
+        if (recipeType != null)
+            return recipeType;
+        return "";
+    }
+
 
     public boolean isSelected() {
         return selected;
@@ -18,15 +62,8 @@ public class Recipe implements Serializable {
         this.selected = selected;
     }
 
-    public int getNumOfSeps(){
-        return steps.size();
-    }
-
-    public Recipe(String name, ArrayList<String> steps, ArrayList<Item> listOfItems) {
-        this.name = name;
-        this.steps = steps;
-        this.listOfItems = listOfItems;
-        this.isSeleted = isSeleted;
+    public void setRecipeType(String recipeType) {
+        this.recipeType = recipeType;
     }
 
     boolean isSeleted = false;
@@ -39,20 +76,12 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Item> getListOfItems() {
-        return listOfItems;
+    public String getDescription() {
+        return description;
     }
 
-    public void setListOfItems(ArrayList<Item> listOfItems) {
-        this.listOfItems = listOfItems;
-    }
-
-    public ArrayList<String> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(ArrayList<String> steps) {
-        this.steps = steps;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isSeleted() {
@@ -62,5 +91,8 @@ public class Recipe implements Serializable {
     public void setSeleted(boolean seleted) {
         isSeleted = seleted;
     }
+
+
+    public String getFormatedRecipeList(Textview setRecipe)
 
 }

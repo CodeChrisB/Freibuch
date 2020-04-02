@@ -218,7 +218,7 @@
         app:layout_constraintGuide_percent="0.7" />
 
     <TextView
-        android:id="@+id/setting_title"
+        android:id="@+id/textView_showRecipe_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoText="false"
