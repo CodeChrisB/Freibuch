@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,27 +21,33 @@ import java.util.ArrayList;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder> {
     private ArrayList<Item> items;
-
+    private Item current;
 
 
     @NonNull
     @Override
     public ItemListAdapter.ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_itemconstraint, parent, false);
-
+        final ItemListAdapter.ItemListViewHolder  vHolder= new ItemListAdapter.ItemListViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                current = items.get(vHolder.getAdapterPosition());
                 final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
                 View alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_item_page, null);
 
+                EditText editName = alertItemView.findViewById(R.id.editText_itemName);
+                editName.setText(current.getName());
+
+                EditText editAmount = alertItemView.findViewById(R.id.editText_itemAmount);
+                editAmount.setText(String.format("%d",current.getAmount()));
 
                 helpDialog.setView(alertItemView);
                 helpDialog.show();
             }
         });
 
-        return new ItemListAdapter.ItemListViewHolder(v);
+        return vHolder;
     }
 
     public ItemListAdapter(ArrayList<Item> list) {
@@ -66,6 +73,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         holder.mcheckBox.setChecked(currentItem.isSelected());
     }
 
+
     @Override
     public int getItemCount() {
         return items.size();
@@ -86,5 +94,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             mcheckBox = itemView.findViewById(R.id.checkBox_item);
             seperator = itemView.findViewById(R.id.itemList_seperator);
         }
+
+
     }
 }

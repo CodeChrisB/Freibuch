@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
-    String name,description;
+    String name;
     ArrayList<Item> listOfItems;
+    ArrayList<String> steps;
     boolean selected;
 
     public boolean isSelected() {
@@ -17,13 +18,15 @@ public class Recipe implements Serializable {
         this.selected = selected;
     }
 
+    public int getNumOfSeps(){
+        return steps.size();
+    }
 
-    public Recipe(String name, String description, ArrayList<Item> listOfItems) {
+    public Recipe(String name, ArrayList<String> steps, ArrayList<Item> listOfItems) {
         this.name = name;
-        this.description = description;
+        this.steps = steps;
         this.listOfItems = listOfItems;
         this.isSeleted = isSeleted;
-
     }
 
     boolean isSeleted = false;
@@ -36,12 +39,20 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public ArrayList<Item> getListOfItems() {
+        return listOfItems;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setListOfItems(ArrayList<Item> listOfItems) {
+        this.listOfItems = listOfItems;
+    }
+
+    public ArrayList<String> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(ArrayList<String> steps) {
+        this.steps = steps;
     }
 
     public boolean isSeleted() {
@@ -51,6 +62,5 @@ public class Recipe implements Serializable {
     public void setSeleted(boolean seleted) {
         isSeleted = seleted;
     }
-
 
 }

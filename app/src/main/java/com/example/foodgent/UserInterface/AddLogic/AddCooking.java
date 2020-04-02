@@ -15,6 +15,8 @@ import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
 import com.example.foodgent.UserInterface.MainActivity;
 import com.example.fragment.R;
 
+import java.util.ArrayList;
+
 
 public class AddCooking extends AppCompatActivity {
 
@@ -41,7 +43,12 @@ public class AddCooking extends AppCompatActivity {
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppData.getInstance().addRecipe(new Recipe(recipeName.getText().toString(), "Decs", null));
+                ArrayList<String> strings = new ArrayList<>();
+                strings.add("Essen");
+                strings.add("Trinken");
+                strings.add("Orbit kauen");
+
+                AppData.getInstance().addRecipe(new Recipe(recipeName.getText().toString(), strings, null));
                 AppData.getInstance().saveRecipe();
                 RecipeActivity.setUpRecipeList();
                 finish();
