@@ -11,8 +11,9 @@ public class Recipe implements Serializable {
     boolean selected;
     boolean isFavourite;
     int portions, time;
+    ArrayList<RecipeStep> steps;
 
-    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
+    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps) {
         this.name = name;
         this.listOfLines = description;
         this.listOfItems = listOfItems;
@@ -20,6 +21,7 @@ public class Recipe implements Serializable {
         this.portions = portions;
         this.time = time;
         this.isFavourite = isFavourite;
+        this.steps = steps;
     }
 
     public boolean isFavourite() {
@@ -94,6 +96,9 @@ public class Recipe implements Serializable {
     }
 
     public String getFormattedList() {
+
+        if (listOfItems == null)
+            return "";
 
         String itemList = "";
         for (RecipeItem item : listOfItems) {

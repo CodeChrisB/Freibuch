@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="themeColor">#1C68EC</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="innerBackground" tools:ignore="MissingDefaultResource">#E2E1E1</color>
+    <color name="innerBackground" tools:ignore="MissingDefaultResource">#E4DFDF</color>
     <color name="colorRed">#FF0000</color>
     <color name="lightGrey">#FF0000</color>
     <color name="fragmentButtonColor">#ADD8E6</color>

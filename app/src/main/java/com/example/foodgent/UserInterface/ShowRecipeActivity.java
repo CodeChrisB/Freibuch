@@ -20,7 +20,7 @@ public class ShowRecipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_recipe);
+        setContentView(R.layout.show_recipe_modern);
 
         Bundle extras = getIntent().getExtras();
 
@@ -31,8 +31,11 @@ public class ShowRecipeActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.textView_showRecipe_name);
         name.setText(recipe.getName());
 
+        TextView desc = findViewById(R.id.textView_showRecipe_desc);
+        desc.setText(recipe.getFormattedList());
 
-        setInfo(recipe);
+
+        //setInfo(recipe);
 
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
@@ -43,10 +46,13 @@ public class ShowRecipeActivity extends AppCompatActivity {
 
         ConstraintLayout innerConstraint = findViewById(R.id.innerConstraint);
 
+
+
+        /*
         TextView tv = findViewById(R.id.innerC_tV_ItemList);
         String text = recipe.getFormattedList().replace("\n", "&lt;br&gt;");
         tv.setText(Html.fromHtml(Html.fromHtml(text).toString()));
-
+        */
 
     }
 
