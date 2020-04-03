@@ -1,7 +1,6 @@
 package com.example.foodgent.UserInterface;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.WindowManager;
@@ -45,7 +44,8 @@ public class ShowRecipeActivity extends AppCompatActivity {
         ConstraintLayout innerConstraint = findViewById(R.id.innerConstraint);
 
         TextView tv = findViewById(R.id.innerC_tV_ItemList);
-        tv.setText(recipe.getFormattedList());
+        String text = recipe.getFormattedList().replace("\n", "&lt;br&gt;");
+        tv.setText(Html.fromHtml(Html.fromHtml(text).toString()));
 
 
     }

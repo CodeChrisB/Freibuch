@@ -33,7 +33,7 @@ public class AboutDevsActivity extends AppCompatActivity {
         codeChrisText.setText(Html.fromHtml(Html.fromHtml(text).toString()));
 
 
-        String robertPart = "•ListViews\n•Barcode Scanner";
+        String robertPart = "•Internet\n•Barcode Scanner\nFeedback";
         TextView robertText = findViewById(R.id.textView_robertPart);
         text = robertPart.replace("\n", "&lt;br&gt;");
         robertText.setText(Html.fromHtml(Html.fromHtml(text).toString()));

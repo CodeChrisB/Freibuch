@@ -93,4 +93,13 @@ public class Recipe implements Serializable {
         isSeleted = seleted;
     }
 
+    public String getFormattedList() {
+
+        String itemList = "";
+        for (RecipeItem item : listOfItems) {
+            itemList += item.getName() + "  " + item.getAmount() + "\n";
+        }
+
+        return itemList;
+    }
 }

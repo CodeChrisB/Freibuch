@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
@@ -167,7 +168,6 @@ public class AppData implements Serializable {
             saveRecipeItems();
 
 
-
         } catch (Exception ex) {
             return false;
         }
@@ -186,7 +186,7 @@ public class AppData implements Serializable {
             is.read(buffer);
             is.close();
 
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
             JSONArray jsonArray = new JSONArray(json);
             String name;
             String desc = "";

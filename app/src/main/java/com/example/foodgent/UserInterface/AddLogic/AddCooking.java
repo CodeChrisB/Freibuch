@@ -77,13 +77,11 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
             @Override
             public void onClick(View view) {
 
-
-
                 AppData.getInstance()
                         .addRecipe(
                                 new Recipe(
                                         recipeName.getText().toString(),
-                                        new ArrayList<String>(),
+                                        "",
                                         reyclerAdapter.getNeededRecipeItems(),
                                         tryParseInt(portions.getText().toString()),
                                         tryParseInt(time.getText().toString()),
