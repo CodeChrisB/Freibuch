@@ -4,6 +4,7 @@ import com.example.foodgent.AppData.Entities.Barcode;
 import com.example.foodgent.AppData.Entities.BarcodeItem;
 import com.example.foodgent.AppData.Entities.Item;
 import com.example.foodgent.AppData.Entities.Recipe;
+import com.example.foodgent.AppData.Entities.RecipeItem;
 import com.example.foodgent.AppData.Entities.Settings;
 import com.example.foodgent.AppData.Entities.ShoppingEntry;
 import com.example.foodgent.AppData.MainLists.Barcodes;
@@ -11,8 +12,15 @@ import com.example.foodgent.AppData.MainLists.Items;
 import com.example.foodgent.AppData.MainLists.RecipeItems;
 import com.example.foodgent.AppData.MainLists.Recipes;
 import com.example.foodgent.AppData.MainLists.ShoppingEntries;
+import com.example.foodgent.UserInterface.MainActivity;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -82,6 +90,9 @@ public class AppData implements Serializable {
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
+        for (Recipe r: get_json()) {
+            recipes.addTo(r);
+        }
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
@@ -160,6 +171,56 @@ public class AppData implements Serializable {
         }
         return true;
         //endregion
+    }
+
+    private ArrayList<Recipe> get_json(){
+        String json;
+        ArrayList<Recipe> recipes = new ArrayList<>();
+
+        try {
+            InputStream is = MainActivity.getInstance().getAssets().open("recipe01.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+            JSONArray jsonArray = new JSONArray(json);
+            String name;
+            ArrayList<String> strings = new ArrayList<>();
+            ArrayList<RecipeItem> list = new ArrayList<>();
+            int sum, count;
+
+            for (int i = 0; i < jsonArray.length();i++){
+                strings = new ArrayList<>();
+                list = new ArrayList<>();
+                JSONObject object = jsonArray.getJSONObject(i);
+                name = object.getString("name");
+                sum = object.getInt("portions");
+
+                count = 1;
+                while (!object.get(String.format("item%d", count)).equals(null)){
+                    String[] parts = object.getString(String.format("item%d", count)).split(";");
+                    list.add(new RecipeItem(Integer.parseInt(parts[0]), parts[1]));
+                    count++;
+                }
+
+                count = 1;
+                while (!object.get(String.format("line%d", count)).equals(null)){
+                    strings.add(object.getString(String.format("line%d", count)));
+                    count++;
+                }
+
+                recipes.add(new Recipe(name, strings, list, sum, object.getInt("time"), false));
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return recipes;
     }
 
     public boolean saveRecipe() {

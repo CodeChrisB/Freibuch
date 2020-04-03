@@ -11,6 +11,11 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
     ArrayList<Recipe> recipes = new ArrayList<>();
 
     public Recipes(){
+
+    }
+
+    public Recipes(ArrayList<Recipe> list){
+        recipes = list;
     }
 
     @Override

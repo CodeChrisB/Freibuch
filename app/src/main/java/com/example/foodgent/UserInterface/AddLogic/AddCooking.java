@@ -80,7 +80,7 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                         .addRecipe(
                                 new Recipe(
                                         recipeName.getText().toString(),
-                                        "Decs",
+                                        new ArrayList<String>(),
                                         reyclerAdapter.getNeededRecipeItems(),
                                         Integer.parseInt(portions.getText().toString()),
                                         Integer.parseInt(time.getText().toString()),

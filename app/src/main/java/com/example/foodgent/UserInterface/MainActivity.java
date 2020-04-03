@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
 
-
-
     public static MainActivity getInstance() {
         if (instance == null) {
             instance = new MainActivity();
