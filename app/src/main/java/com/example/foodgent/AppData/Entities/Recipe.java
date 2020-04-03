@@ -1,26 +1,20 @@
 package com.example.foodgent.AppData.Entities;
 
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.widget.TextView;
-
-import com.example.fragment.R;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
-    String name, description, recipeType;
+    String name, recipeType;
     ArrayList<RecipeItem> listOfItems;
+    String listOfLines;
     boolean selected;
     boolean isFavourite;
     int portions, time;
 
     public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
         this.name = name;
-        this.description = description;
+        this.listOfLines = description;
         this.listOfItems = listOfItems;
         this.isSeleted = isSeleted;
         this.portions = portions;
@@ -83,12 +77,12 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getListOfLines() {
+        return listOfLines;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setListOfLines(String listOfLines) {
+        this.listOfLines = listOfLines;
     }
 
     public boolean isSeleted() {
@@ -99,26 +93,4 @@ public class Recipe implements Serializable {
         isSeleted = seleted;
     }
 
-
-    public ArrayList<RecipeItem> getListOfItems() {
-        return listOfItems;
-    }
-
-    public void setListOfItems(ArrayList<RecipeItem> listOfItems) {
-        this.listOfItems = listOfItems;
-    }
-
-    public Spanned getFormattedList(){
-
-        if(listOfItems==null)
-            return new SpannableString("Keine Angabe");
-
-        String text ="";
-        for (RecipeItem item:listOfItems) {
-            text+= "•"+item.getName()+"|" +item.getAmount()+"\n";
-        }
-        text=text.replace("\n", "&lt;br&gt;");
-        return Html.fromHtml(Html.fromHtml(text).toString());
-    }
 }
-

@@ -189,12 +189,11 @@ public class AppData implements Serializable {
             json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(json);
             String name;
-            ArrayList<String> strings = new ArrayList<>();
+            String desc = "";
             ArrayList<RecipeItem> list = new ArrayList<>();
             int sum, count;
 
             for (int i = 0; i < jsonArray.length();i++){
-                strings = new ArrayList<>();
                 list = new ArrayList<>();
                 JSONObject object = jsonArray.getJSONObject(i);
                 name = object.getString("name");
@@ -209,11 +208,10 @@ public class AppData implements Serializable {
 
                 count = 1;
                 while (!object.get(String.format("line%d", count)).equals(null)){
-                    strings.add(object.getString(String.format("line%d", count)));
                     count++;
                 }
 
-                recipes.add(new Recipe(name, strings, list, sum, object.getInt("time"), false));
+                recipes.add(new Recipe(name, desc, list, sum, object.getInt("time"), false));
 
             }
         } catch (IOException e) {
@@ -221,7 +219,6 @@ public class AppData implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return recipes;
     }
 
