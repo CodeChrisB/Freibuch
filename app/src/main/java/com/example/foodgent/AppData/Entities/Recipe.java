@@ -7,12 +7,12 @@ public class Recipe implements Serializable {
 
     String name, recipeType;
     ArrayList<RecipeItem> listOfItems;
-    ArrayList<String > listOfLines;
+    String listOfLines;
     boolean selected;
     boolean isFavourite;
     int portions, time;
 
-    public Recipe(String name, ArrayList<String> description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
+    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite) {
         this.name = name;
         this.listOfLines = description;
         this.listOfItems = listOfItems;
@@ -77,11 +77,11 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<String> getListOfLines() {
+    public String getListOfLines() {
         return listOfLines;
     }
 
-    public void setListOfLines(ArrayList<String> listOfLines) {
+    public void setListOfLines(String listOfLines) {
         this.listOfLines = listOfLines;
     }
 
