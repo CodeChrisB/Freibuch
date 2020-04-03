@@ -1,6 +1,7 @@
 package com.example.foodgent.UserInterface;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.WindowManager;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.foodgent.AppData.Entities.Recipe;
 import com.example.fragment.R;
@@ -39,6 +41,11 @@ public class ShowRecipeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //endregion
+
+        ConstraintLayout innerConstraint = findViewById(R.id.innerConstraint);
+
+        TextView tv = findViewById(R.id.innerC_tV_ItemList);
+        tv.setText(recipe.getFormattedList());
 
 
     }

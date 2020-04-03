@@ -166,6 +166,8 @@ public class AppData implements Serializable {
             saveBarcode();
             saveRecipeItems();
 
+
+
         } catch (Exception ex) {
             return false;
         }

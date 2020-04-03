@@ -76,14 +76,17 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 AppData.getInstance()
                         .addRecipe(
                                 new Recipe(
                                         recipeName.getText().toString(),
                                         new ArrayList<String>(),
                                         reyclerAdapter.getNeededRecipeItems(),
-                                        Integer.parseInt(portions.getText().toString()),
-                                        Integer.parseInt(time.getText().toString()),
+                                        tryParseInt(portions.getText().toString()),
+                                        tryParseInt(time.getText().toString()),
                                         isFav
                                 ));
 
@@ -141,4 +144,13 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    int tryParseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
 }
