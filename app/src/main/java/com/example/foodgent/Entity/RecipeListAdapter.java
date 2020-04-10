@@ -57,7 +57,7 @@ public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.R
 
         public RecipeListViewHolder(View itemView) {
             super(itemView);
-            mText = itemView.findViewById(R.id.textView_ItemName);
+            mText = itemView.findViewById(R.id.textView_step);
             // TODO: 20.03.2020 mcheckBox.findViewById(R.id.checkBox_Recipe)
         }
     }

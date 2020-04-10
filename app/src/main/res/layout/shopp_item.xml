@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_ItemName"
+        android:id="@+id/textView_step"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:fontFamily="casual"

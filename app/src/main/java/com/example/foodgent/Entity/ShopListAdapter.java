@@ -71,7 +71,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
 
         public ShopListViewHolder(View itemView) {
             super(itemView);
-            mText = itemView.findViewById(R.id.textView_ItemName);
+            mText = itemView.findViewById(R.id.textView_step);
             mcheckBox = itemView.findViewById(R.id.checkBox_shopEntry);
             view = itemView.findViewById(R.id.listView_ShopBg);
         }

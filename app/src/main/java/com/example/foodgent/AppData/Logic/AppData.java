@@ -94,6 +94,7 @@ public class AppData implements Serializable {
         for (Recipe r: get_json()) {
             recipes.addTo(r);
         }
+        //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
@@ -202,7 +203,7 @@ public class AppData implements Serializable {
                 count = 1;
                 while (!object.get(String.format("item%d", count)).equals(null)){
                     String[] parts = object.getString(String.format("item%d", count)).split(";");
-                    list.add(new RecipeItem(Integer.parseInt(parts[0]), parts[1]));
+                    list.add(new RecipeItem(Integer.parseInt(parts[0]), parts[1], ""));
                     count++;
                 }
 
@@ -211,7 +212,7 @@ public class AppData implements Serializable {
                     count++;
                 }
 
-                recipes.add(new Recipe(name, desc, list, sum, object.getInt("time"), false));
+                recipes.add(new Recipe(name, desc, list, sum, object.getInt("time"), false, null, ""));
 
             }
         } catch (IOException e) {
@@ -292,7 +293,7 @@ public class AppData implements Serializable {
 
     //region get Object
 
-    public ArrayList<String> getRecipeItems() {
+    public ArrayList<RecipeItem> getRecipeItems() {
         return recipeItems.getRecipeItems();
     }
 
@@ -337,7 +338,7 @@ public class AppData implements Serializable {
 
     //region add Object
 
-    public boolean addRecipeItem(String item) {
+    public boolean addRecipeItem(RecipeItem item) {
         return recipeItems.addTo(item);
     }
 

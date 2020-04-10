@@ -12,9 +12,8 @@
         android:id="@+id/view10"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/half_round"
-        android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline50"
+        android:background="@color/innerBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline166"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -183,6 +182,20 @@
         app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline199"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline195"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline49"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -247,7 +260,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/eT_recipeName"
+        android:id="@+id/stepList_currentStep"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
@@ -271,11 +284,14 @@
         android:id="@+id/button_addRecipe"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/round_corner"
         android:text="x"
-        app:layout_constraintBottom_toTopOf="@+id/guideline49"
-        app:layout_constraintEnd_toStartOf="@+id/guideline161"
-        app:layout_constraintStart_toStartOf="@+id/guideline157"
-        app:layout_constraintTop_toTopOf="@+id/guideline39" />
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline170"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline161"
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView30"
@@ -296,24 +312,41 @@
         android:id="@+id/recyclerView_recipeItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline39"
+        app:layout_constraintBottom_toTopOf="@+id/guideline199"
         app:layout_constraintEnd_toStartOf="@+id/guideline170"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline162"
-        app:layout_constraintTop_toTopOf="@+id/guideline167"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline167" />
 
     <Button
         android:id="@+id/button_recipeAdd_favButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:drawable/btn_star_big_off"
-        app:layout_constraintBottom_toTopOf="@+id/guideline173"
+        android:background="@drawable/heart_empty"
+        app:layout_constraintBottom_toTopOf="@+id/guideline167"
         app:layout_constraintEnd_toStartOf="@+id/guideline170"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline161"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline35"
         app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toStartOf="@+id/guideline161"
+        app:layout_constraintStart_toStartOf="@+id/guideline162"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_recipeItem">
+
+        <EditText
+            android:id="@+id/editText_recipeAdd_desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Beschreibung"
+            android:inputType="textMultiLine|text" />
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/textView31"

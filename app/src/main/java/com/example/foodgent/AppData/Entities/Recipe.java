@@ -5,22 +5,43 @@ import java.util.ArrayList;
 
 public class Recipe implements Serializable {
 
+
     String name, recipeType;
     ArrayList<RecipeItem> listOfItems;
-    String listOfLines;
+    String description;
     boolean selected;
     boolean isFavourite;
     int portions, time;
     ArrayList<RecipeStep> steps;
 
-    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps) {
+    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps, String recipeType) {
         this.name = name;
-        this.listOfLines = description;
-        this.listOfItems = listOfItems;
+        this.description = description;
+
         this.isSeleted = isSeleted;
         this.portions = portions;
         this.time = time;
         this.isFavourite = isFavourite;
+        this.recipeType = recipeType;
+        //if a list is null (has no values) just create a empty one
+        //so we dont have to deal with null values
+        this.steps = (steps != null) ? steps : new ArrayList<RecipeStep>();
+        this.listOfItems = (listOfItems != null) ? listOfItems : new ArrayList<RecipeItem>();
+    }
+
+    public ArrayList<RecipeItem> getListOfItems() {
+        return listOfItems;
+    }
+
+    public void setListOfItems(ArrayList<RecipeItem> listOfItems) {
+        this.listOfItems = listOfItems;
+    }
+
+    public ArrayList<RecipeStep> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(ArrayList<RecipeStep> steps) {
         this.steps = steps;
     }
 
@@ -79,12 +100,16 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public String getListOfLines() {
-        return listOfLines;
+    public String getDescription() {
+
+        if (description == null)
+            return "Keine Beschreibung gefunden!";
+
+        return description.length() > 0 ? description : "Keine Beschreibung gefunden!";
     }
 
-    public void setListOfLines(String listOfLines) {
-        this.listOfLines = listOfLines;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isSeleted() {

@@ -22,11 +22,13 @@ import java.util.List;
 
 
 public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAdapter.ShopListViewHolder> {
-    private List<String> recipeItems;
+    boolean isOnClickActive;
     private ArrayList<RecipeItem> recipeList = new ArrayList<>();
+    private List<RecipeItem> recipeItems;
 
-    public RecipeItemListAdapter(List<String> recipeItems) {
+    public RecipeItemListAdapter(List<RecipeItem> recipeItems, boolean isOnClickActive) {
         this.recipeItems = recipeItems;
+        this.isOnClickActive = isOnClickActive;
     }
 
     @NonNull
@@ -41,60 +43,72 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
     @Override
     public void onBindViewHolder(@NonNull final ShopListViewHolder holder, int position) {
-        final String text = recipeItems.get(position);
+        final String text = recipeItems.get(position).getName();
+        final RecipeItem recipeItem = recipeItems.get(position);
         holder.mText.setText(text);
+        String amountText = recipeItems.get(position).getAmount() + " " + recipeItems.get(position).getUnit();
+        holder.itemAmount.setText(amountText);
 
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Open the Dialog to select the amount of an item
+        if (isOnClickActive) {
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Open the Dialog to select the amount of an item
 
 
-                final androidx.appcompat.app.AlertDialog.Builder helpDialog = new androidx.appcompat.app.AlertDialog.Builder(holder.context);
-                final View recipeItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_recipe_item_amount, null);
-                helpDialog.setView(recipeItemView);
-                final AlertDialog help = helpDialog.create();
+                    final androidx.appcompat.app.AlertDialog.Builder helpDialog = new androidx.appcompat.app.AlertDialog.Builder(holder.context);
+                    final View recipeItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_recipe_item_amount, null);
+                    helpDialog.setView(recipeItemView);
+                    final AlertDialog help = helpDialog.create();
 
 
-                final TextView textView = recipeItemView.findViewById(R.id.textView_rI_name);
-                textView.setText(text);
+                    final TextView textView = recipeItemView.findViewById(R.id.textView_rI_name);
+                    textView.setText(text);
 
 
-                final EditText amountView = recipeItemView.findViewById(R.id.editText_recipeItemAmount);
-                Button setRecipeItemAmount = recipeItemView.findViewById(R.id.button_setRecipeItemAmount);
+                    final EditText amountView = recipeItemView.findViewById(R.id.editText_recipeItemAmount);
+                    Button setRecipeItemAmount = recipeItemView.findViewById(R.id.button_setRecipeItemAmount);
 
 
-                setRecipeItemAmount.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //check if the amount is a correct input
-                        int amount = -1;
-                        try {
-                            amount = Integer.parseInt(amountView.getText().toString());
-                        } catch (Exception e) {
-                            //nope wrong input set -1
-                            amount = -1;
+                    setRecipeItemAmount.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            // TODO: 07/04/2020 check if the recipe item was added before if so delete and add new
+
+                            //check if the amount is a correct input
+                            int amount = -1;
+                            try {
+                                amount = Integer.parseInt(amountView.getText().toString());
+                            } catch (Exception e) {
+                                //nope wrong input set -1
+                                amount = -1;
+                            }
+
+                            //if it was a correct input set the value, add to recipeItem list and set background
+                            if (amount > 0) {
+                                String amountText = amount + " " + recipeItem.getUnit();
+                                holder.itemAmount.setText(amountText);
+                                recipeList.add(new RecipeItem(amount, textView.getText().toString(), ""));
+                                holder.background.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.themeColor));
+                            }
+
+                            help.cancel();
                         }
+                    });
+                    help.show();
 
-                        //if it was a correct input set the value, add to recipe and set background
-                        if (amount > 0) {
-                            holder.itemAmount.setText(amount + "");
-                            recipeList.add(new RecipeItem(amount, textView.getText().toString()));
-                            holder.background.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.themeColor));
-                        }
+                }
+            });
+        }
 
-                        help.cancel();
-                    }
-                });
-                help.show();
-
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
+        if (recipeItems == null)
+            return -1;
         return recipeItems.size();
     }
 
@@ -112,8 +126,8 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
         public ShopListViewHolder(View itemView) {
             super(itemView);
-            itemAmount = itemView.findViewById(R.id.textView_recipeItemAmount);
-            mText = itemView.findViewById(R.id.textView_recipeItem);
+            itemAmount = itemView.findViewById(R.id.textView_list_recipeAmount);
+            mText = itemView.findViewById(R.id.textView_list_recipeItem);
             layout = itemView.findViewById(R.id.recipeItemLine);
             context = itemView.getContext();
             background = itemView.findViewById(R.id.view_recipeItemBg);

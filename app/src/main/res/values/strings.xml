@@ -107,4 +107,14 @@
     </string-array>
 
 
+    <string-array name="units" tools:ignore="ExtraTranslation">
+        <item>Kilo</item>
+        <item>Gramm</item>
+        <item>Liter</item>
+        <item>Milliliter</item>
+        <item>Stück</item>
+        <item>Packung</item>
+    </string-array>
+
+
 </resources>

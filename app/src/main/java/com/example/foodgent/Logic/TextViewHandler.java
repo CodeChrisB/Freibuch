@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodgent.UserInterface.SettingsActivityModern;
+import com.example.foodgent.UserInterface.SettingPage.SettingsActivityModern;
 import com.example.fragment.R;
 
 import java.util.ArrayList;

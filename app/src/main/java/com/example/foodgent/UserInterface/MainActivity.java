@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
@@ -26,8 +25,10 @@ import com.example.foodgent.Logic.FragmentChanger;
 import com.example.foodgent.Logic.NonSwipeableViewPager;
 import com.example.foodgent.Logic.NotificationService;
 import com.example.foodgent.Logic.SectionStatePagerAdapter;
-import com.example.foodgent.UserInterface.AddLogic.AddCooking;
-import com.example.foodgent.UserInterface.Fragment.ItemActivity;
+import com.example.foodgent.UserInterface.Item.AddItemActivity;
+import com.example.foodgent.UserInterface.Item.ItemActivity;
+import com.example.foodgent.UserInterface.Recipe.AddCooking;
+import com.example.foodgent.UserInterface.SettingPage.SettingsActivityModern;
 import com.example.fragment.R;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
@@ -76,8 +77,10 @@ public class MainActivity extends AppCompatActivity {
         switch (currentPage) {
             case 0:
                 //additem
-                AlertDialog item = ItemActivity.getAddItemAlertDialog();
-                item.show();
+               /* AlertDialog item = ItemActivity.getAddItemAlertDialog();
+                item.show();*/
+                startActivity(new Intent(getContext(), AddItemActivity.class));
+
                 break;
 
 

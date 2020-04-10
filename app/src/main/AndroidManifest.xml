@@ -42,11 +42,7 @@
 
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SettingsActivity"
-            tools:ignore="InnerclassSeparator" />
-
-        <activity
-            android:name="com.example.foodgent.UserInterface.AddLogic.AddItem"
+            android:name="com.example.foodgent.UserInterface.SettingPage.SettingsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
@@ -63,23 +59,31 @@
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.ShowRecipeActivity"
+            android:name="com.example.foodgent.UserInterface.Recipe.ShowRecipeActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AboutDevsActivity"
+            android:name="com.example.foodgent.UserInterface.Item.AddItemActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AddLogic.AddCooking"
+            android:name="com.example.foodgent.UserInterface.Recipe.CookNowActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.AddLogic.AddShop"
+            android:name="com.example.foodgent.UserInterface.SettingPage.AboutDevsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SettingsActivityModern"
+            android:name="com.example.foodgent.UserInterface.Recipe.AddStepList"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name="com.example.foodgent.UserInterface.Recipe.AddCooking"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name="com.example.foodgent.UserInterface.SettingPage.SettingsActivityModern"
             tools:ignore="InnerclassSeparator" />
 
         <activity

@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodgent.UserInterface.Fragment.ItemActivity;
-import com.example.foodgent.UserInterface.Fragment.RecipeActivity;
-import com.example.foodgent.UserInterface.Fragment.ShopActivity;
+import com.example.foodgent.UserInterface.Item.ItemActivity;
 import com.example.foodgent.UserInterface.MainActivity;
+import com.example.foodgent.UserInterface.Recipe.RecipeActivity;
+import com.example.foodgent.UserInterface.Shopping.ShopActivity;
 import com.example.fragment.R;
 
 public class FragmentChanger extends AppCompatActivity {

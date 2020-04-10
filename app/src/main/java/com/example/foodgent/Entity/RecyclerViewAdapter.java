@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgent.AppData.Entities.Recipe;
-import com.example.foodgent.UserInterface.ShowRecipeActivity;
+import com.example.foodgent.UserInterface.Recipe.ShowRecipeActivity;
 import com.example.fragment.R;
 import com.google.gson.Gson;
 

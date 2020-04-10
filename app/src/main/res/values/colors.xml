@@ -7,8 +7,9 @@
     <color name="lightGrey">#FF0000</color>
     <color name="fragmentButtonColor">#ADD8E6</color>
     <color name="premiumActiveBg">#E2B007</color>
-    <color name="black">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="background">#EFF0F1</color>
     <color name="textColor">#000000</color>
     <color name="innerBackground2">#A59F9F</color>
+    <color name="pink">#FF019A</color>
 </resources>

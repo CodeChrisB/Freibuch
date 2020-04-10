@@ -11,16 +11,25 @@ import java.util.Date;
 
 public class Item implements Serializable {
 
-    private String name, description;
+    private String name, description, unit;
     private Date dateTime;
     private int amount;
     private boolean isSelected;
 
-    public Item(String name, String description, Date dateTime, int amount) {
+    public Item(String name, String description, Date dateTime, int amount, String unit) {
         this.name = name;
         this.description = description;
         this.dateTime = dateTime;
         this.amount = amount;
+        this.unit = unit;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public String getName() {
