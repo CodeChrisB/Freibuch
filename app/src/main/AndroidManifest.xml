@@ -6,8 +6,6 @@
     android:versionCode="1"
     android:versionName="0.5">
 
-    <uses-sdk android:targetSdkVersion="29" />
-
     <uses-permission android:name="android.permission.CAMERA" />
 
 
@@ -28,10 +26,12 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name="com.example.foodgent.UserInterface.MainActivity" />
+        <activity android:name="com.foodgent.buchfrei.UserInterface.MainActivity" />
+        <activity android:name="com.foodgent.buchfrei.UserInterface.Crashreport.CrashReport" />
+
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SplashScreen"
+            android:name="com.foodgent.buchfrei.UserInterface.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
@@ -42,56 +42,56 @@
 
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SettingPage.SettingsActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Premium.BuyPremiumActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.Premium.BuyPremiumActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Premium.SpecialSettingsActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.Premium.SpecialSettingsActivity"
             tools:ignore="InnerclassSeparator" />
 
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Premium.BarcodeManage"
+            android:name="com.foodgent.buchfrei.UserInterface.Premium.BarcodeManage"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Recipe.ShowRecipeActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.Recipe.ShowRecipeActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Item.AddItemActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.Item.AddItemActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Recipe.CookNowActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.Recipe.CookNowActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SettingPage.AboutDevsActivity"
+            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.AboutDevsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Recipe.AddStepList"
+            android:name="com.foodgent.buchfrei.UserInterface.Recipe.AddStepList"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Recipe.AddCooking"
+            android:name="com.foodgent.buchfrei.UserInterface.Recipe.AddCooking"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.SettingPage.SettingsActivityModern"
+            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.UserInterface.Premium.ChangeShopListApperance"
+            android:name="com.foodgent.buchfrei.UserInterface.Premium.ChangeShopListApperance"
             tools:ignore="InnerclassSeparator" />
 
         <activity
-            android:name="com.example.foodgent.Logic.ScanCodeActivity"
+            android:name="com.foodgent.buchfrei.Logic.ScanCodeActivity"
             tools:ignore="InnerclassSeparator" />
 
 
@@ -129,12 +129,6 @@
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.example.fragment.firebaseinitprovider"
-            android:exported="false"
-            android:initOrder="100" />
 
 
     </application>

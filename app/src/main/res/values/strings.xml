@@ -36,6 +36,13 @@
     <string name="premium_info">Hole dir alle Premium Features für nur 1.99</string>
     <string name="premium_boughtInfo">Kuehli ist stolz auf dich!</string>
 
+    <string name="app_crashed"> Es ist leider etwas unerwrtetes passiert.</string>
+    <string name="crashName"> Crashreport.txt</string>
+    <string name="crashNo">Ich möchte NICHT helfen Foodgent besser zu machen. \n\n
+        Weswegen ich auf Vorteile wie die Teilnahme an ,\n
+        •Gratis Premium Verlosungen\n
+        •Merchandise Verlosungen\n\n
+        oder Sonstige Events verzichte. </string>
 
     <string-array name="planets_array" tools:ignore="ExtraTranslation">
         <item>Hallo! Ich bin Kuehli \nIn diesem Tutorial zeig ich dir was ich so alles kann!</item>

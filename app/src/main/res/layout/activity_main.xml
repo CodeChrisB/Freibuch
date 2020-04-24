@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="com.example.foodgent.UserInterface.MainActivity">
+    tools:context="com.foodgent.buchfrei.UserInterface.MainActivity">
 
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.foodgent.UserInterface.Item.ItemActivity"
+        android:name="com.foodgent.buchfrei.UserInterface.Item.ItemActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

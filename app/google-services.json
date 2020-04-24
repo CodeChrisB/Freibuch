@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1056273774655:android:be5969db0b4f956a31e08a",
         "android_client_info": {
-          "package_name": "com.example.fragment"
+          "package_name": "com.foodgent.buchfrei"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1056273774655-e9a0nli26hf893itehtloegiuk7maa31.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fragment",
+            "package_name": "com.foodgent.buchfrei",
             "certificate_hash": "4f6ca910c028edd00d3a401311816df002076a52"
           }
         },

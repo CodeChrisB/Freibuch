@@ -38,8 +38,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_list_recipeItem"
-        app:layout_constraintTop_toTopOf="@+id/guideline65" />
+        app:layout_constraintStart_toEndOf="@+id/textView_list_recipeItem" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline176"
