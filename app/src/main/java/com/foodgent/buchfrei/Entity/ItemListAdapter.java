@@ -40,7 +40,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
                 editName.setText(current.getName());
 
                 EditText editAmount = alertItemView.findViewById(R.id.editText_itemAmount);
-                editAmount.setText(String.format("%d",current.getAmount()));
+                editAmount.setText(String.format("%d", current.getAmount() + " " + current.getUnit()));
 
                 helpDialog.setView(alertItemView);
                 helpDialog.show();
@@ -59,7 +59,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
 
         final Item currentItem = items.get(position);
         holder.mText.setText(currentItem.getName());
-        holder.mAmount.setText(currentItem.toString());
+        holder.mAmount.setText(currentItem.getAmount() + " " + currentItem.getUnit());
         holder.date.setText(currentItem.getDateString());
 
 
