@@ -17,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Logic.AppCrashHandler;
@@ -120,6 +122,7 @@ public class SettingsActivityModern extends AppCompatActivity {
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
 
         SettingsActivityModern.setting = this;
+
         initAll();
 
             darkmode.setChecked(AppData.getInstance().isDarkMode());
@@ -341,6 +344,7 @@ public class SettingsActivityModern extends AppCompatActivity {
 
         //endregion
 
+
         developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -379,9 +383,6 @@ public class SettingsActivityModern extends AppCompatActivity {
 
     }
 
-    public void setColorScheme() {
-
-    }
 
 
 }

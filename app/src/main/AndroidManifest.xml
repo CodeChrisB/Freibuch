@@ -7,7 +7,7 @@
     android:versionName="0.5">
 
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
 

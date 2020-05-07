@@ -8,8 +8,8 @@ android {
         applicationId 'com.foodgent.buchfrei'
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 101
-        versionName "0.5"
+        versionCode 104
+        versionName '0.5.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -49,6 +49,9 @@ dependencies {
 
     //to count emojis as single character
     implementation 'com.vdurmont:emoji-java:4.0.0'
+
+    //billing
+    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 
 
 }

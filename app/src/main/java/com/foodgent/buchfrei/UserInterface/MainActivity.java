@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
-        SettingsActivityModern.getInstance().setColorScheme();
 
         //with AppData.getInstance now every class in this whole
         //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
