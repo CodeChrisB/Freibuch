@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/setting_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -153,24 +154,11 @@
         android:layout_height="0dp"
         android:background="@drawable/small_round"
         android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline207"
+        app:layout_constraintBottom_toBottomOf="@+id/view38"
         app:layout_constraintEnd_toStartOf="@+id/guideline205"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline175"
         app:layout_constraintTop_toTopOf="@+id/guideline206"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <View
-        android:id="@+id/view39"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/small_round"
-        android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toTopOf="@+id/guideline220"
-        app:layout_constraintEnd_toStartOf="@+id/guideline205"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline175"
-        app:layout_constraintTop_toTopOf="@+id/guideline204"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
@@ -179,10 +167,10 @@
         android:layout_height="0dp"
         android:background="@drawable/small_round"
         android:backgroundTint="@color/innerBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/view39"
         app:layout_constraintEnd_toStartOf="@+id/guideline205"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline175" />
+        app:layout_constraintStart_toStartOf="@+id/guideline175"
+        tools:layout_editor_absoluteY="592dp" />
 
     <View
         android:id="@+id/view36"
@@ -232,13 +220,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:inputType="textMultiLine|textImeMultiLine"
-        android:text="@string/crashNo"
         android:textColor="@color/textColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline219"
         app:layout_constraintEnd_toStartOf="@+id/guideline217"
         app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toStartOf="@+id/guideline209"
-        app:layout_constraintTop_toTopOf="@+id/guideline224"
+        app:layout_constraintTop_toTopOf="@+id/guideline214"
         app:layout_constraintVertical_bias="0.53" />
 
     <TextView
@@ -255,17 +242,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline213"
         app:layout_constraintStart_toStartOf="@+id/guideline175"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cr_send"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/dialog_button"
-        android:text="Crashreport senden"
-        app:layout_constraintBottom_toTopOf="@+id/guideline215"
-        app:layout_constraintEnd_toStartOf="@+id/guideline217"
-        app:layout_constraintStart_toStartOf="@+id/guideline209"
-        app:layout_constraintTop_toTopOf="@+id/guideline214" />
 
     <Button
         android:id="@+id/cr_dontSend"

@@ -1,7 +1,6 @@
 package com.foodgent.buchfrei.UserInterface.Crashreport;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,33 +32,28 @@ public class CrashReport extends AppCompatActivity {
 
         //there shouldnt be any crash potential but we cant afford a crash here
         try {
-            TextView crashInfo = findViewById(R.id.cr_name);
-            final String info = getString(R.string.crashName) + "\nDatum ." + locl.toString() + "\nAndroid Version : " + Build.VERSION.RELEASE;
-            crashInfo.setText(info);
+            final TextView crashInfo = findViewById(R.id.cr_name);
 
-            Button send = findViewById(R.id.cr_send);
+
+            //get intent strings
+            String message, cause, stacktrace;
+            message = intent.getStringExtra("message");
+            cause = intent.getStringExtra("cause");
+            stacktrace = intent.getStringExtra("stacktrace");
+            String codeLine = intent.getStringExtra("codeline");
+            TextView setMessage = findViewById(R.id.cr_name2);
+
+            final String info = cause;
+            setMessage.setText(info);
+
+
+            Button send = findViewById(R.id.cr_dontSend);
             send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //// TODO: 17/04/2020 Firebase send Error Report
 
-                    //get intent strings
-                    String message, cause, stacktrace;
-                    message = intent.getStringExtra("message");
-                    cause = intent.getStringExtra("cause");
-                    stacktrace = intent.getStringExtra("stacktrace");
-                    String codeLine = intent.getStringExtra("codeline");
 
-                    //send errror per firebasemanager
-                    fm.sendErrorReport(message, cause, stacktrace, codeLine);
-                    toMain();
-                }
-            });
-
-            Button dontSend = findViewById(R.id.cr_dontSend);
-            dontSend.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
                     toMain();
                 }
             });
