@@ -7,14 +7,16 @@ public class Recipe implements Serializable {
 
 
     String name, recipeType;
-    ArrayList<RecipeItem> listOfItems;
+    ArrayList<String> itemList;
     String description;
     boolean selected;
     boolean isFavourite;
     int portions, time;
     ArrayList<RecipeStep> steps;
 
-    public Recipe(String name, String description, ArrayList<RecipeItem> listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps, String recipeType) {
+    //amount:name:unit
+
+    public Recipe(String name, String description, ArrayList<String > listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps, String recipeType) {
         this.name = name;
         this.description = description;
 
@@ -26,15 +28,15 @@ public class Recipe implements Serializable {
         //if a list is null (has no values) just create a empty one
         //so we dont have to deal with null values
         this.steps = (steps != null) ? steps : new ArrayList<RecipeStep>();
-        this.listOfItems = (listOfItems != null) ? listOfItems : new ArrayList<RecipeItem>();
+        this.itemList = (listOfItems != null) ? listOfItems : new ArrayList<String>();
     }
 
-    public ArrayList<RecipeItem> getListOfItems() {
-        return listOfItems;
+    public ArrayList<String > getListOfItems() {
+        return itemList;
     }
 
-    public void setListOfItems(ArrayList<RecipeItem> listOfItems) {
-        this.listOfItems = listOfItems;
+    public void setListOfItems(ArrayList<String> listOfItems) {
+        this.itemList = listOfItems;
     }
 
     public ArrayList<RecipeStep> getSteps() {
@@ -122,14 +124,18 @@ public class Recipe implements Serializable {
 
     public String getFormattedList() {
 
-        if (listOfItems == null)
+        if (itemList == null)
             return "";
 
-        String itemList = "";
-        for (RecipeItem item : listOfItems) {
-            itemList += item.getName() + "  " + item.getAmount() + "\n";
+        String list="";
+
+        for(int i =0; i<itemList.size();i++) {
+
+            String[] info = itemList.get(i).split(":");
+            list+=info[1]+"  " +info[0];
+
         }
 
-        return itemList;
+        return list;
     }
 }

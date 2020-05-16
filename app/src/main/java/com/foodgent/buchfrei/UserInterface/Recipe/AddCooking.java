@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Entity.RecipeItemListAdapter;
 import com.foodgent.buchfrei.Logic.AppCrashHandler;
@@ -181,13 +180,11 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
 
     public void setUpListView() {
         mRecyclerview = findViewById(R.id.recyclerView_recipeItem);
-        ArrayList<RecipeItem> list = AppData.getInstance().getRecipeItems();
+        ArrayList<String > list = AppData.getInstance().getRecipeItems();
 
-        ArrayList<RecipeItem> adapterList = new ArrayList<>();
+        ArrayList<String > adapterList = new ArrayList<>();
 
-        for (RecipeItem item : list) {
-            adapterList.add(item);
-        }
+        adapterList.addAll(list);
 
         mRecyclerview.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());

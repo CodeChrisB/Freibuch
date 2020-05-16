@@ -4,7 +4,6 @@ import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
 import com.foodgent.buchfrei.AppData.Entities.Item;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
 import com.foodgent.buchfrei.AppData.Entities.Settings;
 import com.foodgent.buchfrei.AppData.Entities.ShoppingEntry;
 import com.foodgent.buchfrei.AppData.MainLists.Barcodes;
@@ -92,9 +91,14 @@ public class AppData implements Serializable {
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
+        /* Das wird bei jedem öffnen der app aufgerufen diese rezepte werdenalso
+        bei jedem app neustart erneut hinzugefügt. außerdem gibt es hier ein null fehler
+
         for (Recipe r: get_json()) {
             recipes.addTo(r);
         }
+        */
+
         //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
@@ -177,6 +181,7 @@ public class AppData implements Serializable {
     }
 
     private ArrayList<Recipe> get_json(){
+        /*
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
@@ -213,7 +218,7 @@ public class AppData implements Serializable {
                 }
 
                 recipes.add(new Recipe(name, desc, list, sum, object.getInt("time"), false, null, ""));
-
+*
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -221,6 +226,9 @@ public class AppData implements Serializable {
             e.printStackTrace();
         }
         return recipes;
+
+         */
+        return null;
     }
 
     public boolean saveRecipe() {
@@ -277,6 +285,15 @@ public class AppData implements Serializable {
         return true;
     }
 
+    public boolean savePremium() {
+        try {
+            internalStorage.saveData("premium", gson.toJson(premium));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
 
 
     public void DeleteAppData() {
@@ -293,7 +310,7 @@ public class AppData implements Serializable {
 
     //region get Object
 
-    public ArrayList<RecipeItem> getRecipeItems() {
+    public ArrayList<String > getRecipeItems() {
         return recipeItems.getRecipeItems();
     }
 
@@ -338,7 +355,7 @@ public class AppData implements Serializable {
 
     //region add Object
 
-    public boolean addRecipeItem(RecipeItem item) {
+    public boolean addRecipeItem(String  item) {
         return recipeItems.addTo(item);
     }
 
@@ -444,8 +461,6 @@ public class AppData implements Serializable {
     public void setPremium(boolean set) {
         if (set) {
             premium = "yes";
-        } else {
-            premium = "no";
         }
 
     }

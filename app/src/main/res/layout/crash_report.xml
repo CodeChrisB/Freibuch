@@ -249,7 +249,7 @@
         android:layout_height="0dp"
         android:background="@drawable/dialog_button"
         android:backgroundTint="@color/innerBackground2"
-        android:text="Nicht senden"
+        android:text="Weiter zu Main"
         app:layout_constraintBottom_toTopOf="@+id/guideline218"
         app:layout_constraintEnd_toStartOf="@+id/guideline213"
         app:layout_constraintStart_toStartOf="@+id/guideline210"

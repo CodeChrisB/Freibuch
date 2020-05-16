@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
 import com.foodgent.buchfrei.UserInterface.MainActivity;
 
 import java.util.ArrayList;
@@ -23,10 +22,10 @@ import java.util.List;
 
 public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAdapter.ShopListViewHolder> {
     boolean isOnClickActive;
-    private ArrayList<RecipeItem> recipeList = new ArrayList<>();
-    private List<RecipeItem> recipeItems;
+    private ArrayList<String > recipeList = new ArrayList<>();
+    private List<String> recipeItems;
 
-    public RecipeItemListAdapter(List<RecipeItem> recipeItems, boolean isOnClickActive) {
+    public RecipeItemListAdapter(List<String> recipeItems, boolean isOnClickActive) {
         this.recipeItems = recipeItems;
         this.isOnClickActive = isOnClickActive;
     }
@@ -43,10 +42,13 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
     @Override
     public void onBindViewHolder(@NonNull final ShopListViewHolder holder, int position) {
-        final String text = recipeItems.get(position).getName();
-        final RecipeItem recipeItem = recipeItems.get(position);
+
+        String[] info = recipeItems.get(position).split(":");
+
+        //amout:name:unit
+        final String text = info[1];
         holder.mText.setText(text);
-        String amountText = recipeItems.get(position).getAmount() + " " + recipeItems.get(position).getUnit();
+        String amountText = info[0] + " " + "N/A";
         holder.itemAmount.setText(amountText);
 
 
@@ -75,7 +77,8 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
                         @Override
                         public void onClick(View view) {
 
-                            // TODO: 07/04/2020 check if the recipe item was added before if so delete and add new
+                            // TODO: Implement the item amount new
+
 
                             //check if the amount is a correct input
                             int amount = -1;
@@ -88,11 +91,12 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
                             //if it was a correct input set the value, add to recipeItem list and set background
                             if (amount > 0) {
-                                String amountText = amount + " " + recipeItem.getUnit();
+                                String amountText = amount + " ";
                                 holder.itemAmount.setText(amountText);
-                                recipeList.add(new RecipeItem(amount, textView.getText().toString(), ""));
+                                recipeList.add(amount+":"+ textView.getText().toString()+":"+ "");
                                 holder.background.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.themeColor));
                             }
+
 
                             help.cancel();
                         }
@@ -112,7 +116,7 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
         return recipeItems.size();
     }
 
-    public ArrayList<RecipeItem> getNeededRecipeItems() {
+    public ArrayList<String> getNeededRecipeItems() {
         return recipeList;
     }
 

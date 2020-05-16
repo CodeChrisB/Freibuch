@@ -29,7 +29,6 @@ import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
 import com.foodgent.buchfrei.AppData.Entities.Item;
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Entity.ItemListAdapter;
 import com.foodgent.buchfrei.Logic.ActivityValues;
@@ -215,7 +214,7 @@ public class ItemActivity extends Fragment {
                     AppData app = AppData.getInstance();
                     app.addItem(item);
                     app.saveItems();
-                    app.addRecipeItem(new RecipeItem(0, item.getName(), item.getUnit()));
+                    app.addRecipeItem(0+":"+ item.getName()+":"+ item.getUnit());
                     app.saveRecipeItems();
                     app.loadData();
                     ItemActivity.setUpItemListView();

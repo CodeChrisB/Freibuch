@@ -1,17 +1,15 @@
 package com.foodgent.buchfrei.AppData.MainLists;
 
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
-
 import java.util.ArrayList;
 
 public class RecipeItems {
-    ArrayList<RecipeItem> list = new ArrayList<>();
+    ArrayList<String > list = new ArrayList<>();
 
 
-    public boolean addTo(RecipeItem item) {
+    public boolean addTo(String item) {
 
-        for (RecipeItem s : list) {
-            if (s.getName().toLowerCase().equals(item.getName().toLowerCase())) {
+        for (String s : list) {
+            if (s.toLowerCase().equals(item.toLowerCase())) {
                 //duplicate item
                 return false;
             }
@@ -21,7 +19,7 @@ public class RecipeItems {
         return true;
     }
 
-    public ArrayList<RecipeItem> getRecipeItems() {
+    public ArrayList<String > getRecipeItems() {
         return list;
     }
 }
