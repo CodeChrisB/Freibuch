@@ -18,6 +18,14 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
 
     }
 
+    public ShoppingEntry getEntryAt(int index) {
+        return shoppingEntries.get(index);
+    }
+
+    public int size() {
+        return shoppingEntries.size();
+    }
+
     public String getHeader() {
         return header.equals("") ? "\uD83D\uDED2 Meine Einkaufsliste: " : header;
     }

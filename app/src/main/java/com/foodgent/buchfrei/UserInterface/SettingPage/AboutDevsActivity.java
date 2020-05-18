@@ -30,7 +30,7 @@ public class AboutDevsActivity extends AppCompatActivity {
         codeChrisText.setText(chrisPart);
 
 
-        String robertPart = "•Barcode Scanner";
+        String robertPart = "•Barcode Scanner\n Standard Rezepte";
         TextView robertText = findViewById(R.id.textView_robertPart);
         robertText.setText(robertPart);
 

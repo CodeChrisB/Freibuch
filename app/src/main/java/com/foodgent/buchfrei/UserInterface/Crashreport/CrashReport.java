@@ -43,7 +43,7 @@ public class CrashReport extends AppCompatActivity {
             String codeLine = intent.getStringExtra("codeline");
             TextView setMessage = findViewById(R.id.cr_name2);
 
-            final String info = cause;
+            final String info = cause + "\n\n" + codeLine + "\n\n" + message;
             setMessage.setText(info);
 
 

@@ -4,12 +4,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.foodgent.buchfrei.UserInterface.MainActivity;
-import com.google.gson.Gson;
 
 
 public class InternalStorage {
 
-    private static Gson gson = new Gson();
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 

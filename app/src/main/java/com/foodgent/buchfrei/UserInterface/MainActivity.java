@@ -20,7 +20,6 @@ import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Logic.AppCrashHandler;
 import com.foodgent.buchfrei.Logic.FragmentChanger;
 import com.foodgent.buchfrei.Logic.NonSwipeableViewPager;
-import com.foodgent.buchfrei.Logic.NotificationService;
 import com.foodgent.buchfrei.Logic.SectionStatePagerAdapter;
 import com.foodgent.buchfrei.UserInterface.Item.AddItemActivity;
 import com.foodgent.buchfrei.UserInterface.Item.ItemActivity;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentChanger.change(fragmentNumber, mViewPager);
     }
 
-    @SuppressLint("RestrictedApi")
+    @SuppressLint({"RestrictedApi", "SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,22 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
-
-        //with AppData.getInstance now every class in this whole
-        //project can use AppData and use all of its funtions.#AppData.getInstance().loadData();
-
-
         AppData.getInstance().loadData();
 
-
-        AppData.getInstance().saveAppData();
-
-
-        NotificationService notificationService = new NotificationService(getContext());
-
-        notificationService.notify("Foogent Title", "Hallo ich bin kuehli");
-        notificationService.notify("Foogent", "Hallo ich bin kuehli.");
-
+        //NotificationService notificationService = new NotificationService(getContext());
+        //notificationService.notify("Foogent", "Hallo ich bin kuehli.");
 
 
 

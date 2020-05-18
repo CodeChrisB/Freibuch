@@ -11,17 +11,9 @@ import com.foodgent.buchfrei.AppData.MainLists.Items;
 import com.foodgent.buchfrei.AppData.MainLists.RecipeItems;
 import com.foodgent.buchfrei.AppData.MainLists.Recipes;
 import com.foodgent.buchfrei.AppData.MainLists.ShoppingEntries;
-import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
@@ -576,5 +568,15 @@ public class AppData implements Serializable {
 
     public boolean handleError() {
         return handleError;
+    }
+
+
+    //widget stuff
+    public String getEntryAt(int index) {
+        return shoppingEntries.getEntryAt(index).toString();
+    }
+
+    public int ShoppingEntrySize() {
+        return shoppingEntries.size();
     }
 }
