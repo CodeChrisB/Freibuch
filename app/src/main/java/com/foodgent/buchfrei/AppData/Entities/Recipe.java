@@ -1,5 +1,8 @@
 package com.foodgent.buchfrei.AppData.Entities;
 
+import android.media.Image;
+import android.util.Base64;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,6 +15,16 @@ public class Recipe implements Serializable {
     boolean selected;
     boolean isFavourite;
     int portions, time;
+    Image image;
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        
+    }
+
     ArrayList<RecipeStep> steps;
 
     //amount:name:unit

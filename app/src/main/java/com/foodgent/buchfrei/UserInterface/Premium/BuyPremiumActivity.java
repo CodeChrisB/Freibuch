@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.example.fragment.R;
-import com.foodgent.buchfrei.AppData.Logic.AppData;
 
 
 public class BuyPremiumActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
@@ -26,7 +25,7 @@ public class BuyPremiumActivity extends AppCompatActivity implements BillingProc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.premium_buy);
 
-        bp = new BillingProcessor(this, null, this);
+                bp = new BillingProcessor(this, null, this);
         bp.initialize();
         // or bp = BillingProcessor.newBillingProcessor(this, "YOUR LICENSE KEY FROM GOOGLE PLAY CONSOLE HERE", this);
         // See below on why this is a useful alternative
@@ -54,8 +53,6 @@ public class BuyPremiumActivity extends AppCompatActivity implements BillingProc
         /*
          * Called when requested PRODUCT ID was successfully purchased
          */
-        AppData.getInstance().setPremium(true);
-        AppData.getInstance().saveAppData();
         Toast.makeText(this, "We did it fuck yeah", Toast.LENGTH_SHORT).show();
     }
 
