@@ -15,21 +15,11 @@ public class Recipe implements Serializable {
     boolean selected;
     boolean isFavourite;
     int portions, time;
-    Image image;
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        
-    }
-
     ArrayList<RecipeStep> steps;
 
     //amount:name:unit
 
-    public Recipe(String name, String description, ArrayList<String > listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps, String recipeType) {
+    public Recipe(String name, String description, ArrayList<String > listOfItems, int portions, int time, boolean isFavourite, String recipeType) {
         this.name = name;
         this.description = description;
 
@@ -40,7 +30,6 @@ public class Recipe implements Serializable {
         this.recipeType = recipeType;
         //if a list is null (has no values) just create a empty one
         //so we dont have to deal with null values
-        this.steps = (steps != null) ? steps : new ArrayList<RecipeStep>();
         this.itemList = (listOfItems != null) ? listOfItems : new ArrayList<String>();
     }
 

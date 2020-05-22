@@ -4,7 +4,6 @@ import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
 import com.foodgent.buchfrei.AppData.Entities.Item;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
-import com.foodgent.buchfrei.AppData.Entities.RecipeItem;
 import com.foodgent.buchfrei.AppData.Entities.Settings;
 import com.foodgent.buchfrei.AppData.Entities.ShoppingEntry;
 import com.foodgent.buchfrei.AppData.MainLists.Barcodes;
@@ -14,6 +13,7 @@ import com.foodgent.buchfrei.AppData.MainLists.Recipes;
 import com.foodgent.buchfrei.AppData.MainLists.ShoppingEntries;
 import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -189,7 +190,8 @@ public class AppData implements Serializable {
             is.close();
 
             json = new String(buffer, StandardCharsets.UTF_8);
-            gson.fromJson(json, Recipe[].class);
+            Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+            recipes = gson.fromJson(json, listType);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -268,7 +270,7 @@ public class AppData implements Serializable {
 
     //region get Object
 
-    public ArrayList<RecipeItem> getRecipeItems() {
+    public ArrayList<String> getRecipeItems() {
         return recipeItems.getRecipeItems();
     }
 
@@ -313,7 +315,7 @@ public class AppData implements Serializable {
 
     //region add Object
 
-    public boolean addRecipeItem(RecipeItem item) {
+    public boolean addRecipeItem(String item) {
         return recipeItems.addTo(item);
     }
 
