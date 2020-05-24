@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
-import com.foodgent.buchfrei.AppData.Entities.RecipeStep;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Entity.RecipeItemListAdapter;
 import com.foodgent.buchfrei.Entity.StepListAdapter;
@@ -31,7 +30,7 @@ public class AddStepList extends AppCompatActivity {
     private static RecyclerView.LayoutManager mLayoutManager;
     private static RecyclerView mListView;
     RecipeItemListAdapter reyclerAdapter;
-    ArrayList<RecipeStep> list = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
     private boolean isFav = false;
 
     //removes the slide animation, when opening this activity
@@ -69,8 +68,9 @@ public class AddStepList extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                list.add(new RecipeStep(list.size() + 1, step.getText().toString()));
+                list.add(step.getText().toString());
                 setUpListView();
+                //empty the textview for next step
                 step.setText("");
             }
         });

@@ -12,11 +12,11 @@ public class Recipe implements Serializable {
     boolean selected;
     boolean isFavourite;
     int portions, time;
-    ArrayList<RecipeStep> steps;
+    ArrayList<String> steps;
 
     //amount:name:unit
 
-    public Recipe(String name, String description, ArrayList<String> listOfItems, int portions, int time, boolean isFavourite, ArrayList<RecipeStep> steps, String recipeType) {
+    public Recipe(String name, String description, ArrayList<String> listOfItems, int portions, int time, boolean isFavourite, ArrayList<String> steps, String recipeType) {
         this.name = name;
         this.description = description;
 
@@ -27,7 +27,7 @@ public class Recipe implements Serializable {
         this.recipeType = recipeType;
         //if a list is null (has no values) just create a empty one
         //so we dont have to deal with null values
-        this.steps = (steps != null) ? steps : new ArrayList<RecipeStep>();
+        this.steps = (steps != null) ? steps : new ArrayList<String>();
         this.itemList = (listOfItems != null) ? listOfItems : new ArrayList<String>();
     }
 
@@ -39,11 +39,11 @@ public class Recipe implements Serializable {
         this.itemList = listOfItems;
     }
 
-    public ArrayList<RecipeStep> getSteps() {
+    public ArrayList<String> getSteps() {
         return steps;
     }
 
-    public void setSteps(ArrayList<RecipeStep> steps) {
+    public void setSteps(ArrayList<String> steps) {
         this.steps = steps;
     }
 

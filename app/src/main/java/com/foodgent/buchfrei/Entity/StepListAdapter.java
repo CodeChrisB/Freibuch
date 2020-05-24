@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
-import com.foodgent.buchfrei.AppData.Entities.RecipeStep;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 
 import java.util.ArrayList;
@@ -18,11 +17,11 @@ import java.util.List;
 
 public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.ShopListViewHolder> {
     private static boolean darkMode = AppData.getInstance().isDarkMode();
-    private List<RecipeStep> shoppingEntries;
+    private List<String> recipeSteps;
 
 
-    public StepListAdapter(ArrayList<RecipeStep> shoppingEntries) {
-        this.shoppingEntries = shoppingEntries;
+    public StepListAdapter(ArrayList<String> shoppingEntries) {
+        this.recipeSteps = shoppingEntries;
     }
 
     @NonNull
@@ -36,17 +35,17 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.ShopLi
 
     @Override
     public void onBindViewHolder(@NonNull final ShopListViewHolder holder, int position) {
-        final RecipeStep currentItem = shoppingEntries.get(position);
-        holder.step.setText(currentItem.stepToString());
-        holder.desc.setText(currentItem.getStepDescription());
+        final String currentStep = recipeSteps.get(position);
+        String pos = (position + 1) + "";
+        holder.step.setText(pos);
+        holder.desc.setText(currentStep);
     }
-
 
     @Override
     public int getItemCount() {
-        if (shoppingEntries == null)
+        if (recipeSteps == null)
             return -1;
-        return shoppingEntries.size();
+        return recipeSteps.size();
     }
 
     public static class ShopListViewHolder extends RecyclerView.ViewHolder {
