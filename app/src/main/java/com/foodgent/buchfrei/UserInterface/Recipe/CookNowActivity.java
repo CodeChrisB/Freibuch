@@ -59,15 +59,12 @@ public class CookNowActivity extends AppCompatActivity {
 
 
         setUpRecipeItems();
-
     }
 
 
     public void setUpRecipeItems() {
 
         mRecyclerview = findViewById(R.id.cooknow_recylerView);
-
-
         mRecyclerview.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         RecipeItemListAdapter reyclerAdapter = new RecipeItemListAdapter(recipe.getListOfItems(), false);

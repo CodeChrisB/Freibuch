@@ -66,7 +66,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "" + amount;
+        return amount + ":" + name + ":" + unit;
     }
 
     public boolean isSelected() {

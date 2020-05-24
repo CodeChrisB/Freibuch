@@ -85,10 +85,6 @@
             android:name="com.foodgent.buchfrei.Logic.ScanCodeActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity
-            android:name="com.foodgent.buchfrei"
-            tools:ignore="InnerclassSeparator" />
-
 
         <meta-data
             android:name="preloaded_fonts"
@@ -112,12 +108,12 @@
         <!--Service handling Google Sign-In user revocation. For apps that do not integrate withGoogle Sign-In, this service will never be started. -->
 
         <service
-            android:name="com.foodgent.buchfrei.WidgetService"
+            android:name="com.foodgent.buchfrei.UserInterface.Widget.WidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver
-            android:name="com.foodgent.buchfrei.WidgetProvider"
+            android:name="com.foodgent.buchfrei.UserInterface.Widget.WidgetProvider"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

@@ -30,8 +30,6 @@ import java.util.ArrayList;
 public class RecipeActivity extends Fragment {
 
     private static final String TAG = "Fragment1";
-
-
     private static RecyclerView.LayoutManager mLayoutManager;
     private static RecyclerView mListView;
     private static Context context;
@@ -50,7 +48,6 @@ public class RecipeActivity extends Fragment {
     public static void setNull() {
         if (context != null) {
             ArrayList<Recipe> list = new ArrayList<>();
-
             mListView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(context);
             RecyclerViewAdapter adapter = new RecyclerViewAdapter(context, list);
@@ -80,10 +77,7 @@ public class RecipeActivity extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
-
-
         return view;
-
     }
 
 

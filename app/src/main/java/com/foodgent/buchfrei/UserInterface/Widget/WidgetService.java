@@ -1,4 +1,4 @@
-package com.foodgent.buchfrei;
+package com.foodgent.buchfrei.UserInterface.Widget;
 
 import android.content.Context;
 import android.content.Intent;

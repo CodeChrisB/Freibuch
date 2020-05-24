@@ -579,4 +579,16 @@ public class AppData implements Serializable {
     public int ShoppingEntrySize() {
         return shoppingEntries.size();
     }
+
+    public String getUnitFromName(String s) {
+        for (int i = 0; i < recipeItems.size(); i++) {
+            if (recipeItems.getAt(i).split(":")[1].equals(s))
+                return recipeItems.getUnitAt(i);
+        }
+        return "Keine Einheit gefunden!";
+    }
+
+    public void addAllItems(ArrayList<Item> itemList) {
+        items.addAll(itemList);
+    }
 }

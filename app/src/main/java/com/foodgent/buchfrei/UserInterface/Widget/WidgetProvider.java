@@ -1,4 +1,4 @@
-package com.foodgent.buchfrei;
+package com.foodgent.buchfrei.UserInterface.Widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -89,7 +89,7 @@ public class WidgetProvider extends AppWidgetProvider {
                 int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
                 AppWidgetManager.getInstance(context).notifyAppWidgetViewDataChanged(appWidgetId, R.id.widget_list);
 
-                Toast toast2 = Toast.makeText(context, "REFRESH_WIDGET_ACTION", Toast.LENGTH_SHORT);
+                Toast toast2 = Toast.makeText(context, "Einkaufsliste neu geladen!", Toast.LENGTH_SHORT);
                 toast2.setGravity(Gravity.CENTER, 0, 0);
                 toast2.show();
                 break;

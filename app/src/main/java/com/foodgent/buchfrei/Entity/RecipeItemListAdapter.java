@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
+import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.UserInterface.MainActivity;
 
 import java.util.ArrayList;
@@ -48,7 +49,8 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
         //amout:name:unit
         final String text = info[1];
         holder.mText.setText(text);
-        String amountText = info[0] + " " + "N/A";
+        String amountText = info[0] + " " +
+                AppData.getInstance().getUnitFromName(info[1]);
         holder.itemAmount.setText(amountText);
 
 
@@ -57,7 +59,6 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
                 @Override
                 public void onClick(View view) {
                     //Open the Dialog to select the amount of an item
-
 
                     final androidx.appcompat.app.AlertDialog.Builder helpDialog = new androidx.appcompat.app.AlertDialog.Builder(holder.context);
                     final View recipeItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_recipe_item_amount, null);

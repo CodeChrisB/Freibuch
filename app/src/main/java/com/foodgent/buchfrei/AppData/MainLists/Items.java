@@ -58,4 +58,10 @@ public class Items implements SaveArrayAble<Item>, Serializable {
         }
         items = list;
     }
+
+    public void addAll(ArrayList<Item> itemList) {
+        for (Item item : items) {
+            items.add(item);
+        }
+    }
 }
