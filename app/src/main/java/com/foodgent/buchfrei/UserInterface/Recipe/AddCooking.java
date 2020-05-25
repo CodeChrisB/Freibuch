@@ -89,7 +89,6 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                         tryParseInt(portions.getText().toString()),
                         tryParseInt(time.getText().toString()),
                         isFav,
-                        null,
                         recipeType.getSelectedItem().toString());
 
 
@@ -117,7 +116,6 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                                 tryParseInt(portions.getText().toString()),
                                 tryParseInt(time.getText().toString()),
                                 isFav,
-                                null,
                                 recipeType.getSelectedItem().toString());
 
 

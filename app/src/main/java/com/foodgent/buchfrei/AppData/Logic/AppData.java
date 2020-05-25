@@ -11,9 +11,19 @@ import com.foodgent.buchfrei.AppData.MainLists.Items;
 import com.foodgent.buchfrei.AppData.MainLists.RecipeItems;
 import com.foodgent.buchfrei.AppData.MainLists.Recipes;
 import com.foodgent.buchfrei.AppData.MainLists.ShoppingEntries;
+import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
@@ -88,14 +98,9 @@ public class AppData implements Serializable {
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
-        /* Das wird bei jedem öffnen der app aufgerufen diese rezepte werdenalso
-        bei jedem app neustart erneut hinzugefügt. außerdem gibt es hier ein null fehler
-
         for (Recipe r: get_json()) {
             recipes.addTo(r);
         }
-        */
-
         //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
@@ -178,54 +183,26 @@ public class AppData implements Serializable {
     }
 
     private ArrayList<Recipe> get_json(){
-        /*
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
+
         try {
-            InputStream is = MainActivity.getInstance().getAssets().open("recipe01.json");
+            InputStream is = MainActivity.getInstance().getAssets().open("recipes.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
 
             json = new String(buffer, StandardCharsets.UTF_8);
-            JSONArray jsonArray = new JSONArray(json);
-            String name;
-            String desc = "";
-            ArrayList<RecipeItem> list = new ArrayList<>();
-            int sum, count;
+            Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+            recipes = gson.fromJson(json, listType);
 
-            for (int i = 0; i < jsonArray.length();i++){
-                list = new ArrayList<>();
-                JSONObject object = jsonArray.getJSONObject(i);
-                name = object.getString("name");
-                sum = object.getInt("portions");
-
-                count = 1;
-                while (!object.get(String.format("item%d", count)).equals(null)){
-                    String[] parts = object.getString(String.format("item%d", count)).split(";");
-                    list.add(new RecipeItem(Integer.parseInt(parts[0]), parts[1], ""));
-                    count++;
-                }
-
-                count = 1;
-                while (!object.get(String.format("line%d", count)).equals(null)){
-                    count++;
-                }
-
-                recipes.add(new Recipe(name, desc, list, sum, object.getInt("time"), false, null, ""));
-*
-            }
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-        return recipes;
 
-         */
-        return null;
+        return recipes;
     }
 
     public boolean saveRecipe() {
@@ -307,7 +284,7 @@ public class AppData implements Serializable {
 
     //region get Object
 
-    public ArrayList<String > getRecipeItems() {
+    public ArrayList<String> getRecipeItems() {
         return recipeItems.getRecipeItems();
     }
 
@@ -352,7 +329,7 @@ public class AppData implements Serializable {
 
     //region add Object
 
-    public boolean addRecipeItem(String  item) {
+    public boolean addRecipeItem(String item) {
         return recipeItems.addTo(item);
     }
 
@@ -458,6 +435,8 @@ public class AppData implements Serializable {
     public void setPremium(boolean set) {
         if (set) {
             premium = "yes";
+        } else {
+            premium = "no";
         }
 
     }
