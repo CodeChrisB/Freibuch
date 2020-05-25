@@ -127,7 +127,8 @@ public class ShowRecipeActivity extends AppCompatActivity {
         //ask the user to subtract items from list
 
 
-
+        if (recipeList == null)
+            return new ArrayList<String>();
 
         for (String s : recipeList) {
             //setup the current item data
