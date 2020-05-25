@@ -91,28 +91,43 @@ public class ShowRecipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<String> list = recipe.getListOfItems();
-                CheckItems(list);
-                Toast.makeText(ShowRecipeActivity.this, "Test", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), CookNowActivity.class);
-                intent.putExtra("recipe", gson.toJson(recipe));
-                startActivity(intent);
+                ArrayList<String> itemNotAvailable = CheckItems(list);
+
+                if (itemNotAvailable.size() > 0) {
+                    //there are missing items
+                    Toast.makeText(ShowRecipeActivity.this, "Missing Items", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), ItemsNotAvailableActivity.class);
+                    intent.putExtra("na", gson.toJson(itemNotAvailable));
+                    intent.putExtra("recipe", gson.toJson(recipe));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ShowRecipeActivity.this, "All Items available", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), CookNowActivity.class);
+                    intent.putExtra("recipe", gson.toJson(recipe));
+                    startActivity(intent);
+                }
             }
         });
 
 
     }
 
-    private boolean CheckItems(ArrayList<String> recipeList) {
-
-        ArrayList<String> thingsNotAvailable = new ArrayList<>();
-
-        //ask the user to subtract items from list
-        boolean removeItems = true;
-        if (!removeItems)
-            return false;
+    private ArrayList<String> CheckItems(ArrayList<String> recipeList) {
 
         AppData app = AppData.getInstance();
         ArrayList<Item> itemList = AppData.getInstance().getItems();
+
+
+        //if nothing is in the fridge just return the whole recipe
+
+
+        //create a list for all the notAvailable items
+        ArrayList<String> thingsNotAvailable = new ArrayList<>();
+
+        //ask the user to subtract items from list
+
+
+
 
         for (String s : recipeList) {
             //setup the current item data
@@ -143,6 +158,8 @@ public class ShowRecipeActivity extends AppCompatActivity {
                         itemList.remove(i);
                     } else {
 
+                        //since we are here we know that there is at
+                        //least not enough for 1 item.
 
                         amount = Math.abs(amount);
                         String notAvailableItem = name + ":" + amount + " " + itemList.get(i).getUnit();
@@ -153,8 +170,14 @@ public class ShowRecipeActivity extends AppCompatActivity {
 
                     }
 
-                    app.removeAllItems();
-                    app.addAllItems(itemList);
+
+                    saveNewList(itemList, app);
+
+                    String jsonItemList = AppData.getGson().toJson(thingsNotAvailable);
+
+                    Intent itemsNotAvailablePage = new Intent();
+                    itemsNotAvailablePage.putExtra("itemlistJson", jsonItemList);
+
 
 
                     //do we have enoguh of the item?
@@ -164,7 +187,16 @@ public class ShowRecipeActivity extends AppCompatActivity {
                 }
             }
         }
-        return true;
+
+        if (itemList.size() == 0)
+            return recipeList;
+
+        return thingsNotAvailable;
+    }
+
+    private void saveNewList(ArrayList<Item> list, AppData app) {
+        app.removeAllItems();
+        app.addAllItems(list);
     }
 
 

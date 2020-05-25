@@ -28,9 +28,14 @@ public class AppData implements Serializable {
     protected static RecipeItems recipeItems = new RecipeItems();
     //endregion
 
+
     //region Gson & InternalStorage Init
     private static Gson gson = new Gson();
     private InternalStorage internalStorage = new InternalStorage();
+
+    public static Gson getGson() {
+        return gson;
+    }
     //endregion
 
     //region static Class
@@ -591,4 +596,6 @@ public class AppData implements Serializable {
     public void addAllItems(ArrayList<Item> itemList) {
         items.addAll(itemList);
     }
+
+
 }

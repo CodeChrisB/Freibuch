@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/setting_roundtopBarPart3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/half_round"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:collapseIcon="@android:drawable/ic_menu_call"
+        app:layout_constraintBottom_toTopOf="@+id/guideline221"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline221"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:padding="25dp"
+        android:text="Rezept Kochen"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/setting_roundtopBarPart3"
+        app:layout_constraintEnd_toEndOf="@+id/setting_roundtopBarPart3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setting_roundtopBarPart3" />
+
+    <View
+        android:id="@+id/view39"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/top_round"
+        android:backgroundTint="@color/innerBackground"
+        android:hapticFeedbackEnabled="false"
+        android:isScrollContainer="true"
+        android:outlineProvider="none"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_createShoppingList"
+        app:layout_constraintEnd_toStartOf="@+id/guideline227"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline232"
+        app:layout_constraintTop_toTopOf="@+id/guideline222"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline226"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline225"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline231"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <TextView
+        android:id="@+id/textView36"
+        style="@style/Base.Widget.MaterialComponents.TextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="18dp"
+        android:text="Diese Lebensmittel sind nicht verfügbar"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guideline226"
+        app:layout_constraintEnd_toStartOf="@+id/guideline227"
+        app:layout_constraintStart_toStartOf="@+id/guideline232"
+        app:layout_constraintTop_toTopOf="@+id/view39"
+        app:layout_constraintVertical_bias="0.629" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline228"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline230"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline227"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline232"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline229"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0" />
+
+    <Button
+        android:id="@+id/recipe_createShoppingList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoText="true"
+        android:background="@drawable/left_round"
+        android:hapticFeedbackEnabled="true"
+        android:text="Einkaufsliste erstellen."
+        app:layout_constraintBottom_toTopOf="@+id/guideline225"
+        app:layout_constraintEnd_toStartOf="@+id/guideline230"
+        app:layout_constraintStart_toStartOf="@+id/guideline232"
+        app:layout_constraintTop_toTopOf="@+id/guideline231" />
+
+    <Button
+        android:id="@+id/recipe_ignoreItems"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/right_round"
+        android:backgroundTint="@color/pink"
+        android:elegantTextHeight="false"
+        android:hapticFeedbackEnabled="true"
+        android:keepScreenOn="false"
+        android:longClickable="false"
+        android:rotation="0"
+        android:text="Egal, lass uns Kochen!"
+        app:layout_constraintBottom_toTopOf="@+id/guideline225"
+        app:layout_constraintEnd_toStartOf="@+id/guideline227"
+        app:layout_constraintStart_toStartOf="@+id/guideline230"
+        app:layout_constraintTop_toTopOf="@+id/guideline231" />
+</androidx.constraintlayout.widget.ConstraintLayout>

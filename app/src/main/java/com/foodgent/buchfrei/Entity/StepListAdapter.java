@@ -36,7 +36,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.ShopLi
     @Override
     public void onBindViewHolder(@NonNull final ShopListViewHolder holder, int position) {
         final String currentStep = recipeSteps.get(position);
-        String pos = (position + 1) + "";
+        String pos = "Schritt: " + (position + 1);
         holder.step.setText(pos);
         holder.desc.setText(currentStep);
     }
