@@ -47,10 +47,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         holder.recipeName.setText(mData.get(position).getName());
-        if (position % 2 == 0) {
-            holder.recipePicture.setImageResource(R.drawable.earth);
+        if (mData.get(position).getRecipeType().equals("Fleisch")) {
+            holder.recipePicture.setImageResource(R.drawable.steak);
+        } else if(mData.get(position).getRecipeType().equals("Vegetarisch")) {
+            holder.recipePicture.setImageResource(R.drawable.veggie);
+        } else if(mData.get(position).getRecipeType().equals("Vegan")) {
+            holder.recipePicture.setImageResource(R.drawable.vegan);
         } else {
-            holder.recipePicture.setImageResource(R.drawable.real_moon);
+            holder.recipePicture.setImageResource(R.drawable.cake);
         }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

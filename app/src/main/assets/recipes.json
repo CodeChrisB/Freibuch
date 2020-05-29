@@ -2,18 +2,23 @@
   {
     "name": "dasf1",
     "description": "adsf",
-    "items": [
+    "itemList": [
       "1:dsaf:kg"
     ],
     "portions": 1,
     "time": 12,
     "favourite": false,
-    "kind": "Fleisch"
+    "steps": [
+      "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+      "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+      "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+    ],
+    "recipeType": "Fleisch"
   },
   {
     "name": "Grießnockerl",
-    "description": "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.\nWährenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.\nAus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen).",
-    "items": [
+    "description": "desc",
+    "itemList": [
       "30:Butter:g",
       "80:Ei:Stk",
       "2:Salz:Prise"
@@ -21,6 +26,11 @@
     "portions": 6,
     "time": 30,
     "favourite": false,
-    "kind": "Vegetarisch"
+    "steps": [
+      "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+      "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+      "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+    ],
+    "recipeType": "Nachspeise"
   }
 ]
