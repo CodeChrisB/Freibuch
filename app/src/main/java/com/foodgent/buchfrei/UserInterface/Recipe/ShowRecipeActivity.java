@@ -142,55 +142,31 @@ public class ShowRecipeActivity extends AppCompatActivity {
                 if (recipeItemName.equals(name)) {
                     //// TODO: 20/05/2020  we found something in the fride do stuff
                     int currentAmount = itemList.get(i).getAmount();
-
-                    //how much is left of the item after we
-                    //subtract the needed amount
                     int amount = currentAmount - recipeAmount;
 
-                    /*
-                    Amount:
-                    positive --> we have enoguh
-                    0 ---> remove from list
-                    negative --> remove from list, Math.abs on shopping list
-                     */
+
                     if (amount > 0) {
                         itemList.get(i).setAmount(amount);
                     } else if (amount == 0) {
                         itemList.remove(i);
                     } else {
-
                         //since we are here we know that there is at
                         //least not enough for 1 item.
-
                         amount = Math.abs(amount);
-                        String notAvailableItem = name + ":" + amount + " " + itemList.get(i).getUnit();
+                        String notAvailableItem = name + ":" + amount + ":" + itemList.get(i).getUnit();
                         thingsNotAvailable.add(notAvailableItem);
-
                         //remove from list
                         itemList.remove(i);
 
                     }
 
-
                     saveNewList(itemList, app);
-
                     String jsonItemList = AppData.getGson().toJson(thingsNotAvailable);
-
                     Intent itemsNotAvailablePage = new Intent();
                     itemsNotAvailablePage.putExtra("itemlistJson", jsonItemList);
-
-
-
-                    //do we have enoguh of the item?
-                    //if so just subtract the needed ones
-                    //if not make a list with name and amount to create
-                    //the shopping list later
                 }
             }
         }
-
-        if (itemList.size() == 0)
-            return recipeList;
 
         return thingsNotAvailable;
     }

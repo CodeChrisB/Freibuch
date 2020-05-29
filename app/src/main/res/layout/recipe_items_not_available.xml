@@ -169,4 +169,20 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline227"
         app:layout_constraintStart_toStartOf="@+id/guideline230"
         app:layout_constraintTop_toTopOf="@+id/guideline231" />
+
+    <TextView
+        android:id="@+id/recipe_notAvailableList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toStartOf="@+id/guideline227"
+        app:layout_constraintStart_toStartOf="@+id/guideline232"
+        app:layout_constraintTop_toTopOf="@+id/guideline226" />
 </androidx.constraintlayout.widget.ConstraintLayout>

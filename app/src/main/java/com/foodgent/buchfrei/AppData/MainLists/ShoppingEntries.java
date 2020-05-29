@@ -121,4 +121,10 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
         }
         shoppingEntries = list;
     }
+
+    public void addList(ArrayList<String> list) {
+        for (String entry : list) {
+            shoppingEntries.add(new ShoppingEntry(entry));
+        }
+    }
 }

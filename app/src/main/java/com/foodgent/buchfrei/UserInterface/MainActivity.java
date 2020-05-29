@@ -152,6 +152,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //if you want to get to a specific page on the main Activty you can
+        //just set an action to the intent and set the ViewPager here
+        String action = getIntent().getStringExtra("action");
+        if (action != null) {
+            switch (action) {
+                case "opnShop":
+                    setViewPager(2);
+                    break;
+            }
+        }
+
+
     }
 
     //removes the slide animation, when opening this activity

@@ -15,10 +15,6 @@ import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -98,7 +94,7 @@ public class AppData implements Serializable {
 
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
-        for (Recipe r: get_json()) {
+        for (Recipe r : getJson()) {
             recipes.addTo(r);
         }
         //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
@@ -182,7 +178,7 @@ public class AppData implements Serializable {
         //endregion
     }
 
-    private ArrayList<Recipe> get_json(){
+    private ArrayList<Recipe> getJson() {
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
@@ -577,4 +573,7 @@ public class AppData implements Serializable {
     }
 
 
+    public void addShoppingList(ArrayList<String> list) {
+        shoppingEntries.addList(list);
+    }
 }
