@@ -125,5 +125,6 @@
 
 
     <string name="premiumCode">foodgent_premium</string>
+    <string name="jsonFile">recipes.json</string>
 
 </resources>

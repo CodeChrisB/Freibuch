@@ -92,11 +92,9 @@ public class AppData implements Serializable {
         String setting = internalStorage.loadData("settings");
         String recipeItem = internalStorage.loadData("recipeItems");
 
-
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
-        for (Recipe r : getJson()) {
-            recipes.addTo(r);
-        }
+
+        addStandardRecipes();
         //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
@@ -105,6 +103,12 @@ public class AppData implements Serializable {
         settings = (setting != null) ? loadSetting(setting) : setSetting();
 
         //endregion
+    }
+
+    private void addStandardRecipes() {
+        for (Recipe r : getJson()) {
+            recipes.addTo(r);
+        }
     }
 
     private RecipeItems setRecipeItems() {
@@ -181,7 +185,6 @@ public class AppData implements Serializable {
     private ArrayList<Recipe> getJson() {
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
-
 
         try {
             InputStream is = MainActivity.getInstance().getAssets().open("recipes.json");
@@ -273,6 +276,8 @@ public class AppData implements Serializable {
         settings = new Settings();
         shoppingEntries = new ShoppingEntries();
         //Changes would be lost after closing the app so we have to save now.
+
+        addStandardRecipes();
         saveAppData();
     }
 
