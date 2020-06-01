@@ -21,9 +21,16 @@ public class CrashReport extends AppCompatActivity {
     private FirebaseManager fm = new FirebaseManager();
     private Intent intent;
 
+    private final boolean DEBUG_MODE = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //just skip all this here if not debug version
+        if (!DEBUG_MODE)
+            toMain();
+
         setContentView(R.layout.crash_report);
         AndroidThreeTen.init(this);
         LocalDate locl = LocalDate.now();

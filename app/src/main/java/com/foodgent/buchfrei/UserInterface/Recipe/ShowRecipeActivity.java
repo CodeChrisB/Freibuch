@@ -175,6 +175,4 @@ public class ShowRecipeActivity extends AppCompatActivity {
         app.removeAllItems();
         app.addAllItems(list);
     }
-
-
 }

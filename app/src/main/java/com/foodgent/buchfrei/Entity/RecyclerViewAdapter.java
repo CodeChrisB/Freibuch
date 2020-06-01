@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
+import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.UserInterface.Recipe.ShowRecipeActivity;
 import com.google.gson.Gson;
 
@@ -46,16 +47,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
+        int image;
+        boolean isDarkMode = AppData.getInstance().isDarkMode();
+
         holder.recipeName.setText(mData.get(position).getName());
         if (mData.get(position).getRecipeType().equals("Fleisch")) {
-            holder.recipePicture.setImageResource(R.drawable.steak);
+            image = isDarkMode ? R.drawable.steak_dark : R.drawable.steak;
         } else if(mData.get(position).getRecipeType().equals("Vegetarisch")) {
-            holder.recipePicture.setImageResource(R.drawable.veggie);
+            image = isDarkMode ? R.drawable.vegan_dark : R.drawable.vegan;
         } else if(mData.get(position).getRecipeType().equals("Vegan")) {
-            holder.recipePicture.setImageResource(R.drawable.vegan);
+            image = isDarkMode ? R.drawable.veggie_dark : R.drawable.veggie;
         } else {
-            holder.recipePicture.setImageResource(R.drawable.cake);
+            image = isDarkMode ? R.drawable.cake_dark : R.drawable.cake;
         }
+
+
+        holder.recipePicture.setImageDrawable(mContext.getResources().getDrawable(image));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
