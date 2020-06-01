@@ -94,7 +94,9 @@ public class AppData implements Serializable {
 
         recipes = (recipe != null) ? loadRecipe(recipe) : setRecipe();
 
-        addStandardRecipes();
+        if(!standardRecipesExits()){
+            addStandardRecipes();
+        }
         //recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         recipeItems = (recipeItem != null) ? loadRecipeItem(recipeItem) : setRecipeItems();
         items = (item != null) ? loadItem(item) : setItem();
@@ -109,6 +111,17 @@ public class AppData implements Serializable {
         for (Recipe r : getJson()) {
             recipes.addTo(r);
         }
+    }
+
+    private boolean standardRecipesExits() {
+        boolean r;
+        if(recipes.getArray().isEmpty()){
+            r = false;
+        } else {
+            r = true;
+        }
+
+        return r;
     }
 
     private RecipeItems setRecipeItems() {
