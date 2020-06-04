@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,9 @@ public class ShowRecipeActivity extends AppCompatActivity {
         final Gson gson = new Gson();
         String json = extras.getString("recipe");
         final Recipe recipe = gson.fromJson(json, Recipe.class);
+
+        ImageView imageView = findViewById(R.id.imageView_showRecipe_image);
+        imageView.setImageResource(AppData.getInstance().getFoodIcon(recipe.getRecipeType()));
 
         TextView name = findViewById(R.id.textView_showRecipe_name);
         name.setText(recipe.getName());
@@ -167,6 +171,10 @@ public class ShowRecipeActivity extends AppCompatActivity {
                 }
             }
         }
+
+        //we have no items return the whole list
+        if (itemList.size() == 0)
+            return recipeList;
 
         return thingsNotAvailable;
     }

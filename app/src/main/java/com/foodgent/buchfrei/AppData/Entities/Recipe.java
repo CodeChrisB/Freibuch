@@ -95,7 +95,7 @@ public class Recipe implements Serializable {
     boolean isSeleted = false;
 
     public String getName() {
-        return name;
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1);
     }
 
     public void setName(String name) {

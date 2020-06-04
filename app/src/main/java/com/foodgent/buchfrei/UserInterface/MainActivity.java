@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -21,9 +20,7 @@ import com.foodgent.buchfrei.Logic.AppCrashHandler;
 import com.foodgent.buchfrei.Logic.FragmentChanger;
 import com.foodgent.buchfrei.Logic.NonSwipeableViewPager;
 import com.foodgent.buchfrei.Logic.SectionStatePagerAdapter;
-import com.foodgent.buchfrei.UserInterface.Item.AddItemActivity;
 import com.foodgent.buchfrei.UserInterface.Item.ItemActivity;
-import com.foodgent.buchfrei.UserInterface.Recipe.AddCooking;
 import com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
@@ -35,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static ViewPager mViewPager;
     private static FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
+    private MainAction mainAction;
 
 
     public static MainActivity getInstance() {
@@ -44,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
 
-    public static void setViewPager(int fragmentNumber) {
-        fragmentChanger.change(fragmentNumber, mViewPager);
+
+    public static ViewPager getmViewPager() {
+        return mViewPager;
     }
 
     @SuppressLint({"RestrictedApi", "SourceLockedOrientationActivity"})
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         AndroidThreeTen.init(this);
         setContentView(R.layout.activity_main);
         instance = this;
+
         mRecyclerView = findViewById(R.id.listView);
 
 
@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         //NotificationService notificationService = new NotificationService(getContext());
         //notificationService.notify("Foogent", "Hallo ich bin kuehli.");
-
 
 
         //region FragmentChange
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentChanger = new FragmentChanger(btnNavFrag1, btnNavFrag2, btnNavFrag3, instance, mViewPager);
         //mRecyclerView = findViewById(R.id.listView);
         //endregion
-
 
 
         //region setup the adapter
@@ -110,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCorrectAddPage(fragmentChanger.getCurrentPage());
+                Intent intent = mainAction.getCorrectAddPage(fragmentChanger.getCurrentPage());
+                if (intent != null)
+                    startActivity(intent);
             }
         });
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                setViewPager(0);
+                mainAction.setViewPager(0);
             }
         });
 
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                setViewPager(1);
+                mainAction.setViewPager(1);
             }
         });
 
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //navigate to method called
-                setViewPager(2);
+                mainAction.setViewPager(2);
             }
         });
 
@@ -144,70 +144,23 @@ public class MainActivity extends AppCompatActivity {
         //setup the standard list view
         ItemActivity.setUpItemListView();
 
-
-        if (AppData.getInstance().isDarkMode()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-
         //if you want to get to a specific page on the main Activty you can
         //just set an action to the intent and set the ViewPager here
         String action = getIntent().getStringExtra("action");
-        if (action != null) {
-            switch (action) {
-                case "opnShop":
-                    setViewPager(2);
-                    break;
-            }
-        }
-
-
+        mainAction = new MainAction(getInstance(), fragmentChanger);
+        mainAction.setFragment(action);
     }
 
     //removes the slide animation, when opening this activity
     @Override
     protected void onStart() {
         overridePendingTransition(0, 0);
-
         super.onStart();
-
-    }
-
-    private void getCorrectAddPage(int currentPage) {
-        Intent intent;
-
-        switch (currentPage) {
-            case 0:
-                //additem
-               /* AlertDialog item = ItemActivity.getAddItemAlertDialog();
-                item.show();*/
-                startActivity(new Intent(getContext(), AddItemActivity.class));
-
-                break;
-
-
-            case 1:
-                intent = new Intent(this, AddCooking.class);
-                startActivity(intent);
-                break;
-
-            case 2:
-                String s = AppData.getInstance().getFormattedShoppingList();
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, s);
-                startActivity(Intent.createChooser(sharingIntent, "Einkaufsliste teilen..."));
-                break;
-        }
     }
 
     public Context getContext() {
         return this;
     }
-
-
 
 
 }

@@ -73,12 +73,15 @@
             android:name="com.foodgent.buchfrei.UserInterface.Recipe.AddCooking"
             tools:ignore="InnerclassSeparator" />
 
-        <activity
-            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern"
-            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name="com.foodgent.buchfrei.UserInterface.Recipe.ItemsNotAvailableActivity"
             tools:ignore="InnerclassSeparator" />
+
+        <activity
+            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern"
+            tools:ignore="InnerclassSeparator" />
+
 
         <activity
             android:name="com.foodgent.buchfrei.UserInterface.Premium.ChangeShopListApperance"

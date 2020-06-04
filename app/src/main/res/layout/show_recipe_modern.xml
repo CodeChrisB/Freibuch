@@ -45,14 +45,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline183"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.79" />
+        app:layout_constraintGuide_percent="0.81" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline181"
@@ -210,19 +210,20 @@
         android:scaleType="fitXY"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/guideline182"
-        app:layout_constraintEnd_toStartOf="@+id/guideline192"
-        app:layout_constraintStart_toStartOf="@+id/guideline191"
-        app:layout_constraintTop_toTopOf="@+id/guideline190" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline183"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline198"
+        app:layout_constraintTop_toTopOf="@+id/guideline194"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view16"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_fg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline189" />
+        app:layout_constraintTop_toTopOf="@+id/guideline194" />
 
     <View
         android:id="@+id/view21"
@@ -231,16 +232,6 @@
         android:background="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline190"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
-        android:id="@+id/view27"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/background"
-        app:layout_constraintBottom_toTopOf="@+id/guideline194"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline189" />
 
     <Button
         android:id="@+id/button_showRecipeCookNow"

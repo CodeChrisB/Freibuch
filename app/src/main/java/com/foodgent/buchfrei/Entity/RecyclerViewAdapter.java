@@ -48,19 +48,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         int image;
-        boolean isDarkMode = AppData.getInstance().isDarkMode();
 
+        AppData app = AppData.getInstance();
+        image = app.getFoodIcon(mData.get(position).getRecipeType());
         holder.recipeName.setText(mData.get(position).getName());
-        if (mData.get(position).getRecipeType().equals("Fleisch")) {
-            image = isDarkMode ? R.drawable.steak_dark : R.drawable.steak;
-        } else if(mData.get(position).getRecipeType().equals("Vegetarisch")) {
-            image = isDarkMode ? R.drawable.vegan_dark : R.drawable.vegan;
-        } else if(mData.get(position).getRecipeType().equals("Vegan")) {
-            image = isDarkMode ? R.drawable.veggie_dark : R.drawable.veggie;
-        } else {
-            image = isDarkMode ? R.drawable.cake_dark : R.drawable.cake;
-        }
-
 
         holder.recipePicture.setImageDrawable(mContext.getResources().getDrawable(image));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 // start the activity
                 mContext.startActivity(intent);
                 holder.cb.setChecked(mData.get(position).isSelected());
+
 
             }
         });

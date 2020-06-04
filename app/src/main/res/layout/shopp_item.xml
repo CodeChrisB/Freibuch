@@ -8,19 +8,27 @@
         android:id="@+id/listView_ShopBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="-10dp"
         android:background="@color/innerBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox_shopEntry"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
         android:id="@+id/checkBox_shopEntry"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
+        android:scaleX="2"
+        android:scaleY="2"
         android:text=""
         android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,9 +36,11 @@
         android:id="@+id/textView_step"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginStart="12dp"
         android:fontFamily="casual"
         android:gravity="center|left"
         android:text="TextView1"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox_shopEntry"
         app:layout_constraintStart_toEndOf="@+id/checkBox_shopEntry"
         app:layout_constraintTop_toTopOf="@+id/checkBox_shopEntry" />

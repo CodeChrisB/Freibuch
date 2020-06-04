@@ -1,5 +1,6 @@
 package com.foodgent.buchfrei.AppData.Logic;
 
+import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
 import com.foodgent.buchfrei.AppData.Entities.Item;
@@ -115,11 +116,7 @@ public class AppData implements Serializable {
 
     private boolean standardRecipesExits() {
         boolean r;
-        if(recipes.getArray().isEmpty()){
-            r = false;
-        } else {
-            r = true;
-        }
+        r = !recipes.getArray().isEmpty();
 
         return r;
     }
@@ -593,5 +590,21 @@ public class AppData implements Serializable {
 
     public void addShoppingList(ArrayList<String> list) {
         shoppingEntries.addList(list);
+    }
+
+    public int getFoodIcon(String type) {
+        int image;
+        boolean isDarkMode = this.isDarkMode();
+        if (type.equals("Fleisch")) {
+            image = isDarkMode ? R.drawable.steak_dark : R.drawable.steak;
+        } else if (type.equals("Vegetarisch")) {
+            image = isDarkMode ? R.drawable.vegan_dark : R.drawable.vegan;
+        } else if (type.equals("Vegan")) {
+            image = isDarkMode ? R.drawable.veggie_dark : R.drawable.veggie;
+        } else {
+            image = isDarkMode ? R.drawable.cake_dark : R.drawable.cake;
+        }
+
+        return image;
     }
 }

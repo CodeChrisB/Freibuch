@@ -66,7 +66,7 @@ public class ItemsNotAvailableActivity extends AppCompatActivity {
 
         for (String line : na) {
             String[] data = line.split(":");
-            String newLine = data[0] + "    " + data[1] + " " + data[2];
+            String newLine = data[0] + "    " + data[1] + " " + AppData.getInstance().getUnitFromName(data[1]);
             textForList += newLine;
             list.add(newLine);
         }

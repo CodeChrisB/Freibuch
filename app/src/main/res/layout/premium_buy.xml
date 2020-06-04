@@ -37,7 +37,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/small_round"
+            android:backgroundTint="@color/innerBackground">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline106"
@@ -45,6 +47,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.04" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline235"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.72" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline236"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.93" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -86,6 +102,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline237"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.65" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline93"
@@ -178,6 +201,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline106"
                 app:layout_constraintTop_toTopOf="@+id/guideline99" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/splash_logo"
+                app:layout_constraintBottom_toTopOf="@+id/guideline237"
+                app:layout_constraintEnd_toStartOf="@+id/guideline236"
+                app:layout_constraintStart_toStartOf="@+id/guideline235"
+                app:layout_constraintTop_toTopOf="@+id/guideline96" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
