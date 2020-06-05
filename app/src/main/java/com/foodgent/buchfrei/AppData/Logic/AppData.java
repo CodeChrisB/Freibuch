@@ -32,6 +32,7 @@ public class AppData implements Serializable {
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
     private String premium;
+    private String swipe;
     protected static RecipeItems recipeItems = new RecipeItems();
     //endregion
 
@@ -90,6 +91,7 @@ public class AppData implements Serializable {
         String barcode = internalStorage.loadData("barcode");
         String shopping = internalStorage.loadData("shopping");
         premium = internalStorage.loadData("premium");
+        swipe = internalStorage.loadData("swipe");
         String setting = internalStorage.loadData("settings");
         String recipeItem = internalStorage.loadData("recipeItems");
 
@@ -277,6 +279,15 @@ public class AppData implements Serializable {
         return true;
     }
 
+    public boolean saveSwipe() {
+        try {
+            internalStorage.saveData("swipe", gson.toJson(swipe));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
 
 
     public void DeleteAppData() {
@@ -444,16 +455,21 @@ public class AppData implements Serializable {
     }
 
     public void setPremium(boolean set) {
-        if (set) {
-            premium = "yes";
-        } else {
-            premium = "no";
-        }
-
+        premium = set ? "yes" : "no";
     }
 
     //endregion
 
+
+    //region swipe
+    public boolean isSwipe() {
+        return !swipe.equals("no");
+    }
+
+    public void setSwipe(boolean set) {
+        swipe = set ? "yes" : "no";
+    }
+    //endregion
 
     //region remove selected
     public void removeSelectedShoppingEntries() {

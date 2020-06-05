@@ -39,6 +39,7 @@ public class SettingsActivityModern extends AppCompatActivity {
     Switch darkmode;
     Switch textSize;
     Switch notification;
+    Switch swipe;
     View deleteAll;
     View language;
     View feedback;
@@ -64,12 +65,17 @@ public class SettingsActivityModern extends AppCompatActivity {
 
     private void initAll() {
         darkmode = findViewById(R.id.setting_switchDarkMode);
+        darkmode.setChecked(AppData.getInstance().isDarkMode());
+
+        swipe = findViewById(R.id.setting_swipe);
+        swipe.setChecked(AppData.getInstance().isSwipe());
 
         textSize = findViewById(R.id.setting_switch_changeTextSize);
         textSize.setChecked(AppData.getInstance().isBigText());
 
         notification = findViewById(R.id.setting_notification);
         notification.setChecked(AppData.getInstance().isNotificationOn());
+
 
         deleteAll = findViewById(R.id.setting_viewDeleteData);
         language = findViewById(R.id.setting_view_language);
@@ -123,9 +129,6 @@ public class SettingsActivityModern extends AppCompatActivity {
 
         initAll();
 
-            darkmode.setChecked(AppData.getInstance().isDarkMode());
-        notification.setChecked(AppData.getInstance().isNotificationOn());
-        textSize.setChecked(AppData.getInstance().isBigText());
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -168,6 +171,15 @@ public class SettingsActivityModern extends AppCompatActivity {
                 AppData.getInstance().setBigText(textSize.isChecked());
                 AppData.getInstance().saveSettings();
 
+            }
+        });
+
+
+        swipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean mode = swipe.isChecked();
+                AppData.getInstance().setSwipe(mode);
             }
         });
 

@@ -18,7 +18,7 @@ import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
 import com.foodgent.buchfrei.Logic.AppCrashHandler;
 import com.foodgent.buchfrei.Logic.FragmentChanger;
-import com.foodgent.buchfrei.Logic.NonSwipeableViewPager;
+import com.foodgent.buchfrei.Logic.OnSwipeTouchListener;
 import com.foodgent.buchfrei.Logic.SectionStatePagerAdapter;
 import com.foodgent.buchfrei.UserInterface.Item.ItemActivity;
 import com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static FragmentChanger fragmentChanger;
     private RecyclerView mRecyclerView;
     private MainAction mainAction;
+    private OnSwipeTouchListener onSwipeTouchListener;
 
 
     public static MainActivity getInstance() {
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         return mViewPager;
     }
 
+    public MainAction getMainAction() {
+        return mainAction;
+    }
+
     @SuppressLint({"RestrictedApi", "SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
 
         mRecyclerView = findViewById(R.id.listView);
+        onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.main_gesutreView));
+
 
 
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
@@ -80,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
         //region setup the adapter
         mSectionStatePagerAdapter = new SectionStatePagerAdapter(getSupportFragmentManager());
-        mViewPager = new NonSwipeableViewPager(this);
+        mViewPager = new ViewPager(this);
+        mViewPager.setAdapter(mSectionStatePagerAdapter);
         //endregion
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
@@ -109,8 +117,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = mainAction.getCorrectAddPage(fragmentChanger.getCurrentPage());
-                if (intent != null)
+                //intent will be 0 for
+                if (!intent.getStringExtra("type").equals("shop")) {
                     startActivity(intent);
+                } else {
+
+                    startActivity(Intent.createChooser(intent, "Einkaufsliste teilen..."));
+                }
             }
         });
 
@@ -149,14 +162,10 @@ public class MainActivity extends AppCompatActivity {
         String action = getIntent().getStringExtra("action");
         mainAction = new MainAction(getInstance(), fragmentChanger);
         mainAction.setFragment(action);
+
+
     }
 
-    //removes the slide animation, when opening this activity
-    @Override
-    protected void onStart() {
-        overridePendingTransition(0, 0);
-        super.onStart();
-    }
 
     public Context getContext() {
         return this;

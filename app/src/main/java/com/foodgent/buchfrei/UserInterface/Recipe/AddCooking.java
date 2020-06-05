@@ -100,15 +100,12 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                 final AlertDialog help = helpDialog.create();
 
 
-                final TextView helpTextView = deleteView.findViewById(R.id.textView_helpText);
                 final Button helpNext = deleteView.findViewById(R.id.button_deleteNext);
-
 
                 helpNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), AddStepList.class);
-
 
                         Recipe r = new Recipe(
                                 recipeName.getText().toString(),
@@ -119,7 +116,6 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                                 isFav,
                                 null,
                                 recipeType.getSelectedItem().toString());
-
 
                         Gson gson = new Gson();
                         intent.putExtra("recipe", gson.toJson(r));
@@ -134,22 +130,13 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
                     public void onClick(View v) {
                         AppData.getInstance().addRecipe(recipe);
                         AppData.getInstance().saveRecipe();
-                        finish();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("action", "opnRecipe");
+                        startActivity(intent);
                     }
                 });
 
                 help.show();
-
-
-
-
-                /*AppData.getInstance()
-                        .addRecipe(
-
-
-                AppData.getInstance().saveRecipe();
-                RecipeActivity.setUpRecipeList();
-                finish();*/
             }
         });
 

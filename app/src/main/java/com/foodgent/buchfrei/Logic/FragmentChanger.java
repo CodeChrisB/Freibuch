@@ -96,4 +96,16 @@ public class FragmentChanger extends AppCompatActivity {
     public int getCurrentPage(){
         return currentPage;
     }
+
+    public void nextPage() {
+        if (currentPage <= 2) {
+            this.change((currentPage + 1), MainActivity.getmViewPager());
+        }
+    }
+
+    public void prevPage() {
+        if (currentPage >= 1) {
+            this.change((currentPage - 1), MainActivity.getmViewPager());
+        }
+    }
 }
