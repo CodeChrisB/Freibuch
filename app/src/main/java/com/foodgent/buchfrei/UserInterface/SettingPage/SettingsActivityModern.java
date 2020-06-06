@@ -1,5 +1,6 @@
 package com.foodgent.buchfrei.UserInterface.SettingPage;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -39,7 +40,7 @@ public class SettingsActivityModern extends AppCompatActivity {
     Switch darkmode;
     Switch textSize;
     Switch notification;
-    Switch swipe;
+    View swipe;
     View deleteAll;
     View language;
     View feedback;
@@ -68,7 +69,6 @@ public class SettingsActivityModern extends AppCompatActivity {
         darkmode.setChecked(AppData.getInstance().isDarkMode());
 
         swipe = findViewById(R.id.setting_swipe);
-        swipe.setChecked(AppData.getInstance().isSwipe());
 
         textSize = findViewById(R.id.setting_switch_changeTextSize);
         textSize.setChecked(AppData.getInstance().isBigText());
@@ -119,10 +119,11 @@ public class SettingsActivityModern extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.modern_settings);
+        setContentView(R.layout.set_settings);
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
 
         SettingsActivityModern.setting = this;
@@ -135,8 +136,6 @@ public class SettingsActivityModern extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //endregion
-
-
 
 
         //region switches
@@ -178,8 +177,7 @@ public class SettingsActivityModern extends AppCompatActivity {
         swipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean mode = swipe.isChecked();
-                AppData.getInstance().setSwipe(mode);
+                startActivity(new Intent(getApplicationContext(), GestureActivity.class));
             }
         });
 

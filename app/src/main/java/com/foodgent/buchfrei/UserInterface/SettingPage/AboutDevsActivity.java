@@ -25,12 +25,19 @@ public class AboutDevsActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //endregion
 
-        String chrisPart = "•Project Leader\n•Team Managment\n•Design\n•Plannung\n•Design\n•Daten Speicherung\n";
+        String chrisPart =
+                "•Project Leader\n" +
+                        "•Grafik Design\n" +
+                        "•Layout\n" +
+                        "•Daten Speicherung\n" +
+                        "•Gesten Steuerung";
         TextView codeChrisText = findViewById(R.id.textView_codeChrisPart);
         codeChrisText.setText(chrisPart);
 
 
-        String robertPart = "•Barcode Scanner\n Standard Rezepte";
+        String robertPart =
+                "•Barcode Scanner\n" +
+                        "•Standard Rezepte";
         TextView robertText = findViewById(R.id.textView_robertPart);
         robertText.setText(robertPart);
 

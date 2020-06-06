@@ -739,10 +739,11 @@
         app:layout_constraintTop_toTopOf="@+id/guideline118"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Switch
+    <TextView
         android:id="@+id/setting_swipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/next_page"
         android:thumbTint="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline239"
         app:layout_constraintEnd_toStartOf="@+id/guideline125"

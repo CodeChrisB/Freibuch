@@ -21,8 +21,6 @@ import java.util.List;
 
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopListViewHolder> {
     private List<ShoppingEntry> shoppingEntries;
-    private static boolean darkMode = AppData.getInstance().isDarkMode();
-
 
     @NonNull
     @Override
@@ -54,9 +52,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
                 }
             }
         });
-
         holder.mcheckBox.setChecked(currentItem.isSelected());
-
     }
 
     @Override

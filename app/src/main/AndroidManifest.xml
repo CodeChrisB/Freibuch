@@ -37,6 +37,10 @@
             tools:ignore="InnerclassSeparator" />
 
         <activity
+            android:name="com.foodgent.buchfrei.UserInterface.SettingPage.GestureActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity
             android:name="com.foodgent.buchfrei.UserInterface.Premium.BuyPremiumActivity"
             tools:ignore="InnerclassSeparator" />
 

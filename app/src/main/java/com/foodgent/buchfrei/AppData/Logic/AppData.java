@@ -3,6 +3,7 @@ package com.foodgent.buchfrei.AppData.Logic;
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
+import com.foodgent.buchfrei.AppData.Entities.Gesture;
 import com.foodgent.buchfrei.AppData.Entities.Item;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
 import com.foodgent.buchfrei.AppData.Entities.Settings;
@@ -32,7 +33,7 @@ public class AppData implements Serializable {
     protected static Settings settings = new Settings();
     protected static ShoppingEntries shoppingEntries = new ShoppingEntries();
     private String premium;
-    private String swipe;
+    private Gesture gesture;
     protected static RecipeItems recipeItems = new RecipeItems();
     //endregion
 
@@ -91,7 +92,7 @@ public class AppData implements Serializable {
         String barcode = internalStorage.loadData("barcode");
         String shopping = internalStorage.loadData("shopping");
         premium = internalStorage.loadData("premium");
-        swipe = internalStorage.loadData("swipe");
+        String gest = internalStorage.loadData("gest");
         String setting = internalStorage.loadData("settings");
         String recipeItem = internalStorage.loadData("recipeItems");
 
@@ -106,8 +107,21 @@ public class AppData implements Serializable {
         barcodes = (barcode != null) ? loadBarcode(barcode) : setBarcode();
         shoppingEntries = (shopping != null) ? loadShopping(shopping) : setShopping();
         settings = (setting != null) ? loadSetting(setting) : setSetting();
+        gesture = (gest != null) ? loadGest(gest) : setGesture();
 
         //endregion
+    }
+
+    private Gesture loadGest(String setting) {
+        return (!setting.equals("null")) ? gson.fromJson(setting, Gesture.class) : setGesture();
+    }
+
+    private Gesture setGesture() {
+        return new Gesture();
+    }
+
+    public Gesture getGesture() {
+        return gesture;
     }
 
     private void addStandardRecipes() {
@@ -173,6 +187,9 @@ public class AppData implements Serializable {
         return (!recipe.equals("null")) ? gson.fromJson(recipe, Recipes.class) : setRecipe();
     }
 
+    public void setGesture(Gesture gesture) {
+        this.gesture = gesture;
+    }
 
     public boolean saveAppData() {
 
@@ -185,8 +202,7 @@ public class AppData implements Serializable {
             saveSettings();
             saveBarcode();
             saveRecipeItems();
-
-
+            saveGesture();
         } catch (Exception ex) {
             return false;
         }
@@ -279,9 +295,9 @@ public class AppData implements Serializable {
         return true;
     }
 
-    public boolean saveSwipe() {
+    public boolean saveGesture() {
         try {
-            internalStorage.saveData("swipe", gson.toJson(swipe));
+            internalStorage.saveData("gest", gson.toJson(gesture));
         } catch (Exception ex) {
             return false;
         }
@@ -461,15 +477,7 @@ public class AppData implements Serializable {
     //endregion
 
 
-    //region swipe
-    public boolean isSwipe() {
-        return !swipe.equals("no");
-    }
 
-    public void setSwipe(boolean set) {
-        swipe = set ? "yes" : "no";
-    }
-    //endregion
 
     //region remove selected
     public void removeSelectedShoppingEntries() {

@@ -16,9 +16,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
+import com.foodgent.buchfrei.Gesture.OnSwipeTouchListener;
 import com.foodgent.buchfrei.Logic.AppCrashHandler;
 import com.foodgent.buchfrei.Logic.FragmentChanger;
-import com.foodgent.buchfrei.Logic.OnSwipeTouchListener;
 import com.foodgent.buchfrei.Logic.SectionStatePagerAdapter;
 import com.foodgent.buchfrei.UserInterface.Item.ItemActivity;
 import com.foodgent.buchfrei.UserInterface.SettingPage.SettingsActivityModern;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
         AppData.getInstance().loadData();
 
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mSectionStatePagerAdapter = new SectionStatePagerAdapter(getSupportFragmentManager());
         mViewPager = new ViewPager(this);
         mViewPager.setAdapter(mSectionStatePagerAdapter);
+        mViewPager.bringToFront();
         //endregion
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
@@ -117,13 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = mainAction.getCorrectAddPage(fragmentChanger.getCurrentPage());
-                //intent will be 0 for
-                if (!intent.getStringExtra("type").equals("shop")) {
-                    startActivity(intent);
-                } else {
-
-                    startActivity(Intent.createChooser(intent, "Einkaufsliste teilen..."));
-                }
+                startAddIntent(intent);
             }
         });
 
@@ -171,5 +167,11 @@ public class MainActivity extends AppCompatActivity {
         return this;
     }
 
-
+    public void startAddIntent(Intent intent) {
+        if (!intent.getStringExtra("type").equals("shop")) {
+            startActivity(intent);
+        } else {
+            startActivity(Intent.createChooser(intent, "Einkaufsliste teilen..."));
+        }
+    }
 }

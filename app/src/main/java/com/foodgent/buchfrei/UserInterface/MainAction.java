@@ -95,4 +95,10 @@ public class MainAction extends AppCompatActivity {
     public void prevViewPager() {
         fragmentChanger.prevPage();
     }
+
+    public void startIntent(Intent intent) {
+        startActivity(intent);
+    }
+
+
 }
