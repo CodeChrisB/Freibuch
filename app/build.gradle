@@ -3,7 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId 'com.foodgent.buchfrei'
         minSdkVersion 21
@@ -24,6 +24,9 @@ android {
             res.srcDirs = ['src/main/res', 'src/main/res/layout/Main', 'src/main/res/layouts/main', 'src/main/res/main']
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 
@@ -36,7 +39,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:22.0.0'

@@ -31,6 +31,43 @@
       "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
       "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
     ],
-    "recipeType": "Nachspeise"
+    "recipeType": "Vegetarisch"
+  },
+
+  {
+    "name": " Schweinsbraten",
+    "description": "standard Rezept",
+    "itemList": [
+      "1.5:Schopf oder Karree( mit Schwarte):Kilo",
+      "4:Knoblachzehen:Stück",
+      "2:Öl:Milliter",
+      "1:Rosmarin (gehackt):Kilo",
+      "4:Karotten:Stück",
+      "2:Lorbeertblatt:Stück",
+      "0.25:Bier:Liter",
+      "500:Lauch:Kilo",
+      "3:Zwiebel:Stück",
+      "1:Salz:Stück",
+      "1:Thymian:Stück"
+    ],
+    "portions": 8,
+    "time": 120,
+    "favourite": false,
+    "description": "Schweinsbraten mit Kruste ist ein herzhaftes Rezept bei dem jeder gerne nochmal zugreift.",
+    "steps": [
+      "Für den Schweinsbraten zuerst den Backofen auf 225° vorheizen. Die Schwarte mit einem Messer kreuzweise einritzen, das Muskelfleisch aber nicht verletzen.",
+      "Den geschälten Knoblauch mit etwa 1/2 TL Salz, den Pfefferkörnern, Thymian und den Majoran in einem Mörser fein zerstoßen.",
+      "Das Öl und den Rosmarin untermischen. Das Fleisch rundum mit der Gewürzmischung einreiben.",
+      "Einen Bräter fingerdick mit kochend heißem Salzwasser füllen.",
+      "Den Braten mit der Schwarte nach unten hineinlegen, den Bräter unten in den Backofen stellen. Etwa 15 Min. garen, dann das Fleisch wenden und mit der Schwarte nach oben weitere 15 Min. garen.",
+      "Die Karotten in Scheiben schneiden und mit dem Lorbeerblatt in den Bräter geben, das Fleisch mit Bier begießen.",
+      "Weitere 45 Min. schmoren. Die Schwarte ab und zu mit dem Bratensaft begießen.",
+      "Lauch putzen und längs vierteln, waschen und in etwa 5 cm lange Stücke schneiden.",
+      "Die Hitze im Backofen auf 175° reduzieren, die Lauchstücke und die halbierten, geschälten Zwiebeln um das Fleisch herum verteilen und etwas Brühe angießen.",
+      "Den Bräter weiter oben in den Backofen schieben, das Fleisch nochmals etwa 45 Min. schmoren, immer wieder mit Bratensaft begießen.",
+      "Den Schweinsbraten herausnehmen und im ausgeschalteten Backofen warm halten.",
+      "Die Soße bzw. Bratensaft im Bräter mit dem Gemüse pürieren (Lorbeerblatt herausnehmen) und mit Salz und Pfeffer abschmecken."
+    ],
+    "recipeType": "Fleisch"
   }
 ]

@@ -210,7 +210,7 @@ public class AppData implements Serializable {
         //endregion
     }
 
-    private ArrayList<Recipe> getJson() {
+    public ArrayList<Recipe> getJson() {
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
