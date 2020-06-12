@@ -107,15 +107,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline74"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:drawable/ic_menu_manage"
-        app:layout_constraintBottom_toTopOf="@+id/guideline242"
-        app:layout_constraintEnd_toStartOf="@+id/guideline243"
-        app:layout_constraintStart_toStartOf="@+id/guideline240"
-        app:layout_constraintTop_toTopOf="@+id/guideline241" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

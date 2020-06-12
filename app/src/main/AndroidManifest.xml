@@ -18,6 +18,7 @@
 
 
         <activity android:name="com.foodgent.buchfrei.UserInterface.MainActivity" />
+
         <activity android:name="com.foodgent.buchfrei.UserInterface.Crashreport.CrashReport" />
 
 
