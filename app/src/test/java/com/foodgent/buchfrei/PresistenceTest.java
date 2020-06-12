@@ -1,6 +1,7 @@
 package com.foodgent.buchfrei;
 
 import com.foodgent.buchfrei.AppData.Entities.Barcode;
+import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
 import com.foodgent.buchfrei.AppData.Entities.Item;
 import com.foodgent.buchfrei.AppData.Entities.Recipe;
 import com.foodgent.buchfrei.AppData.Entities.ShoppingEntry;
@@ -8,10 +9,13 @@ import com.foodgent.buchfrei.AppData.Logic.AppData;
 
 import org.junit.Test;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -19,44 +23,36 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class PresistenceTest {
+
     @Test
-    public void barcode_addTest(){
+    public void barcodeAddTest(){
+
         AppData appData = new AppData();
-        LocalDate date = LocalDate.now(); // Create a date object
 
-        appData.DeleteAppData();
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
-
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
-
-        Barcode barcode1 = new Barcode("123",item1);
+        Barcode barcode1 = new Barcode("12", item1);
         Barcode barcode2 = new Barcode("1234",item2);
         Barcode barcode3 = new Barcode("12345",item3);
-
 
         appData.addBarcode(barcode1);
         appData.addBarcode(barcode2);
         appData.addBarcode(barcode3);
-
-        ArrayList<Barcode>  barcodes = appData.getBarcodes();
-
-        assertEquals(3,barcodes.size());
+        assertEquals(3, appData.getBarcodes().size());
     }
 
     @Test
-    public  void barcode_FoundItem(){
+    public  void barcodeFoundItem(){
         AppData appData = new AppData();
-        LocalDate date = LocalDate.now(); // Create a date object
 
-        appData.removeAllBarCodes();
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
-
-        Barcode barcode1 = new Barcode("123456789",item1);
+        String checkCode = "123456789";
+        Barcode barcode1 = new Barcode(checkCode,item1);
         Barcode barcode2 = new Barcode("43214532",item2);
         Barcode barcode3 = new Barcode("43144542",item3);
 
@@ -65,21 +61,19 @@ public class PresistenceTest {
         appData.addBarcode(barcode2);
         appData.addBarcode(barcode3);
 
-        ArrayList<Barcode>  barcodes = appData.getBarcodes();
-
-        Item found = appData.searchForItem("123456789");
+        BarcodeItem found = appData.searchForItem(checkCode);
 
         assertEquals(found,item1);
     }
 
     @Test
-    public  void barcode_searchForNewBarcode(){
+    public  void barcodeSearchForNewBarcode(){
         AppData appData = new AppData();
         LocalDate date = LocalDate.now(); // Create a date object
 
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
         Barcode barcode1 = new Barcode("123456789",item1);
         Barcode barcode2 = new Barcode("43214532",item2);
@@ -92,22 +86,21 @@ public class PresistenceTest {
 
         ArrayList<Barcode>  barcodes = appData.getBarcodes();
 
-        Item found = appData.searchForItem("44444444444");
+        BarcodeItem found = appData.searchForItem("44444444444");
 
         assertEquals(found,null);
     }
 
     @Test
-    public void barcode_remove(){
+    public void barcodeRemove(){
         AppData appData = new AppData();
-        LocalDate date = LocalDate.now(); // Create a date object
+        LocalDate date = LocalDate.now();
 
-        appData.DeleteAppData();
+        appData.removeAllBarCodes();
 
-
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
         Barcode barcode1 = new Barcode("123456789",item1);
         Barcode barcode2 = new Barcode("43214532",item2);
@@ -133,19 +126,16 @@ public class PresistenceTest {
 
     }
 
-    @Test public void barcode_update()
-    {
+    @Test
+    public void barcodeUpdate() {
         AppData appData = new AppData();
         LocalDate date = LocalDate.now(); // Create a date object
 
-        appData.DeleteAppData();
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
-
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
-
-        Item item1Update = new Item("Update","This is the Updated Item", date,-1);
+        BarcodeItem item1Update = new BarcodeItem("Update","This is the Updated Item");
 
         Barcode barcode1 = new Barcode("123456789",item1);
         Barcode barcode2 = new Barcode("43214532",item2);
@@ -168,16 +158,15 @@ public class PresistenceTest {
 
     }
 
-    /*@Test
-    public void barcode_sameCodeAdd(){
+    @Test
+    public void barcodeSameCodeAdd(){
         AppData appData = new AppData();
         LocalDate date = LocalDate.now(); // Create a date object
 
-        appData.DeleteAppData();
+        BarcodeItem item1 = new BarcodeItem("Item 1","This is the First Item");
+        BarcodeItem item2 = new BarcodeItem("Item 2","This is the Second Item");
+        BarcodeItem item3 = new BarcodeItem("Item 3","This is the Third Item");
 
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
 
         Barcode barcode1 = new Barcode("123456789",item1);
         Barcode barcode2 = new Barcode("123456789",item2);
@@ -190,33 +179,20 @@ public class PresistenceTest {
 
         ArrayList<Barcode>  allCodes = appData.getBarcodes();
 
-        //if the first item is not overwriten item 2 then the test is false
-       if(!(allCodes.get(0).getBarcode().equals("Item 2")))
-            assert(false);
-
-       //if the second item is not the item 3 then the test is false
-       if(!(allCodes.get(1).getBarcode().equals("Item 3")))
-        assert(false);
-
-       //if only 2 barcodes are in the list then add it!
-       if(allCodes.size()==2){
-           assert(true);}
-       else{
-           assert(false);
-       }
-    }*/
+        assertEquals(allCodes.get(0).getItem().getName(), ("Item 2"));
+        assertNotEquals(allCodes.get(1).getBarcode(), "item 3");
+        assertEquals(allCodes.size(),2);
+    }
 
     @Test
-    public void items_addTest(){
+    public void itemsAddTest(){
         AppData appData = new AppData();
-        LocalDate date = LocalDate.now(); // Create a date object
-
-        appData.DeleteAppData();
+        Date date = Date.from(Instant.now()) ; // Create a date object
 
 
-        Item item1 = new Item("Item 1","This is the First Item", date,-1);
-        Item item2 = new Item("Item 2","This is the Second Item", date,-1);
-        Item item3 = new Item("Item 3","This is the Third Item", date,-1);
+        Item item1 = new Item("Item 1","This is the First Item", date,-1,"kg");
+        Item item2 = new Item("Item 2","This is the Second Item", date,-1, "kg");
+        Item item3 = new Item("Item 3","This is the Third Item", date,-1, "kg");
 
 
         appData.addItem(item1);
@@ -226,6 +202,38 @@ public class PresistenceTest {
         ArrayList<Item>  items = appData.getItems();
 
         assertEquals(3,items.size());
+    }
+
+    @Test
+    public void itemsRemoveTest(){
+        AppData appData = new AppData();
+        Date date = Date.from(Instant.now());
+
+        appData.removeAllItems();
+
+        Item item1 = new Item("Item 1","This is the First Item", date,-1,"kg");
+        Item item2 = new Item("Item 2","This is the Second Item", date,-1, "kg");
+        Item item3 = new Item("Item 3","This is the Third Item", date,-1, "kg");
+
+
+        appData.addItem(item1);
+        appData.addItem(item2);
+        appData.addItem(item3);
+
+        ArrayList<Barcode>  allCodes = appData.getBarcodes();
+
+        appData.removeItem(item1);
+
+        boolean isRemoved = true;
+
+        for (Item item : appData.getItems()) {
+            if(item.equals(item1)){
+                isRemoved = false;
+            }
+        }
+
+        assertEquals(true, isRemoved);
+
     }
 
     @Test
@@ -245,21 +253,67 @@ public class PresistenceTest {
         assertEquals(1, entries);
     }
 
-
     @Test
-    public void recipe_addTest(){
+    public void recipeAddTest(){
         AppData appData = new AppData();
+        ArrayList<String> itemList = new ArrayList<>();
 
-        Recipe recipe1 = new Recipe("Applie Pie", "Don't let it get burned!");
-        Recipe recipe2 = new Recipe("Schnitzel","Dont use the hammer on a living Pig.");
-        Recipe recipe3 = new Recipe("Stone Soup","Dentists loves this meal!");
+        itemList.add("item1");
+        itemList.add("item2");
+        itemList.add("item3");
+
+        ArrayList<String> steps = new ArrayList<>();
+        steps.add("step1");
+        steps.add("step2");
+        steps.add("step3)");
+
+        Recipe recipe1 = new Recipe("Recipe1", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
+        Recipe recipe2 = new Recipe("Recipe2", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
+        Recipe recipe3 =  new Recipe("Recipe3", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
 
         appData.addRecipe(recipe1);
         appData.addRecipe(recipe2);
-        appData.addRecipe(recipe2);
+        appData.addRecipe(recipe3);
 
         ArrayList<Recipe>  recipes = appData.getRecipes();
 
         assertEquals(3,recipes.size());
+    }
+
+    @Test
+    public void recipeRemoveTest(){
+        AppData appData = new AppData();
+
+        ArrayList<String> itemList = new ArrayList<>();
+
+        itemList.add("item1");
+        itemList.add("item2");
+        itemList.add("item3");
+
+        ArrayList<String> steps = new ArrayList<>();
+        steps.add("step1");
+        steps.add("step2");
+        steps.add("step3)");
+
+        Recipe recipe1 = new Recipe("Recipe1", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
+        Recipe recipe2 = new Recipe("Recipe2", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
+        Recipe recipe3 =  new Recipe("Recipe3", "Some Info!", itemList, 1, 1, false, steps, "TestRecipe");
+
+        appData.addRecipe(recipe1);
+        appData.addRecipe(recipe2);
+        appData.addRecipe(recipe3);
+
+        appData.removeRecipe(recipe1);
+        ArrayList<Recipe>  recipes = appData.getRecipes();
+
+        boolean isRemoved = true;
+
+        for (Recipe recipe : recipes){
+            if(recipe.equals(recipe1)){
+                isRemoved = false;
+            }
+        }
+
+        assertEquals(true, isRemoved);
     }
 }
