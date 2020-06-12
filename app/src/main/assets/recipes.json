@@ -33,7 +33,160 @@
     ],
     "recipeType": "Vegetarisch"
   },
-
+  {
+    "name": "Grießnockerl",
+    "description": "desc",
+    "itemList": [
+      "30:Butter:g",
+      "80:Ei:Stk",
+      "2:Salz:Prise"
+    ],
+    "portions": 6,
+    "time": 30,
+    "favourite": false,
+    "steps": [
+      "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+      "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+      "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+    ],
+    "recipeType": "Vegetarisch"
+  }, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Grießnockerl",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+}, {
+  "name": "Test",
+  "description": "desc",
+  "itemList": [
+    "30:Butter:g",
+    "80:Ei:Stk",
+    "2:Salz:Prise"
+  ],
+  "portions": 6,
+  "time": 30,
+  "favourite": false,
+  "steps": [
+    "Die Butter mit dem Ei und dem Salz und Muskat schaumig rühren. Danach den Grieß einrühren und für ca. 10-15 Min. stehen lassen.",
+    "Währenddessen das Wasser in einem Topf zum Kochen bringen. Suppengewürz (selbstgemacht oder fertig) einstreuen, salzen. So entsteht eine schnelle Suppe.",
+    "Aus der Grießmasse mit einem Löffel Nockerl formen und in die Suppe geben. Zugedeckt ca. 10 Minuten ziehen lassen (nicht kochen)."
+  ],
+  "recipeType": "Vegetarisch"
+},
   {
     "name": " Schweinsbraten",
     "description": "standard Rezept",

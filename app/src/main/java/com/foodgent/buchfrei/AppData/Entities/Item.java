@@ -110,7 +110,7 @@ public class Item implements Serializable {
 
             } else if (remainingDays > 365) {
 
-                message = "Läuf in mehr als 1 Jahr ab.";
+                message = "Läuft in mehr als 1 Jahr ab.";
             } else {
 
                 //läuft in N Wochen ab
@@ -155,6 +155,4 @@ public class Item implements Serializable {
         daysdiff = (int) diffDays;
         return daysdiff;
     }
-
-
 }

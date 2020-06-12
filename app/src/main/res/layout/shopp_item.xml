@@ -29,7 +29,7 @@
         android:text=""
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline256"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -44,5 +44,12 @@
         app:layout_constraintBottom_toBottomOf="@+id/checkBox_shopEntry"
         app:layout_constraintStart_toEndOf="@+id/checkBox_shopEntry"
         app:layout_constraintTop_toTopOf="@+id/checkBox_shopEntry" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline256"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
