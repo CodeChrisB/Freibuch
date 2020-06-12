@@ -36,6 +36,15 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
         recipes.remove(object);
     }
 
+    public void removeObject(String object) {
+        ArrayList<Recipe> temp = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            if (!recipe.getName().equals(object))
+                temp.add(recipe);
+        }
+        recipes = temp;
+    }
+
     @Override
     public void removeAll() {
         recipes = new ArrayList<Recipe>();

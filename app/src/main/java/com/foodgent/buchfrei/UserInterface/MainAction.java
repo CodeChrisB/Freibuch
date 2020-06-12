@@ -5,6 +5,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
@@ -47,14 +49,14 @@ public class MainAction extends AppCompatActivity {
         }
     }
 
-    public void setViewPager(int fragmentNumber) {
-        fragmentChanger.change(fragmentNumber, MainActivity.getmViewPager());
+    public static void setGestureArea() {
+        Guideline guideLine = MainActivity.getInstance().findViewById(R.id.guideLineGesture);
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) guideLine.getLayoutParams();
 
-        //set the correct add logo
-        Button addButton = MainActivity.getInstance().findViewById(R.id.button_add);
+        Float value = AppData.getInstance().getGesture().isAny() ? 0.9f : 1f;
+        params.guidePercent = value;
 
-        int draw = fragmentNumber == 2 ? R.drawable.share : android.R.drawable.ic_input_add;
-        addButton.setBackgroundResource(draw);
+        guideLine.setLayoutParams(params);
     }
 
     public Intent getCorrectAddPage(int currentPage) {
@@ -84,9 +86,7 @@ public class MainAction extends AppCompatActivity {
         return null;
     }
 
-    public void setOrientation() {
 
-    }
 
     public void nextViewPager() {
         fragmentChanger.nextPage();
@@ -96,9 +96,21 @@ public class MainAction extends AppCompatActivity {
         fragmentChanger.prevPage();
     }
 
-    public void startIntent(Intent intent) {
-        startActivity(intent);
+    public void setViewPager(int fragmentNumber) {
+        fragmentChanger.change(fragmentNumber, MainActivity.getmViewPager());
+
+        //set the correct add logo
+        Button addButton = MainActivity.getInstance().findViewById(R.id.button_add);
+
+        int draw = fragmentNumber == 2 ? R.drawable.share : R.drawable.add;
+        addButton.setBackgroundResource(draw);
     }
 
-
+    public void startAddIntent(Intent intent) {
+        if (!intent.getStringExtra("type").equals("shop")) {
+            MainActivity.getInstance().getContext().startActivity(intent);
+        } else {
+            MainActivity.getInstance().getContext().startActivity(Intent.createChooser(intent, "Einkaufsliste teilen..."));
+        }
+    }
 }

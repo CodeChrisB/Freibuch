@@ -84,13 +84,6 @@
         app:layout_constraintGuide_percent="0.17" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline138"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline107"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,13 +103,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.86" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline125"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.94" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline142"
@@ -287,7 +273,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center|left"
-        android:text="Bewegung nach unten - zurück Funktion"
+        android:text="Bewegung nach unten - App schließen"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline114"
         app:layout_constraintEnd_toStartOf="@+id/guideline88"
@@ -310,7 +296,6 @@
         android:layout_height="wrap_content"
         android:thumbTint="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline111"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toTopOf="@+id/guideline110" />
 
@@ -320,8 +305,6 @@
         android:layout_height="wrap_content"
         android:thumbTint="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline114"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toTopOf="@+id/guideline113"
         app:layout_constraintVertical_bias="1.0" />
@@ -332,40 +315,14 @@
         android:layout_height="wrap_content"
         android:thumbTint="@color/themeColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline109"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toTopOf="@+id/guideline108" />
-
-    <View
-        android:id="@+id/view26"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        tools:layout_editor_absoluteY="512dp" />
-
-    <View
-        android:id="@+id/view31"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        tools:layout_editor_absoluteY="468dp" />
 
     <View
         android:id="@+id/view30"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
         app:layout_constraintStart_toStartOf="@+id/guideline88" />
-
-    <View
-        android:id="@+id/view29"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline125"
-        app:layout_constraintStart_toStartOf="@+id/guideline88"
-        tools:layout_editor_absoluteY="285dp" />
 
     <View
         android:id="@+id/setting_roundtopBarPart2"
@@ -382,6 +339,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/top_round"
+        app:layout_constraintBottom_toTopOf="@+id/setting_bigBackground"
+        app:layout_constraintEnd_toStartOf="@+id/guideline142"
+        app:layout_constraintStart_toStartOf="@+id/guideline141"
+        app:layout_constraintTop_toTopOf="@+id/guideline137" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:fontFamily="casual"
+        android:text="Gestensteuerung"
+        android:textColor="@color/textColor"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/setting_bigBackground"
         app:layout_constraintEnd_toStartOf="@+id/guideline142"
         app:layout_constraintStart_toStartOf="@+id/guideline141"

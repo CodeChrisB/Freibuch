@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Gesture;
 import com.foodgent.buchfrei.AppData.Logic.AppData;
+import com.foodgent.buchfrei.UserInterface.MainAction;
 
 public class GestureActivity extends AppCompatActivity {
 
@@ -40,6 +41,7 @@ public class GestureActivity extends AppCompatActivity {
                 g.setUp(up.isChecked());
                 app.setGesture(g);
                 app.saveAppData();
+                MainAction.setGestureArea();
             }
         });
 
@@ -50,6 +52,7 @@ public class GestureActivity extends AppCompatActivity {
                 g.setDown(down.isChecked());
                 app.setGesture(g);
                 app.saveAppData();
+                MainAction.setGestureArea();
             }
         });
 
@@ -60,6 +63,7 @@ public class GestureActivity extends AppCompatActivity {
                 g.setSide(side.isChecked());
                 app.setGesture(g);
                 app.saveAppData();
+                MainAction.setGestureArea();
             }
         });
 

@@ -25,12 +25,15 @@ public class GestureListener extends
         try {
             float diffY = e2.getY() - e1.getY();
             float diffX = e2.getX() - e1.getX();
+            if (diffX == 0 && diffY == 0)
+                onTouch();
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                     if (diffX > 0) {
-                        onSwipeRight();
-                    } else {
                         onSwipeLeft();
+                    } else {
+                        onSwipeRight();
+
                     }
                 }
                 result = true;
@@ -48,7 +51,13 @@ public class GestureListener extends
         return result;
     }
 
+    private void onTouch() {
+        Toast.makeText(MainActivity.getInstance().getContext(), "Touch", Toast.LENGTH_SHORT).show();
+    }
+
     private void onSwipeBottom() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
     private void onSwipeTop() {
@@ -61,7 +70,7 @@ public class GestureListener extends
         int addPage = FragmentChanger.fragmentChanger.getCurrentPage();
         Intent intent = MainActivity.getInstance().getMainAction().getCorrectAddPage(addPage);
 
-        MainActivity.getInstance().startAddIntent(intent);
+        MainActivity.getInstance().getMainAction().startAddIntent(intent);
 
     }
 

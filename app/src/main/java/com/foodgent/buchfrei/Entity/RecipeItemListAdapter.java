@@ -25,6 +25,9 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
     boolean isOnClickActive;
     private ArrayList<String > recipeList = new ArrayList<>();
     private List<String> recipeItems;
+    private static List<Integer> holderList;
+    boolean change;
+    private TextView textView;
 
     public RecipeItemListAdapter(List<String> recipeItems, boolean isOnClickActive) {
         this.recipeItems = recipeItems;
@@ -37,7 +40,7 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipeitem, parent, false);
         RecipeItemListAdapter.ShopListViewHolder evh = new RecipeItemListAdapter.ShopListViewHolder(v);
-
+        holderList = new ArrayList<>();
         return evh;
     }
 
@@ -51,10 +54,18 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
         holder.mText.setText(text);
         String amountText = info[0] + " " +
                 AppData.getInstance().getUnitFromName(info[1]);
+
         holder.itemAmount.setText(amountText);
+
+        if (change) {
+            int amount = getAmountOfChange(holder.mText);
+            if (amount != -1 && amount > 0)
+                displayItemAmount(holder, amount);
+        }
 
 
         if (isOnClickActive) {
+
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,7 +77,7 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
                     final AlertDialog help = helpDialog.create();
 
 
-                    final TextView textView = recipeItemView.findViewById(R.id.textView_rI_name);
+                    textView = recipeItemView.findViewById(R.id.textView_rI_name);
                     textView.setText(text);
 
 
@@ -78,9 +89,6 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
                         @Override
                         public void onClick(View view) {
 
-                            // TODO: Implement the item amount new
-
-
                             //check if the amount is a correct input
                             int amount = -1;
                             try {
@@ -91,14 +99,7 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
                             }
 
                             //if it was a correct input set the value, add to recipeItem list and set background
-                            if (amount > 0) {
-                                String amountText = amount + " ";
-                                holder.itemAmount.setText(amountText);
-                                recipeList.add(amount+":"+ textView.getText().toString()+":"+ "");
-                                holder.background.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.themeColor));
-                            }
-
-
+                            displayItemAmount(holder, amount);
                             help.cancel();
                         }
                     });
@@ -106,6 +107,29 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
                 }
             });
+        }
+
+    }
+
+    private int getAmountOfChange(TextView mText) {
+        for (String recipe : recipeList) {
+            String otherName = mText.getText().toString();
+            String name = recipe.split(":")[1];
+            if (name.equals(otherName))
+                return Integer.parseInt(recipe.split(":")[0]);
+        }
+        return -1;
+    }
+
+    private void displayItemAmount(ShopListViewHolder holder, int amount) {
+        if (amount > 0) {
+
+            String amountText = amount + " ";
+            holder.itemAmount.setText(amountText);
+            if (!change) {
+                recipeList.add(amount + ":" + textView.getText().toString() + ":" + "");
+            }
+            holder.background.setBackgroundTintList(holder.context.getResources().getColorStateList(R.color.themeColor));
         }
 
     }
@@ -119,6 +143,22 @@ public class RecipeItemListAdapter extends RecyclerView.Adapter<RecipeItemListAd
 
     public ArrayList<String> getNeededRecipeItems() {
         return recipeList;
+    }
+
+    public void setNeededItems(ArrayList<String> listOfItems) {
+        change = true;
+
+        for (int i = 0; i < listOfItems.size(); i++) {
+            String item = listOfItems.get(i);
+            String name = item.split(":")[1];
+            int amount = Integer.parseInt(item.split(":")[0]);
+            item += AppData.getInstance().getUnitFromName(name);
+            listOfItems.set(i, item);
+        }
+
+
+        recipeList.clear();
+        recipeList.addAll(listOfItems);
     }
 
     public static class ShopListViewHolder extends RecyclerView.ViewHolder {

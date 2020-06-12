@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fragment.R;
+import com.foodgent.buchfrei.Gesture.GestureArea;
 import com.foodgent.buchfrei.UserInterface.Item.ItemActivity;
 import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.foodgent.buchfrei.UserInterface.Recipe.RecipeActivity;
@@ -19,6 +20,7 @@ public class FragmentChanger extends AppCompatActivity {
     private Button btnNavFrag1;
     private Button btnNavFrag2;
     private Button btnNavFrag3;
+    private GestureArea gestureArea;
     private MainActivity mainActivity;
     private int currentPage;
     public static FragmentChanger fragmentChanger;
@@ -32,6 +34,7 @@ public class FragmentChanger extends AppCompatActivity {
         currentPage=0;
         fragmentChanger = this;
         this.mViewPager = mViewPager;
+        gestureArea = new GestureArea();
     }
 
 
@@ -89,6 +92,7 @@ public class FragmentChanger extends AppCompatActivity {
 
 
         currentPage=number;
+        CallGestureArea(currentPage);
         //set the new Page
         viewPager.setCurrentItem(number);
     }
@@ -100,12 +104,24 @@ public class FragmentChanger extends AppCompatActivity {
     public void nextPage() {
         if (currentPage <= 2) {
             this.change((currentPage + 1), MainActivity.getmViewPager());
+            CallGestureArea(currentPage + 1);
+        } else {
+            this.change((0), MainActivity.getmViewPager());
+            CallGestureArea(0);
         }
     }
 
     public void prevPage() {
         if (currentPage >= 1) {
             this.change((currentPage - 1), MainActivity.getmViewPager());
+            CallGestureArea(currentPage - 1);
+        } else {
+            this.change((2), MainActivity.getmViewPager());
+            CallGestureArea(2);
         }
+    }
+
+    private void CallGestureArea(int page) {
+        //gestureArea.setArea(page);
     }
 }

@@ -32,6 +32,8 @@ public class AddStepList extends AppCompatActivity {
     RecipeItemListAdapter reyclerAdapter;
     ArrayList<String> list = new ArrayList<>();
     private boolean isFav = false;
+    private boolean changeRecipe;
+    private String oldName;
 
     //removes the slide animation, when opening this activity
     @Override
@@ -46,6 +48,10 @@ public class AddStepList extends AppCompatActivity {
         setContentView(R.layout.addpage_recipelist);
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
 
+        if (getIntent().getBooleanExtra("change", false)) {
+            changeRecipe = true;
+            oldName = getIntent().getStringExtra("old");
+        }
         //get the intent in the target activity
         Intent intent = getIntent();
 
@@ -79,6 +85,11 @@ public class AddStepList extends AppCompatActivity {
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (changeRecipe) {
+                    AppData.getInstance().removeRecipe(oldName);
+                }
+
                 recipe.setSteps(list);
                 AppData.getInstance().addRecipe(recipe);
                 AppData.getInstance().saveRecipe();

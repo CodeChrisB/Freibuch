@@ -15,7 +15,6 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
     private String seperartor = "";
 
     public ShoppingEntries(){
-
     }
 
     public ShoppingEntry getEntryAt(int index) {
@@ -56,7 +55,6 @@ public class ShoppingEntries implements SaveArrayAble<ShoppingEntry>, Serializab
             return true;
         }
         return false;
-
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             @Override
             public void onClick(View v) {
                 current = items.get(vHolder.getAdapterPosition());
-                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getContext());
+                final AlertDialog.Builder helpDialog = new AlertDialog.Builder(MainActivity.getInstance().getApplicationContext());
                 View alertItemView = MainActivity.getInstance().getLayoutInflater().inflate(R.layout.alert_item_page, null);
 
                 EditText editName = alertItemView.findViewById(R.id.editText_itemName);

@@ -50,35 +50,19 @@ public class ShowRecipeActivity extends AppCompatActivity {
         desc.setText(recipe.getDescription());
 
 
-        TextView portions = findViewById(R.id.textView_showRecipe_portions);
-        if (recipe.getPortions() > 0) {
-            portions.setText(" Portionen " + recipe.getPortions() + " ");
-        } else {
-            portions.setVisibility(View.GONE);
-        }
+        setInfo(recipe);
 
-        TextView type = findViewById(R.id.textView_showRecipe_type);
-        if (!recipe.getRecipeType().equals("")) {
-            type.setText(" " + recipe.getRecipeType() + " ");
-        } else {
-            type.setVisibility(View.GONE);
-        }
+        View recipeChange = findViewById(R.id.recipe_changeButton);
+        recipeChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddCooking.class);
+                intent.putExtra("change", gson.toJson(recipe));
+                startActivity(intent);
+            }
+        });
 
 
-        TextView time = findViewById(R.id.textView_showRecipe_time);
-        if (recipe.getTime() > 0) {
-            time.setText(" " + recipe.getTime() + " Minuten ");
-        } else {
-            time.setVisibility(View.GONE);
-        }
-
-        TextView fav = findViewById(R.id.textView_showRecipe_fav);
-        if (recipe.isFavourite()) {
-            fav.setText(" Favorit ❤️ ");
-        } else {
-            fav.setVisibility(View.GONE);
-        }
-        //setInfo(recipe);
 
 
         //region Set window fullscreen, remove title bar, force landscape orientation,prevent view get pushed by Keyboard
@@ -115,6 +99,38 @@ public class ShowRecipeActivity extends AppCompatActivity {
 
 
     }
+
+    private void setInfo(Recipe recipe) {
+        TextView portions = findViewById(R.id.textView_showRecipe_portions);
+        if (recipe.getPortions() > 0) {
+            portions.setText(" Portionen " + recipe.getPortions() + " ");
+        } else {
+            portions.setVisibility(View.GONE);
+        }
+
+        TextView type = findViewById(R.id.textView_showRecipe_type);
+        if (!recipe.getRecipeType().equals("")) {
+            type.setText(" " + recipe.getRecipeType() + " ");
+        } else {
+            type.setVisibility(View.GONE);
+        }
+
+
+        TextView time = findViewById(R.id.textView_showRecipe_time);
+        if (recipe.getTime() > 0) {
+            time.setText(" " + recipe.getTime() + " Minuten ");
+        } else {
+            time.setVisibility(View.GONE);
+        }
+
+        TextView fav = findViewById(R.id.textView_showRecipe_fav);
+        if (recipe.isFavourite()) {
+            fav.setText(" Favorit ❤️ ");
+        } else {
+            fav.setVisibility(View.GONE);
+        }
+    }
+
 
     private ArrayList<String> CheckItems(ArrayList<String> recipeList) {
 

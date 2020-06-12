@@ -35,6 +35,16 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
     private boolean isFav = false;
     public static RecyclerView mRecyclerview;
     private static RecyclerView.LayoutManager mLayoutManager;
+
+    private TextView recipeName;
+    private TextView portions;
+    private TextView time;
+    private TextView description;
+    private Button favButton;
+    private Spinner recipeType;
+
+    private boolean changeRecipe;
+    private String oldName;
     RecipeItemListAdapter reyclerAdapter;
 
 
@@ -52,13 +62,13 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
         Log.d(TAG, "OnCreate: Started");
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
 
+        recipeName = findViewById(R.id.stepList_currentStep);
+        portions = findViewById(R.id.editText_recipeAdd_portions);
+        time = findViewById(R.id.editText_recipeAdd_min);
+        description = findViewById(R.id.editText_recipeAdd_desc);
+        favButton = findViewById(R.id.button_recipeAdd_favButton);
+        recipeType = findViewById(R.id.spinner_recipeType);
 
-        final TextView recipeName = findViewById(R.id.stepList_currentStep);
-        final TextView portions = findViewById(R.id.editText_recipeAdd_portions);
-        final TextView time = findViewById(R.id.editText_recipeAdd_min);
-        final TextView description = findViewById(R.id.editText_recipeAdd_desc);
-        final Button favButton = findViewById(R.id.button_recipeAdd_favButton);
-        final Spinner recipeType = findViewById(R.id.spinner_recipeType);
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +87,10 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
         });
 
 
+        //*****************************************************************************************
         Button addRecipe = findViewById(R.id.button_addRecipe);
+
+
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,15 +132,22 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
 
                         Gson gson = new Gson();
                         intent.putExtra("recipe", gson.toJson(r));
+                        intent.putExtra("change", changeRecipe);
+                        intent.putExtra("old", oldName);
                         startActivity(intent);
                     }
                 });
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
                 final Button buttonStop = deleteView.findViewById(R.id.button_deleteStop);
                 buttonStop.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        if (changeRecipe) {
+                            AppData.getInstance().removeRecipe(oldName);
+                        }
+
                         AppData.getInstance().addRecipe(recipe);
                         AppData.getInstance().saveRecipe();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -161,6 +181,44 @@ public class AddCooking extends AppCompatActivity implements AdapterView.OnItemS
 
         setUpListView();
 
+
+        if (getIntent().getStringExtra("change") != null) {
+            changeRecipe = !getIntent().getStringExtra("change").isEmpty();
+            setInfo(AppData.getGson().fromJson(getIntent().getStringExtra("change"), Recipe.class));
+        }
+
+
+    }
+
+    private void setInfo(Recipe recipe) {
+
+       /* final TextView recipeName = findViewById(R.id.stepList_currentStep);
+        final TextView portions = findViewById(R.id.editText_recipeAdd_portions);
+        final TextView time = findViewById(R.id.editText_recipeAdd_min);
+        final TextView description = findViewById(R.id.editText_recipeAdd_desc);
+        final Button favButton = findViewById(R.id.button_recipeAdd_favButton);
+        final Spinner recipeType = findViewById(R.id.spinner_recipeType);*/
+
+        oldName = recipe.getName();
+
+        recipeName.setText(recipe.getName());
+        portions.setText(recipe.getPortions() + "");
+        //time.setText(recipe.getTime());
+        description.setText(recipe.getDescription());
+
+        boolean isFav = recipe.isFavourite();
+        Resources res = getResources();
+        Drawable img = null;
+        if (isFav) {
+            img = res.getDrawable(R.drawable.heart_empty);
+        } else {
+            img = res.getDrawable(R.drawable.heart_full);
+        }
+        isFav = !isFav;
+        favButton.setBackground(img);
+
+        setUpListView();
+        reyclerAdapter.setNeededItems(recipe.getListOfItems());
 
     }
 

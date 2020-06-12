@@ -26,7 +26,8 @@ public class SplashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        //setRandomColorBackground(background);
+        //no random color it does not look good.
+        //int color = randomRGBValue();
         ImageView logo = findViewById(R.id.imageView_splashlLogo);
         Animation rotate = AnimationUtils.loadAnimation(this, R.anim.load_up_anim);
         logo.startAnimation(rotate);

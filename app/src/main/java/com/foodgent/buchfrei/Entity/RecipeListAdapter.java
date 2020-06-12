@@ -43,7 +43,13 @@ public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.R
             }
 
         });
-        holder.mcheckBox.setChecked(currentItem.isSelected());
+        holder.mcheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                currentItem.setSelected(isChecked);
+                AppData.getInstance().saveRecipe();
+            }
+        });
     }
 
     @Override

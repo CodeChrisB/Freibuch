@@ -400,6 +400,10 @@ public class AppData implements Serializable {
         recipes.removeObject(recipe);
     }
 
+    public void removeRecipe(String recipe) {
+        recipes.removeObject(recipe);
+    }
+
     public void removeShoppingEntry(ShoppingEntry shoppingEntry) {
         shoppingEntries.removeObject(shoppingEntry);
     }

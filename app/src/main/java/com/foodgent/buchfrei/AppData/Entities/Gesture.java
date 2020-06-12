@@ -26,4 +26,12 @@ public class Gesture {
     public void setSide(boolean side) {
         this.side = side;
     }
+
+    public boolean isAny() {
+        if (side)
+            return true;
+        if (down)
+            return true;
+        return up;
+    }
 }

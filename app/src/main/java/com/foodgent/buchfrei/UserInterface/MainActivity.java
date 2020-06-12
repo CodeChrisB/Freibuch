@@ -62,17 +62,9 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
 
         mRecyclerView = findViewById(R.id.listView);
-        onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.main_gesutreView));
-
-
-
 
         Thread.setDefaultUncaughtExceptionHandler(new AppCrashHandler(this));
         AppData.getInstance().loadData();
-
-        //NotificationService notificationService = new NotificationService(getContext());
-        //notificationService.notify("Foogent", "Hallo ich bin kuehli.");
-
 
         //region FragmentChange
         Button btnNavFrag1 = findViewById(R.id.btnNavFrag1);
@@ -119,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = mainAction.getCorrectAddPage(fragmentChanger.getCurrentPage());
-                startAddIntent(intent);
+                mainAction.startAddIntent(intent);
             }
         });
 
@@ -159,19 +151,14 @@ public class MainActivity extends AppCompatActivity {
         mainAction = new MainAction(getInstance(), fragmentChanger);
         mainAction.setFragment(action);
 
+        MainAction.setGestureArea();
+
+
+        onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.gestureArea));
 
     }
-
 
     public Context getContext() {
         return this;
-    }
-
-    public void startAddIntent(Intent intent) {
-        if (!intent.getStringExtra("type").equals("shop")) {
-            startActivity(intent);
-        } else {
-            startActivity(Intent.createChooser(intent, "Einkaufsliste teilen..."));
-        }
     }
 }

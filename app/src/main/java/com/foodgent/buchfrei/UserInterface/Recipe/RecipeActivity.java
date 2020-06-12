@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -67,6 +68,28 @@ public class RecipeActivity extends Fragment {
         context = getContext();
         setUpRecipeList();
 
+        TextView deleteRecipe1 = view.findViewById(R.id.recipe_delete1);
+        View deleteRecipe2 = view.findViewById(R.id.recipe_delete2);
+        View deleteRecipe3 = view.findViewById(R.id.recipe_delete3);
+
+        deleteRecipe1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteRecipes();
+            }
+        });
+        deleteRecipe2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteRecipes();
+            }
+        });
+        deleteRecipe3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteRecipes();
+            }
+        });
 
         //region Prevent Fragment Close
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -78,6 +101,12 @@ public class RecipeActivity extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         //endregion The callback can be enabled or disabled here or in handleOnBackPressed()
         return view;
+    }
+
+    private void deleteRecipes() {
+        AppData.getInstance().removeSelectedRecipes();
+        RecipeActivity.setUpRecipeList();
+        AppData.getInstance().saveRecipe();
     }
 
 
