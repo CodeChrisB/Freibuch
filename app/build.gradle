@@ -8,17 +8,21 @@ android {
         applicationId 'com.foodgent.buchfrei'
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 106
-        versionName '0.5.1'
+        versionCode 111
+        versionName '0.9.3.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled false
+        proguardFiles
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
+            multiDexEnabled true
+        }
+        debug {
         }
     }
+
     sourceSets {
         main {
             res.srcDirs = ['src/main/res', 'src/main/res/layout/Main', 'src/main/res/layouts/main', 'src/main/res/main']
@@ -26,6 +30,13 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 
@@ -41,6 +52,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
+
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:22.0.0'
 
@@ -55,5 +67,4 @@ dependencies {
 
     //billing
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
-
 }

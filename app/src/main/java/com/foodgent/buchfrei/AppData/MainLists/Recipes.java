@@ -20,6 +20,11 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
 
     @Override
     public ArrayList<Recipe> getArray() {
+
+        if (recipes == null) {
+            this.removeAll();
+        }
+
         return recipes;
     }
 
@@ -47,7 +52,7 @@ public class Recipes implements SaveArrayAble<Recipe>, Serializable {
 
     @Override
     public void removeAll() {
-        recipes = new ArrayList<Recipe>();
+        recipes = new ArrayList<>();
     }
 
     @Override

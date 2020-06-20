@@ -132,6 +132,17 @@ public class AppData implements Serializable {
 
     private boolean standardRecipesExits() {
         boolean r;
+
+        //without checking for null using an object!?
+        if (recipes == null)
+            recipes = new Recipes();
+
+        /*
+        this does not say if we have standard recipes
+        we could check for a specific file name in the
+        assests or parse this file into an Recipes() and check
+        this if its empty
+        */
         r = !recipes.getArray().isEmpty();
 
         return r;

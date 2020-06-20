@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Items implements SaveArrayAble<Item>, Serializable {
 
+    private static final int MAX_ITEM = 20;
     ArrayList<Item> items = new ArrayList<>();
 
     public Items(){
@@ -21,11 +22,10 @@ public class Items implements SaveArrayAble<Item>, Serializable {
 
     @Override
     public boolean addTo(Item object) {
-        if (items.size() > 20 && !(AppData.getInstance().isPremium()))
-            return false;
-
-        items.add(object);
-        return true;
+        //wenn weniger als MAX.ITEM oder Premium aktiv
+        if (items.size() < MAX_ITEM || AppData.getInstance().isPremium())
+            return items.add(object);
+        return false;
     }
 
     @Override
@@ -64,4 +64,6 @@ public class Items implements SaveArrayAble<Item>, Serializable {
             items.add(item);
         }
     }
+
+
 }
