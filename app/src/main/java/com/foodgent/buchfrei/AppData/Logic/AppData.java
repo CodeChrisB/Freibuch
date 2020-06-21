@@ -13,15 +13,9 @@ import com.foodgent.buchfrei.AppData.MainLists.Items;
 import com.foodgent.buchfrei.AppData.MainLists.RecipeItems;
 import com.foodgent.buchfrei.AppData.MainLists.Recipes;
 import com.foodgent.buchfrei.AppData.MainLists.ShoppingEntries;
-import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
@@ -125,27 +119,28 @@ public class AppData implements Serializable {
     }
 
     private void addStandardRecipes() {
-        for (Recipe r : getJson()) {
+        /*for (Recipe r : getJson()) {
             recipes.addTo(r);
-        }
+        }*/
     }
 
     private boolean standardRecipesExits() {
-        boolean r;
 
+        /*boolean r;
         //without checking for null using an object!?
         if (recipes == null)
             recipes = new Recipes();
 
-        /*
-        this does not say if we have standard recipes
-        we could check for a specific file name in the
-        assests or parse this file into an Recipes() and check
-        this if its empty
-        */
-        r = !recipes.getArray().isEmpty();
 
-        return r;
+        //this does not say if we have standard recipes
+       // we could check for a specific file name in the
+       // assests or parse this file into an Recipes() and check
+       // this if its empty.
+
+        r = !this.getRecipes().isEmpty();
+
+*/
+        return true;
     }
 
     private RecipeItems setRecipeItems() {
@@ -222,6 +217,7 @@ public class AppData implements Serializable {
     }
 
     public ArrayList<Recipe> getJson() {
+        /*
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
@@ -241,6 +237,8 @@ public class AppData implements Serializable {
         }
 
         return recipes;
+         */
+        return new ArrayList<>();
     }
 
     public boolean saveRecipe() {
