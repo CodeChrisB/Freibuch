@@ -47,6 +47,7 @@ public class AppData implements Serializable {
     public static AppData getInstance() {
         if (instance == null) {
             instance = new AppData();
+            instance.loadData();
         }
         return instance;
     }
