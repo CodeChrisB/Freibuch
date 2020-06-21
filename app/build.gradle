@@ -8,8 +8,8 @@ android {
         applicationId 'com.foodgent.buchfrei'
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 113
-        versionName '0.9.3.5'
+        versionCode 114
+        versionName '0.9.3.6'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled false
         proguardFiles
