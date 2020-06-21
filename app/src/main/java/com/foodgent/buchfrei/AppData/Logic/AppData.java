@@ -115,7 +115,12 @@ public class AppData implements Serializable {
     }
 
     public Gesture getGesture() {
+
+        if (gesture == null) {
+            gesture = new Gesture();
+        }
         return gesture;
+
     }
 
     private void addStandardRecipes() {
@@ -511,6 +516,8 @@ public class AppData implements Serializable {
     //region darkmode
 
     public boolean isDarkMode() {
+        if (settings == null)
+            return false;
         return settings.isUseDarkmode();
     }
 

@@ -21,7 +21,7 @@ public class CrashReport extends AppCompatActivity {
     private FirebaseManager fm = new FirebaseManager();
     private Intent intent;
 
-    private final boolean DEBUG_MODE = false;
+    private final boolean DEBUG_MODE = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

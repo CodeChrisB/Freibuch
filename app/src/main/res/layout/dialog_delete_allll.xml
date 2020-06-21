@@ -14,7 +14,7 @@
         android:gravity="center"
         android:includeFontPadding="true"
         android:padding="2dp"
-        android:text="Will"
+        android:text="Deine Daten löschen ?"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/button_deleteNext"
         app:layout_constraintEnd_toEndOf="parent"
