@@ -1,5 +1,7 @@
 package com.foodgent.buchfrei.AppData.Logic;
 
+import android.renderscript.Type;
+
 import com.example.fragment.R;
 import com.foodgent.buchfrei.AppData.Entities.Barcode;
 import com.foodgent.buchfrei.AppData.Entities.BarcodeItem;
@@ -13,9 +15,14 @@ import com.foodgent.buchfrei.AppData.MainLists.Items;
 import com.foodgent.buchfrei.AppData.MainLists.RecipeItems;
 import com.foodgent.buchfrei.AppData.MainLists.Recipes;
 import com.foodgent.buchfrei.AppData.MainLists.ShoppingEntries;
+import com.foodgent.buchfrei.UserInterface.MainActivity;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
 import java.io.Serializable;
+import java.lang.reflect.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AppData implements Serializable {
@@ -223,7 +230,7 @@ public class AppData implements Serializable {
     }
 
     public ArrayList<Recipe> getJson() {
-        /*
+
         String json;
         ArrayList<Recipe> recipes = new ArrayList<>();
 
@@ -235,16 +242,14 @@ public class AppData implements Serializable {
             is.close();
 
             json = new String(buffer, StandardCharsets.UTF_8);
-            Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
             recipes = gson.fromJson(json, listType);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return recipes;
-         */
-        return new ArrayList<>();
     }
 
     public boolean saveRecipe() {
